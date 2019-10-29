@@ -1,5 +1,5 @@
 package com.example.ourgame;
-
+//
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,9 +12,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class TileGame extends AppCompatActivity {
+public class TileGame extends AppCompatActivity implements View.OnClickListener {
 
   private int lives = 3;
+
+    private ArrayList<Integer> images =
+            new ArrayList<>(
+                    Arrays.asList(
+                            R.drawable.flipped_wrong,
+                            R.drawable.flipped_wrong,
+                            R.drawable.flipped_wrong,
+                            R.drawable.flipped_wrong,
+                            R.drawable.flipped_wrong,
+                            R.drawable.flipped_right,
+                            R.drawable.flipped_right,
+                            R.drawable.flipped_right,
+                            R.drawable.flipped_right));
+
+    private int[] buttons = {R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5,R.id.button6, R.id.button7, R.id.button8, R.id.button9};
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,55 +38,20 @@ public class TileGame extends AppCompatActivity {
 
     TextView text = findViewById(R.id.title);
 
-    ArrayList<Integer> images =
-        new ArrayList<>(
-            Arrays.asList(
-                R.drawable.flipped_wrong,
-                R.drawable.flipped_wrong,
-                R.drawable.flipped_wrong,
-                R.drawable.flipped_wrong,
-                R.drawable.flipped_wrong,
-                R.drawable.flipped_right,
-                R.drawable.flipped_right,
-                R.drawable.flipped_right,
-                R.drawable.flipped_right));
-
-    Button[] buttons =
-        new Button[] {
-          findViewById(R.id.button1),
-          findViewById(R.id.button2),
-          findViewById(R.id.button3),
-          findViewById(R.id.button4),
-          findViewById(R.id.button5),
-          findViewById(R.id.button6),
-          findViewById(R.id.button7),
-          findViewById(R.id.button8),
-          findViewById(R.id.button9)
-        };
-
     Collections.shuffle(images);
 
-    for (int i = 0; i < 9; i++) {
-      buttons[i].setTextSize(0.0F);
+      for (int i = 0; i < buttons.length; i++) {
+          Button button = findViewById(buttons[i]);
+          button.setTextSize(0.0F);
+          button.setOnClickListener(this);
 
-      if (images.get(i) == R.drawable.flipped_wrong) {
+          if (images.get(i) == R.drawable.flipped_wrong){
+              button.setText("wrong");
 
-        buttons[i].setOnClickListener(
-            new View.OnClickListener() {
-              public void onClick(View v) {
-                v.setBackgroundResource(R.drawable.flipped_wrong);
-                lives--;
-              }
-            });
-      } else {
-        buttons[i].setOnClickListener(
-            new View.OnClickListener() {
-              public void onClick(View v) {
-                v.setBackgroundResource(R.drawable.flipped_right);
-              }
-            });
+          }
+          else{
+              button.setText("right");}
       }
-    }
 
     findViewById(R.id.button10)
         .setOnClickListener(
@@ -88,4 +68,32 @@ public class TileGame extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
   }
+
+  @Override
+  public void onClick(View view) {
+      Button button = (Button)view;
+      button.setBackgroundResource(images.get(getButtonIndex(button.getId())));
+  }
+
+    public int getButtonIndex(int t) {
+
+        // find length of array
+        int len = buttons.length;
+        int i = 0;
+
+        // traverse in the array
+        while (i < len) {
+
+            // if the i-th element is t
+            // then return the index
+            if (buttons[i] == t) {
+                return i;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return -1;
+    }
+
 }
