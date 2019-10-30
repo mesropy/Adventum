@@ -15,6 +15,8 @@ class PictureGame extends Game {
     private String correctGuessMessage;
     private String incorrectGuessMessage;
     private String instructions;
+    // TODO: add attribute to keep track of time? (needed?)
+
 
     PictureGame() {
         super();
@@ -39,9 +41,6 @@ class PictureGame extends Game {
 
     void incrementNumTries() {
         numAttempts++;
-        if (levelFailed()) {
-            // TODO: level failed screen
-        }
     }
 
     void resetNumTries() {
@@ -88,7 +87,7 @@ class PictureGame extends Game {
         }
     }
 
-    private boolean levelFailed() {
+    boolean levelFailed() {
         return numAttempts >= numAttemptsAllowed;
     }
 }
