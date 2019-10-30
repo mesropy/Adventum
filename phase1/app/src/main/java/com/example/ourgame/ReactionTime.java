@@ -29,6 +29,7 @@ public class ReactionTime extends AppCompatActivity {
     private long startTime = 0;
     private int count = 0;
     private long total = 0;
+    private Stats stats;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -44,6 +45,7 @@ public class ReactionTime extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reaction_time);
 
+
         currentLayout = findViewById(R.id.main_layout);
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
@@ -51,6 +53,8 @@ public class ReactionTime extends AppCompatActivity {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
+        DataWriter dataWriter = new DataWriter();
+        stats = new Stats(dataWriter);
 
         instruction();
     }
