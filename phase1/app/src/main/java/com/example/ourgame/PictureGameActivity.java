@@ -22,8 +22,6 @@ public class PictureGameActivity extends AppCompatActivity {
     private Button continueButton;
     private Button enterButton;
 
-    // TODO: add timer
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +61,7 @@ public class PictureGameActivity extends AppCompatActivity {
 
     private void onCorrectGuess() {
         guessResultText.setText(pictureGame.getCorrectGuessMessage());
-        // TODO: highlight animal in image
+        // can later highlight animal in image (not doing this now)
         // TODO: display stats for this level
         // TODO: increase points (for game not overall)
 
@@ -94,14 +92,16 @@ public class PictureGameActivity extends AppCompatActivity {
         });
 
         pictureGame.incrementNumTries();
-//        if (pictureGame.getLevelFailed()){
-//            levelFailed();
-//        }
+        if (pictureGame.levelFailed()){
+            displayLevelFailed();
+        }
     }
 
     public void onNextButtonPressed(View view) {
         if (pictureGame.reachedLastLevel()) {
-            // TODO: move to game over screen
+            // TODO: calculate time taken
+            // TODO: save all stats to file
+            // TODO: transition to stats page, then to game over screen
         } else {
             pictureGame.nextLevel();
             pictureGame.resetNumTries();
@@ -121,8 +121,13 @@ public class PictureGameActivity extends AppCompatActivity {
         enterButton.setVisibility(View.VISIBLE);
     }
 
-//    private void levelFailed(){
-//        // TO DO: do something when level failed
-//        // (display level over, continue button, update stats?)
-//    }
+    private void displayLevelFailed(){
+        // TODO: show that level failed
+        // TODO: update stats? (not overall stats in file, but stats for this game)
+        // Show next level button
+        continueButton.setVisibility(View.VISIBLE);
+        // make guess edit text not editable, and remove enter button
+        guessEditText.setEnabled(false);
+        enterButton.setVisibility(View.GONE);
+    }
 }
