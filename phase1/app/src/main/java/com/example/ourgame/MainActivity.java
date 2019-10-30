@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playTileGameView (View view){
-        Intent intent = new Intent(this, TileGame.class);
+        Intent intent = new Intent(this, TileGameInstructions.class);
         startActivity(intent);
     }
 

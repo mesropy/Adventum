@@ -52,13 +52,17 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
             R.id.button8,
             R.id.button9};
 
+    /**
+     * Method to initialize items in this activity. Initializes onClickListener methods for
+     * all buttons.
+     *
+     * @param savedInstanceState the previous state or activity that can be restored
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_game);
         countLives = findViewById(R.id.lives);
-
-        Collections.shuffle(images);
 
         for (int i = 0; i < buttons.length; i++) {
             Button button = findViewById(buttons[i]);
@@ -68,15 +72,24 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+    /**
+     * Method that gets called to randomize and display green tiles upon the player's first
+     * starting round.
+     */
     @Override
     protected void onStart() {
         super.onStart();
 
         Collections.shuffle(images);
-
         display();
     }
 
+    /**
+     * Method to determine what happens on button taps. Adds point or subtracts lives based on
+     * the the tile button the user has tapped.
+     *
+     * @param view the view object that called this method
+     */
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
@@ -91,14 +104,14 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
                 roundLives--;
 
                 if (roundLives == 0) {
-                    Toast.makeText(getBaseContext(), "You lost one live!" , Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(getBaseContext(), "You lost one live!", Toast.LENGTH_SHORT).show();
                     lives--;
                     correctPressed = 0;
                     countLives.setText("Lives Remaining: " + Integer.toString(lives) + "/3");
                     roundLives = 2;
                     showResult();
-                } else{
-                    Toast.makeText(getBaseContext(), "INCORRECT!" , Toast.LENGTH_SHORT ).show();
+                } else {
+                    Toast.makeText(getBaseContext(), "INCORRECT!", Toast.LENGTH_SHORT).show();
                 }
 
                 if (lives == 0) {
@@ -115,14 +128,17 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
                     roundLives = 2;
                     correctPressed = 0;
                     showResult();
-                    Toast.makeText(getBaseContext(), "You passed this pattern!" , Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(getBaseContext(), "You passed this pattern!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getBaseContext(), "CORRECT!" , Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(getBaseContext(), "CORRECT!", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
 
+    /**
+     * Method to restart a round after the player has passed a round or failed a round.
+     */
     private void restartGame() {
 
         Collections.shuffle(images);
@@ -131,6 +147,9 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
         display();
     }
 
+    /**
+     * Method to display the correct pattern of correct tiles after a round has ended.
+     */
     private void showResult() {
         for (int i = 0; i < buttons.length; i++) {
             final Button button = findViewById(buttons[i]);
@@ -141,9 +160,9 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
             if (images.get(i) == R.drawable.flipped_wrong) {
                 button.setBackgroundResource(R.drawable.flipped_wrong);
 
-            } else if (images.get(i) == R.drawable.flipped_right){
+            } else if (images.get(i) == R.drawable.flipped_right) {
                 button.setBackgroundResource(R.drawable.flipped_right);
-            } else{
+            } else {
                 button.setBackgroundResource(R.drawable.unflipped);
             }
 
@@ -155,17 +174,20 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+    /**
+     * Method to display the positions of the correct green tiles the player must memorize and tap
+     * before turning them back to blue.
+     */
     private void display() {
         for (int i = 0; i < buttons.length; i++) {
             final Button button = findViewById(buttons[i]);
             button.setTextSize(0.0F);
             button.setClickable(false);
 
-            if (images.get(i) == R.drawable.flipped_right){
+            if (images.get(i) == R.drawable.flipped_right) {
                 button.setText("right");
                 button.setBackgroundResource(R.drawable.flipped_right);
-            }
-            else{
+            } else {
                 button.setText("wrong");
                 button.setBackgroundResource(R.drawable.unflipped);
             }
