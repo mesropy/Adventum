@@ -74,25 +74,7 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
 
         Collections.shuffle(images);
 
-        for (int i = 0; i < buttons.length; i++) {
-            final Button button = findViewById(buttons[i]);
-            button.setTextSize(0.0F);
-
-            if (images.get(i) == R.drawable.flipped_right){
-                button.setText("right");
-                button.setBackgroundResource(R.drawable.flipped_right);
-            }
-            else{
-                button.setText("wrong");
-                button.setBackgroundResource(R.drawable.unflipped);
-            }
-
-            new Handler().postDelayed(new Runnable() {
-                public void run() {
-                    button.setBackgroundResource(R.drawable.unflipped);
-                }
-            }, 4000);
-        }
+        display();
     }
 
     @Override
@@ -107,11 +89,11 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
                 button.setBackgroundResource(R.drawable.flipped_wrong);
 
                 roundLives--;
-                correctPressed = 0;
 
                 if (roundLives == 0) {
                     Toast.makeText(getBaseContext(), "You lost one live!" , Toast.LENGTH_SHORT ).show();
                     lives--;
+                    correctPressed = 0;
                     countLives.setText("Lives Remaining: " + Integer.toString(lives) + "/3");
                     roundLives = 2;
                     showResult();
@@ -146,31 +128,14 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
         Collections.shuffle(images);
         buttonClicked.clear();
 
-        for (int i = 0; i < buttons.length; i++) {
-            final Button button = findViewById(buttons[i]);
-            button.setTextSize(0.0F);
-
-            if (images.get(i) == R.drawable.flipped_right){
-                button.setText("right");
-                button.setBackgroundResource(R.drawable.flipped_right);
-            }
-            else{
-                button.setText("wrong");
-                button.setBackgroundResource(R.drawable.unflipped);
-            }
-
-            new Handler().postDelayed(new Runnable() {
-                public void run() {
-                    button.setBackgroundResource(R.drawable.unflipped);
-                }
-            }, 3000);
-        }
+        display();
     }
 
     private void showResult() {
         for (int i = 0; i < buttons.length; i++) {
             final Button button = findViewById(buttons[i]);
             button.setTextSize(0.0F);
+            button.setClickable(false);
 
 
             if (images.get(i) == R.drawable.flipped_wrong) {
@@ -187,6 +152,30 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
                     restartGame();
                 }
             }, 2000);
+        }
+    }
+
+    private void display() {
+        for (int i = 0; i < buttons.length; i++) {
+            final Button button = findViewById(buttons[i]);
+            button.setTextSize(0.0F);
+            button.setClickable(false);
+
+            if (images.get(i) == R.drawable.flipped_right){
+                button.setText("right");
+                button.setBackgroundResource(R.drawable.flipped_right);
+            }
+            else{
+                button.setText("wrong");
+                button.setBackgroundResource(R.drawable.unflipped);
+            }
+
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    button.setBackgroundResource(R.drawable.unflipped);
+                    button.setClickable(true);
+                }
+            }, 3000);
         }
     }
 
