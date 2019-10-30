@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
+import com.example.ourgame.login.Login;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void playReactionGame(View view){
         Intent intent = new Intent(this, ReactionTime.class);
+        startActivity(intent);
+    }
+
+    public void login(View view) {
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 }
