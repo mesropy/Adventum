@@ -30,6 +30,7 @@ import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
 
 public class Login extends AppCompatActivity implements LoginView {
+    public static final String EXTRA_MESSAGE = "com.example.ourgame.MESSAGE";
 
     private ProgressBar progressBar;
     private EditText username;
@@ -80,7 +81,10 @@ public class Login extends AppCompatActivity implements LoginView {
 
     @Override
     public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(this, MainActivity.class);
+        String userName = username.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, userName);
+        startActivity(intent);
         finish();
     }
 

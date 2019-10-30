@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
 import com.example.ourgame.login.Login;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,16 +15,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    public void playPictureGame(View view){
-        Intent intent = new Intent(this, PictureGameActivity.class);
-        startActivity(intent);
-    }
-
-    public void playTileGameView (View view){
-        Intent intent = new Intent(this, TileGameInstructions.class);
-        startActivity(intent);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(Login.EXTRA_MESSAGE);
+        TextView textView = findViewById(R.id.welcome);
+        textView.setText("Welcome " + message + " !");
     }
 
     public void playReactionGame(View view){
@@ -30,8 +27,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void login(View view) {
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
-    }
 }

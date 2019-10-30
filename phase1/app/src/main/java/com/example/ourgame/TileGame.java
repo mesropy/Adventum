@@ -115,7 +115,7 @@ public class TileGame extends AppCompatActivity implements View.OnClickListener 
                 }
 
                 if (lives == 0) {
-                    //end activity
+                    // game ends
                 }
 
             } else {
