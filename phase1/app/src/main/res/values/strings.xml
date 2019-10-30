@@ -27,4 +27,8 @@
     <string name="password_error">Password cannot be empty</string>
     <string name="login_failed">"Login failed"</string>
     <string name="register_failed">Username already taken</string>
+    <string name="drawing_guess_message">Type Guess Here</string>
+    <string name="got_it_button">OK, got it!</string>
+    <string name="enter_button">Enter</string>
+    <string name="continue_button">Continue</string>
 </resources>

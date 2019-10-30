@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ourgame">
 
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.Login"></activity>
+        <activity android:name=".PictureInstructions"></activity>
+        <activity android:name=".login.Login" />
         <activity
             android:name=".TileGame"
             android:parentActivityName=".MainActivity">
@@ -21,7 +29,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".PictureGame"
+            android:name=".PictureGameActivity"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -50,12 +58,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
-
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="true" />
 
 </manifest>
