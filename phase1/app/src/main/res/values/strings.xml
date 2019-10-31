@@ -31,6 +31,9 @@
     <string name="got_it_button">OK, got it!</string>
     <string name="enter_button">Enter</string>
     <string name="continue_button">Continue</string>
+    <string name="reaction_game">Reaction</string>
+    <string name="tile_game">Tile</string>
+    <string name="picture_game">Picture</string>
 
     <!-- Error messages -->
     <string name="password_empty">Password cannot be empty</string>

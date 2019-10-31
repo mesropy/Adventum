@@ -3,7 +3,9 @@ package com.example.ourgame;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -35,8 +37,7 @@ public class ReactionTime extends AppCompatActivity  {
     private long total = 0;
     private long average = 0;
 
-    private DataWriter data = new DataWriter(this);
-    private String user;
+    private DataWriter data;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -59,9 +60,7 @@ public class ReactionTime extends AppCompatActivity  {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
-
-        Intent intent = getIntent();
-        user = intent.getStringExtra(Login.EXTRA_MESSAGE);
+        data = new DataWriter(this);
 
         instruction();
     }
@@ -90,7 +89,6 @@ public class ReactionTime extends AppCompatActivity  {
     private void nextGame() {
         Intent intent = new Intent(this, TileGameInstructions.class);
         startActivity(intent);
-        finish();
     }
 
     private void sendStats() {
@@ -110,7 +108,9 @@ public class ReactionTime extends AppCompatActivity  {
         else{
             points = 1;
         }
-        data.addPoints(user, points);
+        data.addPoints(MainActivity.user, points);
+        data.addLastGame(MainActivity.user, getString(R.string.reaction_game));
+
     }
 
     private void start(){

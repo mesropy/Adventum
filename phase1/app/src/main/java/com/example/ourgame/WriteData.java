@@ -19,6 +19,8 @@ public interface WriteData {
 
     void addRanking(String username, String ranking);
 
+    void addLastGame(String username, String lastgame);
+
     String getLastGame(String username);
 
 

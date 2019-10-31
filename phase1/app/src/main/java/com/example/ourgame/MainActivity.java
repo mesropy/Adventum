@@ -11,15 +11,20 @@ import com.example.ourgame.login.Login;
 
 public class MainActivity extends AppCompatActivity {
 
+    static String user;
+    private DataWriter data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(Login.EXTRA_MESSAGE);
+        user = intent.getStringExtra(Login.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.welcome);
-        textView.setText("Welcome " + message + "!");
+        textView.setText("Welcome " + user + "!");
+
+        data = new DataWriter(this);
     }
 
     public void playReactionGame(View view){
@@ -27,4 +32,27 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void playTileGame(){
+        Intent intent = new Intent(this, TileGameInstructions.class);
+        startActivity(intent);
+    }
+
+    private void playPictureGame(){
+        Intent intent = new Intent(this, PictureInstructions.class);
+        startActivity(intent);
+    }
+
+    public void continueGame(View view) {
+        String lastGame = data.getLastGame(user);
+        if (lastGame.equals(getString(R.string.reaction_game))){
+            playReactionGame(view);
+        }
+        else if (lastGame.equals(getString(R.string.tile_game))){
+            playTileGame();
+        }
+        else if (lastGame.equals(getString(R.string.picture_game))){
+            playPictureGame();
+        }
+
+    }
 }

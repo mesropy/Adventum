@@ -47,12 +47,12 @@ public class DataWriter implements WriteData {
         editor.apply();
 
         // Fourth add the user's default ranking
-        editor = pointsData.edit();
+        editor = rankingData.edit();
         editor.putString(username, "Bronze");
         editor.apply();
 
         // Lastly add the user's default last game played
-        editor = pointsData.edit();
+        editor = lastGameData.edit();
         editor.putString(username, "Reaction");
         editor.apply();
     }
@@ -79,22 +79,30 @@ public class DataWriter implements WriteData {
 
     @Override
     public void addPoints(String username, int points) {
+        int currentPoints = getPoints(username);
         SharedPreferences.Editor editor = pointsData.edit();
-        editor.putInt(username, points);
+        editor.putInt(username, points + currentPoints);
         editor.apply();
     }
 
     @Override
     public void addPlayTime(String username, int playTime) {
         SharedPreferences.Editor editor = timeData.edit();
-        editor.putInt(username, playTime);
+        editor.putInt(username, playTime + getPlayTime(username));
         editor.apply();
     }
 
     @Override
     public void addRanking(String username, String ranking) {
+        SharedPreferences.Editor editor = rankingData.edit();
+        editor.putString(username, ranking);
+        editor.apply();
+    }
+
+    @Override
+    public void addLastGame(String username, String lastgame) {
         SharedPreferences.Editor editor = pointsData.edit();
-        editor.putString(username, "Bronze");
+        editor.putString(username, lastgame);
         editor.apply();
     }
 
@@ -105,6 +113,6 @@ public class DataWriter implements WriteData {
 
     @Override
     public boolean checkUser(String username) {
-        return !((pointsData.getString(username, "Not Found")).equals("Not Found"));
+        return !((loginData.getString(username, "Not Found")).equals("Not Found"));
     }
 }
