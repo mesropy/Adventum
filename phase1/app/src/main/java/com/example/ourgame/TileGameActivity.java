@@ -1,0 +1,217 @@
+package com.example.ourgame;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+
+/**
+ * The Activity class for a Memory Tile Game
+ */
+public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
+
+    TileGame tileGame;
+
+    private ArrayList<Integer> buttonsClicked = new ArrayList<>();
+    private TextView livesText;
+    private TextView resultText;
+
+    private int[] tileButtonIds = {
+            R.id.tile1,
+            R.id.tile2,
+            R.id.tile3,
+            R.id.tile4,
+            R.id.tile5,
+            R.id.tile6,
+            R.id.tile7,
+            R.id.tile8,
+            R.id.tile9};
+
+    private Button[] tileButtons;
+
+    /**
+     * Method to initialize items in this activity. Initializes onClickListener methods for
+     * all tileButtonIds.
+     *
+     * @param savedInstanceState the previous state or activity that can be restored
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tile_game);
+
+        tileGame = new TileGame();
+
+        livesText = findViewById(R.id.livesText);
+        resultText = findViewById(R.id.resultText);
+
+        // initialize tileButtons
+        tileButtons = new Button[tileButtonIds.length];
+        for (int i = 0; i < tileButtonIds.length; i++) {
+            tileButtons[i] = findViewById(tileButtonIds[i]);
+        }
+        // add on click listener for each tile button
+        for (Button tileButton : tileButtons) {
+            tileButton.setOnClickListener(this);
+        }
+    }
+
+    /**
+     * Method that gets called to randomize and display green tileImageIds upon the player's first
+     * starting round.
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        startRound();
+    }
+
+    /**
+     * Method to determine what happens on button taps. Adds point or subtracts lives based on
+     * the the tile button the user has tapped.
+     *
+     * @param view the view object that called this method
+     */
+    @Override
+    public void onClick(View view) {
+        Button button = (Button) view;
+
+        if (!buttonsClicked.contains(button.getId())) {
+            buttonsClicked.add(button.getId());
+
+            if (button.getTag() == "wrong") {
+                clickedOnWrongTile(button);
+            } else {
+                clickedOnARightTile(button);
+            }
+        }
+    }
+
+    private void clickedOnWrongTile(Button button) {
+        // flip tile
+        button.setBackgroundResource(tileGame.getWrongTileImageId());
+
+        tileGame.loseRoundLife();
+
+        if (tileGame.noMoreRoundLives()) {
+            roundLost();
+            restartRound();
+        } else {
+            resultText.setText("INCORRECT!");
+        }
+
+        if (tileGame.noMoreLives()) {
+            // game ends
+            // TODO: go to next game?
+        }
+    }
+
+    private void clickedOnARightTile(Button button) {
+        // flip tile
+        button.setBackgroundResource(tileGame.getRightTileImageId());
+
+        tileGame.addPoint();
+        tileGame.incrementCorrectPressed();
+
+        if (tileGame.allRightTilesPressed()) {
+            roundWon();
+            restartRound();
+        } else {
+            resultText.setText("CORRECT!");
+        }
+    }
+
+    private void roundLost(){
+        livesText.setText(tileGame.getLivesRemainingText());
+        resultText.setText(tileGame.getLoseLifeText());
+        tileGame.loseLife();
+        displayPatternRed();
+    }
+
+    private void roundWon(){
+        displayPattern(); // removes any red tiles (make this more efficient)
+        resultText.setText("You passed this pattern!");
+    }
+
+    /**
+     * Method to restart a round after the player has passed a round or failed a round.
+     */
+    private void restartRound() {
+        tileGame.resetRoundLives();
+        tileGame.resetCorrectPressed();
+        buttonsClicked.clear();
+        waitThenStartLevel();
+    }
+
+    private void startRound(){
+        tileGame.shuffleTiles();
+        displayPattern();
+        waitThenHidePattern();
+        resultText.setText("");
+    }
+
+    // shows pattern with right tiles green and wrong blue
+    private void displayPattern() {
+        for (int i = 0; i < tileButtons.length; i++) {
+            Button tileButton = tileButtons[i];
+            int tileImageId;
+
+            // set image id to either right or wrong image
+            if (tileGame.getRightTile().get(i)) { // this tile is right / green
+                tileImageId = tileGame.getRightTileImageId();
+                tileButton.setTag("right");
+            } else { // otherwise is wrong, show unflipped (blue)
+                tileImageId = tileGame.getUnflippedTileImageId();
+                tileButton.setTag("wrong");
+            }
+            tileButton.setBackgroundResource(tileImageId);
+
+            tileButton.setClickable(false);
+        }
+    }
+
+    // shows pattern with right tiles green and wrong red
+    private void displayPatternRed() {
+        for (int i = 0; i < tileButtons.length; i++) {
+            Button tileButton = tileButtons[i];
+            int tileImageId;
+
+            // set image id to either right or wrong image
+            if (tileGame.getRightTile().get(i)) { // this tile is right / green
+                tileImageId = tileGame.getRightTileImageId();
+            } else { // otherwise is wrong
+                tileImageId = tileGame.getWrongTileImageId();
+            }
+            tileButton.setBackgroundResource(tileImageId);
+
+            tileButton.setClickable(false);
+        }
+    }
+
+    private void waitThenHidePattern() {
+        for (int tileButtonId : tileButtonIds) {
+            final Button tileButton = findViewById(tileButtonId);
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    tileButton.setBackgroundResource(R.drawable.unflipped);
+                    tileButton.setClickable(true);
+                }
+            }, tileGame.getPatternShowTime());
+        }
+    }
+
+    private void waitThenStartLevel() {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                startRound();
+            }
+        }, tileGame.getPatternEndShowTime());
+    }
+
+}
