@@ -122,13 +122,14 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
             // game ends
             //write into stats file here
             //records the time spent playing this game in minutes
-            playTime = (System.currentTimeMillis() - startTime) / 60;
+            playTime = (System.currentTimeMillis() - startTime) / 60000;
 
 
             // TODO: go to next game?
             //Move onto instructions for PictureGame
             Intent intent = new Intent(this, PictureInstructions.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -238,6 +239,10 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Method that delays the game so that the player has a chance to view and memorize the
+     * locations of tiles before they become hidden.
+     */
     private void waitThenHidePattern() {
         for (int tileButtonId : tileButtonIds) {
             final Button tileButton = findViewById(tileButtonId);
@@ -250,6 +255,10 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Method to delay the game a bit before starting a new round. Used to show the player the
+     * correct pattern they have guessed.
+     */
     private void waitThenStartLevel() {
         new Handler().postDelayed(new Runnable() {
             public void run() {

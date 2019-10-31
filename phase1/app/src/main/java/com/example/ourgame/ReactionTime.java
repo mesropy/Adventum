@@ -74,6 +74,7 @@ public class ReactionTime extends AppCompatActivity {
                 //move onto the instructions for Tilegame
                 Intent intent = new Intent(this, TileGameInstructions.class);
                 startActivity(intent);
+                finish();
             }
         }
         else if (currentState == State.TIME || currentState == State.EARLY){
