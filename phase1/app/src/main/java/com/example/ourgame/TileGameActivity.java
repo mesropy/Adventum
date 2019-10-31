@@ -16,6 +16,7 @@ import java.util.ArrayList;
 /**
  * The Activity class for a Memory Tile Game
  */
+
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
 
     TileGame tileGame;
@@ -45,7 +46,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      *
      * @param savedInstanceState the previous state or activity that can be restored
      */
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_game);
@@ -64,6 +64,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         for (Button tileButton : tileButtons) {
             tileButton.setOnClickListener(this);
         }
+
     }
 
     /**
@@ -74,7 +75,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     protected void onStart() {
         startTime = System.currentTimeMillis();
         super.onStart();
-
         startRound();
     }
 
@@ -143,7 +143,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
             resultText.setText("CORRECT!");
         }
     }
-
 
     /**
      * Method to process what happens on a lost round. Remove the appropriate number of lives and
@@ -246,6 +245,10 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Method that delays the game so that the player has a chance to view and memorize the
+     * locations of tiles before they become hidden.
+     */
     private void waitThenHidePattern() {
         for (int tileButtonId : tileButtonIds) {
             final Button tileButton = findViewById(tileButtonId);
@@ -258,6 +261,10 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Method to delay the game a bit before starting a new round. Used to show the player the
+     * correct pattern they have guessed.
+     */
     private void waitThenStartLevel() {
         new Handler().postDelayed(new Runnable() {
             public void run() {

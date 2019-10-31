@@ -18,5 +18,6 @@ public class TileGameInstructions extends AppCompatActivity {
     public void playTileGameView(View view) {
         Intent intent = new Intent(this, TileGameActivity.class);
         startActivity(intent);
+        finish();
     }
 }
