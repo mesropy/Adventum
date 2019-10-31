@@ -7,23 +7,61 @@
     tools:context=".TileGameInstructions">
 
     <TextView
-        android:id="@+id/instructions4"
-        android:layout_width="375dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/titleText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Picking an incorrect tile will turn it red, while a correct one turns it"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Memory Game"
+        android:textColor="#636363"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/instructionText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078" />
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="174dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="220dp"
+        android:text="If you pick a correct tile, it will turn green. "
+        android:textAlignment="viewStart"
+        app:layout_constraintBaseline_toBaselineOf="@+id/instructions4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/instructions4"
+        android:layout_width="174dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="If you pick an incorrect tile, it will turn red. "
+        android:textAlignment="viewStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/instructions5"
-        android:layout_width="47dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:text="green."
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="incorrect tile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions4" />
+        app:layout_constraintTop_toBottomOf="@+id/instructions4"
+        app:srcCompat="@drawable/flipped_wrong" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instructions4"
+        app:srcCompat="@drawable/flipped_right" />
 
     <TextView
         android:id="@+id/instructions7"
@@ -61,11 +99,13 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="40dp"
-        android:text="Memory Game Instructions"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="12dp"
+        android:text="Instructions"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/titleText2" />
 
     <TextView
         android:id="@+id/instructions1"
@@ -115,27 +155,6 @@
         android:text="the green tiles while avoiding the original blue tiles."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions2" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions4"
-        app:srcCompat="@drawable/flipped_wrong"
-        android:contentDescription="incorrect tile" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions4"
-        app:srcCompat="@drawable/flipped_right" />
 
     <TextView
         android:id="@+id/instructions10"

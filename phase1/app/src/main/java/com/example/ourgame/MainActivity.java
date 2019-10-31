@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(Login.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.welcome);
-        textView.setText("Welcome " + message + " !");
+        textView.setText("Welcome " + message + "!");
     }
 
     public void playReactionGame(View view){

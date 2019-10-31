@@ -10,11 +10,13 @@ class PictureGame extends Game {
     private int numAttempts; // for current level
     private int numAttemptsAllowed;
     private int[] pointsToEarn = {2, 3, 5};
+    private int currentLevel;
 
     // other info
     private String correctGuessMessage;
     private String incorrectGuessMessage;
-    private String instructions;
+    private String instructions; // (put in text file later)
+
     // TODO: add attribute to keep track of time? (needed?)
 
 
@@ -22,21 +24,10 @@ class PictureGame extends Game {
         super();
         numAttempts = 0;
         numAttemptsAllowed = 5;
+        currentLevel = 0;
         correctGuessMessage = "Correct!";
         incorrectGuessMessage = "Sorry, try again!";
         instructions = "Figure out what image is hidden in an abstract design.";
-        initializeNumLevels();
-        initializeInstructions();
-    }
-
-    @Override
-    void initializeNumLevels() {
-        setNumLevels(imagesToGuess.length);
-    }
-
-    @Override
-    void initializeInstructions() {
-        setInstructions(instructions);
     }
 
     void incrementNumTries() {
@@ -56,7 +47,7 @@ class PictureGame extends Game {
     }
 
     int getCurrentImageResource() {
-        return imagesToGuess[getCurrentLevel()];
+        return imagesToGuess[currentLevel];
     }
 
     /**
@@ -68,7 +59,7 @@ class PictureGame extends Game {
     boolean guessCorrect(String guess) {
         // ignore whitespace and case
         String cleanedGuess = guess.trim().toLowerCase();
-        for (String word : wordsToGuess[getCurrentLevel()]) {
+        for (String word : wordsToGuess[currentLevel]) {
             if (cleanedGuess.equals(word)) {
                 return true;
             }
@@ -77,18 +68,37 @@ class PictureGame extends Game {
         return false;
     }
 
+    // earn the points for the current level (based on pointsToEarn array)
+    void addPoints(){
+        addPointsEarned(pointsToEarn[currentLevel]);
+    }
+
+    void nextLevel() {
+        currentLevel++;
+        updateStatistics();
+    }
+
     @Override
     void updateStatistics() {
         // TODO: add time stat(s)
 
         // add points only if the level was solved within the given amount of attempts
         if (!levelFailed()) {
-            addPointsEarned(pointsToEarn[getCurrentLevel()]);
+            addPointsEarned(pointsToEarn[currentLevel]);
         }
     }
 
     boolean levelFailed() {
         return numAttempts >= numAttemptsAllowed;
+    }
+
+
+    /**
+     * @return whether or not we've reached the last level
+     */
+    boolean reachedLastLevel() {
+        int numLevels = wordsToGuess.length;
+        return currentLevel + 1 >= numLevels;
     }
 }
 

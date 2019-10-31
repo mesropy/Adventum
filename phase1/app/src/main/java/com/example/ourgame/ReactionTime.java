@@ -13,6 +13,15 @@ import com.example.ourgame.login.Login;
 
 import java.util.Random;
 
+enum State {
+    INSTRUCTION,
+    WAITING,
+    GO,
+    TIME,
+    EARLY,
+    DONE
+}
+
 public class ReactionTime extends AppCompatActivity  {
 
     private ConstraintLayout currentLayout;
@@ -46,7 +55,7 @@ public class ReactionTime extends AppCompatActivity  {
         currentLayout = findViewById(R.id.main_layout);
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
-        countText = findViewById(R.id.countText);
+        countText = findViewById(R.id.numLevelsText);
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
