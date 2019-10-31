@@ -16,7 +16,6 @@ import java.util.ArrayList;
 /**
  * The Activity class for a Memory Tile Game
  */
-
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
 
     TileGame tileGame;
@@ -46,6 +45,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      *
      * @param savedInstanceState the previous state or activity that can be restored
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_game);
@@ -64,7 +64,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         for (Button tileButton : tileButtons) {
             tileButton.setOnClickListener(this);
         }
-
     }
 
     /**
@@ -75,6 +74,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     protected void onStart() {
         startTime = System.currentTimeMillis();
         super.onStart();
+
         startRound();
     }
 
@@ -113,22 +113,13 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         if (tileGame.noMoreRoundLives()) {
             roundLost();
-            restartRound();
+            if (tileGame.noMoreLives()) {
+                gameOver();
+            } else {
+                restartRound();
+            }
         } else {
             resultText.setText("INCORRECT!");
-        }
-
-        if (tileGame.noMoreLives()) {
-            // game ends
-            //write into stats file here
-            //records the time spent playing this game in minutes
-            playTime = (System.currentTimeMillis() - startTime) / 60;
-
-
-            // TODO: go to next game?
-            //Move onto instructions for PictureGame
-            Intent intent = new Intent(this, PictureInstructions.class);
-            startActivity(intent);
         }
     }
 
@@ -153,6 +144,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+
     /**
      * Method to process what happens on a lost round. Remove the appropriate number of lives and
      * displays the hidden pattern to the player.
@@ -169,8 +161,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * for them to memorize.
      */
     private void roundWon() {
-        displayPattern(); // removes any red tiles (make this more efficient)
-        resultText.setText("You passed this pattern!");
+        displayPatternRed(); // make this nicer (make red lighter?)
+        resultText.setText("You passed this round!");
     }
 
     /**
@@ -192,6 +184,22 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         displayPattern();
         waitThenHidePattern();
         resultText.setText("");
+    }
+
+    private void gameOver() {
+        //records the time spent playing this game in minutes
+        playTime = (System.currentTimeMillis() - startTime) / 60;
+
+        //TODO: save stats and go to stats page
+
+        // go to next game
+        final Intent intent = new Intent(this, PictureInstructions.class);
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                startActivity(intent);
+            }
+        }, 3000);
+
     }
 
     /**

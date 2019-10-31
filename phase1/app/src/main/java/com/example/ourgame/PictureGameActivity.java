@@ -1,5 +1,6 @@
 package com.example.ourgame;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,15 +40,6 @@ public class PictureGameActivity extends AppCompatActivity {
         continueButton.setVisibility(View.GONE);
     }
 
-    // finish this:
-    /*
-    private void displayInstructions(){
-        Intent intent = new Intent(this, Instructions.class);
-        intent.putExtra("instructions", pictureGame.getInstructions());
-        startActivity(intent);
-    }
-    */
-
     // call when enter button is pressed, player is entering the guess they inputted in edit text
     public void onEnterGuessPressed(View view) {
 
@@ -63,7 +55,7 @@ public class PictureGameActivity extends AppCompatActivity {
         guessResultText.setText(pictureGame.getCorrectGuessMessage());
         // can later highlight animal in image (not doing this now)
         // TODO: display stats for this level
-        // TODO: increase points (for game not overall)
+        pictureGame.addPoints();
 
         // Show next level button
         continueButton.setVisibility(View.VISIBLE);
@@ -100,8 +92,11 @@ public class PictureGameActivity extends AppCompatActivity {
     public void onNextButtonPressed(View view) {
         if (pictureGame.reachedLastLevel()) {
             // TODO: calculate time taken
-            // TODO: save all stats to file
-            // TODO: transition to stats page, then to game over screen
+            // TODO: save all stats and go to stats page
+
+            // go to game over page (change this to stats page)
+            Intent intent = new Intent(this, GameOverActivity.class);
+            startActivity(intent);
         } else {
             pictureGame.nextLevel();
             pictureGame.resetNumTries();

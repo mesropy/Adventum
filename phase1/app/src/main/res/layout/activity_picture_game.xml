@@ -41,10 +41,11 @@
         android:id="@+id/imageToGuess"
         android:layout_width="254dp"
         android:layout_height="275dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText5"
         app:srcCompat="@drawable/frog" />
 
     <TextView
@@ -70,5 +71,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.225"
         app:layout_constraintStart_toEndOf="@+id/guessEditText" />
+
+    <TextView
+        android:id="@+id/titleText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Picture Game"
+        android:textColor="#636363"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/instructionText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

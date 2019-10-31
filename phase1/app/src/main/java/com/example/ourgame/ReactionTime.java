@@ -25,11 +25,12 @@ public class ReactionTime extends AppCompatActivity {
     private State currentState;
     private TextView message;
     private TextView title;
-    private TextView countText;
+    private TextView numLevelsText;
     private TextView averageText;
     private long startTime = 0;
-    private int count = 0;
-    private long total = 0;
+    private long totalTime = 0;
+    private int numLevels = 5;
+    private int currentLevel = 0;
     private Stats stats;
 
     Handler timerHandler = new Handler();
@@ -50,8 +51,8 @@ public class ReactionTime extends AppCompatActivity {
         currentLayout = findViewById(R.id.main_layout);
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
-        countText = findViewById(R.id.countText);
-        countText.setVisibility(View.INVISIBLE);
+        numLevelsText = findViewById(R.id.numLevelsText);
+        numLevelsText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
         //DataWriter dataWriter = new DataWriter();
@@ -67,13 +68,8 @@ public class ReactionTime extends AppCompatActivity {
         }
         else if (currentState == State.GO){
             time(System.currentTimeMillis());
-
-            if (count == 5){
-                //need to store stats before moving onto next game
-
-                //move onto the instructions for Tilegame
-                Intent intent = new Intent(this, TileGameInstructions.class);
-                startActivity(intent);
+            if (currentLevel >= numLevels) {
+                endOfGame();
             }
         }
         else if (currentState == State.TIME || currentState == State.EARLY){
@@ -88,7 +84,7 @@ public class ReactionTime extends AppCompatActivity {
     private void start(){
         message.setTextSize(36);
         title.setVisibility(View.INVISIBLE);
-        countText.setVisibility(View.VISIBLE);
+        numLevelsText.setVisibility(View.VISIBLE);
         averageText.setVisibility(View.VISIBLE);
     }
 
@@ -106,12 +102,12 @@ public class ReactionTime extends AppCompatActivity {
 
     private void time(long stopTime){
         Long time = stopTime - startTime;
-        count += 1;
-        total += time;
+        currentLevel += 1;
+        totalTime += time;
         currentState = State.TIME;
         message.setText(Long.toString(time) + "ms");
-        countText.setText(Integer.toString(count) + "/5");
-        averageText.setText(Long.toString(total/count) + "ms");
+        numLevelsText.setText(Integer.toString(currentLevel) + "/" + numLevels);
+        averageText.setText(Long.toString(totalTime / currentLevel) + "ms");
         currentLayout.setBackgroundResource(R.color.menu_blue);
     }
 
@@ -126,5 +122,14 @@ public class ReactionTime extends AppCompatActivity {
         currentState = State.EARLY;
         message.setText("Too Soon!");
         currentLayout.setBackgroundResource(R.color.menu_blue);
+    }
+
+    private void endOfGame(){
+
+        // TODO: save stats and go to next game
+
+        // go to next game
+        Intent intent = new Intent(this, TileGameInstructions.class);
+        startActivity(intent);
     }
 }

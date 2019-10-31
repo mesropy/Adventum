@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PictureInstructions">
+    android:background="#5FA4AA"
+    tools:context=".GameOverActivity">
 
     <TextView
-        android:id="@+id/titleText4"
+        android:id="@+id/titleText6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Picture Game"
-        android:textColor="#636363"
+        android:text="Game Over"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/instructionText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,41 +23,36 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <TextView
-        android:id="@+id/title2"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Instructions"
-        android:textAlignment="center"
+        android:layout_marginTop="16dp"
+        android:text="You Completed Every Level!"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleText4" />
+        app:layout_constraintTop_toBottomOf="@+id/titleText6" />
 
     <TextView
-        android:id="@+id/instructionsText"
-        android:layout_width="220dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="64dp"
-        android:text="(instructions)"
-        android:textAlignment="center"
-        android:textSize="18sp"
+        android:id="@+id/textView3"
+        android:layout_width="267dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="48dp"
+        android:text="(put stats here)"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/gotItButton"
+        android:id="@+id/mainMenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        android:onClick="onGotItPressed"
-        android:text="@string/got_it_button"
-        android:textAllCaps="false"
+        android:layout_marginBottom="88dp"
+        android:onClick="onMainMenuPressed"
+        android:text="@string/main_menu_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructionsText" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

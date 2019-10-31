@@ -7,15 +7,19 @@
     tools:context=".TileGameActivity">
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="125dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="36dp"
+        android:id="@+id/titleText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Memory Game"
-        android:textSize="18sp"
+        android:textColor="#636363"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/instructionText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078" />
 
     <Button
         android:id="@+id/tile2"
@@ -118,12 +122,12 @@
         android:id="@+id/livesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="40dp"
         android:text="Lives Remaining: 3/3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/titleText3" />
 
     <TextView
         android:id="@+id/resultText"
