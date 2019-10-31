@@ -3,22 +3,17 @@ package com.example.ourgame;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.ourgame.login.Login;
+
 import java.util.Random;
 
-enum State {
-    INSTRUCTION,
-    WAITING,
-    GO,
-    TIME,
-    EARLY
-}
-
-public class ReactionTime extends AppCompatActivity {
+public class ReactionTime extends AppCompatActivity  {
 
     private ConstraintLayout currentLayout;
     private State currentState;
@@ -29,7 +24,10 @@ public class ReactionTime extends AppCompatActivity {
     private long startTime = 0;
     private int count = 0;
     private long total = 0;
-    private Stats stats;
+    private long average = 0;
+
+    private DataWriter data = new DataWriter(this);
+    private String user;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -45,7 +43,6 @@ public class ReactionTime extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reaction_time);
 
-
         currentLayout = findViewById(R.id.main_layout);
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
@@ -53,8 +50,9 @@ public class ReactionTime extends AppCompatActivity {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
-        //DataWriter dataWriter = new DataWriter();
-        //stats = new Stats(dataWriter);
+
+        Intent intent = getIntent();
+        user = intent.getStringExtra(Login.EXTRA_MESSAGE);
 
         instruction();
     }
@@ -70,10 +68,40 @@ public class ReactionTime extends AppCompatActivity {
         else if (currentState == State.TIME || currentState == State.EARLY){
             waiting();
         }
+        else if (currentState == State.DONE){
+            sendStats();
+            nextGame();
+        }
         else {
             timerHandler.removeCallbacks(timerRunnable);
             tooSoon();
         }
+    }
+
+    private void nextGame() {
+        Intent intent = new Intent(this, TileGameInstructions.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void sendStats() {
+        int points;
+        if (average <= 250){
+            points = 10;
+        }
+        else if (average <= 300){
+            points = 7;
+        }
+        else if (average <= 350){
+            points = 4;
+        }
+        else if (average <= 400){
+            points = 3;
+        }
+        else{
+            points = 1;
+        }
+        data.addPoints(user, points);
     }
 
     private void start(){
@@ -102,8 +130,13 @@ public class ReactionTime extends AppCompatActivity {
         currentState = State.TIME;
         message.setText(Long.toString(time) + "ms");
         countText.setText(Integer.toString(count) + "/5");
-        averageText.setText(Long.toString(total/count) + "ms");
+        average = total / count;
+        averageText.setText(Long.toString(average) + "ms");
         currentLayout.setBackgroundResource(R.color.menu_blue);
+
+        if (count == 5){
+            currentState = State.DONE;
+        }
     }
 
     private void go(){
