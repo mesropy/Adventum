@@ -53,8 +53,8 @@ public class ReactionTime extends AppCompatActivity {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
-        DataWriter dataWriter = new DataWriter();
-        stats = new Stats(dataWriter);
+        //DataWriter dataWriter = new DataWriter();
+        //stats = new Stats(dataWriter);
 
         instruction();
     }

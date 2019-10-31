@@ -29,13 +29,15 @@ import android.widget.ProgressBar;
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class Login extends AppCompatActivity implements LoginView {
-    public static final String EXTRA_MESSAGE = "com.example.ourgame.MESSAGE";
 
     private ProgressBar progressBar;
     private EditText username;
     private EditText password;
     private LoginPresenter presenter;
+    public final static String EXTRA_MESSAGE = "com.example.ourgame.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +67,13 @@ public class Login extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void setUsernameError() {
-        username.setError(getString(R.string.username_error));
+    public void setLoginError() {
+        username.setError(getString(R.string.login_error));
+    }
+
+    @Override
+    public void setUsernameEmpty() {
+        username.setError(getString(R.string.username_empty));
     }
 
     @Override
@@ -76,14 +83,13 @@ public class Login extends AppCompatActivity implements LoginView {
 
     @Override
     public void setPasswordError() {
-        password.setError(getString(R.string.password_error));
+        password.setError(getString(R.string.password_empty));
     }
 
     @Override
-    public void navigateToHome() {
+    public void navigateToHome(String username) {
         Intent intent = new Intent(this, MainActivity.class);
-        String userName = username.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, userName);
+        intent.putExtra(EXTRA_MESSAGE, username);
         startActivity(intent);
         finish();
     }

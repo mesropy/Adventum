@@ -1,27 +1,27 @@
 package com.example.ourgame;
 
-interface WriteData {
+public interface WriteData {
 
     // Create a new user with "username" and "password"
     void addUser(String username, String password);
 
-    // Check if "username" exists
-    boolean checkUser(String username);
-
     String getPassword(String username);
-
-    String getLastGame(String username);
-
-
-    // stats for each user: points, play time, ranking?
 
     int getPoints(String username);
 
     int getPlayTime(String username);
 
-    String getRanking(String username); // based on points and playtime
+    String getRanking(String username);
 
     void addPoints(String username, int points);
 
-    void addPlayTime(String username, double playtime);
+    void addPlayTime(String username, int playTime);
+
+    void addRanking(String username, String ranking);
+
+    String getLastGame(String username);
+
+
+    // Check if "username" exists
+    boolean checkUser(String username);
 }

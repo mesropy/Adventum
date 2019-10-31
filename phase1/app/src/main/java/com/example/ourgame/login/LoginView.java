@@ -23,11 +23,13 @@ public interface LoginView {
 
     void hideProgress();
 
-    void setUsernameError();
+    void setLoginError();
+
+    void setUsernameEmpty();
 
     void setRegisterError();
 
     void setPasswordError();
 
-    void navigateToHome();
+    void navigateToHome(String username);
 }

@@ -31,4 +31,14 @@
     <string name="got_it_button">OK, got it!</string>
     <string name="enter_button">Enter</string>
     <string name="continue_button">Continue</string>
+
+    <!-- Error messages -->
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="login_error">Wrong Password or wrong username</string>
+    <string name="preference_file_login">com.example.ourgame.login</string>
+    <string name="preference_file_points">com.example.ourgame.points</string>
+    <string name="preference_file_time">com.example.ourgame.time</string>
+    <string name="preference_file_ranking">com.example.ourgame.ranking</string>
+    <string name="preference_file_lastgame">com.example.ourgame.lastgame</string>
+    <string name="username_empty">Username cannot be empty</string>
 </resources>

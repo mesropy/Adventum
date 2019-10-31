@@ -21,30 +21,41 @@ package com.example.ourgame.login;
 import android.os.Handler;
 import android.text.TextUtils;
 
+import com.example.ourgame.DataWriter;
+
 public class LoginInteractor {
 
     interface OnLoginFinishedListener {
-        void onUsernameError();
+        void onUsernameEmpty();
 
-        void onPasswordError();
+        void onPasswordEmpty();
 
-        void onSuccess();
+        void onLoginError();
+
+        void onSuccess(String username);
     }
 
-    public void login(final String username, final String password, final OnLoginFinishedListener listener) {
+    public void login(final String username, final String password, final OnLoginFinishedListener listener,
+                      final DataWriter data) {
         // Mock login. I'm creating a handler to delay the answer a couple of seconds
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 if (TextUtils.isEmpty(username)) {
-                    listener.onUsernameError();
-                    return;
+                    listener.onUsernameEmpty();
                 }
-                if (TextUtils.isEmpty(password)) {
-                    listener.onPasswordError();
-                    return;
+                else if (TextUtils.isEmpty(password)) {
+                    listener.onPasswordEmpty();
                 }
-                listener.onSuccess();
+                else if (!data.checkUser(username)){
+                    listener.onLoginError();
+                }
+                else if (!data.getPassword(username).equals(password)){
+                    listener.onLoginError();
+                }
+                else {
+                    listener.onSuccess(username);
+                }
             }
         };
         new Handler().postDelayed(runnable,2000);

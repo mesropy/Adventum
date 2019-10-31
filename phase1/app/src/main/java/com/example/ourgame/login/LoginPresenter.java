@@ -18,16 +18,23 @@
 
 package com.example.ourgame.login;
 
+import android.content.Context;
+
+import com.example.ourgame.DataWriter;
+import com.example.ourgame.WriteData;
+
 public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, RegistrationInteractor.OnRegistrationFinishedListener{
 
     private LoginView loginView;
     private LoginInteractor loginInteractor;
+    private DataWriter dataWriter;
     private RegistrationInteractor registrationInteractor;
 
     LoginPresenter(LoginView loginView, LoginInteractor loginInteractor, RegistrationInteractor registrationInteractor) {
         this.loginView = loginView;
         this.loginInteractor = loginInteractor;
         this.registrationInteractor = registrationInteractor;
+        dataWriter = new DataWriter((Context) loginView);
     }
 
     void validateCredentials(String username, String password) {
@@ -35,7 +42,7 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
             loginView.showProgress();
         }
 
-        loginInteractor.login(username, password, this);
+        loginInteractor.login(username, password, this, dataWriter);
     }
 
     void validateRegistration(String username, String password) {
@@ -43,7 +50,7 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
             loginView.showProgress();
         }
 
-        registrationInteractor.register(username, password, this);
+        registrationInteractor.register(username, password, this, dataWriter);
     }
 
     void onDestroy() {
@@ -51,17 +58,25 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
     }
 
     @Override
-    public void onUsernameError() {
+    public void onUsernameEmpty() {
         if (loginView != null) {
-            loginView.setUsernameError();
+            loginView.setUsernameEmpty();
             loginView.hideProgress();
         }
     }
 
     @Override
-    public void onPasswordError() {
+    public void onPasswordEmpty() {
         if (loginView != null) {
             loginView.setPasswordError();
+            loginView.hideProgress();
+        }
+    }
+
+    @Override
+    public void onLoginError() {
+        if (loginView != null) {
+            loginView.setLoginError();
             loginView.hideProgress();
         }
     }
@@ -75,9 +90,9 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
     }
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(String username) {
         if (loginView != null) {
-            loginView.navigateToHome();
+            loginView.navigateToHome(username);
         }
     }
 }
