@@ -3,6 +3,7 @@ package com.example.ourgame;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -66,6 +67,14 @@ public class ReactionTime extends AppCompatActivity {
         }
         else if (currentState == State.GO){
             time(System.currentTimeMillis());
+
+            if (count == 5){
+                //need to store stats before moving onto next game
+
+                //move onto the instructions for Tilegame
+                Intent intent = new Intent(this, TileGameInstructions.class);
+                startActivity(intent);
+            }
         }
         else if (currentState == State.TIME || currentState == State.EARLY){
             waiting();

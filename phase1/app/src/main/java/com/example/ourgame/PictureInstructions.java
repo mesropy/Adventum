@@ -18,5 +18,6 @@ public class PictureInstructions extends AppCompatActivity {
 
         instructionsText = findViewById(R.id.instructionsText);
         gotItButton = findViewById(R.id.gotItButton); // set up what this does
+
     }
 }
