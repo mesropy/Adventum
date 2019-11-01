@@ -76,7 +76,7 @@ public class TileGame extends Game {
         data.addPoints(MainActivity.user, statPoints);
         data.addPlayTime(MainActivity.user, playTime);
         //need to fix getString(R.string.tile_game)
-        data.addLastGame(MainActivity.user, "Tile Game");
+        data.addLastGame(MainActivity.user, "Tile");
 
     }
 
