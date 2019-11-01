@@ -101,7 +101,7 @@ public class DataWriter implements WriteData {
 
     @Override
     public void addLastGame(String username, String lastgame) {
-        SharedPreferences.Editor editor = pointsData.edit();
+        SharedPreferences.Editor editor = lastGameData.edit();
         editor.putString(username, lastgame);
         editor.apply();
     }
