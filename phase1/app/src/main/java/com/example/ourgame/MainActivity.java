@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button object that was tapped
      */
     public void playReactionGame(View view){
+        data.addLastGame(MainActivity.user, "");
         Intent intent = new Intent(this, ReactionTime.class);
         startActivity(intent);
     }
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
             int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(this, "You have reached maximum points!", duration);
             toast.show();
+        } else {
+            playReactionGame(view);
         }
 
     }
