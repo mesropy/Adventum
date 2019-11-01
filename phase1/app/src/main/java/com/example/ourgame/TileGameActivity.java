@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -138,7 +139,14 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         if (tileGame.allRightTilesPressed()) {
             roundWon();
-            restartRound();
+            if (tileGame.getPoints() >= 100) {
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(this, "You have reached maximum points!", duration);
+                toast.show();
+                gameOver();
+            } else {
+                restartRound();
+            }
         } else {
             resultText.setText("CORRECT!");
         }
@@ -193,7 +201,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         // go to next game
         final Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", "picture game");
+        intent.putExtra("next activity", getString(R.string.picture_game));
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 startActivity(intent);
