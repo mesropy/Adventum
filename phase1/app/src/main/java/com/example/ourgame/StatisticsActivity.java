@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,8 +30,10 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
         dataWriter = new DataWriter(this);
-        pointsText.setText(Integer.toString(dataWriter.getPoints(MainActivity.user)));
-        playtimeText.setText(Integer.toString(dataWriter.getPlayTime(MainActivity.user)));
+        String str = Integer.toString(dataWriter.getPoints(MainActivity.user));
+        pointsText.setText(str);
+        String str2 = Integer.toString(dataWriter.getPlayTime(MainActivity.user));
+        playtimeText.setText(str2);
         rankingText.setText(dataWriter.getRanking(MainActivity.user));
     }
 

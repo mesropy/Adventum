@@ -24,6 +24,8 @@ public class PictureGameActivity extends AppCompatActivity {
     private Button enterButton;
     private TextView numAttemptsText;
 
+    private DataWriter data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class PictureGameActivity extends AppCompatActivity {
         imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
         continueButton.setVisibility(View.GONE);
         numAttemptsText.setText(pictureGame.getNumAttemptsText());
+
+        data = new DataWriter(this);
     }
 
     // call when enter button is pressed, player is entering the guess they inputted in edit text
@@ -107,6 +111,7 @@ public class PictureGameActivity extends AppCompatActivity {
     }
 
     private void gameOver(){
+        data.addLastGame(MainActivity.user, getString(R.string.picture_game));
         // go to game over page then stats page
         final Intent intent = new Intent(this, StatisticsActivity.class);
         intent.putExtra("next activity", "game over");

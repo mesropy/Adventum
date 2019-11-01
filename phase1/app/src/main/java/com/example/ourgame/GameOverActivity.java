@@ -2,9 +2,7 @@ package com.example.ourgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 /**
  * An activity class for the Game Over screen. Once a player has finished all three games, the user

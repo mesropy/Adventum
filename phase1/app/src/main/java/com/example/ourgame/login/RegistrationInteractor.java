@@ -9,7 +9,7 @@ import com.example.ourgame.WriteData;
  * A class for a RegistrationInteractor, which determines whether the user can register a new
  * account or not
  */
-public class RegistrationInteractor {
+class RegistrationInteractor {
 
     interface OnRegistrationFinishedListener {
         void onRegisterError();
@@ -32,7 +32,7 @@ public class RegistrationInteractor {
      * @param dataWriter the data object containing accounts and logins, used to see if username is
      *                   already taken
      */
-    public void register(final String username, final String password, final OnRegistrationFinishedListener listener,
+    void register(final String username, final String password, final OnRegistrationFinishedListener listener,
                          final WriteData dataWriter) {
         Runnable runnable = new Runnable() {
             @Override

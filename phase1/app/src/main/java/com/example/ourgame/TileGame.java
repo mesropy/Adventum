@@ -14,7 +14,6 @@ public class TileGame extends Game {
     private int points;
     private int correctPressed;
 
-    private int numTiles;
     private int numRightTiles;
     // whether or not the tile is green / "right", goes in order
     // from left to right, then top to bottom
@@ -40,7 +39,6 @@ public class TileGame extends Game {
         currentNumRoundLives = livesPerRound;
         points = 0;
         correctPressed = 0;
-        numTiles = 9;
         numRightTiles = 4;
         patternShowTime = 2000;
         patternEndShowTime = 2000;
@@ -53,7 +51,7 @@ public class TileGame extends Game {
         for (int i = 0; i < numRightTiles; i++) {
             rightTile.add(true);
         }
-        for (int i = numRightTiles; i < numTiles; i++) {
+        for (int i = numRightTiles; i < 9; i++) {
             rightTile.add(false);
         }
     }

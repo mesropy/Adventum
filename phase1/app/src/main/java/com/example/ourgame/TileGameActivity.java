@@ -1,8 +1,6 @@
 package com.example.ourgame;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -26,7 +24,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     private TextView livesText;
     private TextView resultText;
     private long startTime = 0;
-    private long playTime = 0;
 
     private int[] tileButtonIds = {
             R.id.tile1,
@@ -120,7 +117,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
                 restartRound();
             }
         } else {
-            resultText.setText("INCORRECT!");
+            resultText.setText(R.string.incorrect);
         }
     }
 
@@ -148,7 +145,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
                 restartRound();
             }
         } else {
-            resultText.setText("CORRECT!");
+            resultText.setText(R.string.correct);
         }
     }
 
@@ -169,7 +166,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void roundWon() {
         displayPatternRed(); // make this nicer (make red lighter?)
-        resultText.setText("You passed this round!");
+        resultText.setText(R.string.passed_round);
     }
 
     /**

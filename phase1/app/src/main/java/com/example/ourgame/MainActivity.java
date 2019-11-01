@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = intent.getStringExtra(Login.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.welcome);
-        textView.setText("Welcome " + user + "!");
+        String str = "Welcome" + user + "!";
+        textView.setText(str);
 
         data = new DataWriter(this);
     }
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (lastGame.equals(getString(R.string.picture_game))){
             int duration = Toast.LENGTH_LONG;
-            Toast toast = Toast.makeText(this, "You have reached maximum points!", duration);
+            Toast toast = Toast.makeText(this, "No Game Available", duration);
             toast.show();
         } else {
             playReactionGame(view);

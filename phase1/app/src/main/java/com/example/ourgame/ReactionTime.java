@@ -144,7 +144,7 @@ public class ReactionTime extends AppCompatActivity  {
      */
     private void waiting() {
         currentState = State.WAITING;
-        message.setText("Wait...");
+        message.setText(R.string.wait);
         currentLayout.setBackgroundResource(R.color.error_red);
         timerHandler.postDelayed(timerRunnable, new Random().nextInt(3000) + 1000);
     }
@@ -154,7 +154,7 @@ public class ReactionTime extends AppCompatActivity  {
      */
     private void instruction() {
         currentState = State.INSTRUCTION;
-        message.setText("When the screen turns green, tap as quickly as you can.");
+        message.setText(R.string.reaction_intro);
     }
 
     /**
@@ -163,14 +163,18 @@ public class ReactionTime extends AppCompatActivity  {
      * @param stopTime the time in milliseconds that the player tapped the screen in the GO state
      */
     private void time(long stopTime){
+        String string;
         Long time = stopTime - startTime;
         count += 1;
         total += time;
         currentState = State.TIME;
-        message.setText(Long.toString(time) + "ms");
-        countText.setText(Integer.toString(count) + "/5");
+        string = time + "ms";
+        message.setText(string);
+        String string2 = count + "/5";
+        countText.setText(string2);
         average = total / count;
-        averageText.setText(Long.toString(average) + "ms");
+        String string3 = average + "ms";
+        averageText.setText(string3);
         currentLayout.setBackgroundResource(R.color.menu_blue);
 
         if (count == 5){
@@ -184,7 +188,7 @@ public class ReactionTime extends AppCompatActivity  {
      */
     private void go(){
         currentState = State.GO;
-        message.setText("Go!");
+        message.setText(R.string.go);
         startTime = System.currentTimeMillis();
         currentLayout.setBackgroundResource(R.color.go_green);
     }
@@ -194,7 +198,7 @@ public class ReactionTime extends AppCompatActivity  {
      */
     private void tooSoon(){
         currentState = State.EARLY;
-        message.setText("Too Soon!");
+        message.setText(R.string.too_soon);
         currentLayout.setBackgroundResource(R.color.menu_blue);
     }
 }
