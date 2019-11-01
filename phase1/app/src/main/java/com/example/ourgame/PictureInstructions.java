@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * An activity class for the Picture Game instructions
+ */
 public class PictureInstructions extends AppCompatActivity {
 
     @Override

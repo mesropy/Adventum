@@ -2,9 +2,10 @@ package com.example.ourgame;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
-
+/**
+ * A class for a DataWriter, which keeps and stores user login information
+ */
 public class DataWriter implements WriteData {
 
     /* CSV File Format:
@@ -13,13 +14,11 @@ public class DataWriter implements WriteData {
      *  PictureGameScore, PictureGameTime, LastGamePlayed]
      */
 
-
     private SharedPreferences loginData;
     private SharedPreferences pointsData;
     private SharedPreferences timeData;
     private SharedPreferences rankingData;
     private SharedPreferences lastGameData;
-
 
     public DataWriter(Context context){
         loginData = context.getSharedPreferences(context.getString(R.string.preference_file_login), Context.MODE_PRIVATE);
@@ -29,6 +28,11 @@ public class DataWriter implements WriteData {
         lastGameData = context.getSharedPreferences(context.getString(R.string.preference_file_lastgame), Context.MODE_PRIVATE);
     }
 
+    /**
+     * Method to create a new account for a new user
+     * @param username the username of the new account
+     * @param password the password of the new account
+     */
     @Override
     public void addUser(String username, String password) {
         // First add the user's password
@@ -77,6 +81,11 @@ public class DataWriter implements WriteData {
         return rankingData.getString(username, "Not Found");
     }
 
+    /**
+     * Add points the user has obtained in a game
+     * @param username the user to add points to
+     * @param points the amount of points to give to the user
+     */
     @Override
     public void addPoints(String username, int points) {
         int currentPoints = getPoints(username);
@@ -85,6 +94,11 @@ public class DataWriter implements WriteData {
         editor.apply();
     }
 
+    /**
+     * Add the amount of time this player has played in a game
+     * @param username the user to add play time to
+     * @param playTime the amount of time played
+     */
     @Override
     public void addPlayTime(String username, int playTime) {
         SharedPreferences.Editor editor = timeData.edit();
@@ -92,6 +106,11 @@ public class DataWriter implements WriteData {
         editor.apply();
     }
 
+    /**
+     * Gives a user a ranking based on their performance in a variety of games
+     * @param username the user to give a ranking to
+     * @param ranking the ranking the user has obtained
+     */
     @Override
     public void addRanking(String username, String ranking) {
         SharedPreferences.Editor editor = rankingData.edit();
@@ -99,6 +118,11 @@ public class DataWriter implements WriteData {
         editor.apply();
     }
 
+    /**
+     * Adds the name of the last game the user had played
+     * @param username the user who had played a game
+     * @param lastgame the game that was last played by the user
+     */
     @Override
     public void addLastGame(String username, String lastgame) {
         SharedPreferences.Editor editor = lastGameData.edit();
@@ -106,11 +130,21 @@ public class DataWriter implements WriteData {
         editor.apply();
     }
 
+    /**
+     * Gets the name of the game the user had last played
+     * @param username the user who had played a game
+     * @return the name of the game
+     */
     @Override
     public String getLastGame(String username) {
         return lastGameData.getString(username, "Not Found");
     }
 
+    /**
+     * Check if an account with the given username exists in the data
+     * @param username the username being checked
+     * @return a boolean representing if the username was found or not
+     */
     @Override
     public boolean checkUser(String username) {
         return !((loginData.getString(username, "Not Found")).equals("Not Found"));
