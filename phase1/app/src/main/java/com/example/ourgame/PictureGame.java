@@ -98,8 +98,26 @@ class PictureGame extends Game {
     data.addPlayTime(MainActivity.user, playTime);
     data.addPoints(MainActivity.user, getPointsEarned());
     data.addLastGame(MainActivity.user, "Picture");
-    data.addRanking(MainActivity.user, null);
-    
+    if (increaseRank()) {
+      data.increaseRanking(MainActivity.user);
+    }
+  }
+
+  /**
+   * Return whether or not the rank of the user should increase after this game based on
+   * the time it took them to complete all levels.
+   *
+   * @return whether or not the user's rank should increase
+   */
+  private boolean increaseRank() {
+    int totalPointsToEarn = 0;
+    for (int points : pointsToEarn) {
+      totalPointsToEarn += points;
+    }
+
+    // earned all possible points / won all levels
+    // and completed them in 20 seconds or less
+    return getPointsEarned() >= totalPointsToEarn && playTime <= 20;
   }
 
   boolean usedAllAttempts() {

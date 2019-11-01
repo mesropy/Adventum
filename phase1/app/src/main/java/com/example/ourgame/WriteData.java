@@ -17,7 +17,7 @@ public interface WriteData {
 
     void addPlayTime(String username, int playTime);
 
-    void addRanking(String username, String ranking);
+    void increaseRanking(String username);
 
     void addLastGame(String username, String lastgame);
 

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = intent.getStringExtra(Login.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.welcome);
-        String str = "Welcome " + user + " !";
+        String str = "Welcome " + user + "!";
         textView.setText(str);
 
         data = new DataWriter(this);

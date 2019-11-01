@@ -14,6 +14,8 @@ public class DataWriter implements WriteData {
      *  PictureGameScore, PictureGameTime, LastGamePlayed]
      */
 
+    private String[] rankings = {"Bronze", "Silver", "Gold", "Plat"};
+
     private SharedPreferences loginData;
     private SharedPreferences pointsData;
     private SharedPreferences timeData;
@@ -107,22 +109,25 @@ public class DataWriter implements WriteData {
     }
 
     /**
-     * Gives a user a ranking based on their performance in a variety of games
-     * @param username the user to give a ranking to
-     * @param ranking the ranking the user has obtained
+     * Updates the user's ranking at the end of a game if it achieved something difficult
+     * (ex/ solve every level very quickly)
+     *
+     * @param username the user to increase the ranking of
      */
     @Override
-    public void addRanking(String username, String ranking) {
-        if (getPoints(username) >= 1000) {
-            ranking = "Plat";
-        } else if (getPoints(username) >= 200) {
-            ranking = "Gold";
-        } else if (getPoints(username) >= 100) {
-            ranking = "Silver";
-        }
-        SharedPreferences.Editor editor = rankingData.edit();
-        editor.putString(username, ranking);
-        editor.apply();
+    public void increaseRanking(String username) {
+        String currentRanking = getRanking(username);
+        String newRanking;
+
+        // only increase if not the highest ranking
+        for (int i = 0; i < rankings.length - 1; i++)
+            if (currentRanking.equals(rankings[i])) {
+                newRanking = rankings[i + 1];
+                SharedPreferences.Editor editor = rankingData.edit();
+                editor.putString(username, newRanking);
+                editor.apply();
+                break;
+            }
     }
 
     /**

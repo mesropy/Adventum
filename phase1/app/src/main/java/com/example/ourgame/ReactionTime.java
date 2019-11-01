@@ -127,7 +127,10 @@ public class ReactionTime extends AppCompatActivity  {
         data.addPoints(MainActivity.user, points);
         data.addPlayTime(MainActivity.user, (int)(total/1000));
         data.addLastGame(MainActivity.user, getString(R.string.reaction_game));
-        data.addRanking(MainActivity.user, null);
+
+        if (average <= 200) {
+            data.increaseRanking(MainActivity.user);
+        }
     }
 
     /**

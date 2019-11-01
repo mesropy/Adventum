@@ -2,7 +2,7 @@ package com.example.ourgame;
 
 abstract class Game {
 
-    private int pointsEarned; // from this game
+    private int pointsEarned; // not total points
 
     Game() {
         this.pointsEarned = 0;

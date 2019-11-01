@@ -7,7 +7,8 @@ import java.util.Collections;
 
 class TileGame extends Game {
 
-    private int lives;
+    private int lives = 3;
+    private int currentLives;
     private int currentNumRoundLives;
     private int livesPerRound = 2;
 
@@ -35,7 +36,7 @@ class TileGame extends Game {
     TileGame(Context activity) {
         super();
 
-        lives = 3;
+        currentLives = lives;
         currentNumRoundLives = livesPerRound;
         points = 0;
         correctPressed = 0;
@@ -63,27 +64,29 @@ class TileGame extends Game {
     @Override
     void updateStatistics() {
 
-        int statPoints;
-        if (points / 10 > 10) {
-            statPoints = 10;
-        } else {
-            statPoints = points / 10;
-        }
+        int statPoints = points * 2 / 10;
 
         data.addPoints(MainActivity.user, statPoints);
         data.addPlayTime(MainActivity.user, playTime);
         //need to fix getString(R.string.tile_game)
         data.addLastGame(MainActivity.user, "Tile");
-        data.addRanking(MainActivity.user, null);
 
+        if (updateRanking()) {
+            data.increaseRanking(MainActivity.user);
+        }
+    }
+
+    private boolean updateRanking() {
+        return playTime <= (50 * 3 * patternShowTime * patternEndShowTime) &&
+                currentLives == lives; // didn't lose any lives / won all rounds
     }
 
     boolean noMoreLives() {
-        return lives <= 0;
+        return currentLives <= 0;
     }
 
     void loseLife() {
-        lives--;
+        currentLives--;
     }
 
     void resetRoundLives() {
@@ -156,6 +159,6 @@ class TileGame extends Game {
     }
 
     String getLivesRemainingText() {
-        return "Lives Remaining: " + lives + "/3";
+        return "Lives Remaining: " + currentLives + "/3";
     }
 }
