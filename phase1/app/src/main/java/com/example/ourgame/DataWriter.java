@@ -8,10 +8,10 @@ import android.content.SharedPreferences;
  */
 public class DataWriter implements WriteData {
 
-    /* CSV File Format:
-     * Every ROW is a different user with the stats in this order:
-     * [Username, Password, ReactionGameScore, ReactionGameTime, TileGameScore, TileGameTime,
-     *  PictureGameScore, PictureGameTime, LastGamePlayed]
+    /* We set a different SharedPreference file for each stat and password.
+     * SharedPreferences are an easy way to store key - value pairs that are then
+     * stored in an XML file on the phone. Since the data we are saving is quite
+     * simple, this is a easy and efficient solution.
      */
 
     private String[] rankings = {"Bronze", "Silver", "Gold", "Plat"};
@@ -65,7 +65,7 @@ public class DataWriter implements WriteData {
 
     @Override
     public String getPassword(String username) {
-        return loginData.getString(username, "NotFound");
+        return loginData.getString(username, "Not Found");
     }
 
     @Override
