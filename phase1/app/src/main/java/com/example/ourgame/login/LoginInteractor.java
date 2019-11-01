@@ -23,6 +23,9 @@ import android.text.TextUtils;
 
 import com.example.ourgame.DataWriter;
 
+/**
+ * A class for a LoginInteractor, which determines if the user can login or not
+ */
 public class LoginInteractor {
 
     interface OnLoginFinishedListener {
@@ -35,29 +38,34 @@ public class LoginInteractor {
         void onSuccess(String username);
     }
 
+    /**
+     * Method to check if the user's username and password are correct to determine if they can
+     * login to their account
+     *
+     * @param username the user's inputted username
+     * @param password the user's inputted password
+     * @param listener the interface with methods that will be called depending on what the user
+     *                 has inputted
+     * @param data     the data object containing information of accounts and their credentials
+     */
     public void login(final String username, final String password, final OnLoginFinishedListener listener,
                       final DataWriter data) {
-        // Mock login. I'm creating a handler to delay the answer a couple of seconds
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 if (TextUtils.isEmpty(username)) {
                     listener.onUsernameEmpty();
-                }
-                else if (TextUtils.isEmpty(password)) {
+                } else if (TextUtils.isEmpty(password)) {
                     listener.onPasswordEmpty();
-                }
-                else if (!data.checkUser(username)){
+                } else if (!data.checkUser(username)) {
                     listener.onLoginError();
-                }
-                else if (!data.getPassword(username).equals(password)){
+                } else if (!data.getPassword(username).equals(password)) {
                     listener.onLoginError();
-                }
-                else {
+                } else {
                     listener.onSuccess(username);
                 }
             }
         };
-        new Handler().postDelayed(runnable,2000);
+        new Handler().postDelayed(runnable, 2000);
     }
 }

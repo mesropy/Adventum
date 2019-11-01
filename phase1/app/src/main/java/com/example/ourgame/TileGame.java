@@ -59,6 +59,10 @@ public class TileGame extends Game {
         }
     }
 
+    /**
+     * Called once the Tile Game activity ends. Updates and saves the statistics of this game to be
+     * displayed in the player's statistics page.
+     */
     @Override
     void updateStatistics() {
 

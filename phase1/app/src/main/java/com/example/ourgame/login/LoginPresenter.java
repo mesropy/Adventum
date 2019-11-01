@@ -23,7 +23,10 @@ import android.content.Context;
 import com.example.ourgame.DataWriter;
 import com.example.ourgame.WriteData;
 
-public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, RegistrationInteractor.OnRegistrationFinishedListener{
+/**
+ * A class for a LoginPresenter, which determines if login credentials are correct
+ */
+public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, RegistrationInteractor.OnRegistrationFinishedListener {
 
     private LoginView loginView;
     private LoginInteractor loginInteractor;
@@ -37,6 +40,13 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
         dataWriter = new DataWriter((Context) loginView);
     }
 
+    /**
+     * Method that checks and calls methods depending on what the user inputs as their username
+     * and password (login successful, login failed, username empty, etc.)
+     *
+     * @param username the username the user has inputted
+     * @param password the password the user has inputted
+     */
     void validateCredentials(String username, String password) {
         if (loginView != null) {
             loginView.showProgress();
@@ -45,8 +55,15 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
         loginInteractor.login(username, password, this, dataWriter);
     }
 
+    /**
+     * Method that attempts to register a new account for the user, given that the username is not
+     * already taken
+     *
+     * @param username the username the user inputted
+     * @param password the password the user inputted
+     */
     void validateRegistration(String username, String password) {
-        if (loginView != null){
+        if (loginView != null) {
             loginView.showProgress();
         }
 
@@ -57,6 +74,10 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
         loginView = null;
     }
 
+    /**
+     * Hides the loading image and displays text informing the user that they left the username
+     * field blank
+     */
     @Override
     public void onUsernameEmpty() {
         if (loginView != null) {
@@ -65,6 +86,10 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
         }
     }
 
+    /**
+     * Hides the loading image and displays text informing the user that they left the password
+     * field blank
+     */
     @Override
     public void onPasswordEmpty() {
         if (loginView != null) {
@@ -73,6 +98,9 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
         }
     }
 
+    /**
+     * Hides the loading image and displays text telling the user that the login was unsuccessful
+     */
     @Override
     public void onLoginError() {
         if (loginView != null) {
@@ -81,6 +109,9 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
         }
     }
 
+    /**
+     * Hides the loading bar and displays text telling the user that registration was unsuccessful
+     */
     @Override
     public void onRegisterError() {
         if (loginView != null) {
@@ -89,6 +120,11 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
         }
     }
 
+    /**
+     * If the login was successful, bring the user to the main home activity
+     *
+     * @param username the username of the user, to be displayed on the activity homepage
+     */
     @Override
     public void onSuccess(String username) {
         if (loginView != null) {
