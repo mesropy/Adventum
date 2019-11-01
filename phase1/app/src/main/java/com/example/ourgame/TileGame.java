@@ -5,7 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TileGame extends Game {
+class TileGame extends Game {
 
     private int lives;
     private int currentNumRoundLives;
@@ -74,6 +74,7 @@ public class TileGame extends Game {
         data.addPlayTime(MainActivity.user, playTime);
         //need to fix getString(R.string.tile_game)
         data.addLastGame(MainActivity.user, "Tile");
+        data.addRanking(MainActivity.user, null);
 
     }
 
@@ -98,7 +99,7 @@ public class TileGame extends Game {
     }
 
     // call to save stats
-    public int getPoints() {
+    int getPoints() {
         return points;
     }
 

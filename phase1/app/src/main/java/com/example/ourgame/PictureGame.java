@@ -21,7 +21,7 @@ class PictureGame extends Game {
 
   private DataWriter data;
   private int playTime = 0;
-  
+
   PictureGame(Context context) {
     super();
     numAttempts = 0;
@@ -91,20 +91,15 @@ class PictureGame extends Game {
 
   void nextLevel() {
     currentLevel++;
-    updateStatistics();
   }
 
   @Override
   void updateStatistics() {
-    // TODO: add point stat(s)
     data.addPlayTime(MainActivity.user, playTime);
-    //need to fix getString(R.string.tile_game)
+    data.addPoints(MainActivity.user, getPointsEarned());
     data.addLastGame(MainActivity.user, "Picture");
-
-    // add points only if the level was solved within the given amount of attempts
-    if (!usedAllAttempts()) {
-      addPointsEarned(pointsToEarn[currentLevel]);
-    }
+    data.addRanking(MainActivity.user, null);
+    
   }
 
   boolean usedAllAttempts() {

@@ -113,6 +113,13 @@ public class DataWriter implements WriteData {
      */
     @Override
     public void addRanking(String username, String ranking) {
+        if (getPoints(username) >= 1000) {
+            ranking = "Plat";
+        } else if (getPoints(username) >= 200) {
+            ranking = "Gold";
+        } else if (getPoints(username) >= 100) {
+            ranking = "Silver";
+        }
         SharedPreferences.Editor editor = rankingData.edit();
         editor.putString(username, ranking);
         editor.apply();

@@ -2,18 +2,10 @@ package com.example.ourgame;
 
 abstract class Game {
 
-    private int playTime; // TODO: set up timer with this
     private int pointsEarned; // from this game
 
     Game() {
         this.pointsEarned = 0;
-    }
-
-    // TODO: use these methods with timer
-    // TODO: add methods for timer (start, stop, etc.)
-
-    int getPlayTime() {
-        return playTime;
     }
 
     int getPointsEarned() {
