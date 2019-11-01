@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -35,19 +36,23 @@ public class MainActivity extends AppCompatActivity {
     private void playTileGame(){
         Intent intent = new Intent(this, TileGameInstructions.class);
         startActivity(intent);
+        finish();
     }
 
     private void playPictureGame(){
         Intent intent = new Intent(this, PictureInstructions.class);
         startActivity(intent);
+        finish();
     }
 
     public void continueGame(View view) {
         String lastGame = data.getLastGame(user);
+        Log.d("FILE", lastGame);
         if (lastGame.equals(getString(R.string.reaction_game))){
             playReactionGame(view);
         }
         else if (lastGame.equals(getString(R.string.tile_game))){
+            Log.d("FILE", "PLAY GAME");
             playTileGame();
         }
         else if (lastGame.equals(getString(R.string.picture_game))){
