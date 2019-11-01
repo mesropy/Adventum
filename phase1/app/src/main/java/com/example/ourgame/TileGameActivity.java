@@ -115,7 +115,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
             roundLost();
             if (tileGame.noMoreLives()) {
                 gameOver();
-                finish();
             } else {
                 restartRound();
             }
@@ -193,7 +192,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         tileGame.updateStatistics();
 
         // go to next game
-        final Intent intent = new Intent(this, PictureInstructions.class);
+        final Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra("next activity", "picture game");
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 startActivity(intent);

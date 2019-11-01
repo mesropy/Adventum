@@ -87,7 +87,9 @@ public class ReactionTime extends AppCompatActivity  {
     }
 
     private void nextGame() {
-        Intent intent = new Intent(this, TileGameInstructions.class);
+        // go to stats page then to the tile game
+        final Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra("next activity", "tile game");
         startActivity(intent);
 
         finish();

@@ -54,7 +54,6 @@ public class PictureGameActivity extends AppCompatActivity {
     private void onCorrectGuess() {
         guessResultText.setText(pictureGame.getCorrectGuessMessage());
         // can later highlight animal in image (not doing this now)
-        // TODO: display stats for this level
         pictureGame.addPoints();
 
         // Show next level button
@@ -92,16 +91,20 @@ public class PictureGameActivity extends AppCompatActivity {
     public void onNextButtonPressed(View view) {
         if (pictureGame.reachedLastLevel()) {
             // TODO: calculate time taken
-            // TODO: save all stats and go to stats page
-
-            // go to game over page (change this to stats page)
-            Intent intent = new Intent(this, GameOverActivity.class);
-            startActivity(intent);
+            // TODO: save all stats
+            gameOver();
         } else {
             pictureGame.nextLevel();
             pictureGame.resetNumTries();
             displayNextLevel();
         }
+    }
+
+    private void gameOver(){
+        // go to game over page then stats page
+        final Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra("next activity", "game over");
+        startActivity(intent);
     }
 
     private void displayNextLevel() {
