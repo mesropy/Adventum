@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,11 +25,11 @@ public class StatisticsActivity extends AppCompatActivity {
         playtimeText = findViewById(R.id.playtimeValue);
         rankingText = findViewById(R.id.rankingValue);
 
-        /*
+
         dataWriter = new DataWriter(this);
-        pointsText.setText(dataWriter.getPoints(MainActivity.user));
-        playtimeText.setText(dataWriter.getPlayTime(MainActivity.user));
-        rankingText.setText(dataWriter.getRanking(MainActivity.user));*/
+        pointsText.setText(Integer.toString(dataWriter.getPoints(MainActivity.user)));
+        playtimeText.setText(Integer.toString(dataWriter.getPlayTime(MainActivity.user)));
+        rankingText.setText(dataWriter.getRanking(MainActivity.user));
     }
 
     public void onContinuePressed(View view){
@@ -37,11 +38,11 @@ public class StatisticsActivity extends AppCompatActivity {
         if (nextActivity == null) {return;}
         Intent intent;
 
-        if (nextActivity.equals("reaction game")){
+        if (nextActivity.equals(getString(R.string.reaction_game))){
             intent = new Intent(this, ReactionTime.class);
-        } else if (nextActivity.equals("tile game")){
+        } else if (nextActivity.equals(getString(R.string.tile_game))){
             intent = new Intent(this, TileGameInstructions.class);
-        } else if (nextActivity.equals("picture game")){
+        } else if (nextActivity.equals(getString(R.string.picture_game))){
             intent = new Intent(this, PictureInstructions.class);
         } else { // game over activity
             intent = new Intent(this, GameOverActivity.class);

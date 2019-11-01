@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
         data = new DataWriter(this);
     }
 
+    public void checkStats(View view){
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra("next activity", data.getLastGame(user));
+        startActivity(intent);
+    }
+
     public void playReactionGame(View view){
         Intent intent = new Intent(this, ReactionTime.class);
         startActivity(intent);
@@ -47,12 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void continueGame(View view) {
         String lastGame = data.getLastGame(user);
-        Log.d("FILE", lastGame);
         if (lastGame.equals(getString(R.string.reaction_game))){
             playReactionGame(view);
         }
         else if (lastGame.equals(getString(R.string.tile_game))){
-            Log.d("FILE", "PLAY GAME");
             playTileGame();
         }
         else if (lastGame.equals(getString(R.string.picture_game))){

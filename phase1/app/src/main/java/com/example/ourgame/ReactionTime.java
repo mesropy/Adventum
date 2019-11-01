@@ -113,8 +113,8 @@ public class ReactionTime extends AppCompatActivity  {
             points = 1;
         }
         data.addPoints(MainActivity.user, points);
+        data.addPlayTime(MainActivity.user, (int)(total/1000));
         data.addLastGame(MainActivity.user, getString(R.string.reaction_game));
-
     }
 
     private void start(){
