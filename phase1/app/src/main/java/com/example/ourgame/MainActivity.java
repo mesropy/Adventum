@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ourgame.login.Login;
 
@@ -54,13 +55,15 @@ public class MainActivity extends AppCompatActivity {
     public void continueGame(View view) {
         String lastGame = data.getLastGame(user);
         if (lastGame.equals(getString(R.string.reaction_game))){
-            playReactionGame(view);
-        }
-        else if (lastGame.equals(getString(R.string.tile_game))){
             playTileGame();
         }
-        else if (lastGame.equals(getString(R.string.picture_game))){
+        else if (lastGame.equals(getString(R.string.tile_game))){
             playPictureGame();
+        }
+        else if (lastGame.equals(getString(R.string.picture_game))){
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(this, "You have reached maximum points!", duration);
+            toast.show();
         }
 
     }
