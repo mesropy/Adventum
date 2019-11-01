@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * An activity class for the Statistics screen, which shows the user their statistics for the games
+ * they have played
+ */
 public class StatisticsActivity extends AppCompatActivity {
 
     DataWriter dataWriter;
@@ -32,6 +36,10 @@ public class StatisticsActivity extends AppCompatActivity {
         rankingText.setText(dataWriter.getRanking(MainActivity.user));
     }
 
+    /**
+     * Method to bring the user to the next game after they've viewed their stats
+     * @param view the button object that was tapped
+     */
     public void onContinuePressed(View view){
         String nextActivity = getIntent().getStringExtra("next activity");
 

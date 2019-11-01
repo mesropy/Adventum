@@ -29,18 +29,18 @@ import android.widget.ProgressBar;
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 
 /**
  * The Login activity for a login page.
  */
 public class Login extends AppCompatActivity implements LoginView {
 
+    public final static String EXTRA_MESSAGE = "com.example.ourgame.MESSAGE";
     private ProgressBar progressBar;
     private EditText username;
     private EditText password;
     private LoginPresenter presenter;
-    public final static String EXTRA_MESSAGE = "com.example.ourgame.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

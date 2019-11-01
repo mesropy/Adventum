@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * An activity class for the Game Over screen. Once a player has finished all three games, the user
+ * will be brought here and will be able to view their overall results
+ */
 public class GameOverActivity extends AppCompatActivity {
 
     @Override

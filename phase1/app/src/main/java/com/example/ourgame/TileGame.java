@@ -1,7 +1,6 @@
 package com.example.ourgame;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.Collections;
