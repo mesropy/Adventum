@@ -24,14 +24,14 @@ public class PictureGameActivity extends AppCompatActivity {
     private Button enterButton;
     private TextView numAttemptsText;
 
-    private DataWriter data;
+    private long startTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_game);
 
-        pictureGame = new PictureGame();
+        pictureGame = new PictureGame(this);
 
         imageToGuess = findViewById(R.id.imageToGuess);
         guessEditText = findViewById(R.id.guessEditText);
@@ -43,8 +43,12 @@ public class PictureGameActivity extends AppCompatActivity {
         imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
         continueButton.setVisibility(View.GONE);
         numAttemptsText.setText(pictureGame.getNumAttemptsText());
+    }
 
-        data = new DataWriter(this);
+    @Override
+    protected void onStart() {
+        startTime = System.currentTimeMillis();
+        super.onStart();
     }
 
     // call when enter button is pressed, player is entering the guess they inputted in edit text
@@ -100,8 +104,6 @@ public class PictureGameActivity extends AppCompatActivity {
 
     public void onNextButtonPressed(View view) {
         if (pictureGame.reachedLastLevel()) {
-            // TODO: calculate time taken
-            // TODO: save all stats
             gameOver();
         } else {
             pictureGame.nextLevel();
@@ -111,8 +113,10 @@ public class PictureGameActivity extends AppCompatActivity {
     }
 
     private void gameOver(){
-        data.addLastGame(MainActivity.user, getString(R.string.picture_game));
         // go to game over page then stats page
+        int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
+        pictureGame.setPlayTime(playTime);
+        pictureGame.updateStatistics();
         final Intent intent = new Intent(this, StatisticsActivity.class);
         intent.putExtra("next activity", "game over");
         startActivity(intent);

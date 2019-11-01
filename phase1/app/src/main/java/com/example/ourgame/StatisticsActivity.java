@@ -32,7 +32,7 @@ public class StatisticsActivity extends AppCompatActivity {
         dataWriter = new DataWriter(this);
         String str = Integer.toString(dataWriter.getPoints(MainActivity.user));
         pointsText.setText(str);
-        String str2 = Integer.toString(dataWriter.getPlayTime(MainActivity.user));
+        String str2 = dataWriter.getPlayTime(MainActivity.user) + " s";
         playtimeText.setText(str2);
         rankingText.setText(dataWriter.getRanking(MainActivity.user));
     }

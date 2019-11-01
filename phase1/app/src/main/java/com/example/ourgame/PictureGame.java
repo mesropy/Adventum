@@ -1,5 +1,7 @@
 package com.example.ourgame;
 
+import android.content.Context;
+
 class PictureGame extends Game {
 
   // level info
@@ -17,9 +19,10 @@ class PictureGame extends Game {
   private String incorrectGuessMessage;
   private String noMoreAttemptsMessage;
 
-  // TODO: add attribute to keep track of time? (needed?)
-
-  PictureGame() {
+  private DataWriter data;
+  private int playTime = 0;
+  
+  PictureGame(Context context) {
     super();
     numAttempts = 0;
     numAttemptsAllowed = 5;
@@ -27,6 +30,8 @@ class PictureGame extends Game {
     correctGuessMessage = "Correct!";
     incorrectGuessMessage = "Sorry, try again!";
     noMoreAttemptsMessage = "No more attempts!";
+
+    data = new DataWriter(context);
   }
 
   void incrementNumAttempts() {
@@ -55,6 +60,10 @@ class PictureGame extends Game {
 
   int getCurrentImageResource() {
     return imagesToGuess[currentLevel];
+  }
+
+  void setPlayTime(int playTime) {
+    this.playTime = playTime;
   }
 
   /**
@@ -87,7 +96,10 @@ class PictureGame extends Game {
 
   @Override
   void updateStatistics() {
-    // TODO: add time stat(s)
+    // TODO: add point stat(s)
+    data.addPlayTime(MainActivity.user, playTime);
+    //need to fix getString(R.string.tile_game)
+    data.addLastGame(MainActivity.user, "Picture");
 
     // add points only if the level was solved within the given amount of attempts
     if (!usedAllAttempts()) {

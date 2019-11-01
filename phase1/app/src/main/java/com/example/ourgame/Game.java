@@ -16,10 +16,6 @@ abstract class Game {
         return playTime;
     }
 
-    void addPlayTime(int playTime) {
-        this.playTime += playTime;
-    }
-
     int getPointsEarned() {
         return pointsEarned;
     }
