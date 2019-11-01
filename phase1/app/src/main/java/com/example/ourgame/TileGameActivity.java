@@ -186,10 +186,10 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void gameOver() {
-        //records the time spent playing this game in minutes
-        playTime = (System.currentTimeMillis() - startTime) / 60;
-
-        //TODO: save stats and go to stats page
+        //records the time spent playing this game in seconds
+        int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
+        tileGame.setPlayTime(playTime);
+        tileGame.updateStatistics();
 
         // go to next game
         final Intent intent = new Intent(this, PictureInstructions.class);
@@ -198,6 +198,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
             }
         }, 3000);
+        finish();
 
     }
 

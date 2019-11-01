@@ -1,5 +1,7 @@
 package com.example.ourgame;
 
+import android.provider.ContactsContract;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -28,6 +30,9 @@ public class TileGame extends Game {
     // time in milliseconds that will show pattern before moving on to then next level / game
     private int patternEndShowTime;
 
+    private DataWriter data;
+    private int playTime = 0;
+
     TileGame() {
         super();
 
@@ -55,9 +60,21 @@ public class TileGame extends Game {
     @Override
     void updateStatistics() {
 
+        int statPoints;
+        if (points / 10 > 10) {
+            statPoints = 10;
+        } else {
+            statPoints = points / 10;
+        }
+
+        data.addPoints(MainActivity.user, statPoints);
+        data.addPlayTime(MainActivity.user, playTime);
+        //need to fix getString(R.string.tile_game)
+        //data.addLastGame(MainActivity.user, getString(R.string.tile_game));
+
     }
 
-    boolean noMoreLives(){
+    boolean noMoreLives() {
         return lives <= 0;
     }
 
@@ -73,7 +90,7 @@ public class TileGame extends Game {
         currentNumRoundLives--;
     }
 
-    boolean noMoreRoundLives(){
+    boolean noMoreRoundLives() {
         return currentNumRoundLives <= 0;
     }
 
@@ -86,6 +103,10 @@ public class TileGame extends Game {
         points++;
     }
 
+    void setPlayTime(int playTime) {
+        this.playTime = playTime;
+    }
+
     void resetCorrectPressed() {
         this.correctPressed = 0;
     }
@@ -94,7 +115,7 @@ public class TileGame extends Game {
         correctPressed++;
     }
 
-    boolean allRightTilesPressed(){
+    boolean allRightTilesPressed() {
         return correctPressed == numRightTiles;
     }
 
@@ -102,7 +123,7 @@ public class TileGame extends Game {
         return rightTile;
     }
 
-    void shuffleTiles(){
+    void shuffleTiles() {
         Collections.shuffle(rightTile);
     }
 
@@ -126,11 +147,11 @@ public class TileGame extends Game {
         return patternEndShowTime;
     }
 
-    String getLoseLifeText(){
+    String getLoseLifeText() {
         return "You lost a life!";
     }
 
-    String getLivesRemainingText(){
+    String getLivesRemainingText() {
         return "Lives Remaining: " + lives + "/3";
     }
 }
