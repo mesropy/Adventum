@@ -22,6 +22,7 @@ public class PictureGameActivity extends AppCompatActivity {
     private EditText guessEditText;
     private Button continueButton;
     private Button enterButton;
+    private TextView numAttemptsText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +36,21 @@ public class PictureGameActivity extends AppCompatActivity {
         guessResultText = findViewById(R.id.guessResultText);
         continueButton = findViewById(R.id.continueButton);
         enterButton = findViewById(R.id.enterButton);
+        numAttemptsText = findViewById(R.id.numAttemptsText);
 
         imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
         continueButton.setVisibility(View.GONE);
+        numAttemptsText.setText(pictureGame.getNumAttemptsText());
     }
 
     // call when enter button is pressed, player is entering the guess they inputted in edit text
     public void onEnterGuessPressed(View view) {
 
+        pictureGame.incrementNumAttempts();
+        numAttemptsText.setText(pictureGame.getNumAttemptsText());
+
         String guess = guessEditText.getText().toString();
+
         if (pictureGame.guessCorrect(guess)) {
             onCorrectGuess();
         } else {
@@ -82,9 +89,8 @@ public class PictureGameActivity extends AppCompatActivity {
             }
         });
 
-        pictureGame.incrementNumTries();
-        if (pictureGame.levelFailed()){
-            displayLevelFailed();
+        if (pictureGame.usedAllAttempts()){
+            displayUsedAllAttempts();
         }
     }
 
@@ -95,7 +101,7 @@ public class PictureGameActivity extends AppCompatActivity {
             gameOver();
         } else {
             pictureGame.nextLevel();
-            pictureGame.resetNumTries();
+            pictureGame.resetNumAttempts();
             displayNextLevel();
         }
     }
@@ -108,6 +114,7 @@ public class PictureGameActivity extends AppCompatActivity {
     }
 
     private void displayNextLevel() {
+        numAttemptsText.setText(pictureGame.getNumAttemptsText());
         // show next image
         imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
         // remove next button, result text, and text in guess editText
@@ -119,9 +126,8 @@ public class PictureGameActivity extends AppCompatActivity {
         enterButton.setVisibility(View.VISIBLE);
     }
 
-    private void displayLevelFailed(){
-        // TODO: show that level failed
-        // TODO: update stats? (not overall stats in file, but stats for this game)
+    private void displayUsedAllAttempts(){
+        guessResultText.setText(pictureGame.getNoMoreAttemptsMessage());
         // Show next level button
         continueButton.setVisibility(View.VISIBLE);
         // make guess edit text not editable, and remove enter button
