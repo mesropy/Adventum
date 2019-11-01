@@ -1,5 +1,6 @@
 package com.example.ourgame;
 
+import android.content.Context;
 import android.provider.ContactsContract;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class TileGame extends Game {
     private DataWriter data;
     private int playTime = 0;
 
-    TileGame() {
+    TileGame(Context activity) {
         super();
 
         lives = 3;
@@ -42,11 +43,12 @@ public class TileGame extends Game {
         correctPressed = 0;
         numTiles = 9;
         numRightTiles = 4;
-        patternShowTime = 1000;
+        patternShowTime = 2000;
         patternEndShowTime = 2000;
         rightTileImageId = R.drawable.flipped_right;
         wrongTileImageId = R.drawable.flipped_wrong;
         unflippedTileImageId = R.drawable.unflipped;
+        data = new DataWriter(activity);
 
         // initialize rightTile based on num right/wrong tiles we have
         for (int i = 0; i < numRightTiles; i++) {
@@ -70,7 +72,7 @@ public class TileGame extends Game {
         data.addPoints(MainActivity.user, statPoints);
         data.addPlayTime(MainActivity.user, playTime);
         //need to fix getString(R.string.tile_game)
-        //data.addLastGame(MainActivity.user, getString(R.string.tile_game));
+        data.addLastGame(MainActivity.user, "Tile Game");
 
     }
 

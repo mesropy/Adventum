@@ -50,7 +50,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_game);
 
-        tileGame = new TileGame();
+        tileGame = new TileGame(this);
 
         livesText = findViewById(R.id.livesText);
         resultText = findViewById(R.id.resultText);
@@ -115,6 +115,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
             roundLost();
             if (tileGame.noMoreLives()) {
                 gameOver();
+                finish();
             } else {
                 restartRound();
             }
@@ -198,8 +199,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
             }
         }, 3000);
-        finish();
-
     }
 
     /**
