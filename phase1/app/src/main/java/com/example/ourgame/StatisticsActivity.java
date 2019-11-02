@@ -1,11 +1,13 @@
 package com.example.ourgame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ourgame.login.Login;
 
 /**
  * An activity class for the Statistics screen, which shows the user their statistics for the games
@@ -28,11 +30,10 @@ public class StatisticsActivity extends AppCompatActivity {
         playtimeText = findViewById(R.id.playtimeValue);
         rankingText = findViewById(R.id.rankingValue);
 
-
         dataWriter = new DataWriter(this);
         String str = Integer.toString(dataWriter.getPoints(MainActivity.user));
         pointsText.setText(str);
-        String str2 = dataWriter.getPlayTime(MainActivity.user) + " s";
+        String str2 = dataWriter.getPlayTime(MainActivity.user) + " secs.";
         playtimeText.setText(str2);
         rankingText.setText(dataWriter.getRanking(MainActivity.user));
     }
@@ -53,7 +54,10 @@ public class StatisticsActivity extends AppCompatActivity {
             intent = new Intent(this, TileGameInstructions.class);
         } else if (nextActivity.equals(getString(R.string.picture_game))){
             intent = new Intent(this, PictureInstructions.class);
-        } else { // game over activity
+        } else if (nextActivity.equals("main menu")) {
+            intent = new Intent(this, MainActivity.class);
+            intent.putExtra(Login.EXTRA_MESSAGE, MainActivity.user);
+        } else {  // game over activity
             intent = new Intent(this, GameOverActivity.class);
         }
 

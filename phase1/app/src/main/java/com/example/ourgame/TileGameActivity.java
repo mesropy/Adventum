@@ -135,19 +135,10 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         // flip tile
         button.setBackgroundResource(tileGame.getRightTileImageId());
 
-        tileGame.addPoint();
         tileGame.incrementCorrectPressed();
 
         if (tileGame.allRightTilesPressed()) {
             roundWon();
-            if (tileGame.getPoints() >= 100) {
-                int duration = Toast.LENGTH_LONG;
-                Toast toast = Toast.makeText(this, "You have reached maximum points!", duration);
-                toast.show();
-                gameOver();
-            } else {
-                restartRound();
-            }
         } else {
             resultText.setText(R.string.correct);
         }
@@ -175,6 +166,15 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     private void roundWon() {
         displayPatternRed(); // make this nicer (make red lighter?)
         resultText.setText(R.string.passed_round);
+        tileGame.addPoint();
+        if (tileGame.getPoints() >= 50) {
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(this, "You have reached maximum points!", duration);
+            toast.show();
+            gameOver();
+        } else {
+            restartRound();
+        }
     }
 
     /**
