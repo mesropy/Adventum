@@ -14,7 +14,7 @@ public class DataWriter implements WriteData {
      * simple, this is a easy and efficient solution.
      */
 
-    private String[] rankings = {"Bronze", "Silver", "Gold", "Plat"};
+    private String[] rankings = {"Bronze", "Silver", "Gold", "Platinum"};
 
     private SharedPreferences loginData;
     private SharedPreferences pointsData;
