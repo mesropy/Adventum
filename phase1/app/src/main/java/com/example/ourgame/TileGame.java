@@ -164,6 +164,6 @@ class TileGame extends Game {
     }
 
     String getLivesRemainingTextChinese() {
-        return "剩余生命: " + lives + "/3";
+        return "剩余生命: " + currentLives + "/3";
     }
 }
