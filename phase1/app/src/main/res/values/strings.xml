@@ -54,4 +54,7 @@
     <string name="incorrect">INCORRECT!</string>
     <string name="correct">CORRECT!</string>
     <string name="passed_round">You passed this round!</string>
+    <string name="memoryGame">Memory Game</string>
+    <string name="language">language</string>
+    <string name="changeColor">Change Background Color</string>
 </resources>

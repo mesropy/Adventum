@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 class TileGame extends Game {
 
     private int lives;
@@ -157,5 +158,9 @@ class TileGame extends Game {
 
     String getLivesRemainingText() {
         return "Lives Remaining: " + lives + "/3";
+    }
+
+    String getLivesRemainingTextChinese() {
+        return "剩余生命: " + lives + "/3";
     }
 }

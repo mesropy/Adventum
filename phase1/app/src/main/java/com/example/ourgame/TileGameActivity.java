@@ -1,6 +1,7 @@
 package com.example.ourgame;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     private TextView livesText;
     private TextView resultText;
     private long startTime = 0;
+    public static int i = 0;
+    public static boolean chinese = true;
 
     private int[] tileButtonIds = {
             R.id.tile1,
@@ -155,7 +159,11 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void roundLost() {
         tileGame.loseLife();
-        livesText.setText(tileGame.getLivesRemainingText());
+        if (!chinese) {
+            livesText.setText(tileGame.getLivesRemainingTextChinese());
+        }else {
+            livesText.setText(tileGame.getLivesRemainingText());
+        }
         resultText.setText(tileGame.getLoseLifeText());
         displayPatternRed();
     }
@@ -278,4 +286,37 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }, tileGame.getPatternEndShowTime());
     }
 
+    public void changeBackground(View view) {
+        int[] color = {Color.YELLOW, Color.LTGRAY, Color.GRAY, Color.WHITE, Color.BLUE};
+        ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
+        constraintLayout.setBackgroundColor(color[i]);
+        i++;
+        if (i == color.length){
+            i = 0;
+        }
+    }
+
+
+    public void changeLanguage(View view) {
+        int title = R.id.titleText3;
+        int button1 = R.id.language;
+        int button2 = R.id.changeColor;
+        TextView titletext = findViewById(title);
+        Button button_1 = findViewById(button1);
+        Button button_2 = findViewById(button2);
+        if (chinese) {
+            titletext.setText("记忆游戏");
+            button_1.setText("语言");
+            button_2.setText("更换颜色");
+            livesText.setText(tileGame.getLivesRemainingTextChinese());
+            chinese = false;
+        }
+        else {
+            titletext.setText(R.string.memoryGame);
+            button_1.setText(R.string.language);
+            button_2.setText(R.string.changeColor);
+            livesText.setText(tileGame.getLivesRemainingText());
+            chinese = true;
+        }
+    }
 }
