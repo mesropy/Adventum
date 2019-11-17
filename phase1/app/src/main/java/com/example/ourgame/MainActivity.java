@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ourgame.RunningGame.EndlessRunnerActivity;
 import com.example.ourgame.login.Login;
 
 /**
@@ -53,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
      */
     private void playTileGame(){
         Intent intent = new Intent(this, TileGameInstructions.class);
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * Sends the user to the Running Game -- TESTING ONLY
+     */
+    public void playRunningGame(View view){
+        Intent intent = new Intent(this, EndlessRunnerActivity.class);
         startActivity(intent);
         finish();
     }
