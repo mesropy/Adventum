@@ -20,7 +20,7 @@ package com.example.ourgame.login;
 
 import android.content.Context;
 
-import com.example.ourgame.DataWriter;
+import com.example.ourgame.Statistics.DataWriter;
 
 
 /**

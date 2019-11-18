@@ -1,6 +1,11 @@
-package com.example.ourgame;
+package com.example.ourgame.PictureGame;
 
 import android.content.Context;
+
+import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Game;
+import com.example.ourgame.MainActivity;
+import com.example.ourgame.R;
 
 class PictureGame extends Game {
 
@@ -94,7 +99,7 @@ class PictureGame extends Game {
   }
 
   @Override
-  void updateStatistics() {
+  protected void updateStatistics() {
     data.addPlayTime(MainActivity.user, playTime);
     data.addPoints(MainActivity.user, getPointsEarned());
     data.addLastGame(MainActivity.user, "Picture");

@@ -1,18 +1,18 @@
 package com.example.ourgame;
 
-abstract class Game {
+public abstract class Game {
 
     private int pointsEarned; // not total points
 
-    Game() {
+    protected Game() {
         this.pointsEarned = 0;
     }
 
-    int getPointsEarned() {
+    protected int getPointsEarned() {
         return pointsEarned;
     }
 
-    void addPointsEarned(int points) {
+    protected void addPointsEarned(int points) {
         pointsEarned += points;
     }
 
@@ -20,7 +20,7 @@ abstract class Game {
      * Update the statistics of this game, as well as the overall game. Call this at the
      * end of each level or at the end of the game
      */
-    abstract void updateStatistics();
+    protected abstract void updateStatistics();
 
 
 }

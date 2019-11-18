@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.ReactionGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.ourgame.MainActivity;
+import com.example.ourgame.R;
+import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.util.Random;
 

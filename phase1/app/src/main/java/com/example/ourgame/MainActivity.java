@@ -8,7 +8,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ourgame.PictureGame.PictureInstructions;
+import com.example.ourgame.ReactionGame.ReactionTime;
 import com.example.ourgame.RunningGame.EndlessRunnerActivity;
+import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Statistics.StatisticsActivity;
+import com.example.ourgame.TileGame.TileGameInstructions;
 import com.example.ourgame.login.Login;
 
 /**
@@ -16,7 +21,7 @@ import com.example.ourgame.login.Login;
  */
 public class MainActivity extends AppCompatActivity {
 
-    static String user;
+    public static String user;
     private DataWriter data;
 
     @Override

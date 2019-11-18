@@ -1,6 +1,11 @@
-package com.example.ourgame;
+package com.example.ourgame.TileGame;
 
 import android.content.Context;
+
+import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Game;
+import com.example.ourgame.MainActivity;
+import com.example.ourgame.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,7 +68,7 @@ class TileGame extends Game {
      * displayed in the player's statistics page.
      */
     @Override
-    void updateStatistics() {
+    protected void updateStatistics() {
 
         int statPoints = points * 2 / 10;
 

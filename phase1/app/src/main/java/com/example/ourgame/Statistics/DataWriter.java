@@ -1,7 +1,9 @@
-package com.example.ourgame;
+package com.example.ourgame.Statistics;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.example.ourgame.R;
 
 /**
  * A class for a DataWriter, which keeps and stores user login information

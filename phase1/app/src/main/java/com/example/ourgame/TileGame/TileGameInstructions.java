@@ -1,10 +1,12 @@
-package com.example.ourgame;
+package com.example.ourgame.TileGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.ourgame.R;
 
 /**
  * An Activity class for the Instructions of the Tile Game

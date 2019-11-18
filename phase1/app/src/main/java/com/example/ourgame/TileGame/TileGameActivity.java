@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.TileGame;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.ourgame.R;
+import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.util.ArrayList;
 

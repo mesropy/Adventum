@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.PictureGame;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ourgame.R;
+import com.example.ourgame.Statistics.StatisticsActivity;
 
 public class PictureGameActivity extends AppCompatActivity {
 
