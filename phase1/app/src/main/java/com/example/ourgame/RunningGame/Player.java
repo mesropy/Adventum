@@ -3,21 +3,33 @@ package com.example.ourgame.RunningGame;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class Player extends Sprite {
-    public Player(Bitmap image, int x, int y, int width, int height, Rect screen) {
-        super(image, x, y, width, height, screen);
+    private final static int GRAVITY = 3;
+    private final static int JUMP = -35;
+    private boolean jump = false;
+
+    Player(Bitmap image, int x, int y, int width, int height, int roadHeight) {
+        super(image, x, y, width, height, roadHeight);
     }
 
     public void update() {
-        Rect screen = getScreen();
-
         // See if the player has hit the ground
-        if (this.getHitbox().bottom >= screen.height() - screen.width() / 10){
-            this.setY(screen.height() - screen.width() / 10 - getHeight());
+        if (jump && this.getHitbox().bottom == getGroundHeight()){
+            setDy(JUMP);
+            jump = false;
+        }
+        else if (this.getHitbox().bottom >= getGroundHeight()){
+            setY(getGroundHeight() - getHeight());
             setDy(0);
-
+        }else{
+            setDy(getDy()+GRAVITY);
         }
         super.update();
+    }
+
+    void jump() {
+        jump = true;
     }
 }

@@ -1,6 +1,5 @@
 package com.example.ourgame.RunningGame;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -9,9 +8,8 @@ import android.graphics.Rect;
 class Sprite {
 
     private Bitmap image;
-    private Context context;
     private Rect hitbox;
-    private Rect screen;
+    private int groundHeight;
 
     private Paint paint;
 
@@ -22,10 +20,26 @@ class Sprite {
     private int width;
     private int height;
 
-    public Sprite(Bitmap image, int x, int y, int width, int height, Rect screen){
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public Sprite(Bitmap image, int x, int y, int width, int height, int groundHeight){
         this.image = image;
-        this.hitbox = new Rect(x, y, width, height);
-        this.screen = screen;
+        this.hitbox = new Rect(x, y, x+width, y+height);
+        this.groundHeight = groundHeight;
 
         this.width = width;
         this.height = height;
@@ -34,8 +48,13 @@ class Sprite {
         this.dx = 0;
         this.dy = 0;
 
+        paint = new Paint();
         paint.setStrokeWidth(10);
         paint.setStyle(Paint.Style.STROKE);
+    }
+
+    public int getGroundHeight() {
+        return groundHeight;
     }
 
     public void draw(Canvas canvas){
@@ -52,14 +71,16 @@ class Sprite {
 
     public void setX(int x) {
         this.x = x;
+        hitbox.set(x, y, x + width, y + height);
+    }
+
+    public int getY() {
+        return y;
     }
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public Rect getScreen() {
-        return screen;
+        hitbox.set(x, y, x + width, y + height);
     }
 
     public void setDx(int dx) {
@@ -83,7 +104,7 @@ class Sprite {
     }
 
     public void update(){
-        x += dx;
-        y += dy;
+        setX(x+dx);
+        setY(y+dy);
     }
 }
