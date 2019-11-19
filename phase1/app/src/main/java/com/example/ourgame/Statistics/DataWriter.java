@@ -30,6 +30,7 @@ public class DataWriter implements WriteData {
         timeData = context.getSharedPreferences(context.getString(R.string.preference_file_time), Context.MODE_PRIVATE);
         rankingData = context.getSharedPreferences(context.getString(R.string.preference_file_ranking), Context.MODE_PRIVATE);
         lastGameData = context.getSharedPreferences(context.getString(R.string.preference_file_lastgame), Context.MODE_PRIVATE);
+
     }
 
     /**
@@ -162,5 +163,13 @@ public class DataWriter implements WriteData {
     @Override
     public boolean checkUser(String username) {
         return !((loginData.getString(username, "Not Found")).equals("Not Found"));
+    }
+
+    /**
+     * Return the map containing user names and their corresponding point values
+     * @return a SharedPreferences instance storing points data
+     */
+    public SharedPreferences getPointsData(){
+        return pointsData;
     }
 }

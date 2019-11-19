@@ -70,7 +70,7 @@ class TileGame extends Game {
     @Override
     protected void updateStatistics() {
 
-        int statPoints = points * 2 / 10;
+        int statPoints = 2 * points / 10;
 
         data.addPoints(MainActivity.user, statPoints);
         data.addPlayTime(MainActivity.user, playTime);

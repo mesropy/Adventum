@@ -12,21 +12,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Memory Game"
+        android:text="@string/memory_game"
         android:textColor="#636363"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/instructionText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintVertical_bias="0.078"
+        tools:ignore="UnknownIdInLayout" />
 
     <TextView
         android:id="@+id/instructions"
         android:layout_width="174dp"
         android:layout_height="42dp"
         android:layout_marginStart="220dp"
-        android:text="If you pick a correct tile, it will turn green. "
+        android:text="@string/if_you_pick_a_correct_tile_it_will_turn_green"
         android:textAlignment="viewStart"
         app:layout_constraintBaseline_toBaselineOf="@+id/instructions4"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,7 +38,7 @@
         android:layout_height="42dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="28dp"
-        android:text="If you pick an incorrect tile, it will turn red. "
+        android:text="@string/if_you_pick_an_incorrect_tile_it_will_turn_red"
         android:textAlignment="viewStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -48,7 +49,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="incorrect tile"
+        android:contentDescription="@string/incorrect_tile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions4"
         app:srcCompat="@drawable/flipped_wrong" />
@@ -61,7 +62,8 @@
         android:layout_marginEnd="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions4"
-        app:srcCompat="@drawable/flipped_right" />
+        app:srcCompat="@drawable/flipped_right"
+        android:contentDescription="@string/flipped_correct_tile" />
 
     <TextView
         android:id="@+id/instructions7"
@@ -69,7 +71,7 @@
         android:layout_height="22dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="108dp"
-        android:text="To continue to the next round, click all the correct tiles while"
+        android:text="@string/to_continue_to_the_next_round_click_all_the_correct_tiles_while"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions4" />
 
@@ -80,7 +82,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
-        android:text="If you miss 2 tiles on a round you lose a life!"
+        android:text="@string/if_you_miss_2_tiles_on_a_round_you_lose_a_life"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +93,7 @@
         android:layout_width="191dp"
         android:layout_height="21dp"
         android:layout_marginStart="12dp"
-        android:text="avoiding the incorrect ones."
+        android:text="@string/avoiding_the_incorrect_ones"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions7" />
 
@@ -101,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="12dp"
-        android:text="Instructions"
+        android:text="@string/instructions"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +115,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Every round, a set of tiles will appear green before turning blue."
+        android:text="@string/every_round_a_set_of_tiles_will_appear_green_before_turning_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -123,7 +125,7 @@
         android:layout_height="22dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:text="Your job is to memorize the locations of the green tiles and tap"
+        android:text="@string/your_job_is_to_memorize_the_locations_of_the_green_tiles_and_tap"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions1" />
 
@@ -135,7 +137,8 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions3"
-        app:srcCompat="@drawable/flipped_right" />
+        app:srcCompat="@drawable/flipped_right"
+        android:contentDescription="@string/flipped_correct_tile" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -145,14 +148,15 @@
         android:layout_marginEnd="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions3"
-        app:srcCompat="@drawable/unflipped" />
+        app:srcCompat="@drawable/unflipped"
+        android:contentDescription="@string/unflipped_tile" />
 
     <TextView
         android:id="@+id/instructions3"
         android:layout_width="304dp"
         android:layout_height="19dp"
         android:layout_marginStart="16dp"
-        android:text="the green tiles while avoiding the original blue tiles."
+        android:text="@string/the_green_tiles_while_avoiding_the_original_blue_tiles"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions2" />
 
@@ -162,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Losing three lives will end the game!"
+        android:text="@string/losing_three_lives_will_end_the_game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +179,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="Tap as many green tiles and continue for as long as possible!"
+        android:text="@string/tap_as_many_green_tiles_and_continue_for_as_long_as_possible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions10" />
@@ -186,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="playTileGameView"
-        android:text="Start!"
+        android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

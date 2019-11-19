@@ -54,7 +54,7 @@
         android:layout_marginEnd="136dp"
         android:layout_marginBottom="280dp"
         android:fontFamily="@font/montserrat"
-        android:text="Tap to continue"
+        android:text="@string/tap_to_continue"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
