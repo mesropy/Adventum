@@ -156,7 +156,7 @@ public class DataWriter implements WriteData {
     }
 
     /**
-     * Check if an account with the given username exists in the data
+     * Check if an account with the given username exists in the raw2
      * @param username the username being checked
      * @return a boolean representing if the username was found or not
      */
