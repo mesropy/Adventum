@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ourgame">
+    package="com.example.ourgame"
+    tools:ignore="MissingLeanbackLauncher">
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -17,10 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HangmanActivity"></activity>
-        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".RunningGame.EndlessRunnerActivity" />
+        <activity android:name=".Statistics.StatisticsActivity" />
         <activity android:name=".GameOverActivity" />
-        <activity android:name=".PictureInstructions" />
+        <activity android:name=".PictureGame.PictureInstructions" />
         <activity android:name=".login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,34 +30,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TileGameActivity"
+            android:name=".TileGame.TileGameActivity"
             android:parentActivityName=".MainActivity">
 
-            <!-- The meta-raw2 tag is required if you support API level 15 and lower -->
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".PictureGameActivity"
+            android:name=".PictureGame.PictureGameActivity"
             android:parentActivityName=".MainActivity">
 
-            <!-- The meta-raw2 tag is required if you support API level 15 and lower -->
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".ReactionTime"
+            android:name=".ReactionGame.ReactionTime"
             android:parentActivityName=".MainActivity">
 
-            <!-- The meta-raw2 tag is required if you support API level 15 and lower -->
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".TileGameInstructions" />
+        <activity android:name=".TileGame.TileGameInstructions" />
 
         <meta-data
             android:name="preloaded_fonts"
