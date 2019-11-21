@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HangmanActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="164dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:text="Hangman"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/resultImage"
+        android:layout_width="245dp"
+        android:layout_height="316dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/wordBlanks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="_ _ _ _ s a s _ "
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultText" />
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/correct"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultImage" />
+
+    <RadioGroup
+        android:id="@+id/keyboardTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordBlanks">
+
+        <Button
+            android:id="@+id/b1"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="Q"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b2"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="W"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b3"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="E"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b4"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="R"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b5"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="T"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b6"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="Y"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b7"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="U"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b8"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="I"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b9"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="O"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b10"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="P"
+            android:textColor="#FFFFFF" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/keyboardMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keyboardTop">
+
+        <Button
+            android:id="@+id/b11"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="A"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b12"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="S"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b13"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="D"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b14"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="F"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b15"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="G"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b16"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="H"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b17"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="J"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b18"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="K"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b19"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="L"
+            android:textColor="#FFFFFF" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/keyboardBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keyboardMiddle">
+
+        <Button
+            android:id="@+id/b20"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="Z"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b21"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="X"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b22"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="C"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b23"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="V"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b24"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="B"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b25"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="N"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/b26"
+            android:layout_width="@dimen/keyboard_button_width"
+            android:layout_height="@dimen/keyboard_button_height"
+            android:backgroundTint="#009688"
+            android:onClick="onLetterPressed"
+            android:text="M"
+            android:textColor="#FFFFFF" />
+
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

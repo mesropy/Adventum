@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">OurGame</string>
+    <string name="title_activity_main2">Leanback Main2Activity Title</string>
+    <string name="browse_title"><![CDATA[Videos by Your Company]]></string>
+    <string name="related_movies">Related Videos</string>
+    <string name="grid_view">Grid View</string>
+    <string name="error_fragment">Error Fragment</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="user_name">username</string>
+    <string name="password">password</string>
+    <string name="log_in">Log in</string>
+    <string name="register">Register</string>
+
+    <!-- Error messages -->
+    <string name="error_fragment_message">An error occurred</string>
+    <string name="dismiss_error">Dismiss</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">Welcome</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="username_error">Username cannot be empty</string>
+    <string name="password_error">Password cannot be empty</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="register_failed">Username already taken</string>
+    <string name="drawing_guess_message">Type Guess Here</string>
+    <string name="got_it_button">OK, got it!</string>
+    <string name="enter_button">Enter</string>
+    <string name="continue_button">Continue</string>
+    <string name="reaction_game">Reaction</string>
+    <string name="tile_game">Tile</string>
+    <string name="picture_game">Picture</string>
+    3
+    <!-- Error messages -->
+    <string name="password_empty">Password cannot be empty</string>
+    <string name="login_error">Wrong Password or wrong username</string>
+    <string name="preference_file_login">com.example.ourgame.login</string>
+    <string name="preference_file_points">com.example.ourgame.points</string>
+    <string name="preference_file_time">com.example.ourgame.time</string>
+    <string name="preference_file_ranking">com.example.ourgame.ranking</string>
+    <string name="preference_file_lastgame">com.example.ourgame.lastgame</string>
+    <string name="username_empty">Username cannot be empty</string>
+    <string name="main_menu_button">Main Menu</string>
+    <string name="exclamation">!</string>
+    <string name="too_soon">Too Soon!</string>
+    <string name="go">Go!</string>
+    <string name="ms">ms</string>
+    <string name="reaction_intro">When the screen turns green, tap as quickly as you can.</string>
+    <string name="wait">Wait…</string>
+    <string name="incorrect">INCORRECT!</string>
+    <string name="correct">CORRECT!</string>
+    <string name="passed_round">You passed this round!</string>
+    <string name="memoryGame">Memory Game</string>
+    <string name="language">language</string>
+    <string name="changeColor">Change Background Color</string>
+    <string name="tap_to_continue">Tap to continue</string>
+    <string name="tap_as_many_green_tiles_and_continue_for_as_long_as_possible">Tap as many green tiles and continue for as long as possible!</string>
+    <string name="start">Start!</string>
+    <string name="losing_three_lives_will_end_the_game">Losing three lives will end the game!</string>
+    <string name="the_green_tiles_while_avoiding_the_original_blue_tiles">the green tiles while avoiding the original blue tiles.</string>
+    <string name="your_job_is_to_memorize_the_locations_of_the_green_tiles_and_tap">Your job is to memorize the locations of the green tiles and tap</string>
+    <string name="every_round_a_set_of_tiles_will_appear_green_before_turning_blue">Every round, a set of tiles will appear green before turning blue.</string>
+    <string name="instructions">Instructions</string>
+    <string name="avoiding_the_incorrect_ones">avoiding the incorrect ones.</string>
+    <string name="if_you_miss_2_tiles_on_a_round_you_lose_a_life">If you miss 2 tiles on a round you lose a life!</string>
+    <string name="to_continue_to_the_next_round_click_all_the_correct_tiles_while">To continue to the next round, click all the correct tiles while</string>
+    <string name="incorrect_tile">incorrect tile</string>
+    <string name="if_you_pick_an_incorrect_tile_it_will_turn_red">If you pick an incorrect tile, it will turn red.</string>
+    <string name="if_you_pick_a_correct_tile_it_will_turn_green">If you pick a correct tile, it will turn green.</string>
+    <string name="memory_game">Memory Game</string>
+    <string name="unflipped_tile">unflipped tile</string>
+    <string name="flipped_correct_tile">flipped correct tile</string>
+</resources>
