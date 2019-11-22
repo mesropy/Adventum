@@ -5,6 +5,10 @@ public interface WriteData {
     // Create a new user with "username" and "password"
     void addUser(String username, String password);
 
+    void setUser(String username);
+
+    String getUser();
+
     // Return the password belonging to the given username
     String getPassword(String username);
 
@@ -28,7 +32,6 @@ public interface WriteData {
     void addLastGame(String username, String lastgame);
 
     String getLastGame(String username);
-
 
     // Check if "username" exists
     boolean checkUser(String username);

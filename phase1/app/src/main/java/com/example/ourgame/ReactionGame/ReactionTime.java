@@ -42,6 +42,7 @@ public class ReactionTime extends AppCompatActivity  {
     private long average = 0;
 
     private DataWriter data;
+    private String user;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -64,7 +65,9 @@ public class ReactionTime extends AppCompatActivity  {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
+
         data = new DataWriter(this);
+        user = data.getUser();
 
         instruction();
     }
@@ -129,12 +132,12 @@ public class ReactionTime extends AppCompatActivity  {
         else{
             points = 1;
         }
-        data.addPoints(MainActivity.user, points);
-        data.addPlayTime(MainActivity.user, (int)(total/1000));
-        data.addLastGame(MainActivity.user, getString(R.string.reaction_game));
+        data.addPoints(user, points);
+        data.addPlayTime(user, (int)(total/1000));
+        data.addLastGame(user, getString(R.string.reaction_game));
 
         if (average <= 200) {
-            data.increaseRanking(MainActivity.user);
+            data.increaseRanking(user);
         }
     }
 

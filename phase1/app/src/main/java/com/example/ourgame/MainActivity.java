@@ -21,7 +21,7 @@ import com.example.ourgame.login.Login;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public static String user;
+    public  String user;
     private DataWriter data;
 
     @Override
@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(str);
 
         data = new DataWriter(this);
+        if (data.getUser().equals("Not found")){
+            data.setUser(user);
+        }
     }
 
     public void checkStats(View view){
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button object that was tapped
      */
     public void playReactionGame(View view){
-        data.addLastGame(MainActivity.user, "");
+        data.addLastGame(user, "");
         Intent intent = new Intent(this, ReactionTime.class);
         startActivity(intent);
     }

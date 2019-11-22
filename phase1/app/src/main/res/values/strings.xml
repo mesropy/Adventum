@@ -43,6 +43,7 @@
     <string name="preference_file_time">com.example.ourgame.time</string>
     <string name="preference_file_ranking">com.example.ourgame.ranking</string>
     <string name="preference_file_lastgame">com.example.ourgame.lastgame</string>
+    <string name="preference_file_user">com.example.ourgame.user</string>
     <string name="username_empty">Username cannot be empty</string>
     <string name="main_menu_button">Main Menu</string>
     <string name="exclamation">!</string>

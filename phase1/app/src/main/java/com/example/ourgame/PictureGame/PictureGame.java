@@ -25,6 +25,7 @@ class PictureGame extends Game {
   private String noMoreAttemptsMessage;
 
   private DataWriter data;
+  private String user;
   private int playTime = 0;
 
   PictureGame(Context context) {
@@ -37,6 +38,7 @@ class PictureGame extends Game {
     noMoreAttemptsMessage = "No more attempts!";
 
     data = new DataWriter(context);
+    user = data.getUser();
   }
 
   void incrementNumAttempts() {
@@ -100,11 +102,11 @@ class PictureGame extends Game {
 
   @Override
   protected void updateStatistics() {
-    data.addPlayTime(MainActivity.user, playTime);
-    data.addPoints(MainActivity.user, getPointsEarned());
-    data.addLastGame(MainActivity.user, "Picture");
+    data.addPlayTime(user, playTime);
+    data.addPoints(user, getPointsEarned());
+    data.addLastGame(user, "Picture");
     if (increaseRank()) {
-      data.increaseRanking(MainActivity.user);
+      data.increaseRanking(user);
     }
   }
 

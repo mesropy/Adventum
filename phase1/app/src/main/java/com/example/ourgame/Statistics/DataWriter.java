@@ -23,14 +23,17 @@ public class DataWriter implements WriteData {
     private SharedPreferences timeData;
     private SharedPreferences rankingData;
     private SharedPreferences lastGameData;
+    private SharedPreferences currUserData;
+    private Context context;
 
     public DataWriter(Context context){
+        this.context = context;
         loginData = context.getSharedPreferences(context.getString(R.string.preference_file_login), Context.MODE_PRIVATE);
         pointsData = context.getSharedPreferences(context.getString(R.string.preference_file_points), Context.MODE_PRIVATE);
         timeData = context.getSharedPreferences(context.getString(R.string.preference_file_time), Context.MODE_PRIVATE);
         rankingData = context.getSharedPreferences(context.getString(R.string.preference_file_ranking), Context.MODE_PRIVATE);
         lastGameData = context.getSharedPreferences(context.getString(R.string.preference_file_lastgame), Context.MODE_PRIVATE);
-
+        currUserData = context.getSharedPreferences(context.getString(R.string.preference_file_user), Context.MODE_PRIVATE);
     }
 
     /**
@@ -60,10 +63,26 @@ public class DataWriter implements WriteData {
         editor.putString(username, "Bronze");
         editor.apply();
 
-        // Lastly add the user's default last game played
+        // Fifth add the user's default last game played
         editor = lastGameData.edit();
         editor.putString(username, "Reaction");
         editor.apply();
+
+        editor = currUserData.edit();
+        editor.putString(context.getString(R.string.preference_file_user), username);
+        editor.apply();
+    }
+
+    @Override
+    public void setUser(String username) {
+        SharedPreferences.Editor editor = currUserData.edit();
+        editor.putString(context.getString(R.string.preference_file_user), username);
+        editor.apply();
+    }
+
+    @Override
+    public String getUser() {
+        return currUserData.getString(context.getString(R.string.preference_file_user), "Not found");
     }
 
     @Override

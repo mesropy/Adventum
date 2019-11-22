@@ -37,6 +37,7 @@ class TileGame extends Game {
     private int patternEndShowTime;
 
     private DataWriter data;
+    private String user;
     private int playTime = 0;
 
     TileGame(Context activity) {
@@ -52,7 +53,9 @@ class TileGame extends Game {
         rightTileImageId = R.drawable.flipped_right;
         wrongTileImageId = R.drawable.flipped_wrong;
         unflippedTileImageId = R.drawable.unflipped;
+
         data = new DataWriter(activity);
+        user = data.getUser();
 
         // initialize rightTile based on num right/wrong tiles we have
         for (int i = 0; i < numRightTiles; i++) {
@@ -72,13 +75,13 @@ class TileGame extends Game {
 
         int statPoints = 2 * points / 10;
 
-        data.addPoints(MainActivity.user, statPoints);
-        data.addPlayTime(MainActivity.user, playTime);
+        data.addPoints(user, statPoints);
+        data.addPlayTime(user, playTime);
         //need to fix getString(R.string.tile_game)
-        data.addLastGame(MainActivity.user, "Tile");
+        data.addLastGame(user, "Tile");
 
         if (updateRanking()) {
-            data.increaseRanking(MainActivity.user);
+            data.increaseRanking(user);
         }
     }
 
