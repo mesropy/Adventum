@@ -28,6 +28,7 @@ import java.util.Map;
 public class StatisticsActivity extends AppCompatActivity {
 
     DataWriter dataWriter;
+    private String user;
 
     TextView pointsText;
     TextView playtimeText;
@@ -52,6 +53,7 @@ public class StatisticsActivity extends AppCompatActivity {
         personal = findViewById(R.id.personal);
 
         dataWriter = new DataWriter(this);
+        user = dataWriter.getUser();
 
         Map<String, ?> pointsData = dataWriter.getPointsData().getAll();
 
@@ -93,13 +95,13 @@ public class StatisticsActivity extends AppCompatActivity {
             fifthText.setText("5. " + userNames.get(4) + " Points: " + points.get(4));
         }
 
-        personal.setText("Your Rank: " + (userNames.indexOf(MainActivity.user) + 1));
+        personal.setText("Your Rank: " + (userNames.indexOf(user) + 1));
 
-        String str = Integer.toString(dataWriter.getPoints(MainActivity.user));
+        String str = Integer.toString(dataWriter.getPoints(user));
         pointsText.setText(str);
-        String str2 = dataWriter.getPlayTime(MainActivity.user) + " secs.";
+        String str2 = dataWriter.getPlayTime(user) + " secs.";
         playtimeText.setText(str2);
-        rankingText.setText(dataWriter.getRanking(MainActivity.user));
+        rankingText.setText(dataWriter.getRanking(user));
 
     }
 
@@ -124,7 +126,7 @@ public class StatisticsActivity extends AppCompatActivity {
             intent = new Intent(this, PictureInstructions.class);
         } else if (nextActivity.equals("main menu")) {
             intent = new Intent(this, MainActivity.class);
-            intent.putExtra(Login.EXTRA_MESSAGE, MainActivity.user);
+            intent.putExtra(Login.EXTRA_MESSAGE, user);
         } else {  // game over activity
             intent = new Intent(this, GameOverActivity.class);
         }
