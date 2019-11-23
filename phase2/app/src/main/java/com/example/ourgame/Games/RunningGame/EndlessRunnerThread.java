@@ -1,8 +1,4 @@
-package com.example.ourgame.RunningGame;
-
-import android.util.Log;
-
-import com.example.ourgame.RunningGame.EndlessRunnerGame;
+package com.example.ourgame.Games.RunningGame;
 
 public class EndlessRunnerThread extends Thread {
 

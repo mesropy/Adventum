@@ -1,9 +1,8 @@
-package com.example.ourgame.RunningGame;
+package com.example.ourgame.Games.RunningGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.SurfaceView;
 
 import com.example.ourgame.R;
 

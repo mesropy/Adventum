@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.Games.HangmanGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.ourgame.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,9 +1,6 @@
-package com.example.ourgame.RunningGame;
+package com.example.ourgame.Games.RunningGame;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.util.Log;
 
 public class Player extends Sprite {
     private final static int GRAVITY = 3;

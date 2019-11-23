@@ -1,4 +1,4 @@
-package com.example.ourgame.PictureGame;
+package com.example.ourgame.Games.PictureGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 

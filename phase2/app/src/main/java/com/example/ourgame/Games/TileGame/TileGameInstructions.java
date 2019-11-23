@@ -1,4 +1,4 @@
-package com.example.ourgame.TileGame;
+package com.example.ourgame.Games.TileGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 

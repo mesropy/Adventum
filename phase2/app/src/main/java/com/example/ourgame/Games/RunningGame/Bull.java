@@ -1,7 +1,6 @@
-package com.example.ourgame.RunningGame;
+package com.example.ourgame.Games.RunningGame;
 
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 
 public class Bull extends Sprite{
 

@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.Games;
 
 public abstract class Game {
 

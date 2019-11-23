@@ -1,4 +1,6 @@
-package com.example.ourgame;
+package com.example.ourgame.Games.HangmanGame;
+
+import com.example.ourgame.R;
 
 import java.util.ArrayList;
 import java.util.List;

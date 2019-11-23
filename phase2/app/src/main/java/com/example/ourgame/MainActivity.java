@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ourgame.PictureGame.PictureInstructions;
-import com.example.ourgame.ReactionGame.ReactionTime;
-import com.example.ourgame.RunningGame.EndlessRunnerActivity;
+import com.example.ourgame.Games.PictureGame.PictureInstructions;
+import com.example.ourgame.Games.ReactionGame.ReactionTime;
+import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
 import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
-import com.example.ourgame.TileGame.TileGameInstructions;
+import com.example.ourgame.Games.TileGame.TileGameInstructions;
 import com.example.ourgame.login.Login;
 
 /**

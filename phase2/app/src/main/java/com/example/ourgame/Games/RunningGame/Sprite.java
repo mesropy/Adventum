@@ -1,4 +1,4 @@
-package com.example.ourgame.RunningGame;
+package com.example.ourgame.Games.RunningGame;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -20,23 +20,23 @@ class Sprite {
     private int width;
     private int height;
 
-    public void setWidth(int width) {
+    void setWidth(int width) {
         this.width = width;
     }
 
-    public int getX() {
+    int getX() {
         return x;
     }
 
-    public void setHeight(int height) {
+    void setHeight(int height) {
         this.height = height;
     }
 
-    public int getWidth() {
+    int getWidth() {
         return width;
     }
 
-    public Sprite(Bitmap image, int x, int y, int width, int height, int groundHeight){
+    Sprite(Bitmap image, int x, int y, int width, int height, int groundHeight){
         this.image = image;
         this.hitbox = new Rect(x, y, x+width, y+height);
         this.groundHeight = groundHeight;
@@ -53,11 +53,11 @@ class Sprite {
         paint.setStyle(Paint.Style.STROKE);
     }
 
-    public int getGroundHeight() {
+    int getGroundHeight() {
         return groundHeight;
     }
 
-    public void draw(Canvas canvas){
+    void draw(Canvas canvas){
         if (image != null){
             canvas.drawBitmap(image, null, hitbox, null);
         }else{
@@ -65,29 +65,29 @@ class Sprite {
         }
     }
 
-    public int getHeight() {
+    int getHeight() {
         return height;
     }
 
-    public void setX(int x) {
+    private void setX(int x) {
         this.x = x;
         hitbox.set(x, y, x + width, y + height);
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 
-    public void setY(int y) {
+    void setY(int y) {
         this.y = y;
         hitbox.set(x, y, x + width, y + height);
     }
 
-    public void setDx(int dx) {
+    void setDx(int dx) {
         this.dx = dx;
     }
 
-    public void setDy(int dy) {
+    void setDy(int dy) {
         this.dy = dy;
     }
 
@@ -95,15 +95,15 @@ class Sprite {
         return dx;
     }
 
-    public int getDy() {
+    int getDy() {
         return dy;
     }
 
-    public Rect getHitbox() {
+    Rect getHitbox() {
         return hitbox;
     }
 
-    public void update(){
+    void update(){
         setX(x+dx);
         setY(y+dy);
     }

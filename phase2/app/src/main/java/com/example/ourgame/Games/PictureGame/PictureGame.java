@@ -1,9 +1,9 @@
-package com.example.ourgame.PictureGame;
+package com.example.ourgame.Games.PictureGame;
 
 import android.content.Context;
 
 import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.Game;
+import com.example.ourgame.Games.Game;
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
 

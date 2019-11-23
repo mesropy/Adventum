@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ourgame.GameOverActivity;
 import com.example.ourgame.MainActivity;
-import com.example.ourgame.PictureGame.PictureInstructions;
+import com.example.ourgame.Games.PictureGame.PictureInstructions;
 import com.example.ourgame.R;
-import com.example.ourgame.ReactionGame.ReactionTime;
-import com.example.ourgame.TileGame.TileGameInstructions;
+import com.example.ourgame.Games.ReactionGame.ReactionTime;
+import com.example.ourgame.Games.TileGame.TileGameInstructions;
 import com.example.ourgame.login.Login;
 
 import java.util.ArrayList;

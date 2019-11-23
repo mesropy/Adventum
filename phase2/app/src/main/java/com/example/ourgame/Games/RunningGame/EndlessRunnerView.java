@@ -1,4 +1,4 @@
-package com.example.ourgame.RunningGame;
+package com.example.ourgame.Games.RunningGame;
 
 import android.graphics.Rect;
 

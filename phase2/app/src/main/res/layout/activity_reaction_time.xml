@@ -8,7 +8,7 @@
     android:layout_centerHorizontal="true"
     android:background="@color/menu_blue"
     android:onClick="screenTapped"
-    tools:context=".ReactionGame.ReactionTime">
+    tools:context=".Games.ReactionGame.ReactionTime">
 
     <TextView
         android:id="@+id/instructionText"

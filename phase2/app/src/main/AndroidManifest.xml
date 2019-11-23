@@ -18,10 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RunningGame.EndlessRunnerActivity" />
+        <activity android:name=".Games.RunningGame.EndlessRunnerActivity" />
         <activity android:name=".Statistics.StatisticsActivity" />
         <activity android:name=".GameOverActivity" />
-        <activity android:name=".PictureGame.PictureInstructions" />
+        <activity android:name=".Games.PictureGame.PictureInstructions" />
         <activity android:name=".login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TileGame.TileGameActivity"
+            android:name=".Games.TileGame.TileGameActivity"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -39,7 +39,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".PictureGame.PictureGameActivity"
+            android:name=".Games.PictureGame.PictureGameActivity"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -48,7 +48,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".ReactionGame.ReactionTime"
+            android:name=".Games.ReactionGame.ReactionTime"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -57,7 +57,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".TileGame.TileGameInstructions" />
+        <activity android:name=".Games.TileGame.TileGameInstructions" />
 
         <meta-data
             android:name="preloaded_fonts"

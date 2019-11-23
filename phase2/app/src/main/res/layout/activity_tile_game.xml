@@ -5,7 +5,7 @@
     android:id="@+id/backGound2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TileGame.TileGameActivity">
+    tools:context=".Games.TileGame.TileGameActivity">
 
     <TextView
         android:id="@+id/titleText3"

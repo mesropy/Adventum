@@ -1,10 +1,6 @@
-package com.example.ourgame.RunningGame;
+package com.example.ourgame.Games.RunningGame;
 
 import android.graphics.Rect;
-import android.util.Log;
-import android.view.MotionEvent;
-
-import com.example.ourgame.RunningGame.EndlessRunner;
 
 import java.util.ArrayList;
 import java.util.List;

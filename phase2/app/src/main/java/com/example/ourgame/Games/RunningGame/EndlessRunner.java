@@ -1,18 +1,14 @@
-package com.example.ourgame.RunningGame;
+package com.example.ourgame.Games.RunningGame;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback, EndlessRunnerView {
