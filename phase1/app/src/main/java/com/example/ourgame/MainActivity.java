@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ourgame.PictureGame.PictureInstructions;
-import com.example.ourgame.ReactionGame.ReactionTime;
+import com.example.ourgame.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.RunningGame.EndlessRunnerActivity;
 import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void playReactionGame(View view){
         data.addLastGame(user, "");
-        Intent intent = new Intent(this, ReactionTime.class);
+        Intent intent = new Intent(this, ReactionGameActivity.class);
         startActivity(intent);
     }
 

@@ -11,7 +11,7 @@ import com.example.ourgame.GameOverActivity;
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.PictureGame.PictureInstructions;
 import com.example.ourgame.R;
-import com.example.ourgame.ReactionGame.ReactionTime;
+import com.example.ourgame.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.TileGame.TileGameInstructions;
 import com.example.ourgame.login.Login;
 
@@ -119,7 +119,7 @@ public class StatisticsActivity extends AppCompatActivity {
         Intent intent;
 
         if (nextActivity.equals(getString(R.string.reaction_game))) {
-            intent = new Intent(this, ReactionTime.class);
+            intent = new Intent(this, ReactionGameActivity.class);
         } else if (nextActivity.equals(getString(R.string.tile_game))) {
             intent = new Intent(this, TileGameInstructions.class);
         } else if (nextActivity.equals(getString(R.string.picture_game))) {
