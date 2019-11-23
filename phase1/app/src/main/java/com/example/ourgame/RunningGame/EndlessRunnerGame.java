@@ -42,10 +42,14 @@ class EndlessRunnerGame {
     }
 
     void update(){
-         player.update();
-         for (Sprite obstacle : obstacles){
-             obstacle.update();
-             if(Rect.intersects(obstacle.getHitbox(), player.getHitbox())){ loseGame();}
+         if (gameState == State.RUNNING) {
+             player.update();
+             for (Sprite obstacle : obstacles) {
+                 obstacle.update();
+                 if (Rect.intersects(obstacle.getHitbox(), player.getHitbox())) {
+                     loseGame();
+                 }
+             }
          }
     }
 
@@ -69,11 +73,17 @@ class EndlessRunnerGame {
         if (gameState == State.RUNNING){
             player.jump();
         }
+        else if (gameState == State.GAMEOVER){
+            gameState = State.RUNNING;
+            start();
+        }
     }
 
     void draw(){
-        view.draw(player, obstacles);
-        checkObstacles();
+         if (gameState == State.RUNNING) {
+             view.draw(player, obstacles);
+             checkObstacles();
+         }
     }
 
     private void checkObstacles(){

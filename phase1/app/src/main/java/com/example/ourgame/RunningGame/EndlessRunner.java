@@ -3,6 +3,7 @@ package com.example.ourgame.RunningGame;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,6 +20,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     private SurfaceHolder surfaceHolder;
     private EndlessRunnerGame game;
     private EndlessRunnerThread thread;
+    private Paint paint;
 
     private Rect screen;
 
@@ -35,6 +37,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         screen = new Rect(0, 0, getWidth(), getHeight());
 
         game = new EndlessRunnerGame(this);
+        paint = new Paint();
         thread = new EndlessRunnerThread(game);
 
         thread.setRunning(true);
@@ -79,7 +82,13 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void loseGame() {
-
+        Canvas canvas = surfaceHolder.lockCanvas();
+        if (canvas != null){
+            paint.setTextSize(50);
+            paint.setColor(Color.RED);
+            canvas.drawText("Game Over", getWidth()/2-85, getHeight()/2, paint);
+        }
+        surfaceHolder.unlockCanvasAndPost(canvas);
     }
 
     @Override
