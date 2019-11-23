@@ -47,20 +47,12 @@ class TileGame extends Game {
         points = 0;
         correctPressed = 0;
         numRightTiles = 4;
-        patternShowTime = 2000;
+        patternShowTime = 3000;
         patternEndShowTime = 2000;
         rightTileImageId = R.drawable.flipped_right;
         wrongTileImageId = R.drawable.flipped_wrong;
         unflippedTileImageId = R.drawable.unflipped;
         data = new DataWriter(activity);
-
-        // initialize rightTile based on num right/wrong tiles we have
-        for (int i = 0; i < numRightTiles; i++) {
-            rightTile.add(true);
-        }
-        for (int i = numRightTiles; i < 9; i++) {
-            rightTile.add(false);
-        }
     }
 
     /**
@@ -80,6 +72,18 @@ class TileGame extends Game {
         if (updateRanking()) {
             data.increaseRanking(MainActivity.user);
         }
+    }
+
+    void setInitTiles(int numberOfTiles){
+        rightTile.clear();
+        numRightTiles = numberOfTiles / 2;
+        for(int i = 0; i < numRightTiles; i++){
+            rightTile.add(true);
+        }
+        for(int i = numRightTiles; i < numberOfTiles; i++){
+            rightTile.add(false);
+        }
+
     }
 
     private boolean updateRanking() {
@@ -153,7 +157,15 @@ class TileGame extends Game {
     }
 
     int getPatternShowTime() {
-        return patternShowTime;
+        int time = patternShowTime;
+        if(patternShowTime > 500) {
+            patternShowTime = patternShowTime - 200;
+        }
+        return time;
+    }
+
+    void resetShowTime() {
+        patternShowTime = 3000;
     }
 
     int getPatternEndShowTime() {
@@ -168,7 +180,4 @@ class TileGame extends Game {
         return "Lives Remaining: " + currentLives + "/3";
     }
 
-    String getLivesRemainingTextChinese() {
-        return "剩余生命: " + currentLives + "/3";
-    }
 }

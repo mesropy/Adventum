@@ -1,21 +1,19 @@
 package com.example.ourgame.Games.TileGame;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.R;
 import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.util.ArrayList;
+
 
 /**
  * The Activity class for a Memory Tile Game
@@ -29,8 +27,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     private TextView livesText;
     private TextView resultText;
     private long startTime = 0;
-    public static int i = 0;
-    public static boolean chinese = true;
 
     private int[] tileButtonIds = {
             R.id.tile1,
@@ -43,7 +39,26 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
             R.id.tile8,
             R.id.tile9};
 
+    private int[] tileButtonIds2 = {
+            R.id.tile21,
+            R.id.tile22,
+            R.id.tile23,
+            R.id.tile24,
+            R.id.tile25,
+            R.id.tile26,
+            R.id.tile27,
+            R.id.tile28,
+            R.id.tile29,
+            R.id.tile210,
+            R.id.tile211,
+            R.id.tile212,
+            R.id.tile213,
+            R.id.tile214,
+            R.id.tile215,
+            R.id.tile216};
+
     private Button[] tileButtons;
+    private Button[] tileButtons2;
 
     /**
      * Method to initialize items in this activity. Initializes onClickListener methods for
@@ -56,20 +71,29 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_tile_game);
 
         tileGame = new TileGame(this);
+        tileGame.setInitTiles(tileButtonIds.length);
 
         livesText = findViewById(R.id.livesText);
         resultText = findViewById(R.id.resultText);
 
         // initialize tileButtons
         tileButtons = new Button[tileButtonIds.length];
+        tileButtons2 = new Button[tileButtonIds2.length];
         for (int i = 0; i < tileButtonIds.length; i++) {
             tileButtons[i] = findViewById(tileButtonIds[i]);
+        }
+        for (int i = 0; i < tileButtonIds2.length; i++) {
+            tileButtons2[i] = findViewById(tileButtonIds2[i]);
         }
         // add on click listener for each tile button
         for (Button tileButton : tileButtons) {
             tileButton.setOnClickListener(this);
         }
-
+        for (Button tileButton : tileButtons2) {
+            tileButton.setOnClickListener(this);
+            tileButton.setVisibility(View.INVISIBLE);
+            tileButton.setClickable(false);
+        }
     }
 
     /**
@@ -153,13 +177,14 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void roundLost() {
         tileGame.loseLife();
-        if (!chinese) {
-            livesText.setText(tileGame.getLivesRemainingTextChinese());
-        }else {
-            livesText.setText(tileGame.getLivesRemainingText());
-        }
+        livesText.setText(tileGame.getLivesRemainingText());
         resultText.setText(tileGame.getLoseLifeText());
-        displayPatternRed();
+        if (tileGame.getPoints() < 10) {
+            displayPatternRed(tileButtons);
+        }
+        else{
+            displayPatternRed(tileButtons2);
+        }
     }
 
     /**
@@ -167,17 +192,24 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * for them to memorize.
      */
     private void roundWon() {
-        displayPatternRed(); // make this nicer (make red lighter?)
+        if (tileGame.getPoints() <= 10) {
+            displayPatternRed(tileButtons);
+        }
+        else{
+            displayPatternRed(tileButtons2);
+        }
         resultText.setText(R.string.passed_round);
         tileGame.addPoint();
-        if (tileGame.getPoints() >= 50) {
-            int duration = Toast.LENGTH_LONG;
-            Toast toast = Toast.makeText(this, "You have reached maximum points!", duration);
-            toast.show();
-            gameOver();
-        } else {
-            restartRound();
+        if (tileGame.getPoints() == 10) {
+            tileGame.resetShowTime();
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    levelUp();
+                }
+            }, tileGame.getPatternEndShowTime());
         }
+        restartRound();
+
     }
 
     /**
@@ -196,8 +228,14 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void startRound() {
         tileGame.shuffleTiles();
-        displayPattern();
-        waitThenHidePattern();
+        if (tileGame.getPoints() < 10) {
+            displayPattern(tileButtons);
+            waitThenHidePattern(tileButtonIds);
+        }
+        else{
+            displayPattern(tileButtons2);
+            waitThenHidePattern(tileButtonIds2);
+        }
         resultText.setText("");
     }
 
@@ -221,7 +259,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * Method to display the pattern to the player for them to memorize the locations of correct
      * green tiles.
      */
-    private void displayPattern() {
+    private void displayPattern(Button[] tileButtons) {
         for (int i = 0; i < tileButtons.length; i++) {
             Button tileButton = tileButtons[i];
             int tileImageId;
@@ -244,7 +282,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * Method to display the pattern to the player if they have lost a round. Shows them the correct
      * locations of green tiles along with red tiles for the incorrect locations.
      */
-    private void displayPatternRed() {
+    private void displayPatternRed(Button[] tileButtons) {
         for (int i = 0; i < tileButtons.length; i++) {
             Button tileButton = tileButtons[i];
             int tileImageId;
@@ -265,16 +303,17 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * Method that delays the game so that the player has a chance to view and memorize the
      * locations of tiles before they become hidden.
      */
-    private void waitThenHidePattern() {
-        for (int tileButtonId : tileButtonIds) {
-            final Button tileButton = findViewById(tileButtonId);
-            new Handler().postDelayed(new Runnable() {
-                public void run() {
+    private void waitThenHidePattern(int[] tileButtonIds) {
+        final int[] tb = tileButtonIds;
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                for (int tileButtonId : tb) {
+                    Button tileButton = findViewById(tileButtonId);
                     tileButton.setBackgroundResource(R.drawable.unflipped);
                     tileButton.setClickable(true);
                 }
-            }, tileGame.getPatternShowTime());
-        }
+            }
+        }, tileGame.getPatternShowTime());
     }
 
     /**
@@ -289,37 +328,18 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }, tileGame.getPatternEndShowTime());
     }
 
-    public void changeBackground(View view) {
-        int[] color = {Color.YELLOW, Color.LTGRAY, Color.GRAY, Color.WHITE, Color.BLUE};
-        ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
-        constraintLayout.setBackgroundColor(color[i]);
-        i++;
-        if (i == color.length){
-            i = 0;
+    public void levelUp() {
+        for (Button tileButton : tileButtons) {
+            tileButton.setVisibility(View.INVISIBLE);
+            tileButton.setClickable(false);
         }
+
+        tileGame.setInitTiles(tileButtonIds2.length);
+        for (Button tileButton : tileButtons2) {
+            tileButton.setVisibility(View.VISIBLE);
+            tileButton.setClickable(true);
+        }
+
     }
 
-
-    public void changeLanguage(View view) {
-        int title = R.id.titleText3;
-        int button1 = R.id.language;
-        int button2 = R.id.changeColor;
-        TextView titletext = findViewById(title);
-        Button button_1 = findViewById(button1);
-        Button button_2 = findViewById(button2);
-        if (chinese) {
-            titletext.setText("记忆游戏");
-            button_1.setText("语言");
-            button_2.setText("更换颜色");
-            livesText.setText(tileGame.getLivesRemainingTextChinese());
-            chinese = false;
-        }
-        else {
-            titletext.setText(R.string.memoryGame);
-            button_1.setText(R.string.language);
-            button_2.setText(R.string.changeColor);
-            livesText.setText(tileGame.getLivesRemainingText());
-            chinese = true;
-        }
-    }
 }

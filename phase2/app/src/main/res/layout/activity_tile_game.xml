@@ -141,25 +141,163 @@
         app:layout_constraintTop_toBottomOf="@+id/tile8" />
 
     <Button
-        android:id="@+id/changeColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tile21"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="changeBackground"
-        android:text="Change Background Color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="81dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText3" />
 
     <Button
-        android:id="@+id/language"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tile22"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toEndOf="@+id/tile21"
+        app:layout_constraintTop_toBottomOf="@+id/titleText3" />
+
+    <Button
+        android:id="@+id/tile23"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="81dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="changeLanguage"
-        android:text="language"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toStartOf="@+id/tile24"
+        app:layout_constraintTop_toBottomOf="@+id/titleText3" />
+
+    <Button
+        android:id="@+id/tile24"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="81dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText3" />
+
+    <Button
+        android:id="@+id/tile25"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tile21" />
+
+    <Button
+        android:id="@+id/tile26"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toEndOf="@+id/tile25"
+        app:layout_constraintTop_toBottomOf="@+id/tile22" />
+
+    <Button
+        android:id="@+id/tile27"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toStartOf="@+id/tile28"
+        app:layout_constraintTop_toBottomOf="@+id/tile23" />
+
+    <Button
+        android:id="@+id/tile28"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tile24" />
+
+    <Button
+        android:id="@+id/tile29"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tile25" />
+
+    <Button
+        android:id="@+id/tile210"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toEndOf="@+id/tile29"
+        app:layout_constraintTop_toBottomOf="@+id/tile26" />
+
+    <Button
+        android:id="@+id/tile211"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toStartOf="@+id/tile212"
+        app:layout_constraintTop_toBottomOf="@+id/tile27" />
+
+    <Button
+        android:id="@+id/tile212"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tile28" />
+
+    <Button
+        android:id="@+id/tile213"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tile29" />
+
+    <Button
+        android:id="@+id/tile214"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintStart_toEndOf="@+id/tile213"
+        app:layout_constraintTop_toBottomOf="@+id/tile210" />
+
+    <Button
+        android:id="@+id/tile215"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toStartOf="@+id/tile216"
+        app:layout_constraintTop_toBottomOf="@+id/tile211" />
+
+    <Button
+        android:id="@+id/tile216"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/unflipped"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tile212" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
