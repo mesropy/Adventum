@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.ourgame.Customization;
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
 
@@ -36,11 +37,11 @@ import com.example.ourgame.R;
  */
 public class Login extends AppCompatActivity implements LoginView {
 
-    public final static String EXTRA_MESSAGE = "com.example.ourgame.MESSAGE";
     private ProgressBar progressBar;
     private EditText username;
     private EditText password;
     private LoginPresenter presenter;
+    boolean customNeeded;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,10 +115,17 @@ public class Login extends AppCompatActivity implements LoginView {
      */
     @Override
     public void navigateToHome(String username) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, username);
-        startActivity(intent);
-        finish();
+        if(customNeeded){
+            Intent intent = new Intent(this, Customization.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
+            finish();
+        }
     }
 
     /**
@@ -126,6 +134,7 @@ public class Login extends AppCompatActivity implements LoginView {
      * @param view the button object that was tapped
      */
     public void validateCredentials(View view) {
+        customNeeded = false;
         presenter.validateCredentials(username.getText().toString(), password.getText().toString());
     }
 
@@ -135,6 +144,7 @@ public class Login extends AppCompatActivity implements LoginView {
      * @param view the button object that was tapped
      */
     public void validateRegistration(View view) {
+        customNeeded = true;
         presenter.validateRegistration(username.getText().toString(), password.getText().toString());
     }
 }

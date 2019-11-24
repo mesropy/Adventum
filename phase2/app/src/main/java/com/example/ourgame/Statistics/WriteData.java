@@ -29,7 +29,12 @@ public interface WriteData {
 
     String getLastGame(String username);
 
+    String getLanguage(String username);
+
+    void setLanguage(String username, String language);
 
     // Check if "username" exists
     boolean checkUser(String username);
+
+
 }

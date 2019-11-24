@@ -23,15 +23,11 @@ public class ReactionGame extends Game {
     private long startTime = 0;
     private State currentState;
 
-    private DataWriter data;
     private Context context;
-    private String user;
-
 
     ReactionGame(Context context){
         this.context = context;
-        data = new DataWriter(context);
-        //TODO: user = data.getUser();
+        setData(new DataWriter(context));
     }
 
     int getCount() {
@@ -58,7 +54,7 @@ public class ReactionGame extends Game {
         return time;
     }
 
-    public void setStartTime(long startTime) {
+    void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
@@ -84,12 +80,13 @@ public class ReactionGame extends Game {
         else{
             points = 1;
         }
-        data.addPoints(user, points);
-        data.addPlayTime(user, (int)(total/1000));
-        data.addLastGame(user, context.getString(R.string.reaction_game));
+        getData().addPoints(getUser(), points);
+        getData().addPlayTime(getUser(), (int)(total/1000));
+        getData().addLastGame(getUser(), context.getString(R.string.reaction_game));
 
         if (average <= 200) {
-            data.increaseRanking(user);
+            getData().increaseRanking(getUser());
         }
     }
+
 }

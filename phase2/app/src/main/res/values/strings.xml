@@ -74,4 +74,5 @@
     <string name="memory_game">Memory Game</string>
     <string name="unflipped_tile">unflipped tile</string>
     <string name="flipped_correct_tile">flipped correct tile</string>
+    <string name="preference_file_language">com.example.ourgame.language</string>
 </resources>

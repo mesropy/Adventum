@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +30,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
-        user = intent.getStringExtra(Login.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.welcome);
-        String str = "Welcome " + user + "!";
-        textView.setText(str);
+        Button startGame = findViewById(R.id.startGame);
+        Button resume = findViewById(R.id.resume);
+        Button checkStat = findViewById(R.id.checkStat);
 
         data = new DataWriter(this);
+
+        Intent intent = getIntent();
+        user = intent.getStringExtra("username");
+        String str;
+        if(data.getLanguage(user).equals("english")){
+            str = "Welcome " + user + " !";
+            textView.setText(str);
+            startGame.setText("START NEW GAME");
+            resume.setText("RESUME GAME");
+            checkStat.setText("CHECK STATISTICS");
+        }
+        else {
+            str = "Bienvenu " + user + " !";
+            textView.setText(str);
+            startGame.setText("Commencer une nouvelle partie");
+            resume.setText("Reprendre Le Jeu");
+            checkStat.setText("Vérifier les statistiques");
+        }
+
     }
 
     public void checkStats(View view){
@@ -49,9 +68,11 @@ public class MainActivity extends AppCompatActivity {
      * @param view the button object that was tapped
      */
     public void playReactionGame(View view){
-        data.addLastGame(MainActivity.user, "");
+        data.addLastGame(user, "");
         Intent intent = new Intent(this, ReactionGameActivity.class);
+        intent.putExtra("username", user);
         startActivity(intent);
+        finish();
     }
 
     /**
@@ -59,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void playTileGame(){
         Intent intent = new Intent(this, TileGameInstructions.class);
+        intent.putExtra("username", user);
         startActivity(intent);
         finish();
     }
@@ -77,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void playPictureGame(){
         Intent intent = new Intent(this, PictureInstructions.class);
+        intent.putExtra("username", user);
         startActivity(intent);
         finish();
     }
@@ -93,13 +116,17 @@ public class MainActivity extends AppCompatActivity {
         else if (lastGame.equals(getString(R.string.tile_game))){
             playPictureGame();
         }
-        else if (lastGame.equals(getString(R.string.picture_game))){
+        else {
             int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(this, "No Game Available", duration);
             toast.show();
-        } else {
-            playReactionGame(view);
         }
+    }
 
+    public void onToCustomization(View view) {
+        Intent intent = new Intent(this, Customization.class);
+        intent.putExtra("username", user);
+        startActivity(intent);
+        finish();
     }
 }

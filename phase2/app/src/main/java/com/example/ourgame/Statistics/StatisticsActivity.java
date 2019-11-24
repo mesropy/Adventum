@@ -124,7 +124,7 @@ public class StatisticsActivity extends AppCompatActivity {
             intent = new Intent(this, PictureInstructions.class);
         } else if (nextActivity.equals("main menu")) {
             intent = new Intent(this, MainActivity.class);
-            intent.putExtra(Login.EXTRA_MESSAGE, MainActivity.user);
+            intent.putExtra("username", MainActivity.user);
         } else {  // game over activity
             intent = new Intent(this, GameOverActivity.class);
         }
