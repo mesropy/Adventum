@@ -30,7 +30,7 @@ public class Customization extends AppCompatActivity {
         rb1 = findViewById(R.id.radioButton1);
 
         Intent intent = getIntent();
-        user = intent.getStringExtra(Login.EXTRA_MESSAGE);
+        user = intent.getStringExtra("username");
         data = new DataWriter(this);
 
         if (data.getLanguage(user).equals("french")){

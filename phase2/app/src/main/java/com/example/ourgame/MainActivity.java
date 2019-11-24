@@ -55,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
             checkStat.setText("Vérifier les statistiques");
         }
 
-
-
-
     }
 
     public void checkStats(View view){
@@ -124,5 +121,12 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "No Game Available", duration);
             toast.show();
         }
+    }
+
+    public void onToCustomization(View view) {
+        Intent intent = new Intent(this, Customization.class);
+        intent.putExtra("username", user);
+        startActivity(intent);
+        finish();
     }
 }
