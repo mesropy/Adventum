@@ -1,7 +1,6 @@
 package com.example.ourgame.Games.RunningGame;
 
 import android.graphics.Rect;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,7 +20,7 @@ class EndlessRunnerGame {
     private int obstacleDistMax = 300;
     private int obstacleDistMin = 140;
 
-     EndlessRunnerGame(EndlessRunnerView view){
+    EndlessRunnerGame(EndlessRunnerView view){
         this.view = view;
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
         gameState = State.RUNNING;
@@ -30,59 +29,69 @@ class EndlessRunnerGame {
     }
 
     private void start() {
-         player = new Player(null, view.getScreen().width()/4, groundHeight - 50, 50, 50, groundHeight);
-         obstacles = new ArrayList<>();
+        player = new Player(null, view.getScreen().width()/4, groundHeight - 50, 50, 50, groundHeight);
+        obstacles = new ArrayList<>();
         obstacles.add(new Bull(null, view.getScreen().right, groundHeight - 50, groundHeight));
         obstacles.add(new Bull(null, view.getScreen().right+obstacleDistMax, groundHeight - 50, groundHeight));
 
     }
 
     void update(){
-         player.update();
-         for (Sprite obstacle : obstacles){
-             obstacle.update();
-             if(Rect.intersects(obstacle.getHitbox(), player.getHitbox())){ loseGame();}
-         }
+        if (gameState == State.RUNNING) {
+            player.update();
+            for (Sprite obstacle : obstacles) {
+                obstacle.update();
+                if (Rect.intersects(obstacle.getHitbox(), player.getHitbox())) {
+                    loseGame();
+                }
+            }
+        }
     }
 
     private void loseGame() {
-         gameState = State.GAMEOVER;
-         view.loseGame();
+        gameState = State.GAMEOVER;
+        view.loseGame();
     }
 
     private void generateObstacles() {
-         int distance = randomGenerator.nextInt(obstacleDistMax);;
-         if (obstacles.size() > 0){
-             int distanceToObstacle = view.getScreen().right - obstacles.get(0).getHitbox().right;
-             if (distanceToObstacle < obstacleDistMin) {
-                 distance += obstacleDistMin - distanceToObstacle;
-             }
-         }
-         obstacles.add(new Bull(null, view.getScreen().right+distance, groundHeight - 50, groundHeight));
+        int distance = randomGenerator.nextInt(obstacleDistMax);;
+        if (obstacles.size() > 0){
+            int distanceToObstacle = view.getScreen().right - obstacles.get(0).getHitbox().right;
+            if (distanceToObstacle < obstacleDistMin) {
+                distance += obstacleDistMin - distanceToObstacle;
+            }
+        }
+        obstacles.add(new Bull(null, view.getScreen().right+distance, groundHeight - 50, groundHeight));
     }
 
     void onTapEvent(){
         if (gameState == State.RUNNING){
             player.jump();
         }
+        else if (gameState == State.GAMEOVER){
+            gameState = State.RUNNING;
+            start();
+        }
     }
 
     void draw(){
-        view.draw(player, obstacles);
-        checkObstacles();
+        if (gameState == State.RUNNING) {
+            view.draw(player, obstacles);
+            checkObstacles();
+        }
     }
 
     private void checkObstacles(){
-         List<Sprite> found = new ArrayList<>();
-         for (Sprite obstacle : obstacles){
-             if (obstacle.getX() < view.getScreen().left){
-                 found.add(obstacle);
-             }
-         }
-         obstacles.removeAll(found);
-         if (found.size() > 0){
+        List<Sprite> found = new ArrayList<>();
+        for (Sprite obstacle : obstacles){
+            if (obstacle.getX() < view.getScreen().left){
+                found.add(obstacle);
+            }
+        }
+        obstacles.removeAll(found);
+        if (found.size() > 0){
             generateObstacles();
-         }
+        }
     }
 
 }
