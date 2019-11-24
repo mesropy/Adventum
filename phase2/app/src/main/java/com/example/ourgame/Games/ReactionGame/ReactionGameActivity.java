@@ -28,6 +28,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
     private TextView title;
     private TextView countText;
     private TextView averageText;
+    private TextView tapToConti;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -50,8 +51,17 @@ public class ReactionGameActivity extends AppCompatActivity  {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
+        tapToConti = findViewById(R.id.continueText);
 
         game = new ReactionGame(this);
+
+        Intent intent = getIntent();
+        game.setUser(intent.getStringExtra("username"));
+
+        if (game.getData().getLanguage(game.getUser()).equals("french")){
+            title.setText("temps de réaction");
+            tapToConti.setText("appuyez sur pour continuer");
+        }
 
         instruction();
     }
@@ -110,7 +120,12 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void waiting() {
         game.setState(State.WAITING);
-        message.setText(R.string.wait);
+        if (game.getData().getLanguage(game.getUser()).equals("english")){
+            message.setText(R.string.wait);
+        }else {
+            message.setText("attendez...");
+        }
+//        message.setText(R.string.wait);
         currentLayout.setBackgroundResource(R.color.error_red);
         timerHandler.postDelayed(timerRunnable, new Random().nextInt(3000) + 1000);
     }
@@ -120,7 +135,12 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void instruction() {
         game.setState(State.INSTRUCTION);
-        message.setText(R.string.reaction_intro);
+        if (game.getData().getLanguage(game.getUser()).equals("english")){
+            message.setText(R.string.reaction_intro);
+        }else {
+            message.setText("Lorsque l'écran devient vert, tapez aussi vite que possible.");
+        }
+//        message.setText(R.string.reaction_intro);
     }
 
     /**
@@ -151,7 +171,12 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void go(){
         game.setState(State.GO);
-        message.setText(R.string.go);
+        if (game.getData().getLanguage(game.getUser()).equals("english")){
+            message.setText(R.string.go);
+        }else {
+            message.setText("aller!");
+        }
+
         game.setStartTime(System.currentTimeMillis());
         currentLayout.setBackgroundResource(R.color.go_green);
     }
@@ -161,7 +186,12 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void tooSoon(){
         game.setState(State.EARLY);
-        message.setText(R.string.too_soon);
+        if (game.getData().getLanguage(game.getUser()).equals("english")){
+            message.setText(R.string.too_soon);
+        }else {
+            message.setText("trop tôt");
+        }
+//        message.setText(R.string.too_soon);
         currentLayout.setBackgroundResource(R.color.menu_blue);
     }
 }

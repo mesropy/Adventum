@@ -1,8 +1,12 @@
 package com.example.ourgame.Games;
 
+import com.example.ourgame.Statistics.DataWriter;
+
 public abstract class Game {
 
     private int pointsEarned; // not total points
+    private String user;
+    private DataWriter data;
 
     protected Game() {
         this.pointsEarned = 0;
@@ -22,5 +26,19 @@ public abstract class Game {
      */
     protected abstract void updateStatistics();
 
+    public String getUser() {
+        return user;
+    }
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public DataWriter getData() {
+        return data;
+    }
+
+    public void setData(DataWriter data) {
+        this.data = data;
+    }
 }

@@ -23,6 +23,7 @@ public class DataWriter implements WriteData {
     private SharedPreferences timeData;
     private SharedPreferences rankingData;
     private SharedPreferences lastGameData;
+    private SharedPreferences languageData;
 
     public DataWriter(Context context){
         loginData = context.getSharedPreferences(context.getString(R.string.preference_file_login), Context.MODE_PRIVATE);
@@ -30,7 +31,7 @@ public class DataWriter implements WriteData {
         timeData = context.getSharedPreferences(context.getString(R.string.preference_file_time), Context.MODE_PRIVATE);
         rankingData = context.getSharedPreferences(context.getString(R.string.preference_file_ranking), Context.MODE_PRIVATE);
         lastGameData = context.getSharedPreferences(context.getString(R.string.preference_file_lastgame), Context.MODE_PRIVATE);
-
+        languageData = context.getSharedPreferences(context.getString(R.string.preference_file_language), Context.MODE_PRIVATE);
     }
 
     /**
@@ -62,7 +63,11 @@ public class DataWriter implements WriteData {
 
         // Lastly add the user's default last game played
         editor = lastGameData.edit();
-        editor.putString(username, "Reaction");
+        editor.putString(username, "Not Found");
+        editor.apply();
+
+        editor = languageData.edit();
+        editor.putString(username, "english");
         editor.apply();
     }
 
@@ -96,6 +101,18 @@ public class DataWriter implements WriteData {
         int currentPoints = getPoints(username);
         SharedPreferences.Editor editor = pointsData.edit();
         editor.putInt(username, points + currentPoints);
+        editor.apply();
+    }
+
+    @Override
+    public String getLanguage(String username) {
+        return languageData.getString(username, "Not Found");
+    }
+
+    @Override
+    public void setLanguage(String username, String newLanguage) {
+        SharedPreferences.Editor editor = languageData.edit();
+        editor.putString(username, newLanguage);
         editor.apply();
     }
 
