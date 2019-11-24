@@ -55,11 +55,14 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     }
 
     @Override
-    public void draw(Player player, List<Sprite> obstacles) {
+    public void draw(Player player, List<Sprite> obstacles, int score) {
         Canvas canvas = surfaceHolder.lockCanvas();
         if (canvas != null) {
             canvas.drawColor(Color.WHITE);
             player.draw(canvas);
+            paint.setTextSize(50);
+            paint.setColor(Color.RED);
+            canvas.drawText(Integer.toString(score), 10, 40, paint);
             for (Sprite obstacle : obstacles) {
                 obstacle.draw(canvas);
             }
@@ -81,12 +84,16 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     }
 
     @Override
-    public void loseGame() {
+    public void loseGame(int score) {
         Canvas canvas = surfaceHolder.lockCanvas();
         if (canvas != null){
             paint.setTextSize(50);
             paint.setColor(Color.RED);
             canvas.drawText("Game Over", getWidth()/2-85, getHeight()/2, paint);
+            paint.setTextSize(40);
+            paint.setColor(Color.BLUE);
+            String scoreString = "Score: " + Integer.toString(score);
+            canvas.drawText(scoreString, getWidth()/2-85, getHeight()/2+50, paint);
         }
         surfaceHolder.unlockCanvasAndPost(canvas);
     }

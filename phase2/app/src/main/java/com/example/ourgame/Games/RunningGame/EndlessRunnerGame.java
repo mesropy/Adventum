@@ -12,6 +12,7 @@ enum State{
 class EndlessRunnerGame {
 
     private EndlessRunnerView view;
+    private int score;
     private Player player;
     private List<Sprite> obstacles;
     private int groundHeight;
@@ -19,6 +20,8 @@ class EndlessRunnerGame {
     private Random randomGenerator;
     private int obstacleDistMax = 300;
     private int obstacleDistMin = 140;
+
+    private long gameStartTime;
 
     EndlessRunnerGame(EndlessRunnerView view){
         this.view = view;
@@ -33,12 +36,14 @@ class EndlessRunnerGame {
         obstacles = new ArrayList<>();
         obstacles.add(new Bull(null, view.getScreen().right, groundHeight - 50, groundHeight));
         obstacles.add(new Bull(null, view.getScreen().right+obstacleDistMax, groundHeight - 50, groundHeight));
-
+        score = 0;
+        gameStartTime = System.currentTimeMillis();
     }
 
     void update(){
         if (gameState == State.RUNNING) {
             player.update();
+            score = (int)((System.currentTimeMillis() - gameStartTime)/1000);
             for (Sprite obstacle : obstacles) {
                 obstacle.update();
                 if (Rect.intersects(obstacle.getHitbox(), player.getHitbox())) {
@@ -50,7 +55,7 @@ class EndlessRunnerGame {
 
     private void loseGame() {
         gameState = State.GAMEOVER;
-        view.loseGame();
+        view.loseGame(score);
     }
 
     private void generateObstacles() {
@@ -76,7 +81,7 @@ class EndlessRunnerGame {
 
     void draw(){
         if (gameState == State.RUNNING) {
-            view.draw(player, obstacles);
+            view.draw(player, obstacles, score);
             checkObstacles();
         }
     }

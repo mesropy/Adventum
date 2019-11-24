@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface EndlessRunnerView {
 
-    void draw(Player player, List<Sprite> obstacles);
+    void draw(Player player, List<Sprite> obstacles, int score);
 
     Rect getScreen();
 
-    void loseGame();
+    void loseGame(int score);
 
     EndlessRunnerThread getThread();
 }
