@@ -59,8 +59,8 @@ public class ReactionGameActivity extends AppCompatActivity  {
         game.setUser(intent.getStringExtra("username"));
 
         if (game.getData().getLanguage(game.getUser()).equals("french")){
-            title.setText("temps de réaction");
-            tapToConti.setText("appuyez sur pour continuer");
+            title.setText(R.string.reaction_game_french);
+            tapToConti.setText(R.string.press_any_key_french);
         }
 
         instruction();
@@ -123,7 +123,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         if (game.getData().getLanguage(game.getUser()).equals("english")){
             message.setText(R.string.wait);
         }else {
-            message.setText("attendez...");
+            message.setText(R.string.wait_french);
         }
 //        message.setText(R.string.wait);
         currentLayout.setBackgroundResource(R.color.error_red);
@@ -138,7 +138,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         if (game.getData().getLanguage(game.getUser()).equals("english")){
             message.setText(R.string.reaction_intro);
         }else {
-            message.setText("Lorsque l'écran devient vert, tapez aussi vite que possible.");
+            message.setText(R.string.reaction_intro_french);
         }
 //        message.setText(R.string.reaction_intro);
     }
@@ -174,7 +174,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         if (game.getData().getLanguage(game.getUser()).equals("english")){
             message.setText(R.string.go);
         }else {
-            message.setText("aller!");
+            message.setText(R.string.go_french);
         }
 
         game.setStartTime(System.currentTimeMillis());
@@ -189,7 +189,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         if (game.getData().getLanguage(game.getUser()).equals("english")){
             message.setText(R.string.too_soon);
         }else {
-            message.setText("trop tôt");
+            message.setText(R.string.too_soon_french);
         }
 //        message.setText(R.string.too_soon);
         currentLayout.setBackgroundResource(R.color.menu_blue);

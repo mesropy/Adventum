@@ -43,23 +43,23 @@ public class MainActivity extends AppCompatActivity {
         if(data.getLanguage(user).equals("english")){
             str = "Welcome " + user + " !";
             textView.setText(str);
-            startGame.setText("START NEW GAME");
-            resume.setText("RESUME GAME");
-            checkStat.setText("CHECK STATISTICS");
+            startGame.setText(R.string.start_new_game);
+            resume.setText(R.string.resume_game);
+            checkStat.setText(R.string.check_stats);
         }
         else {
             str = "Bienvenu " + user + " !";
             textView.setText(str);
-            startGame.setText("Commencer une nouvelle partie");
-            resume.setText("Reprendre Le Jeu");
-            checkStat.setText("Vérifier les statistiques");
+            startGame.setText(R.string.start_new_game_french);
+            resume.setText(R.string.resume_game_french);
+            checkStat.setText(R.string.check_stats_french);
         }
 
     }
 
     public void checkStats(View view){
         Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", data.getLastGame(user));
+        intent.putExtra("next activity", "main menu");
         startActivity(intent);
     }
 

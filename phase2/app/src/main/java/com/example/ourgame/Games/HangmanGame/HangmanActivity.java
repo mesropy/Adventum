@@ -84,7 +84,7 @@ public class HangmanActivity extends AppCompatActivity {
         hangman.updateGuessCorrect(letter);
         wordBlanks.setText(hangman.getWordBlanks());
         if (hangman.isGameWon()){
-            resultText.setText("You win!");
+            resultText.setText(R.string.resultText);
         }
     }
 
@@ -92,7 +92,7 @@ public class HangmanActivity extends AppCompatActivity {
         hangman.updateGuessIncorrect(letter);
         resultImage.setImageResource(hangman.getImageId());
         if (hangman.isGameLost()){
-            resultText.setText("No more attempts left :(");
+            resultText.setText(R.string.no_more_attempts);
         }
     }
 

@@ -14,7 +14,6 @@ import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.util.ArrayList;
 
-
 /**
  * The Activity class for a Memory Tile Game
  */

@@ -34,7 +34,7 @@
     <string name="reaction_game">Reaction</string>
     <string name="tile_game">Tile</string>
     <string name="picture_game">Picture</string>
-    3
+
     <!-- Error messages -->
     <string name="password_empty">Password cannot be empty</string>
     <string name="login_error">Wrong Password or wrong username</string>
@@ -51,6 +51,12 @@
     <string name="ms">ms</string>
     <string name="reaction_intro">When the screen turns green, tap as quickly as you can.</string>
     <string name="wait">Wait…</string>
+    <string name="wait_french">Attendez…</string>
+    <string name="reaction_game_french">Temps de réaction</string>
+    <string name="reaction_intro_french">Lorsque l\'écran devient vert, tapez aussi vite que possible.</string>
+    <string name="go_french">Aller!</string>
+    <string name="too_soon_french">Trop tôt</string>
+    <string name="press_any_key_french">Appuyez sur pour continuer</string>
     <string name="incorrect">INCORRECT!</string>
     <string name="correct">CORRECT!</string>
     <string name="passed_round">You passed this round!</string>
@@ -75,4 +81,12 @@
     <string name="unflipped_tile">unflipped tile</string>
     <string name="flipped_correct_tile">flipped correct tile</string>
     <string name="preference_file_language">com.example.ourgame.language</string>
+    <string name="resultText">You win!</string>
+    <string name="no_more_attempts">No more attempts left :(</string>
+    <string name="start_new_game">START NEW GAME</string>
+    <string name="resume_game">RESUME GAME</string>
+    <string name="check_stats">CHECK STATISTICS</string>
+    <string name="start_new_game_french">Commencer une nouvelle partie</string>
+    <string name="resume_game_french">Reprendre Le Jeu</string>
+    <string name="check_stats_french">Vérifier les statistiques</string>
 </resources>

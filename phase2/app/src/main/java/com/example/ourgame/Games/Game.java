@@ -38,7 +38,7 @@ public abstract class Game {
         return data;
     }
 
-    public void setData(DataWriter data) {
+    protected void setData(DataWriter data) {
         this.data = data;
     }
 }
