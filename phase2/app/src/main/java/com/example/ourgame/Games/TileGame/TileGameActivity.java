@@ -252,6 +252,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
             }
         }, 3000);
+        finish();
     }
 
     /**
