@@ -28,11 +28,12 @@ import java.util.Map;
  */
 public class StatisticsActivity extends AppCompatActivity {
 
-    DataWriter dataWriter;
+    WriteData dataWriter;
 
     TextView pointsText;
     TextView playtimeText;
     TextView rankingText;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +45,18 @@ public class StatisticsActivity extends AppCompatActivity {
         rankingText = findViewById(R.id.rankingValue);
 
         dataWriter = new DataWriter(this);
+        user = dataWriter.getUser();
 
         setUpNavigationButtons();
         displayStatistics();
     }
 
     private void displayStatistics() {
-        String str = Integer.toString(dataWriter.getPoints(MainActivity.user));
+        String str = Integer.toString(dataWriter.getPoints(user));
         pointsText.setText(str);
-        String str2 = dataWriter.getPlayTime(MainActivity.user) + " secs.";
+        String str2 = dataWriter.getPlayTime(user) + " secs.";
         playtimeText.setText(str2);
-        rankingText.setText(dataWriter.getRanking(MainActivity.user));
+        rankingText.setText(dataWriter.getRanking(user));
     }
 
     private void setUpNavigationButtons() {
@@ -91,7 +93,7 @@ public class StatisticsActivity extends AppCompatActivity {
             intent = new Intent(this, PictureInstructions.class);
         } else if (nextActivity.equals("main menu")) {
             intent = new Intent(this, MainActivity.class);
-            intent.putExtra("username", MainActivity.user);
+            intent.putExtra("username", user);
         } else {  // game over activity
             intent = new Intent(this, GameOverActivity.class);
         }
