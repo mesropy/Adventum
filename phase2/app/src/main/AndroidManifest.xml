@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Customization"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".LeaderBoardActivity" />
         <activity android:name=".Games.RunningGame.EndlessRunnerActivity" />
         <activity android:name=".Statistics.StatisticsActivity" />
         <activity android:name=".GameOverActivity" />
@@ -39,6 +40,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".Games.HangmanGame.HangmanActivity"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
         <activity
             android:name=".Games.PictureGame.PictureGameActivity"
             android:parentActivityName=".MainActivity">

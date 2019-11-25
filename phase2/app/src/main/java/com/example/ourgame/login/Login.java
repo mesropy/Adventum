@@ -26,10 +26,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.example.ourgame.Customization;
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
-
+import com.example.ourgame.SettingsActivity;
 
 
 /**
@@ -116,7 +115,7 @@ public class Login extends AppCompatActivity implements LoginView {
     @Override
     public void navigateToHome(String username) {
         if(customNeeded){
-            Intent intent = new Intent(this, Customization.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
             finish();

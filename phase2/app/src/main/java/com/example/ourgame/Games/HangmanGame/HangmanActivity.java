@@ -2,6 +2,7 @@ package com.example.ourgame.Games.HangmanGame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourgame.R;
+import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class HangmanActivity extends AppCompatActivity {
     private TextView wordBlanks;
     private TextView resultText;
     private ImageView resultImage;
+    private Button continueButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class HangmanActivity extends AppCompatActivity {
 
         resultImage = findViewById(R.id.resultImage);
         resultImage.setImageResource(hangman.getImageId());
+
+        continueButton = findViewById(R.id.continueButton);
+        continueButton.setEnabled(false);
 
     }
 
@@ -84,7 +90,7 @@ public class HangmanActivity extends AppCompatActivity {
         hangman.updateGuessCorrect(letter);
         wordBlanks.setText(hangman.getWordBlanks());
         if (hangman.isGameWon()){
-            resultText.setText(R.string.resultText);
+            resultText.setText("You win!");
         }
     }
 
@@ -93,7 +99,14 @@ public class HangmanActivity extends AppCompatActivity {
         resultImage.setImageResource(hangman.getImageId());
         if (hangman.isGameLost()){
             resultText.setText(R.string.no_more_attempts);
+            continueButton.setEnabled(true);
         }
+    }
+
+    public void OnContinueButtonPressed(View view) {
+        final Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra("next activity", "main menu");
+        startActivity(intent);
     }
 
 
