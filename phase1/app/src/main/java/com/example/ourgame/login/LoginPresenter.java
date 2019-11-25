@@ -21,6 +21,7 @@ package com.example.ourgame.login;
 import android.content.Context;
 
 import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Statistics.WriteData;
 
 
 /**
@@ -30,7 +31,7 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
 
     private LoginView loginView;
     private LoginInteractor loginInteractor;
-    private DataWriter dataWriter;
+    private WriteData dataWriter;
     private RegistrationInteractor registrationInteractor;
 
     LoginPresenter(LoginView loginView, LoginInteractor loginInteractor, RegistrationInteractor registrationInteractor) {
@@ -128,6 +129,7 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
     @Override
     public void onSuccess(String username) {
         if (loginView != null) {
+            dataWriter.setUser(username);
             loginView.navigateToHome(username);
         }
     }

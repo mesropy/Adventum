@@ -22,6 +22,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 
 import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Statistics.WriteData;
 
 /**
  * A class for a LoginInteractor, which determines if the user can login or not
@@ -49,7 +50,7 @@ public class LoginInteractor {
      * @param data     the data object containing information of accounts and their credentials
      */
     public void login(final String username, final String password, final OnLoginFinishedListener listener,
-                      final DataWriter data) {
+                      final WriteData data) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {

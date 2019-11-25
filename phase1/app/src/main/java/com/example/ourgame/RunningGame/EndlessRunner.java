@@ -73,7 +73,6 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
             game.onTapEvent();
         }
         return true;
-
     }
 
     public Rect getScreen() {

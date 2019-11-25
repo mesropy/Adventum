@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
         data = new DataWriter(this);
+        if (data.getUser().equals("Not found")){
+            data.setUser(user);
+        }
 
         setLanguage();
     }

@@ -11,6 +11,10 @@ public interface WriteData {
     // Return the points of the given user
     int getPoints(String username);
 
+    void setUser(String username);
+
+    String getUser();
+
     // Return the total playing time across all 3 games for this user.
     int getPlayTime(String username);
 

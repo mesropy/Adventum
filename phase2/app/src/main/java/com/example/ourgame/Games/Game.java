@@ -27,7 +27,7 @@ public abstract class Game {
     protected abstract void updateStatistics();
 
     public String getUser() {
-        return user;
+        return data.getUser();
     }
 
     public void setUser(String user) {

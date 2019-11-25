@@ -1,8 +1,10 @@
 package com.example.ourgame.Games.RunningGame;
 
+import android.content.Context;
 import android.graphics.Rect;
 
 import com.example.ourgame.Games.Game;
+import com.example.ourgame.Statistics.DataWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ class EndlessRunnerGame extends Game {
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
         gameState = State.RUNNING;
         randomGenerator = new Random();
+        setData(new DataWriter((Context)view));
         start();
     }
 
