@@ -1,6 +1,9 @@
 package com.example.ourgame.Games.RunningGame;
 
 import android.graphics.Rect;
+
+import com.example.ourgame.Games.Game;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +12,7 @@ enum State{
     START, RUNNING, GAMEOVER
 }
 
-class EndlessRunnerGame {
+class EndlessRunnerGame extends Game {
 
     private EndlessRunnerView view;
     private int score;
@@ -99,4 +102,8 @@ class EndlessRunnerGame {
         }
     }
 
+    @Override
+    protected void updateStatistics() {
+
+    }
 }
