@@ -23,8 +23,7 @@ class PictureGame extends Game {
   private String correctGuessMessage;
   private String incorrectGuessMessage;
   private String noMoreAttemptsMessage;
-
-  //private DataWriter data;
+  
   private int playTime = 0;
 
   PictureGame(Context context) {
@@ -36,7 +35,6 @@ class PictureGame extends Game {
     incorrectGuessMessage = "Sorry, try again!";
     noMoreAttemptsMessage = "No more attempts!";
     setData(new DataWriter(context));
-    //data = new DataWriter(context);
   }
 
   void incrementNumAttempts() {
