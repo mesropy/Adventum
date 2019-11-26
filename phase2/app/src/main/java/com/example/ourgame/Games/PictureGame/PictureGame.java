@@ -23,7 +23,7 @@ class PictureGame extends Game {
   private String correctGuessMessage;
   private String incorrectGuessMessage;
   private String noMoreAttemptsMessage;
-  
+
   private int playTime = 0;
 
   PictureGame(Context context) {

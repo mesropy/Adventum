@@ -17,6 +17,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
     DataWriter dataWriter;
     TextView firstText, secondText, thirdText, fourthText, fifthText, personal;
+    TextView firstPoints, secondPoints, thirdPoints, fourthPoints, fifthPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,11 @@ public class LeaderBoardActivity extends AppCompatActivity {
         fifthText = findViewById(R.id.fifth);
         personal = findViewById(R.id.personal);
 
+        firstPoints = findViewById(R.id.firstPoints);
+        secondPoints = findViewById(R.id.secondPoints);
+        thirdPoints = findViewById(R.id.thirdPoints);
+        fourthPoints = findViewById(R.id.fourthPoints);
+        fifthPoints = findViewById(R.id.fifthPoints);
         dataWriter = new DataWriter(this);
 
         displayLeaderBoard();
@@ -61,19 +67,24 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
         if (userNames.size() >= 1) {
-            firstText.setText(getString(R.string.rank_text, "1. ", userNames.get(0), points.get(0)));
+            firstText.setText(getString(R.string.rank_text, "1. ", userNames.get(0)));
+            firstPoints.setText(getString(R.string.points_text, points.get(0)));
         }
         if (userNames.size() >= 2) {
-            secondText.setText(getString(R.string.rank_text, "2. ", userNames.get(1), points.get(1)));
+            secondText.setText(getString(R.string.rank_text, "2. ", userNames.get(1)));
+            secondPoints.setText(getString(R.string.points_text, points.get(1)));
         }
         if (userNames.size() >= 3) {
-            thirdText.setText(getString(R.string.rank_text, "3. ", userNames.get(2), points.get(2)));
+            thirdText.setText(getString(R.string.rank_text, "3. ", userNames.get(2)));
+            thirdPoints.setText(getString(R.string.points_text, points.get(2)));
         }
         if (userNames.size() >= 4) {
-            fourthText.setText(getString(R.string.rank_text, "4. ", userNames.get(3), points.get(3)));
+            fourthText.setText(getString(R.string.rank_text, "4. ", userNames.get(3)));
+            fourthPoints.setText(getString(R.string.points_text, points.get(3)));
         }
         if (userNames.size() >= 5) {
-            fifthText.setText(getString(R.string.rank_text, "5. ", userNames.get(4), points.get(4)));
+            fifthText.setText(getString(R.string.rank_text, "5. ", userNames.get(4)));
+            fifthPoints.setText(getString(R.string.points_text, points.get(4)));
         }
 
         personal.setText(getString(R.string.personal_rank, userNames.indexOf(MainActivity.user) + 1));
