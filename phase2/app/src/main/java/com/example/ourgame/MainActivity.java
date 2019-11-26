@@ -43,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
         leaderBoardButton = findViewById(R.id.leaderBoardButton);
         settingsButton = findViewById(R.id.settingsButton);
 
-        Intent intent = getIntent();
-        user = intent.getStringExtra("username");
         data = new DataWriter(this);
         if (data.getUser().equals("Not found")){
             data.setUser(user);
         }
+        user = data.getUser();
 
         setLanguage();
     }
