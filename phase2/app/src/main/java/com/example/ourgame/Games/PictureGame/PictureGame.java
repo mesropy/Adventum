@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Games.Game;
-import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
 
 class PictureGame extends Game {
@@ -23,8 +22,8 @@ class PictureGame extends Game {
   private String correctGuessMessage;
   private String incorrectGuessMessage;
   private String noMoreAttemptsMessage;
-  
-  private int playTime = 0;
+
+    private int playTime = 0;
 
   PictureGame(Context context) {
     super();
@@ -34,7 +33,8 @@ class PictureGame extends Game {
     correctGuessMessage = "Correct!";
     incorrectGuessMessage = "Sorry, try again!";
     noMoreAttemptsMessage = "No more attempts!";
-    setData(new DataWriter(context));
+
+      setData(new DataWriter(context));
   }
 
   void incrementNumAttempts() {

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourgame.R;
+import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.io.BufferedReader;
@@ -23,6 +24,7 @@ import java.util.List;
 public class HangmanActivity extends AppCompatActivity {
 
     private Hangman hangman;
+    private ScreenLoader screenLoader;
 
     private TextView wordBlanks;
     private TextView resultText;
@@ -39,6 +41,7 @@ public class HangmanActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        screenLoader = new ScreenLoader(this);
 
         wordBlanks = findViewById(R.id.wordBlanks);
         resultText = findViewById(R.id.resultText);
@@ -104,9 +107,7 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     public void OnContinueButtonPressed(View view) {
-        final Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", "main menu");
-        startActivity(intent);
+        screenLoader.loadStatisticsAfterGame();
     }
 
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
+import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
 
@@ -22,6 +23,7 @@ import java.util.Random;
 public class ReactionGameActivity extends AppCompatActivity  {
 
     private ReactionGame game;
+    private ScreenLoader screenLoader;
 
     private ConstraintLayout currentLayout;
     private TextView message;
@@ -54,6 +56,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         tapToConti = findViewById(R.id.continueText);
 
         game = new ReactionGame(this);
+        screenLoader = new ScreenLoader(this);
 
         Intent intent = getIntent();
         game.setUser(intent.getStringExtra("username"));
@@ -98,11 +101,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void nextGame() {
         // go to stats page then to the tile game
-        final Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", getString(R.string.tile_game));
-        startActivity(intent);
-
-        finish();
+        screenLoader.loadStatisticsAfterGame();
     }
 
     /**

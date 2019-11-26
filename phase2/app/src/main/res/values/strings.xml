@@ -112,4 +112,5 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="you_completed_every_level">You Completed Every Level!</string>
     <string name="game_over">Game Over</string>
+    <string name="h">after game</string>
 </resources>

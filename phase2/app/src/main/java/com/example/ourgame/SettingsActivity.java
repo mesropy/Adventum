@@ -14,6 +14,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private String user;
     private DataWriter data;
+    private ScreenLoader screenLoader;
 
     RadioGroup languageRadioGroup;
     RadioButton englishButton, frenchButton, spanishButton;
@@ -32,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
         data = new DataWriter(this);
+        screenLoader = new ScreenLoader(this);
 
         /*
          TODO: select current language and theme, and show current character,
@@ -71,8 +73,6 @@ public class SettingsActivity extends AppCompatActivity {
             data.setLanguage(user, "french");
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("username", user);
-        startActivity(intent);
+        screenLoader.loadMainMenu();
     }
 }
