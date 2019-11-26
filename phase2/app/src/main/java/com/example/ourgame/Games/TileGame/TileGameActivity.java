@@ -328,7 +328,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }, tileGame.getPatternEndShowTime());
     }
 
-    public void levelUp() {
+    protected void levelUp() {
         for (Button tileButton : tileButtons) {
             tileButton.setVisibility(View.INVISIBLE);
             tileButton.setClickable(false);

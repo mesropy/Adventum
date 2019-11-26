@@ -1,5 +1,6 @@
 package com.example.ourgame.Games;
 
+import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.WriteData;
 
 public abstract class Game {

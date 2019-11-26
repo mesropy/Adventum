@@ -24,7 +24,7 @@ class PictureGame extends Game {
   private String incorrectGuessMessage;
   private String noMoreAttemptsMessage;
 
-  private DataWriter data;
+  //private DataWriter data;
   private int playTime = 0;
 
   PictureGame(Context context) {
@@ -35,8 +35,8 @@ class PictureGame extends Game {
     correctGuessMessage = "Correct!";
     incorrectGuessMessage = "Sorry, try again!";
     noMoreAttemptsMessage = "No more attempts!";
-
-    data = new DataWriter(context);
+    setData(new DataWriter(context));
+    //data = new DataWriter(context);
   }
 
   void incrementNumAttempts() {
@@ -100,11 +100,12 @@ class PictureGame extends Game {
 
   @Override
   protected void updateStatistics() {
-    data.addPlayTime(MainActivity.user, playTime);
-    data.addPoints(MainActivity.user, getPointsEarned());
-    data.addLastGame(MainActivity.user, "Picture");
+    getData().addPlayTime(getUser(), playTime);
+    getData().addPoints(getUser(), getPointsEarned());
+    getData().addLastGame(getUser(), "Picture");
+
     if (increaseRank()) {
-      data.increaseRanking(MainActivity.user);
+      getData().increaseRanking(getUser());
     }
   }
 

@@ -36,7 +36,6 @@ class TileGame extends Game {
     // time in milliseconds that will show pattern before moving on to then next level / game
     private int patternEndShowTime;
 
-    private DataWriter data;
     private int playTime = 0;
 
     TileGame(Context activity) {
@@ -52,7 +51,7 @@ class TileGame extends Game {
         rightTileImageId = R.drawable.flipped_right;
         wrongTileImageId = R.drawable.flipped_wrong;
         unflippedTileImageId = R.drawable.unflipped;
-        data = new DataWriter(activity);
+        setData(new DataWriter(activity));
     }
 
     /**
@@ -64,18 +63,19 @@ class TileGame extends Game {
 
         int statPoints = 2 * points / 10;
 
-        data.addPoints(MainActivity.user, statPoints);
-        data.addPlayTime(MainActivity.user, playTime);
+        getData().addPoints(getUser(), statPoints);
+        getData().addPlayTime(getUser(), playTime);
         //need to fix getString(R.string.tile_game)
-        data.addLastGame(MainActivity.user, "Tile");
+        getData().addLastGame(getUser(), "Tile");
 
         if (updateRanking()) {
-            data.increaseRanking(MainActivity.user);
+            getData().increaseRanking(getUser());
         }
     }
 
     void setInitTiles(int numberOfTiles){
         rightTile.clear();
+
         numRightTiles = numberOfTiles / 2;
         for(int i = 0; i < numRightTiles; i++){
             rightTile.add(true);

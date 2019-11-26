@@ -67,7 +67,7 @@ public class HangmanActivity extends AppCompatActivity {
         return possibleWords;
     }
 
-    public void onLetterPressed(View view){
+    protected void onLetterPressed(View view){
         // when a letter is pressed, only do something if the game isn't over
         if(!hangman.isGameOver()) {
             String letter = ((Button) view).getText().toString().trim().toLowerCase();
