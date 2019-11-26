@@ -1,22 +1,19 @@
 package com.example.ourgame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ourgame.Games.HangmanGame.HangmanActivity;
 import com.example.ourgame.Games.PictureGame.PictureInstructions;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
-import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.Statistics.StatisticsActivity;
 import com.example.ourgame.Games.TileGame.TileGameInstructions;
+import com.example.ourgame.Statistics.DataWriter;
 
 /**
  * An activity class for the main homepage the user is brought to once they register or sign in
@@ -25,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static String user;
     private DataWriter data;
+    private ScreenLoader screenLoader;
 
     private TextView welcomeText;
     private Button playButton;
@@ -37,18 +35,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        screenLoader = new ScreenLoader(this);
+
         welcomeText = findViewById(R.id.welcomeText);
         playButton = findViewById(R.id.playButton);
         statisticsButton = findViewById(R.id.statisticsButton);
         leaderBoardButton = findViewById(R.id.leaderBoardButton);
         settingsButton = findViewById(R.id.settingsButton);
 
-        Intent intent = getIntent();
-        user = intent.getStringExtra("username");
         data = new DataWriter(this);
         if (data.getUser().equals("Not found")){
             data.setUser(user);
         }
+        user = data.getUser();
 
         setLanguage();
     }
@@ -75,42 +74,33 @@ public class MainActivity extends AppCompatActivity {
         welcomeText.setText(welcomeMessage);
     }
 
-    public void checkStats(View view){
-        Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", "main menu");
-        startActivity(intent);
+
+    /**
+     * Method to send the user to play the next game
+     *
+     * @param view the button object that was tapped
+     */
+    public void playGame(View view) {
+        screenLoader.loadNextGame();
+    }
+
+    public void checkStats(View view) {
+        screenLoader.loadStatistics();
     }
 
     public void checkLeaderBoard(View view) {
-        Intent intent = new Intent(this, LeaderBoardActivity.class);
-        intent.putExtra("next activity", "main menu");
-        startActivity(intent);
+        screenLoader.loadLeaderBoard();
     }
 
     public void openSettings(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        intent.putExtra("next activity", "main menu");
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        screenLoader.loadSettings();
     }
 
     /**
-     * Sends the user to the Reaction Time Game
-     * @param view the button object that was tapped
+     * Sends the user to the Reaction Time Game -- TESTING ONLY
      */
     public void playReactionGame(View view){
-        data.addLastGame(user, "");
         Intent intent = new Intent(this, ReactionGameActivity.class);
-        intent.putExtra("username", user);
-        startActivity(intent);
-        finish();
-    }
-
-    /**
-     * Sends the user to the Tile Game
-     */
-    private void playTileGame(){
-        Intent intent = new Intent(this, TileGameInstructions.class);
-        intent.putExtra("username", user);
         startActivity(intent);
         finish();
     }
@@ -120,16 +110,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void playRunningGame(View view){
         Intent intent = new Intent(this, EndlessRunnerActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    /**
-     * Sends the user to the Picture Guessing Game
-     */
-    private void playPictureGame(){
-        Intent intent = new Intent(this, PictureInstructions.class);
-        intent.putExtra("username", user);
         startActivity(intent);
         finish();
     }
@@ -159,25 +139,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PictureInstructions.class);
         startActivity(intent);
         finish();
-    }
-
-    /**
-     * Method to send the user to resume and play their last played game
-     * @param view the button object that was tapped
-     */
-    public void continueGame(View view) {
-        String lastGame = data.getLastGame(user);
-        if (lastGame.equals(getString(R.string.reaction_game))){
-            playTileGame();
-        }
-        else if (lastGame.equals(getString(R.string.tile_game))){
-            playPictureGame();
-        }
-        else {
-            int duration = Toast.LENGTH_LONG;
-            Toast toast = Toast.makeText(this, "No Game Available", duration);
-            toast.show();
-        }
     }
 
 }

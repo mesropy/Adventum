@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ourgame.R;
+import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ import java.util.ArrayList;
 
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TileGame tileGame;
+    private TileGame tileGame;
+    private ScreenLoader screenLoader;
 
     private ArrayList<Integer> buttonsClicked = new ArrayList<>();
     private TextView livesText;
@@ -71,6 +73,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         tileGame = new TileGame(this);
         tileGame.setInitTiles(tileButtonIds.length);
+
+        screenLoader = new ScreenLoader(this);
 
         livesText = findViewById(R.id.livesText);
         resultText = findViewById(R.id.resultText);
@@ -245,14 +249,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         tileGame.updateStatistics();
 
         // go to next game
-        final Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", getString(R.string.picture_game));
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                startActivity(intent);
-            }
-        }, 3000);
-        finish();
+        screenLoader.loadStatisticsAfterGame(3000);
     }
 
     /**

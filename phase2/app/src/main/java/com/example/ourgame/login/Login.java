@@ -28,6 +28,7 @@ import android.widget.ProgressBar;
 
 import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
+import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.SettingsActivity;
 
 
@@ -42,10 +43,14 @@ public class Login extends AppCompatActivity implements LoginView {
     private LoginPresenter presenter;
     boolean customNeeded;
 
+    private ScreenLoader screenLoader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        screenLoader = new ScreenLoader(this);
 
         progressBar = findViewById(R.id.progress);
         username = findViewById(R.id.username);
@@ -115,15 +120,9 @@ public class Login extends AppCompatActivity implements LoginView {
     @Override
     public void navigateToHome(String username) {
         if(customNeeded){
-            Intent intent = new Intent(this, SettingsActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
-            finish();
+            screenLoader.loadSettings();
         } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
-            finish();
+            screenLoader.loadMainMenu();
         }
     }
 
