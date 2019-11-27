@@ -1,11 +1,14 @@
 package com.example.ourgame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.ThemeSetters.Theme;
+import com.example.ourgame.ThemeSetters.ThemeBuilder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +40,13 @@ public class LeaderBoardActivity extends AppCompatActivity {
         fourthPoints = findViewById(R.id.fourthPoints);
         fifthPoints = findViewById(R.id.fifthPoints);
         dataWriter = new DataWriter(this);
+
+        String user = dataWriter.getUser();
+
+        ConstraintLayout constraintLayout = findViewById(R.id.leaderboardLayout);
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
+        Theme theme = themeBuilder.getTheme();
+        constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
         displayLeaderBoard();
     }

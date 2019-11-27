@@ -1,6 +1,7 @@
 package com.example.ourgame.Games.TileGame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ourgame.LanguageTexts.LanguageTextSetter;
+import com.example.ourgame.LanguageSetters.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.LanguageTexts.TextSetter;
+import com.example.ourgame.LanguageSetters.TextSetter;
+import com.example.ourgame.ThemeSetters.Theme;
+import com.example.ourgame.ThemeSetters.ThemeBuilder;
 
 /**
  * An Activity class for the Instructions of the Tile Game
@@ -40,6 +43,11 @@ public class TileGameInstructions extends AppCompatActivity {
         intro1.setText(textSetter.getTileIntroduction1());
         intro2.setText(textSetter.getTileIntroduction2());
         intro3.setText(textSetter.getTileIntroduction3());
+
+        ConstraintLayout constraintLayout = findViewById(R.id.tileIntroLayout);
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
+        Theme theme = themeBuilder.getTheme();
+        constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
     }
 
     /**

@@ -3,18 +3,15 @@ package com.example.ourgame.Games.ReactionGame;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.ourgame.LanguageTexts.LanguageTextSetter;
+import com.example.ourgame.LanguageSetters.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.Statistics.StatisticsActivity;
-import com.example.ourgame.LanguageTexts.TextSetter;
+import com.example.ourgame.LanguageSetters.TextSetter;
 
 import java.util.Random;
 

@@ -1,8 +1,7 @@
-package com.example.ourgame.LanguageTexts;
+package com.example.ourgame.LanguageSetters;
 
 public interface TextSetter {
     String getMainPlayButton();
-    String getMainStatistics();
     String getMainLeaderBoard();
     String getMainSettings();
     String getReactionTitle();
@@ -29,5 +28,10 @@ public interface TextSetter {
     String getContinue();
     String getEnter();
     String getHangmanTitle();
-
+    String mainMenu();
+    String back();
+    String statistics();
+    String statPoints();
+    String statPlaytime();
+    String statRank();
 }

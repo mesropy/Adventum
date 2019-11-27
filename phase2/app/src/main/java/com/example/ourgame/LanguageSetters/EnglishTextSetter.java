@@ -1,12 +1,9 @@
-package com.example.ourgame.LanguageTexts;
+package com.example.ourgame.LanguageSetters;
 
 public class EnglishTextSetter implements TextSetter {
 
     public String getMainPlayButton() {
         return "Play";
-    }
-    public String getMainStatistics() {
-        return "Statistics";
     }
     public String getMainLeaderBoard() {
         return "Leaderboard";
@@ -126,6 +123,26 @@ public class EnglishTextSetter implements TextSetter {
     @Override
     public String getHangmanTitle() {
         return null;
+    }
+
+    public String mainMenu() {
+        return "Main Menu";
+    }
+
+    public String back(){
+        return "Back";
+    }
+    public String statistics(){
+        return "Statistics";
+    }
+    public String statPoints(){
+        return "Total Points: ";
+    }
+    public String statPlaytime(){
+        return "Total Playtime: ";
+    }
+    public String statRank(){
+        return "Ranking: ";
     }
 
 }

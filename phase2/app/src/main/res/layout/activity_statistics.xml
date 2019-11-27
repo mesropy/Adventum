@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/statisticsLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Statistics.StatisticsActivity">
@@ -10,7 +11,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/renner"
         android:text="Statistics"
         android:textAllCaps="true"
@@ -22,8 +23,8 @@
 
     <TextView
         android:id="@+id/pointsText"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/renner"
@@ -61,8 +62,8 @@
 
     <TextView
         android:id="@+id/playtimeText"
-        android:layout_width="129dp"
-        android:layout_height="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/renner"
@@ -73,8 +74,8 @@
 
     <TextView
         android:id="@+id/rankingText"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/renner"
@@ -112,15 +113,13 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/renner"
         android:onClick="onBackPressed"
         android:text="back"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueButton"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintTop_toBottomOf="@+id/continueButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

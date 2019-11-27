@@ -27,7 +27,6 @@ class EndlessRunnerGame extends Game {
     private Random randomGenerator;
     private int obstacleDistMax = 300;
     private int obstacleDistMin = 140;
-
     private long gameStartTime;
 
     EndlessRunnerGame(EndlessRunnerView view, WriteData dataWriter){

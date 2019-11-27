@@ -1,6 +1,6 @@
 package com.example.ourgame.Games.TileGame;
 
-import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -8,12 +8,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.LanguageTexts.LanguageTextSetter;
+import com.example.ourgame.LanguageSetters.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.Statistics.StatisticsActivity;
-import com.example.ourgame.LanguageTexts.TextSetter;
+import com.example.ourgame.LanguageSetters.TextSetter;
+import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.ThemeSetters.Theme;
+import com.example.ourgame.ThemeSetters.ThemeBuilder;
 
 import java.util.ArrayList;
 
@@ -87,6 +90,11 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         String user = tileGame.getData().getUser();
         LanguageTextSetter text = new LanguageTextSetter(tileGame.getData().getLanguage(user));
         textSetter = text.getTextsetter();
+
+        ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
+        ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getData().getThemeData(user));
+        Theme theme = themeBuilder.getTheme();
+        constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
         title.setText(textSetter.getTileTitle());
         livesText.setText(textSetter.getTileLivesRemain());

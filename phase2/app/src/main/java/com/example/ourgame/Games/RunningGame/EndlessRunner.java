@@ -28,7 +28,6 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     private EndlessRunnerThread thread;
     private Paint paint;
     private Context context;
-
     private Rect screen;
 
     public EndlessRunner(Context context, AttributeSet attrs) {

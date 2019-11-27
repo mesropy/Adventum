@@ -5,21 +5,30 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.ThemeSetters.Theme;
+import com.example.ourgame.ThemeSetters.ThemeBuilder;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String user;
     private DataWriter data;
     private ScreenLoader screenLoader;
+    private ImageView character;
 
-    RadioGroup languageRadioGroup;
-    RadioButton englishButton, frenchButton, spanishButton;
+    private RadioGroup languageRadioGroup;
+    private RadioButton englishButton, frenchButton;
+    private ImageButton autumn, winter, summer;
 
 
     @Override
@@ -30,39 +39,99 @@ public class SettingsActivity extends AppCompatActivity {
         languageRadioGroup = findViewById(R.id.languageRadioGroup);
         englishButton = findViewById(R.id.englishButton);
         frenchButton = findViewById(R.id.frenchButton);
-        spanishButton = findViewById(R.id.spanishButton);
-
+        character = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
         user = data.getUser();
         screenLoader = new ScreenLoader(this);
 
-        /*
-         TODO: select current language and theme, and show current character,
-          for theme buttons: make not-selected buttons have grey tint
-        */
+        ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
+        Theme theme = themeBuilder.getTheme();
+        constraintLayout.setBackgroundResource(theme.SettingsActivityLayout());
+
+        autumn = findViewById(R.id.autumnButton);
+        winter = findViewById(R.id.winterButton);
+        summer = findViewById(R.id.summerButton);
+
+        autumn.setOnClickListener(this);
+        winter.setOnClickListener(this);
+        summer.setOnClickListener(this);
+
+        if (data.getCharacterData(user).equals("boy")){
+            character.setImageResource(R.drawable.kid);
+        }else if (data.getCharacterData(user).equals("girl")){
+            character.setImageResource(R.drawable.girl);
+        }else if (data.getCharacterData(user).equals("female")){
+            character.setImageResource(R.drawable.female);
+        }else {
+            character.setImageResource(R.drawable.male);
+        }
+
         if (data.getLanguage(user).equals("french")) {
             frenchButton.setChecked(true);
         } else if (data.getLanguage(user).equals("english")) {
             englishButton.setChecked(true);
-        } else { // spanish
-            spanishButton.setChecked(true);
+        }
+
+        if (data.getThemeData(user).equals("autumn")) {
+            winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+            summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+        } else if (data.getThemeData(user).equals("winter")) {
+            autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+            summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+        } else {
+            winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+            autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
         }
     }
 
-    // TODO: implement these
-
     // go to choose character page, then return to settings
     public void onChooseCharacterPressed(View view) {
-
+        switch (data.getCharacterData(user)){
+            case "boy":
+                character.setImageResource(R.drawable.girl);
+                data.setCharacterData(user, "girl");
+                break;
+            case "girl":
+                character.setImageResource(R.drawable.male);
+                data.setCharacterData(user, "male");
+                break;
+            case "male":
+                character.setImageResource(R.drawable.female);
+                data.setCharacterData(user, "female");
+                break;
+            case "female":
+                character.setImageResource(R.drawable.kid);
+                data.setCharacterData(user, "boy");
+                break;
+        }
     }
 
-    // when a theme selected, keep track of it
-    // remove grey tint of selected theme and make all other themes have grey tint
-    public void onThemeSelected(View view) {
-        //TODO
-    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.autumnButton:
+                autumn.clearColorFilter();
+                winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+                summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+                data.setThemeData(user, "autumn");
+                break;
+            case R.id.winterButton:
+                winter.clearColorFilter();
+                autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+                summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+                data.setThemeData(user, "winter");
+                break;
+            case R.id.summerButton:
+                summer.clearColorFilter();
+                winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+                autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+                data.setThemeData(user, "summer");
+                break;
 
+        }
+    }
 
     // save selected theme and language with data saver, and
     // go to main menu

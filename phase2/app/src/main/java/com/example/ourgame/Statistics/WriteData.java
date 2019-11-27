@@ -40,5 +40,11 @@ public interface WriteData {
     // Check if "username" exists
     boolean checkUser(String username);
 
+    String getThemeData(String username);
+
+    String getCharacterData(String username);
+    void setThemeData(String username, String theme);
+    void setCharacterData(String username, String character);
+
 
 }

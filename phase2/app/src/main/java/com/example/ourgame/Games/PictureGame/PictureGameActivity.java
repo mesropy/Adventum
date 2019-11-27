@@ -1,6 +1,5 @@
 package com.example.ourgame.Games.PictureGame;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.LanguageTexts.LanguageTextSetter;
+import com.example.ourgame.LanguageSetters.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.Statistics.StatisticsActivity;
-import com.example.ourgame.LanguageTexts.TextSetter;
+import com.example.ourgame.LanguageSetters.TextSetter;
+import com.example.ourgame.ThemeSetters.Theme;
+import com.example.ourgame.ThemeSetters.ThemeBuilder;
 
 public class PictureGameActivity extends AppCompatActivity {
 
@@ -46,6 +47,11 @@ public class PictureGameActivity extends AppCompatActivity {
         String user = pictureGame.getData().getUser();
         LanguageTextSetter text = new LanguageTextSetter(pictureGame.getData().getLanguage(user));
         textSetter = text.getTextsetter();
+
+        ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
+        ThemeBuilder themeBuilder = new ThemeBuilder(pictureGame.getData().getThemeData(user));
+        Theme theme = themeBuilder.getTheme();
+        constraintLayout.setBackgroundResource(theme.PictureGameLayout());
 
         imageToGuess = findViewById(R.id.imageToGuess);
         guessEditText = findViewById(R.id.guessEditText);

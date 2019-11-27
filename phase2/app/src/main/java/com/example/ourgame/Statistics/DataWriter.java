@@ -25,6 +25,7 @@ public class DataWriter implements WriteData {
     private SharedPreferences lastGameData;
     private SharedPreferences languageData;
     private SharedPreferences themeData;
+    private SharedPreferences characterData;
     private SharedPreferences currUserData;
 
     private Context context;
@@ -40,6 +41,7 @@ public class DataWriter implements WriteData {
         languageData = context.getSharedPreferences(context.getString(R.string.preference_file_language), Context.MODE_PRIVATE);
         currUserData = context.getSharedPreferences(context.getString(R.string.preference_file_user), Context.MODE_PRIVATE);
         themeData = context.getSharedPreferences(context.getString(R.string.preference_file_theme), Context.MODE_PRIVATE);
+        characterData = context.getSharedPreferences(context.getString(R.string.preference_file_character), Context.MODE_PRIVATE);
     }
 
     /**
@@ -81,12 +83,30 @@ public class DataWriter implements WriteData {
         editor = themeData.edit();
         editor.putString(username, "autumn");
         editor.apply();
+
+        editor = characterData.edit();
+        editor.putString(username, "male");
+        editor.apply();
+    }
+
+    public String getCharacterData(String username) {
+        return characterData.getString(username, "male");
+    }
+
+    public void setCharacterData(String username, String character) {
+        SharedPreferences.Editor editor = characterData.edit();
+        editor.putString(username, character);
+        editor.apply();
     }
 
     public void setThemeData(String username, String theme) {
         SharedPreferences.Editor editor = themeData.edit();
         editor.putString(username, theme);
         editor.apply();
+    }
+
+    public String getThemeData(String username) {
+        return themeData.getString(username, "Not Found");
     }
 
     @Override

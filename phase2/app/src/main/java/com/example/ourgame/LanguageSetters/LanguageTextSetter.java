@@ -1,4 +1,4 @@
-package com.example.ourgame.LanguageTexts;
+package com.example.ourgame.LanguageSetters;
 
 public class LanguageTextSetter {
     private TextSetter textsetter;
