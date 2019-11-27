@@ -162,4 +162,9 @@ public class FrenchTextSetter implements TextSetter {
     public String leaderboardYourRank() {
         return "Ton rang: ";
     }
+
+    @Override
+    public String typeAnswer() {
+        return "tapez votre réponse ici";
+    }
 }

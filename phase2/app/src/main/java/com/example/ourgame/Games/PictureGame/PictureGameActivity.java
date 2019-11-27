@@ -61,6 +61,7 @@ public class PictureGameActivity extends AppCompatActivity {
         title = findViewById(R.id.titleText);
         numattempts = findViewById(R.id.numAttemptsLabel);
 
+        guessEditText.setHint(textSetter.typeAnswer());
         title.setText(textSetter.getPictureTitle());
         numattempts.setText(textSetter.getPictureNumAttempts());
         imageToGuess.setImageResource(pictureGame.getCurrentImageResource());

@@ -158,4 +158,9 @@ public class EnglishTextSetter implements TextSetter {
         return "Your Rank: ";
     }
 
+    @Override
+    public String typeAnswer() {
+        return "type your answer here";
+    }
+
 }

@@ -37,4 +37,5 @@ public interface TextSetter {
     String score();
     String leaderboardUser();
     String leaderboardYourRank();
+    String typeAnswer();
 }
