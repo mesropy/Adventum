@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ourgame.LanguageSetters.LanguageTextSetter;
+import com.example.ourgame.LanguageSetters.TextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
 
@@ -18,6 +20,7 @@ public class HangmanActivity extends AppCompatActivity {
 
     private Hangman hangman;
     private ScreenLoader screenLoader;
+    private TextSetter textSetter;
 
     private TextView wordBlanks;
     private TextView resultText;
@@ -28,12 +31,13 @@ public class HangmanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman);
-
         try {
             hangman = new Hangman(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage());
+        textSetter = text.getTextsetter();
         screenLoader = new ScreenLoader(this);
 
         wordBlanks = findViewById(R.id.wordBlanks);
@@ -46,8 +50,11 @@ public class HangmanActivity extends AppCompatActivity {
         resultImage.setImageResource(hangman.getImageId());
 
         continueButton = findViewById(R.id.continueButton);
+        continueButton.setText(textSetter.getContinue());
         continueButton.setVisibility(View.GONE);
 
+        TextView title = findViewById(R.id.title);
+        title.setText(textSetter.getHangmanTitle());
     }
 
     public void onLetterPressed(View view) {
@@ -78,7 +85,7 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     private void onGameWon() {
-        resultText.setText(R.string.win_result);
+        resultText.setText(textSetter.getTileResultTextCorrect());
         hangman.updateStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }
@@ -92,7 +99,7 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     private void onGameLost() {
-        resultText.setText(R.string.no_more_attempts);
+        resultText.setText(textSetter.getPictureNoMoreAttempts());
         hangman.updateStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }

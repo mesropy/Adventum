@@ -126,7 +126,7 @@ public class FrenchTextSetter implements TextSetter {
 
     @Override
     public String getHangmanTitle() {
-        return null;
+        return "Jeu du Pendu";
     }
 
     public String mainMenu() {

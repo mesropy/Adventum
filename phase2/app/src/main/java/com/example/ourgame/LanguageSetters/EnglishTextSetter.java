@@ -122,7 +122,7 @@ public class EnglishTextSetter implements TextSetter {
 
     @Override
     public String getHangmanTitle() {
-        return null;
+        return "Hangman";
     }
 
     public String mainMenu() {
