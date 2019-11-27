@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ourgame.LanguageTexts.LanguageTextSetter;
 import com.example.ourgame.R;
+import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.Statistics.StatisticsActivity;
 import com.example.ourgame.LanguageTexts.TextSetter;
 
@@ -21,6 +22,7 @@ public class PictureGameActivity extends AppCompatActivity {
 
     private PictureGame pictureGame;
     private TextSetter textSetter;
+    private ScreenLoader screenLoader;
 
     // Views (UI elements) to keep track of
     private ImageView imageToGuess;
@@ -40,6 +42,7 @@ public class PictureGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_game);
 
         pictureGame = new PictureGame(this);
+        screenLoader = new ScreenLoader(this);
         String user = pictureGame.getData().getUser();
         LanguageTextSetter text = new LanguageTextSetter(pictureGame.getData().getLanguage(user));
         textSetter = text.getTextsetter();
@@ -134,9 +137,7 @@ public class PictureGameActivity extends AppCompatActivity {
         int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
         pictureGame.setPlayTime(playTime);
         pictureGame.updateStatistics();
-        final Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", "game over");
-        startActivity(intent);
+        screenLoader.loadStatisticsAfterGame();
     }
 
     private void displayNextLevel() {

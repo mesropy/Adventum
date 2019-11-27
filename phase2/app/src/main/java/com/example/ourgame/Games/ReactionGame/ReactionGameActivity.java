@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.ourgame.LanguageTexts.LanguageTextSetter;
 import com.example.ourgame.R;
+import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
 import com.example.ourgame.LanguageTexts.TextSetter;
 
@@ -23,6 +25,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
 
     private ReactionGame game;
     private TextSetter textSetter;
+    private ScreenLoader screenLoader;
 
     private ConstraintLayout currentLayout;
     private TextView message;
@@ -61,6 +64,8 @@ public class ReactionGameActivity extends AppCompatActivity  {
         title.setText(textSetter.getReactionTitle());
         tapToConti.setText(textSetter.getReactionContinueText());
 
+        screenLoader = new ScreenLoader(this);
+
         instruction();
     }
 
@@ -96,11 +101,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void nextGame() {
         // go to stats page then to the tile game
-        final Intent intent = new Intent(this, StatisticsActivity.class);
-        intent.putExtra("next activity", getString(R.string.tile_game));
-        startActivity(intent);
-
-        finish();
+        screenLoader.loadStatisticsAfterGame();
     }
 
     /**

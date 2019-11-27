@@ -1,6 +1,5 @@
 package com.example.ourgame.Statistics;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,19 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.ourgame.GameOverActivity;
-import com.example.ourgame.MainActivity;
-import com.example.ourgame.Games.PictureGame.PictureInstructions;
 import com.example.ourgame.R;
-import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
-import com.example.ourgame.Games.TileGame.TileGameInstructions;
-import com.example.ourgame.login.Login;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import com.example.ourgame.ScreenLoader;
 
 /**
  * An activity class for the Statistics screen, which shows the user their statistics for the games
@@ -29,6 +17,7 @@ import java.util.Map;
 public class StatisticsActivity extends AppCompatActivity {
 
     WriteData dataWriter;
+    ScreenLoader screenLoader;
 
     TextView pointsText;
     TextView playtimeText;
@@ -47,6 +36,8 @@ public class StatisticsActivity extends AppCompatActivity {
         dataWriter = new DataWriter(this);
         user = dataWriter.getUser();
 
+        screenLoader = new ScreenLoader(this);
+
         setUpNavigationButtons();
         displayStatistics();
     }
@@ -60,14 +51,19 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void setUpNavigationButtons() {
-        // if the next activity is the main menu, make the continue button's text "back"
-        // and remove the main menu button
-        String nextActivity = getIntent().getStringExtra("next activity");
-        if (nextActivity != null && nextActivity.equals("main menu")) {
+        // if the statistics were shown after a game, show the continue and main menu buttons,
+        // otherwise, the statistics were shown after the main menu, so we only need
+        // the back button that takes us back there
+        boolean afterGame = getIntent().getBooleanExtra("after game", false);
+
+        if (!afterGame) {
             Button continueButton = findViewById(R.id.continueButton);
             Button mainMenuButton = findViewById(R.id.mainMenuButton);
-            continueButton.setText("back");
             mainMenuButton.setVisibility(View.GONE);
+            continueButton.setVisibility(View.GONE);
+        } else {
+            Button backButton = findViewById(R.id.backButton);
+            backButton.setVisibility(View.GONE);
         }
     }
 
@@ -78,33 +74,14 @@ public class StatisticsActivity extends AppCompatActivity {
      * @param view the button object that was tapped
      */
     public void onContinuePressed(View view) {
-        String nextActivity = getIntent().getStringExtra("next activity");
-
-        if (nextActivity == null) {
-            return;
-        }
-        Intent intent;
-
-        if (nextActivity.equals(getString(R.string.reaction_game))) {
-            intent = new Intent(this, ReactionGameActivity.class);
-        } else if (nextActivity.equals(getString(R.string.tile_game))) {
-            intent = new Intent(this, TileGameInstructions.class);
-        } else if (nextActivity.equals(getString(R.string.picture_game))) {
-            intent = new Intent(this, PictureInstructions.class);
-        } else if (nextActivity.equals("main menu")) {
-            intent = new Intent(this, MainActivity.class);
-            intent.putExtra("username", user);
-        } else {  // game over activity
-            intent = new Intent(this, GameOverActivity.class);
-        }
-
-        startActivity(intent);
-
+        screenLoader.loadNextGame();
     }
 
-
     public void onMainMenuPressed(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        screenLoader.loadMainMenu();
+    }
+
+    public void onBackPressed(View view) {
+        screenLoader.loadMainMenu();
     }
 }
