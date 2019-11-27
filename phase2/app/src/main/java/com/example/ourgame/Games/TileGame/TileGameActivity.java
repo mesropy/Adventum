@@ -18,6 +18,7 @@ import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.ThemeSetters.Theme;
 import com.example.ourgame.ThemeSetters.ThemeBuilder;
 
+
 import java.util.ArrayList;
 
 /**
@@ -25,7 +26,7 @@ import java.util.ArrayList;
  */
 
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
-
+    
     private TileGame tileGame;
     private TextSetter textSetter;
     private ScreenLoader screenLoader;

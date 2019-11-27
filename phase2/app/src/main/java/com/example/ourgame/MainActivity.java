@@ -55,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         data = new DataWriter(this);
         user = data.getUser();
-//        if (data.getUser().equals("Not found")){
-//            data.setUser(user);
-//        }
         setLanguage();
 
         ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));

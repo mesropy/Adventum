@@ -25,7 +25,7 @@
         android:id="@+id/pointsText"
         android:layout_width="115dp"
         android:layout_height="25dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/renner"
         android:text="Total Points:"
@@ -35,36 +35,36 @@
 
     <TextView
         android:id="@+id/pointsValue"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="64dp"
+        android:layout_width="119dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="32dp"
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/pointsText"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/pointsText" />
 
     <TextView
         android:id="@+id/rankingValue"
         android:layout_width="115dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginStart="32dp"
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/rankingText"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/rankingText" />
 
     <TextView
         android:id="@+id/playtimeValue"
         android:layout_width="115dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginStart="32dp"
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/playtimeText"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/playtimeText" />
 
     <TextView
         android:id="@+id/playtimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/renner"
         android:text="Total Playtime:"
@@ -76,7 +76,7 @@
         android:id="@+id/rankingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/renner"
         android:text="Ranking:"

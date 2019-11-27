@@ -32,7 +32,7 @@ class EndlessRunnerGame extends Game {
     EndlessRunnerGame(EndlessRunnerView view) {
         super("Endless Runner", new DataWriter((Context) view));
 //        super("Endless Runner", new DataWriter(((EndlessRunner)view).getContext()));
-        
+
         this.view = view;
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
         gameState = State.RUNNING;
