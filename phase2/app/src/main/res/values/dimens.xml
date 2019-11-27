@@ -6,6 +6,6 @@
     <dimen name="keyboard_button_height">40dp</dimen>
     <dimen name="menu_button_width">130dp</dimen>
     <dimen name="menu_button_height">40dp</dimen>
-    <dimen name="theme_button_width">40dp</dimen>
-    <dimen name="theme_button_height">40dp</dimen>
+    <dimen name="theme_button_width">300dp</dimen>
+    <dimen name="theme_button_height">85dp</dimen>
 </resources>

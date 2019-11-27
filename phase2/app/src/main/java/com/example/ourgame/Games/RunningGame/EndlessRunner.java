@@ -44,7 +44,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         // Gameview created
         screen = new Rect(0, 0, getWidth(), getHeight());
 
-        game = new EndlessRunnerGame(this, new DataWriter(context));
+        game = new EndlessRunnerGame(this);
         paint = new Paint();
         thread = new EndlessRunnerThread(game);
 
@@ -107,7 +107,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
             canvas.drawText("Game Over", getWidth()/2-85, getHeight()/2, paint);
             paint.setTextSize(40);
             paint.setColor(Color.BLUE);
-            String scoreString = "Score: " + Integer.toString(score);
+            String scoreString = "Score: " + score;
             canvas.drawText(scoreString, getWidth()/2-85, getHeight()/2+50, paint);
         }
         surfaceHolder.unlockCanvasAndPost(canvas);

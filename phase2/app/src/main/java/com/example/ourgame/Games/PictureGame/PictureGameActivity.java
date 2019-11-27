@@ -44,12 +44,11 @@ public class PictureGameActivity extends AppCompatActivity {
 
         pictureGame = new PictureGame(this);
         screenLoader = new ScreenLoader(this);
-        String user = pictureGame.getData().getUser();
-        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getData().getLanguage(user));
+        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage());
         textSetter = text.getTextsetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(pictureGame.getData().getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(pictureGame.getTheme());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.PictureGameLayout());
 
@@ -59,7 +58,7 @@ public class PictureGameActivity extends AppCompatActivity {
         continueButton = findViewById(R.id.continueButton);
         enterButton = findViewById(R.id.enterButton);
         numAttemptsText = findViewById(R.id.numAttemptsText);
-        title = findViewById(R.id.titleText5);
+        title = findViewById(R.id.titleText);
         numattempts = findViewById(R.id.numAttemptsLabel);
 
         title.setText(textSetter.getPictureTitle());
@@ -150,7 +149,7 @@ public class PictureGameActivity extends AppCompatActivity {
         numAttemptsText.setText(pictureGame.getNumAttemptsText());
         // show next image
         imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
-        // remove next button, result text, and text in guess editText
+        // remove continue button, result text, and text in guess editText
         continueButton.setVisibility(View.GONE);
         guessResultText.setText("");
         guessEditText.setText("");

@@ -11,7 +11,8 @@
         android:id="@+id/title"
         android:layout_width="164dp"
         android:layout_height="39dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/renner"
         android:text="Hangman"
         android:textAlignment="center"
         android:textSize="30sp"
@@ -24,7 +25,7 @@
         android:id="@+id/resultImage"
         android:layout_width="245dp"
         android:layout_height="316dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -35,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/renner"
         android:text="_ _ _ _ s a s _ "
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -48,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/renner"
         android:text="@string/correct"
         android:textAlignment="center"
         android:textAllCaps="true"
@@ -72,6 +75,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="Q"
             android:textColor="#FFFFFF" />
@@ -81,6 +85,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="W"
             android:textColor="#FFFFFF" />
@@ -90,6 +95,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="E"
             android:textColor="#FFFFFF" />
@@ -99,6 +105,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="R"
             android:textColor="#FFFFFF" />
@@ -108,6 +115,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="T"
             android:textColor="#FFFFFF" />
@@ -117,6 +125,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="Y"
             android:textColor="#FFFFFF" />
@@ -126,6 +135,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="U"
             android:textColor="#FFFFFF" />
@@ -135,6 +145,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="I"
             android:textColor="#FFFFFF" />
@@ -144,6 +155,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="O"
             android:textColor="#FFFFFF" />
@@ -153,6 +165,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="P"
             android:textColor="#FFFFFF" />
@@ -172,6 +185,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="A"
             android:textColor="#FFFFFF" />
@@ -181,6 +195,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="S"
             android:textColor="#FFFFFF" />
@@ -190,6 +205,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="D"
             android:textColor="#FFFFFF" />
@@ -199,6 +215,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="F"
             android:textColor="#FFFFFF" />
@@ -208,6 +225,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="G"
             android:textColor="#FFFFFF" />
@@ -217,6 +235,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="H"
             android:textColor="#FFFFFF" />
@@ -226,6 +245,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="J"
             android:textColor="#FFFFFF" />
@@ -235,6 +255,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="K"
             android:textColor="#FFFFFF" />
@@ -244,6 +265,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="L"
             android:textColor="#FFFFFF" />
@@ -264,6 +286,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="Z"
             android:textColor="#FFFFFF" />
@@ -273,6 +296,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="X"
             android:textColor="#FFFFFF" />
@@ -282,6 +306,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="C"
             android:textColor="#FFFFFF" />
@@ -291,6 +316,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="V"
             android:textColor="#FFFFFF" />
@@ -300,6 +326,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="B"
             android:textColor="#FFFFFF" />
@@ -309,6 +336,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="N"
             android:textColor="#FFFFFF" />
@@ -318,6 +346,7 @@
             android:layout_width="@dimen/keyboard_button_width"
             android:layout_height="@dimen/keyboard_button_height"
             android:backgroundTint="#009688"
+            android:fontFamily="@font/renner"
             android:onClick="onLetterPressed"
             android:text="M"
             android:textColor="#FFFFFF" />
@@ -328,6 +357,7 @@
         android:id="@+id/continueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/renner"
         android:onClick="OnContinueButtonPressed"
         android:text="@string/continue_button"
         app:layout_constraintBottom_toBottomOf="parent"

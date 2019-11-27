@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Games.Game;
-import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ class TileGame extends Game {
     private int currentNumRoundLives;
     private int livesPerRound = 2;
 
-    private int points;
     private int correctPressed;
 
     private int numRightTiles;
@@ -36,14 +34,13 @@ class TileGame extends Game {
     // time in milliseconds that will show pattern before moving on to then next level / game
     private int patternEndShowTime;
 
-    private int playTime = 0;
+    private int tilePoints; // different from the points earned by the player
 
-    TileGame(Context activity) {
-        super();
+    TileGame(Context context) {
+        super("Tile", new DataWriter(context));
 
         currentLives = lives;
         currentNumRoundLives = livesPerRound;
-        points = 0;
         correctPressed = 0;
         numRightTiles = 4;
         patternShowTime = 3000;
@@ -51,29 +48,24 @@ class TileGame extends Game {
         rightTileImageId = R.drawable.flipped_right;
         wrongTileImageId = R.drawable.flipped_wrong;
         unflippedTileImageId = R.drawable.unflipped;
-        setData(new DataWriter(activity));
     }
 
-    /**
-     * Called once the Tile Game activity ends. Updates and saves the statistics of this game to be
-     * displayed in the player's statistics page.
-     */
+
+    void updatePoints() {
+        addPointsEarned(2 * tilePoints / 10);
+    }
+
+    void addTilePoint() {
+        tilePoints++;
+    }
+
     @Override
-    protected void updateStatistics() {
-
-        int statPoints = 2 * points / 10;
-
-        getData().addPoints(getUser(), statPoints);
-        getData().addPlayTime(getUser(), playTime);
-        //need to fix getString(R.string.tile_game)
-        getData().addLastGame(getUser(), "Tile");
-
-        if (updateRanking()) {
-            getData().increaseRanking(getUser());
-        }
+    public boolean canUpdateRanking() {
+        return getPlayTime() <= (50 * 3 * patternShowTime * patternEndShowTime) &&
+                currentLives == lives; // didn't lose any lives / won all rounds
     }
 
-    void setInitTiles(int numberOfTiles){
+    void setInitialTiles(int numberOfTiles) {
         rightTile.clear();
 
         numRightTiles = numberOfTiles / 2;
@@ -85,12 +77,6 @@ class TileGame extends Game {
         }
 
     }
-
-    private boolean updateRanking() {
-        return playTime <= (50 * 3 * patternShowTime * patternEndShowTime) &&
-                currentLives == lives; // didn't lose any lives / won all rounds
-    }
-
     boolean noMoreLives() {
         return currentLives <= 0;
     }
@@ -109,19 +95,6 @@ class TileGame extends Game {
 
     boolean noMoreRoundLives() {
         return currentNumRoundLives <= 0;
-    }
-
-    // call to save stats
-    int getPoints() {
-        return points;
-    }
-
-    void addPoint() {
-        points++;
-    }
-
-    void setPlayTime(int playTime) {
-        this.playTime = playTime;
     }
 
     void resetCorrectPressed() {
@@ -172,7 +145,7 @@ class TileGame extends Game {
         return patternEndShowTime;
     }
 
-    public int getCurrentLives() {
+    int getCurrentLives() {
         return currentLives;
     }
 }

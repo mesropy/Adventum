@@ -5,7 +5,6 @@ import android.graphics.Rect;
 
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.Statistics.WriteData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +28,12 @@ class EndlessRunnerGame extends Game {
     private int obstacleDistMin = 140;
     private long gameStartTime;
 
-    EndlessRunnerGame(EndlessRunnerView view, WriteData dataWriter){
+    EndlessRunnerGame(EndlessRunnerView view) {
+        super("Endless Runner", new DataWriter((Context) view));
         this.view = view;
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
         gameState = State.RUNNING;
         randomGenerator = new Random();
-        setData(dataWriter);
         start();
     }
 
@@ -107,10 +106,19 @@ class EndlessRunnerGame extends Game {
         }
     }
 
-    @Override
-    protected void updateStatistics() {
-        getData().addPoints(getUser(), score);
-        getData().addPlayTime(getUser(), (int)(totalTime/1000));
-        getData().addLastGame(getUser(), "Reaction");
+
+    // call these from the activity when updating statistics
+
+    public void addPoints() {
+        addPointsEarned(score);
+    }
+
+    public void setPlayTime() {
+        setPlayTime((int) (totalTime / 1000));
+    }
+
+    public boolean canUpdateRanking() {
+        // TODO: implement this
+        return false;
     }
 }

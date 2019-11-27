@@ -3,7 +3,6 @@ package com.example.ourgame.Games.ReactionGame;
 import android.content.Context;
 
 import com.example.ourgame.Games.Game;
-import com.example.ourgame.R;
 import com.example.ourgame.Statistics.DataWriter;
 
 enum State {
@@ -23,11 +22,8 @@ public class ReactionGame extends Game {
     private long startTime = 0;
     private State currentState;
 
-    private Context context;
-
     ReactionGame(Context context){
-        this.context = context;
-        setData(new DataWriter(context));
+        super("Reaction", new DataWriter(context));
     }
 
     int getCount() {
@@ -58,12 +54,12 @@ public class ReactionGame extends Game {
         this.startTime = startTime;
     }
 
-    /**
-     * Send and record the statistics based on the player's performance in the five rounds of
-     * the Reaction Time Game
-     */
     @Override
-    protected void updateStatistics() {
+    public boolean canUpdateRanking() {
+        return average <= 200;
+    }
+
+    void addPointsEarned() {
         int points;
         if (average <= 250){
             points = 10;
@@ -80,13 +76,11 @@ public class ReactionGame extends Game {
         else{
             points = 1;
         }
-        getData().addPoints(getUser(), points);
-        getData().addPlayTime(getUser(), (int)(total/1000));
-        getData().addLastGame(getUser(), context.getString(R.string.reaction_game));
+        addPointsEarned(points);
+    }
 
-        if (average <= 200) {
-            getData().increaseRanking(getUser());
-        }
+    void setPlayTime() {
+        setPlayTime((int) (total / 1000));
     }
 
 }

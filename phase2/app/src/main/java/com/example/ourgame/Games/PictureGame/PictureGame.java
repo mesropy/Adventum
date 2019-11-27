@@ -2,9 +2,9 @@ package com.example.ourgame.Games.PictureGame;
 
 import android.content.Context;
 
-import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.R;
+import com.example.ourgame.Statistics.DataWriter;
 
 class PictureGame extends Game {
 
@@ -23,17 +23,15 @@ class PictureGame extends Game {
   private String incorrectGuessMessage;
   private String noMoreAttemptsMessage;
 
-    private int playTime = 0;
 
   PictureGame(Context context) {
-    super();
+      super("Picture", new DataWriter(context));
     numAttempts = 0;
     numAttemptsAllowed = 5;
     currentLevel = 0;
     correctGuessMessage = "Correct!";
     incorrectGuessMessage = "Sorry, try again!";
     noMoreAttemptsMessage = "No more attempts!";
-    setData(new DataWriter(context));
   }
 
   void incrementNumAttempts() {
@@ -64,10 +62,6 @@ class PictureGame extends Game {
     return imagesToGuess[currentLevel];
   }
 
-  void setPlayTime(int playTime) {
-    this.playTime = playTime;
-  }
-
   /**
    * returns whether or not a given guess is a correct guess
    *
@@ -95,16 +89,6 @@ class PictureGame extends Game {
     currentLevel++;
   }
 
-  @Override
-  protected void updateStatistics() {
-    getData().addPlayTime(getUser(), playTime);
-    getData().addPoints(getUser(), getPointsEarned());
-    getData().addLastGame(getUser(), "Picture");
-
-    if (increaseRank()) {
-      getData().increaseRanking(getUser());
-    }
-  }
 
   /**
    * Return whether or not the rank of the user should increase after this game based on
@@ -112,7 +96,9 @@ class PictureGame extends Game {
    *
    * @return whether or not the user's rank should increase
    */
-  private boolean increaseRank() {
+  @Override
+  public boolean canUpdateRanking() {
+      // calculate total points player could have earned
     int totalPointsToEarn = 0;
     for (int points : pointsToEarn) {
       totalPointsToEarn += points;
@@ -120,7 +106,7 @@ class PictureGame extends Game {
 
     // earned all possible points / won all levels
     // and completed them in 20 seconds or less
-    return getPointsEarned() >= totalPointsToEarn && playTime <= 20;
+      return getPointsEarned() >= totalPointsToEarn && getPlayTime() <= 20;
   }
 
   boolean usedAllAttempts() {

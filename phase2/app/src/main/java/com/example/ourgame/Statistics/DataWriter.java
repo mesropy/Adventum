@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 import com.example.ourgame.R;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A class for a DataWriter, which keeps and stores user login information
  */
@@ -233,10 +236,18 @@ public class DataWriter implements WriteData {
     }
 
     /**
-     * Return the map containing user names and their corresponding point values
-     * @return a SharedPreferences instance storing points data
+     * Return a map containing user names and their corresponding point values
+     * @return a Map storing points data
      */
-    public SharedPreferences getPointsData(){
-        return pointsData;
+    public Map<String, Integer> getPointsData(){
+
+        Map<String, ?> data = pointsData.getAll();
+
+        Map<String, Integer> returnData = new HashMap<>();
+
+        for (String key : data.keySet()){
+            returnData.put(key, pointsData.getInt(key, -1));
+        }
+        return returnData;
     }
 }

@@ -29,7 +29,6 @@ public class ReactionGameActivity extends AppCompatActivity  {
     private TextView title;
     private TextView countText;
     private TextView averageText;
-    private TextView tapToConti;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -52,18 +51,22 @@ public class ReactionGameActivity extends AppCompatActivity  {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
-        tapToConti = findViewById(R.id.continueText);
+        TextView tapToContinue = findViewById(R.id.continueText);
 
         game = new ReactionGame(this);
-        String user = game.getData().getUser();
-        LanguageTextSetter text = new LanguageTextSetter(game.getData().getLanguage(user));
+        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
         textSetter = text.getTextsetter();
         title.setText(textSetter.getReactionTitle());
-        tapToConti.setText(textSetter.getReactionContinueText());
+        tapToContinue.setText(textSetter.getReactionContinueText());
 
         screenLoader = new ScreenLoader(this);
 
-        instruction();
+        if (game.getLanguage().equals("french")) {
+            title.setText(R.string.reaction_game_french);
+            tapToContinue.setText(R.string.press_any_key_french);
+        }
+
+        setInstructions();
     }
 
     /**
@@ -83,7 +86,6 @@ public class ReactionGameActivity extends AppCompatActivity  {
             waiting();
         }
         else if (game.getCurrentState() == State.DONE){
-            game.updateStatistics();
             nextGame();
         }
         else {
@@ -98,7 +100,10 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void nextGame() {
         // go to stats page then to the tile game
-        screenLoader.loadStatisticsAfterGame();
+        game.addPointsEarned();
+        game.setPlayTime();
+        game.updateStatistics();
+        screenLoader.loadStatisticsAfterGame(5000);
     }
 
     /**
@@ -116,6 +121,12 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void waiting() {
         game.setState(State.WAITING);
+        if (game.getLanguage().equals("english")) {
+            message.setText(R.string.wait);
+        } else {
+            message.setText(R.string.wait_french);
+        }
+//        message.setText(R.string.wait);
         message.setText(textSetter.getReactionMessageWait());
         currentLayout.setBackgroundResource(R.color.error_red);
         timerHandler.postDelayed(timerRunnable, new Random().nextInt(3000) + 1000);
@@ -124,8 +135,14 @@ public class ReactionGameActivity extends AppCompatActivity  {
     /**
      * Display the instructions for the game on the screen
      */
-    private void instruction() {
+    private void setInstructions() {
         game.setState(State.INSTRUCTION);
+        if (game.getLanguage().equals("english")) {
+            message.setText(R.string.reaction_intro);
+        } else {
+            message.setText(R.string.reaction_intro_french);
+        }
+//        message.setText(R.string.reaction_intro);
         message.setText(textSetter.getReactionMessageInstruction());
     }
 
@@ -157,6 +174,11 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void go(){
         game.setState(State.GO);
+        if (game.getLanguage().equals("english")) {
+            message.setText(R.string.go);
+        } else {
+            message.setText(R.string.go_french);
+        }
 
         message.setText(textSetter.getReactionMessageGo());
         game.setStartTime(System.currentTimeMillis());
@@ -168,6 +190,12 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void tooSoon(){
         game.setState(State.EARLY);
+        if (game.getLanguage().equals("english")) {
+            message.setText(R.string.too_soon);
+        } else {
+            message.setText(R.string.too_soon_french);
+        }
+//        message.setText(R.string.too_soon);
         message.setText(textSetter.getReactionMessageTooSoon());
         currentLayout.setBackgroundResource(R.color.menu_blue);
     }

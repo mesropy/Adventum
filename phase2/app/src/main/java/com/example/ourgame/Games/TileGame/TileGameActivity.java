@@ -80,19 +80,18 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         livesText = findViewById(R.id.livesText);
         resultText = findViewById(R.id.resultText);
-        title = findViewById(R.id.titleText3);
+        title = findViewById(R.id.titleText);
 
         tileGame = new TileGame(this);
-        tileGame.setInitTiles(tileButtonIds.length);
+        tileGame.setInitialTiles(tileButtonIds.length);
 
         screenLoader = new ScreenLoader(this);
 
-        String user = tileGame.getData().getUser();
-        LanguageTextSetter text = new LanguageTextSetter(tileGame.getData().getLanguage(user));
+        LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage());
         textSetter = text.getTextsetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
-        ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getData().getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getTheme());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
@@ -203,7 +202,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         String s = textSetter.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
         livesText.setText(s);
         resultText.setText(textSetter.getTileResultTextLost());
-        if (tileGame.getPoints() < 10) {
+        if (tileGame.getPointsEarned() < 10) {
             displayPatternRed(tileButtons);
         }
         else{
@@ -216,15 +215,15 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * for them to memorize.
      */
     private void roundWon() {
-        if (tileGame.getPoints() < 10) {
+        if (tileGame.getPointsEarned() < 10) {
             displayPatternRed(tileButtons);
         }
         else{
             displayPatternRed(tileButtons2);
         }
         resultText.setText(textSetter.getTileResultTextWon());
-        tileGame.addPoint();
-        if (tileGame.getPoints() == 10) {
+        tileGame.addTilePoint();
+        if (tileGame.getPointsEarned() == 10) {
             tileGame.resetShowTime();
             new Handler().postDelayed(new Runnable() {
                 public void run() {
@@ -252,7 +251,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void startRound() {
         tileGame.shuffleTiles();
-        if (tileGame.getPoints() < 10) {
+        if (tileGame.getPointsEarned() < 10) {
             displayPattern(tileButtons);
             waitThenHidePattern(tileButtonIds);
         }
@@ -264,6 +263,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void gameOver() {
+        tileGame.updatePoints();
         //records the time spent playing this game in seconds
         int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
         tileGame.setPlayTime(playTime);
@@ -352,7 +352,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
             tileButton.setClickable(false);
         }
 
-        tileGame.setInitTiles(tileButtonIds2.length);
+        tileGame.setInitialTiles(tileButtonIds2.length);
         for (Button tileButton : tileButtons2) {
             tileButton.setVisibility(View.VISIBLE);
             tileButton.setClickable(true);

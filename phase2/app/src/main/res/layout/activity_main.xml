@@ -61,48 +61,44 @@
         android:layout_width="@dimen/menu_button_width"
         android:layout_height="@dimen/menu_button_height"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="playGame"
         android:text="play"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
     <Button
         android:id="@+id/statisticsButton"
         android:layout_width="@dimen/menu_button_width"
         android:layout_height="@dimen/menu_button_height"
+        android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="checkStats"
         android:text="Statistics"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playButton" />
 
     <Button
         android:id="@+id/leaderBoardButton"
         android:layout_width="@dimen/menu_button_width"
         android:layout_height="@dimen/menu_button_height"
+        android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="checkLeaderBoard"
         android:text="LeaderBoard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statisticsButton" />
 
     <Button
         android:id="@+id/settingsButton"
         android:layout_width="@dimen/menu_button_width"
         android:layout_height="@dimen/menu_button_height"
+        android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="openSettings"
         android:text="Settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderBoardButton" />
 
     <Button
@@ -166,14 +162,54 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/settingsImage"
-        android:layout_width="35dp"
-        android:layout_height="37dp"
-        android:background="@drawable/settings_icon"
-        app:layout_constraintBaseline_toBaselineOf="@+id/settingsButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageView
+        android:id="@+id/settingsIcon"
+        android:layout_width="25dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="4dp"
+        android:tint="#606060"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaderBoardIcon"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/gear" />
+
+    <ImageView
+        android:id="@+id/leaderBoardIcon"
+        android:layout_width="25dp"
+        android:layout_height="38dp"
+        android:tint="#606060"
+        app:layout_constraintEnd_toStartOf="@+id/leaderBoardButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trophyIcon"
+        app:srcCompat="@drawable/leaderboards_complex" />
+
+    <ImageView
+        android:id="@+id/trophyIcon"
+        android:layout_width="25dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="4dp"
+        android:tint="#606060"
+        app:layout_constraintEnd_toStartOf="@+id/statisticsButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playIcon"
+        app:srcCompat="@drawable/trophy" />
+
+    <ImageView
+        android:id="@+id/playIcon"
+        android:layout_width="25dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="48dp"
+        android:scaleY="0.8"
+        android:tint="#606060"
+        app:layout_constraintEnd_toStartOf="@+id/playButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        app:srcCompat="@drawable/right" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
