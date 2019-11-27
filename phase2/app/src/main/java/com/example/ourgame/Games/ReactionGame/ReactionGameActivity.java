@@ -57,7 +57,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
 
         // set language
         LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
-        language = text.getTextsetter();
+        language = text.getTextSetter();
         setLanguage();
 
         setInstructions();

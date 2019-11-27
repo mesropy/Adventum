@@ -28,7 +28,6 @@ public class StatisticsActivity extends AppCompatActivity {
     TextView pointsText;
     TextView playtimeText;
     TextView rankingText;
-    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +47,10 @@ public class StatisticsActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
 
         dataWriter = new DataWriter(this);
-        user = dataWriter.getUser();
-
         screenLoader = new ScreenLoader(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
-        language = text.getTextsetter();
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage());
+        language = text.getTextSetter();
 
         continueButton.setText(language.getContinue());
         title.setText(language.statistics());
@@ -64,7 +61,7 @@ public class StatisticsActivity extends AppCompatActivity {
         backButton.setText(language.back());
 
         ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.PictureGameLayout());
 
@@ -73,11 +70,11 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void displayStatistics() {
-        String str = Integer.toString(dataWriter.getPoints(user));
+        String str = Integer.toString(dataWriter.getPoints());
         pointsText.setText(str);
-        String str2 = dataWriter.getPlayTime(user) + " secs.";
+        String str2 = dataWriter.getPlayTime() + " secs.";
         playtimeText.setText(str2);
-        rankingText.setText(dataWriter.getRanking(user));
+        rankingText.setText(dataWriter.getRanking());
     }
 
     private void setUpNavigationButtons() {

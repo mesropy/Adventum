@@ -129,7 +129,7 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
     @Override
     public void onSuccess(String username) {
         if (loginView != null) {
-            dataWriter.setUser(username);
+            dataWriter.setCurrentUser(username);
             loginView.navigateToHome(username);
         }
     }

@@ -54,7 +54,7 @@ public class HangmanActivity extends AppCompatActivity {
 
         // set language
         LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage());
-        language = text.getTextsetter();
+        language = text.getTextSetter();
         setLanguage();
 
     }

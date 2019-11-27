@@ -50,7 +50,7 @@ public class PictureGameActivity extends AppCompatActivity {
 
         // set language
         LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage());
-        language = text.getTextsetter();
+        language = text.getTextSetter();
         setLanguage();
 
         // set theme

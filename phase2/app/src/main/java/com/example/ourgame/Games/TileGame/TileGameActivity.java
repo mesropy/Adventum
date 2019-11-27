@@ -87,7 +87,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         screenLoader = new ScreenLoader(this);
 
         LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage());
-        language = text.getTextsetter();
+        language = text.getTextSetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
         ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getTheme());

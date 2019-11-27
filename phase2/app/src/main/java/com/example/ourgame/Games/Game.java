@@ -13,7 +13,7 @@ public abstract class Game {
 
     protected Game(String gameName, WriteData data) {
         this.data = data;
-        this.username = data.getUser();
+        this.username = data.getCurrentUser();
         this.gameName = gameName;
         this.pointsEarned = 0;
         this.playTime = 0;
@@ -42,22 +42,22 @@ public abstract class Game {
      */
     public void updateStatistics() {
         if (canUpdateRanking()) {
-            data.increaseRanking(username);
+            data.increaseRanking();
         }
-        data.addLastGame(username, gameName);
-        data.addPlayTime(username, playTime);
-        data.addPoints(username, pointsEarned);
+        data.addLastGame(gameName);
+        data.addPlayTime(playTime);
+        data.addPoints(pointsEarned);
     }
 
     public abstract boolean canUpdateRanking();
 
 
     public String getLanguage() {
-        return data.getLanguage(username);
+        return data.getLanguage();
     }
 
     public String getTheme() {
-        return data.getThemeData(username);
+        return data.getThemeData();
     }
 
 }

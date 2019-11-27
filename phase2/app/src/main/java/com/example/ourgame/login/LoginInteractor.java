@@ -58,9 +58,9 @@ public class LoginInteractor {
                     listener.onUsernameEmpty();
                 } else if (TextUtils.isEmpty(password)) {
                     listener.onPasswordEmpty();
-                } else if (!data.checkUser(username)) {
+                } else if (!data.checkUser()) {
                     listener.onLoginError();
-                } else if (!data.getPassword(username).equals(password)) {
+                } else if (!data.getPassword().equals(password)) {
                     listener.onLoginError();
                 } else {
                     listener.onSuccess(username);

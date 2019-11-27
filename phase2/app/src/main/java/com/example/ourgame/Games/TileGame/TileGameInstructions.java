@@ -34,9 +34,8 @@ public class TileGameInstructions extends AppCompatActivity {
         Button start = findViewById(R.id.start);
 
         DataWriter dataWriter = new DataWriter(this);
-        String user = dataWriter.getUser();
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
-        Language language = text.getTextsetter();
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage());
+        Language language = text.getTextSetter();
         title.setText(language.getTileTitle());
         title2.setText(language.instruction());
         start.setText(language.start());
@@ -45,7 +44,7 @@ public class TileGameInstructions extends AppCompatActivity {
         intro3.setText(language.getTileIntroduction3());
 
         ConstraintLayout constraintLayout = findViewById(R.id.tileIntroLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
     }

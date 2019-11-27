@@ -13,10 +13,10 @@ import com.example.ourgame.Games.HangmanGame.HangmanActivity;
 import com.example.ourgame.Games.PictureGame.PictureInstructions;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
-import com.example.ourgame.Languages.LanguageTextSetter;
-import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Games.TileGame.TileGameInstructions;
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
 
@@ -25,7 +25,6 @@ import com.example.ourgame.Themes.ThemeBuilder;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public String user;
     private DataWriter data;
     private ScreenLoader screenLoader;
 
@@ -53,18 +52,18 @@ public class MainActivity extends AppCompatActivity {
         settingsButton = findViewById(R.id.settingsButton);
 
         data = new DataWriter(this);
-        user = data.getUser();
         setLanguage();
 
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.mainActivityLayout());
     }
 
     private void setLanguage() {
-        String language = data.getLanguage(user);
+        String user = data.getCurrentUser();
+        String language = data.getLanguage();
         LanguageTextSetter text = new LanguageTextSetter(language);
-        Language textsetter = text.getTextsetter();
+        Language textsetter = text.getTextSetter();
 
         String welcomeMessage;
         if (language.equals("english")) {

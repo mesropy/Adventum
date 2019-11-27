@@ -17,7 +17,8 @@ import com.example.ourgame.Themes.ThemeBuilder;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private String user;
+    // TODO: display user's character and username
+
     private DataWriter data;
     private ScreenLoader screenLoader;
     private ImageView character;
@@ -32,17 +33,18 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        // TODO: divide this method into helper methods
+
         languageRadioGroup = findViewById(R.id.languageRadioGroup);
         englishButton = findViewById(R.id.englishButton);
         frenchButton = findViewById(R.id.frenchButton);
         character = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
-        user = data.getUser();
         screenLoader = new ScreenLoader(this);
 
         ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.SettingsActivityLayout());
 
@@ -54,26 +56,26 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         winter.setOnClickListener(this);
         summer.setOnClickListener(this);
 
-        if (data.getCharacterData(user).equals("boy")){
+        if (data.getCharacterData().equals("boy")){
             character.setImageResource(R.drawable.kid);
-        }else if (data.getCharacterData(user).equals("girl")){
+        }else if (data.getCharacterData().equals("girl")){
             character.setImageResource(R.drawable.girl);
-        }else if (data.getCharacterData(user).equals("female")){
+        }else if (data.getCharacterData().equals("female")){
             character.setImageResource(R.drawable.female);
         }else {
             character.setImageResource(R.drawable.male);
         }
 
-        if (data.getLanguage(user).equals("french")) {
+        if (data.getLanguage().equals("french")) {
             frenchButton.setChecked(true);
-        } else if (data.getLanguage(user).equals("english")) {
+        } else if (data.getLanguage().equals("english")) {
             englishButton.setChecked(true);
         }
 
-        if (data.getThemeData(user).equals("autumn")) {
+        if (data.getThemeData().equals("autumn")) {
             winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
             summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-        } else if (data.getThemeData(user).equals("winter")) {
+        } else if (data.getThemeData().equals("winter")) {
             autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
             summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
         } else {
@@ -84,25 +86,27 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     // go to choose character page, then return to settings
     public void onChooseCharacterPressed(View view) {
-        switch (data.getCharacterData(user)){
+        switch (data.getCharacterData()){
             case "boy":
                 character.setImageResource(R.drawable.girl);
-                data.setCharacterData(user, "girl");
+                data.setCharacterData("girl");
                 break;
             case "girl":
                 character.setImageResource(R.drawable.male);
-                data.setCharacterData(user, "male");
+                data.setCharacterData("male");
                 break;
             case "male":
                 character.setImageResource(R.drawable.female);
-                data.setCharacterData(user, "female");
+                data.setCharacterData("female");
                 break;
             case "female":
                 character.setImageResource(R.drawable.kid);
-                data.setCharacterData(user, "boy");
+                data.setCharacterData("boy");
                 break;
         }
     }
+
+    // TODO: remove duplicate code in cases
 
     @Override
     public void onClick(View view) {
@@ -111,19 +115,19 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 autumn.clearColorFilter();
                 winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
                 summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData(user, "autumn");
+                data.setThemeData("autumn");
                 break;
             case R.id.winterButton:
                 winter.clearColorFilter();
                 autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
                 summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData(user, "winter");
+                data.setThemeData("winter");
                 break;
             case R.id.summerButton:
                 summer.clearColorFilter();
                 winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
                 autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData(user, "summer");
+                data.setThemeData("summer");
                 break;
 
         }
@@ -135,9 +139,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         // use this to save selected language
         int checkedLanguageId = languageRadioGroup.getCheckedRadioButtonId();
         if (checkedLanguageId == R.id.englishButton) {
-            data.setLanguage(user, "english");
+            data.setLanguage("english");
         } else if (checkedLanguageId == R.id.frenchButton) {
-            data.setLanguage(user, "french");
+            data.setLanguage("french");
         }
 
         screenLoader.loadMainMenu();

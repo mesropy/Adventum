@@ -6,45 +6,45 @@ public interface WriteData {
     void addUser(String username, String password);
 
     // Return the password belonging to the given username
-    String getPassword(String username);
+    String getPassword();
 
     // Return the points of the given user
-    int getPoints(String username);
+    int getPoints();
 
-    void setUser(String username);
+    void setCurrentUser(String username);
 
-    String getUser();
+    String getCurrentUser();
 
     // Return the total playing time across all 3 games for this user.
-    int getPlayTime(String username);
+    int getPlayTime();
 
     // Return the rank of the given user
-    String getRanking(String username);
+    String getRanking();
 
     // Give this user some points
-    void addPoints(String username, int points);
+    void addPoints(int points);
 
     // Add on to this user's total time
-    void addPlayTime(String username, int playTime);
+    void addPlayTime(int playTime);
 
-    void increaseRanking(String username);
+    void increaseRanking();
 
-    void addLastGame(String username, String lastgame);
+    void addLastGame(String lastGame);
 
-    String getLastGame(String username);
+    String getLastGame();
 
-    String getLanguage(String username);
+    String getLanguage();
 
-    void setLanguage(String username, String language);
+    void setLanguage(String language);
 
     // Check if "username" exists
-    boolean checkUser(String username);
+    boolean checkUser();
 
-    String getThemeData(String username);
+    String getThemeData();
 
-    String getCharacterData(String username);
-    void setThemeData(String username, String theme);
-    void setCharacterData(String username, String character);
+    String getCharacterData();
+    void setThemeData(String theme);
+    void setCharacterData(String character);
 
 
 }
