@@ -1,6 +1,6 @@
-package com.example.ourgame.LanguageSetters;
+package com.example.ourgame.Languages;
 
-public class EnglishTextSetter implements TextSetter {
+public class English implements Language {
 
     public String getMainPlayButton() {
         return "Play";
