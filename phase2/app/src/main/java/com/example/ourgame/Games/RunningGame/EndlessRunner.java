@@ -1,6 +1,7 @@
 package com.example.ourgame.Games.RunningGame;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,7 +14,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     private EndlessRunnerGame game;
     private EndlessRunnerThread thread;
     private Paint paint;
+    private Context context;
 
     private Rect screen;
 
@@ -31,6 +35,8 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
+        this.context = context;
+
     }
 
     @Override
@@ -83,6 +89,13 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
     public Rect getScreen() {
         return screen;
+    }
+
+    @Override
+    public void nextGame() {
+        final Intent intent = new Intent(context, StatisticsActivity.class);
+        intent.putExtra("next activity", context.getString(R.string.runner_game));
+        context.startActivity(intent);
     }
 
     @Override

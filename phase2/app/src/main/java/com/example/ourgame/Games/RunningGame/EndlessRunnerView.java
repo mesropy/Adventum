@@ -10,6 +10,8 @@ public interface EndlessRunnerView {
 
     Rect getScreen();
 
+    void nextGame();
+
     void loseGame(int score);
 
     EndlessRunnerThread getThread();

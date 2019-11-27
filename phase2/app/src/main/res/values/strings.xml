@@ -34,6 +34,7 @@
     <string name="reaction_game">Reaction</string>
     <string name="tile_game">Tile</string>
     <string name="picture_game">Picture</string>
+    <string name="runner_game">Runner</string>
 
     <!-- Error messages -->
     <string name="password_empty">Password cannot be empty</string>
