@@ -12,12 +12,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ourgame.LanguageTexts.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Statistics.StatisticsActivity;
+import com.example.ourgame.LanguageTexts.TextSetter;
 
 public class PictureGameActivity extends AppCompatActivity {
 
     private PictureGame pictureGame;
+    private TextSetter textSetter;
 
     // Views (UI elements) to keep track of
     private ImageView imageToGuess;
@@ -26,6 +29,8 @@ public class PictureGameActivity extends AppCompatActivity {
     private Button continueButton;
     private Button enterButton;
     private TextView numAttemptsText;
+    private TextView title;
+    private TextView numattempts;
 
     private long startTime = 0;
 
@@ -35,6 +40,9 @@ public class PictureGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picture_game);
 
         pictureGame = new PictureGame(this);
+        String user = pictureGame.getData().getUser();
+        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getData().getLanguage(user));
+        textSetter = text.getTextsetter();
 
         imageToGuess = findViewById(R.id.imageToGuess);
         guessEditText = findViewById(R.id.guessEditText);
@@ -42,9 +50,15 @@ public class PictureGameActivity extends AppCompatActivity {
         continueButton = findViewById(R.id.continueButton);
         enterButton = findViewById(R.id.enterButton);
         numAttemptsText = findViewById(R.id.numAttemptsText);
+        title = findViewById(R.id.titleText5);
+        numattempts = findViewById(R.id.numAttemptsLabel);
 
+        title.setText(textSetter.getPictureTitle());
+        numattempts.setText(textSetter.getPictureNumAttempts());
         imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
         continueButton.setVisibility(View.GONE);
+        continueButton.setText(textSetter.getContinue());
+        enterButton.setText(textSetter.getEnter());
         numAttemptsText.setText(pictureGame.getNumAttemptsText());
     }
 
@@ -70,7 +84,7 @@ public class PictureGameActivity extends AppCompatActivity {
     }
 
     private void onCorrectGuess() {
-        guessResultText.setText(pictureGame.getCorrectGuessMessage());
+        guessResultText.setText(textSetter.getTileResultTextCorrect());
         // can later highlight animal in image (not doing this now)
         pictureGame.addPoints();
 
@@ -82,7 +96,7 @@ public class PictureGameActivity extends AppCompatActivity {
     }
 
     private void onIncorrectGuess() {
-        guessResultText.setText(pictureGame.getIncorrectGuessMessage());
+        guessResultText.setText(textSetter.getTileResultTextInCorrect());
 
         // if the guess editText is edited, remove the incorrectGuessMessage
         guessEditText.addTextChangedListener(new TextWatcher() {
@@ -139,7 +153,7 @@ public class PictureGameActivity extends AppCompatActivity {
     }
 
     private void displayUsedAllAttempts(){
-        guessResultText.setText(pictureGame.getNoMoreAttemptsMessage());
+        guessResultText.setText(textSetter.getPictureNoMoreAttempts());
         // Show next level button
         continueButton.setVisibility(View.VISIBLE);
         // make guess edit text not editable, and remove enter button

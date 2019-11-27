@@ -97,7 +97,7 @@
         android:id="@+id/titleText5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Picture Game"
         android:textColor="#636363"

@@ -49,8 +49,8 @@
 
     <RadioGroup
         android:id="@+id/languageRadioGroup"
-        android:layout_width="127dp"
-        android:layout_height="112dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.197"
@@ -130,47 +130,46 @@
 
     <ImageButton
         android:id="@+id/autumnButton"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
+        android:layout_width="233dp"
+        android:layout_height="68dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="false"
         android:background="#00FFFFFF"
         android:cropToPadding="false"
         android:onClick="onThemeSelected"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/themeText"
         app:srcCompat="@drawable/autumn_option_temp" />
 
     <ImageButton
         android:id="@+id/winterButton"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="233dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="false"
         android:background="#00FFFFFF"
         android:cropToPadding="false"
         android:onClick="onThemeSelected"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/autumnButton"
         app:srcCompat="@drawable/autumn_option_temp" />
 
     <ImageButton
         android:id="@+id/summerButton"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="233dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="false"
         android:background="#00FFFFFF"
         android:cropToPadding="false"
         android:onClick="onThemeSelected"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winterButton"
         app:srcCompat="@drawable/autumn_option_temp" />
 

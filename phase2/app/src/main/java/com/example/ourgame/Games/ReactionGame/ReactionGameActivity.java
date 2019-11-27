@@ -9,10 +9,10 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.ourgame.MainActivity;
+import com.example.ourgame.LanguageTexts.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
+import com.example.ourgame.LanguageTexts.TextSetter;
 
 import java.util.Random;
 
@@ -22,6 +22,7 @@ import java.util.Random;
 public class ReactionGameActivity extends AppCompatActivity  {
 
     private ReactionGame game;
+    private TextSetter textSetter;
 
     private ConstraintLayout currentLayout;
     private TextView message;
@@ -54,14 +55,11 @@ public class ReactionGameActivity extends AppCompatActivity  {
         tapToConti = findViewById(R.id.continueText);
 
         game = new ReactionGame(this);
-
-        Intent intent = getIntent();
-        game.setUser(intent.getStringExtra("username"));
-
-        if (game.getData().getLanguage(game.getUser()).equals("french")){
-            title.setText(R.string.reaction_game_french);
-            tapToConti.setText(R.string.press_any_key_french);
-        }
+        String user = game.getData().getUser();
+        LanguageTextSetter text = new LanguageTextSetter(game.getData().getLanguage(user));
+        textSetter = text.getTextsetter();
+        title.setText(textSetter.getReactionTitle());
+        tapToConti.setText(textSetter.getReactionContinueText());
 
         instruction();
     }
@@ -120,12 +118,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void waiting() {
         game.setState(State.WAITING);
-        if (game.getData().getLanguage(game.getUser()).equals("english")){
-            message.setText(R.string.wait);
-        }else {
-            message.setText(R.string.wait_french);
-        }
-//        message.setText(R.string.wait);
+        message.setText(textSetter.getReactionMessageWait());
         currentLayout.setBackgroundResource(R.color.error_red);
         timerHandler.postDelayed(timerRunnable, new Random().nextInt(3000) + 1000);
     }
@@ -135,12 +128,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void instruction() {
         game.setState(State.INSTRUCTION);
-        if (game.getData().getLanguage(game.getUser()).equals("english")){
-            message.setText(R.string.reaction_intro);
-        }else {
-            message.setText(R.string.reaction_intro_french);
-        }
-//        message.setText(R.string.reaction_intro);
+        message.setText(textSetter.getReactionMessageInstruction());
     }
 
     /**
@@ -171,12 +159,8 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void go(){
         game.setState(State.GO);
-        if (game.getData().getLanguage(game.getUser()).equals("english")){
-            message.setText(R.string.go);
-        }else {
-            message.setText(R.string.go_french);
-        }
 
+        message.setText(textSetter.getReactionMessageGo());
         game.setStartTime(System.currentTimeMillis());
         currentLayout.setBackgroundResource(R.color.go_green);
     }
@@ -186,12 +170,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
      */
     private void tooSoon(){
         game.setState(State.EARLY);
-        if (game.getData().getLanguage(game.getUser()).equals("english")){
-            message.setText(R.string.too_soon);
-        }else {
-            message.setText(R.string.too_soon_french);
-        }
-//        message.setText(R.string.too_soon);
+        message.setText(textSetter.getReactionMessageTooSoon());
         currentLayout.setBackgroundResource(R.color.menu_blue);
     }
 }

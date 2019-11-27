@@ -116,12 +116,10 @@ public class Login extends AppCompatActivity implements LoginView {
     public void navigateToHome(String username) {
         if(customNeeded){
             Intent intent = new Intent(this, SettingsActivity.class);
-            intent.putExtra("username", username);
             startActivity(intent);
             finish();
         } else {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("username", username);
             startActivity(intent);
             finish();
         }

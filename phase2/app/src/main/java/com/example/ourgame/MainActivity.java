@@ -14,6 +14,8 @@ import com.example.ourgame.Games.HangmanGame.HangmanActivity;
 import com.example.ourgame.Games.PictureGame.PictureInstructions;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
+import com.example.ourgame.LanguageTexts.LanguageTextSetter;
+import com.example.ourgame.LanguageTexts.TextSetter;
 import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
 import com.example.ourgame.Games.TileGame.TileGameInstructions;
@@ -23,7 +25,7 @@ import com.example.ourgame.Games.TileGame.TileGameInstructions;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public static String user;
+    public String user;
     private DataWriter data;
 
     private TextView welcomeText;
@@ -43,35 +45,31 @@ public class MainActivity extends AppCompatActivity {
         leaderBoardButton = findViewById(R.id.leaderBoardButton);
         settingsButton = findViewById(R.id.settingsButton);
 
-        Intent intent = getIntent();
-        user = intent.getStringExtra("username");
         data = new DataWriter(this);
-        if (data.getUser().equals("Not found")){
-            data.setUser(user);
-        }
-
+        user = data.getUser();
+//        if (data.getUser().equals("Not found")){
+//            data.setUser(user);
+//        }
         setLanguage();
     }
 
     private void setLanguage() {
         String language = data.getLanguage(user);
+        LanguageTextSetter text = new LanguageTextSetter(language);
+        TextSetter textsetter = text.getTextsetter();
 
         String welcomeMessage;
         if (language.equals("english")) {
             welcomeMessage = "Welcome " + user + "!";
-            playButton.setText("Play");
-            statisticsButton.setText("Statistics");
-            leaderBoardButton.setText("LeaderBoard");
-            settingsButton.setText("Settings");
         } else if (language.equals("french")) {
             welcomeMessage = "Bienvenu " + user + "!";
-            playButton.setText("Jouer");
-            statisticsButton.setText("Statistiques");
-            leaderBoardButton.setText("Classement");
-            settingsButton.setText("Réglages");
         } else { // spanish
             welcomeMessage = "Welcome " + user + "!";
         }
+        playButton.setText(textsetter.getMainPlayButton());
+        statisticsButton.setText(textsetter.getMainStatistics());
+        leaderBoardButton.setText(textsetter.getMainLeaderBoard());
+        settingsButton.setText(textsetter.getMainSettings());
         welcomeText.setText(welcomeMessage);
     }
 
@@ -100,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
     public void playReactionGame(View view){
         data.addLastGame(user, "");
         Intent intent = new Intent(this, ReactionGameActivity.class);
-        intent.putExtra("username", user);
         startActivity(intent);
         finish();
     }
@@ -110,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void playTileGame(){
         Intent intent = new Intent(this, TileGameInstructions.class);
-        intent.putExtra("username", user);
         startActivity(intent);
         finish();
     }
@@ -129,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void playPictureGame(){
         Intent intent = new Intent(this, PictureInstructions.class);
-        intent.putExtra("username", user);
         startActivity(intent);
         finish();
     }

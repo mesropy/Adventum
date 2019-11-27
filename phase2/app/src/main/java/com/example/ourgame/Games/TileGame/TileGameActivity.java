@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ourgame.LanguageTexts.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Statistics.StatisticsActivity;
+import com.example.ourgame.LanguageTexts.TextSetter;
 
 import java.util.ArrayList;
 
@@ -21,8 +23,10 @@ import java.util.ArrayList;
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
 
     TileGame tileGame;
+    private TextSetter textSetter;
 
     private ArrayList<Integer> buttonsClicked = new ArrayList<>();
+    private TextView title;
     private TextView livesText;
     private TextView resultText;
     private long startTime = 0;
@@ -69,11 +73,19 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_game);
 
+        livesText = findViewById(R.id.livesText);
+        resultText = findViewById(R.id.resultText);
+        title = findViewById(R.id.titleText3);
+
         tileGame = new TileGame(this);
         tileGame.setInitTiles(tileButtonIds.length);
 
-        livesText = findViewById(R.id.livesText);
-        resultText = findViewById(R.id.resultText);
+        String user = tileGame.getData().getUser();
+        LanguageTextSetter text = new LanguageTextSetter(tileGame.getData().getLanguage(user));
+        textSetter = text.getTextsetter();
+
+        title.setText(textSetter.getTileTitle());
+        livesText.setText(textSetter.getTileLivesRemain());
 
         // initialize tileButtons
         tileButtons = new Button[tileButtonIds.length];
@@ -147,7 +159,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
                 restartRound();
             }
         } else {
-            resultText.setText(R.string.incorrect);
+            resultText.setText(textSetter.getTileResultTextInCorrect());
         }
     }
 
@@ -166,7 +178,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         if (tileGame.allRightTilesPressed()) {
             roundWon();
         } else {
-            resultText.setText(R.string.correct);
+            resultText.setText(textSetter.getTileResultTextCorrect());
         }
     }
 
@@ -176,8 +188,9 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void roundLost() {
         tileGame.loseLife();
-        livesText.setText(tileGame.getLivesRemainingText());
-        resultText.setText(tileGame.getLoseLifeText());
+        String s = textSetter.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
+        livesText.setText(s);
+        resultText.setText(textSetter.getTileResultTextLost());
         if (tileGame.getPoints() < 10) {
             displayPatternRed(tileButtons);
         }
@@ -191,13 +204,13 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * for them to memorize.
      */
     private void roundWon() {
-        if (tileGame.getPoints() <= 10) {
+        if (tileGame.getPoints() < 10) {
             displayPatternRed(tileButtons);
         }
         else{
             displayPatternRed(tileButtons2);
         }
-        resultText.setText(R.string.passed_round);
+        resultText.setText(textSetter.getTileResultTextWon());
         tileGame.addPoint();
         if (tileGame.getPoints() == 10) {
             tileGame.resetShowTime();

@@ -1,8 +1,10 @@
 package com.example.ourgame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -29,9 +31,9 @@ public class SettingsActivity extends AppCompatActivity {
         frenchButton = findViewById(R.id.frenchButton);
         spanishButton = findViewById(R.id.spanishButton);
 
-        Intent intent = getIntent();
-        user = intent.getStringExtra("username");
+
         data = new DataWriter(this);
+        user = data.getUser();
 
         /*
          TODO: select current language and theme, and show current character,
@@ -56,7 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
     // when a theme selected, keep track of it
     // remove grey tint of selected theme and make all other themes have grey tint
     public void onThemeSelected(View view) {
-
+        //TODO
     }
 
 
@@ -72,7 +74,6 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("username", user);
         startActivity(intent);
     }
 }

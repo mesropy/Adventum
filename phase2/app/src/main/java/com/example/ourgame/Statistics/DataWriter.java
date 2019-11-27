@@ -24,7 +24,8 @@ public class DataWriter implements WriteData {
     private SharedPreferences rankingData;
     private SharedPreferences lastGameData;
     private SharedPreferences languageData;
-    private  SharedPreferences currUserData;
+    private SharedPreferences themeData;
+    private SharedPreferences currUserData;
 
     private Context context;
 
@@ -38,6 +39,7 @@ public class DataWriter implements WriteData {
         lastGameData = context.getSharedPreferences(context.getString(R.string.preference_file_lastgame), Context.MODE_PRIVATE);
         languageData = context.getSharedPreferences(context.getString(R.string.preference_file_language), Context.MODE_PRIVATE);
         currUserData = context.getSharedPreferences(context.getString(R.string.preference_file_user), Context.MODE_PRIVATE);
+        themeData = context.getSharedPreferences(context.getString(R.string.preference_file_theme), Context.MODE_PRIVATE);
     }
 
     /**
@@ -74,6 +76,16 @@ public class DataWriter implements WriteData {
 
         editor = languageData.edit();
         editor.putString(username, "english");
+        editor.apply();
+
+        editor = themeData.edit();
+        editor.putString(username, "autumn");
+        editor.apply();
+    }
+
+    public void setThemeData(String username, String theme) {
+        SharedPreferences.Editor editor = themeData.edit();
+        editor.putString(username, theme);
         editor.apply();
     }
 

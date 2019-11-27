@@ -76,7 +76,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
             fifthText.setText(getString(R.string.rank_text, "5. ", userNames.get(4), points.get(4)));
         }
 
-        personal.setText(getString(R.string.personal_rank, userNames.indexOf(MainActivity.user) + 1));
+        personal.setText(getString(R.string.personal_rank, userNames.indexOf(dataWriter.getUser()) + 1));
 
     }
 }

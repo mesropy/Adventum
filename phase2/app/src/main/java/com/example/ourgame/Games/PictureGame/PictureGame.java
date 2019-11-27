@@ -49,17 +49,17 @@ class PictureGame extends Game {
     return numAttempts + " / " + numAttemptsAllowed;
   }
 
-  String getCorrectGuessMessage() {
-    return correctGuessMessage;
-  }
-
-  String getIncorrectGuessMessage() {
-    return incorrectGuessMessage;
-  }
-
-  String getNoMoreAttemptsMessage() {
-    return noMoreAttemptsMessage;
-  }
+//  String getCorrectGuessMessage() {
+//    return correctGuessMessage;
+//  }
+//
+//  String getIncorrectGuessMessage() {
+//    return incorrectGuessMessage;
+//  }
+//
+//  String getNoMoreAttemptsMessage() {
+//    return noMoreAttemptsMessage;
+//  }
 
   int getCurrentImageResource() {
     return imagesToGuess[currentLevel];

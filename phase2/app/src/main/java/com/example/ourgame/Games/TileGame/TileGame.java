@@ -172,12 +172,7 @@ class TileGame extends Game {
         return patternEndShowTime;
     }
 
-    String getLoseLifeText() {
-        return "You lost a life!";
+    public int getCurrentLives() {
+        return currentLives;
     }
-
-    String getLivesRemainingText() {
-        return "Lives Remaining: " + currentLives + "/3";
-    }
-
 }

@@ -23,23 +23,14 @@
         tools:ignore="UnknownIdInLayout" />
 
     <TextView
-        android:id="@+id/instructions"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="220dp"
-        android:text="@string/if_you_pick_a_correct_tile_it_will_turn_green"
+        android:id="@+id/instructions2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:textAlignment="viewStart"
-        app:layout_constraintBaseline_toBaselineOf="@+id/instructions4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/instructions4"
-        android:layout_width="174dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/if_you_pick_an_incorrect_tile_it_will_turn_red"
-        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -51,7 +42,7 @@
         android:layout_marginTop="16dp"
         android:contentDescription="@string/incorrect_tile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions4"
+        app:layout_constraintTop_toBottomOf="@+id/instructions2"
         app:srcCompat="@drawable/flipped_wrong" />
 
     <ImageView
@@ -60,129 +51,68 @@
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="120dp"
+        android:contentDescription="@string/flipped_correct_tile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions4"
-        app:srcCompat="@drawable/flipped_right"
-        android:contentDescription="@string/flipped_correct_tile" />
+        app:layout_constraintTop_toBottomOf="@+id/instructions2"
+        app:srcCompat="@drawable/flipped_right" />
 
     <TextView
-        android:id="@+id/instructions7"
-        android:layout_width="380dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="108dp"
-        android:text="@string/to_continue_to_the_next_round_click_all_the_correct_tiles_while"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions4" />
-
-    <TextView
-        android:id="@+id/instructions9"
-        android:layout_width="278dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/if_you_miss_2_tiles_on_a_round_you_lose_a_life"
+        android:id="@+id/instructions3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions7" />
-
-    <TextView
-        android:id="@+id/instructions8"
-        android:layout_width="191dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="12dp"
-        android:text="@string/avoiding_the_incorrect_ones"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions7" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
         android:layout_marginTop="12dp"
         android:text="@string/instructions"
         android:textAlignment="center"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText2" />
 
     <TextView
         android:id="@+id/instructions1"
-        android:layout_width="369dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="@string/every_round_a_set_of_tiles_will_appear_green_before_turning_blue"
+        android:layout_marginEnd="32dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <TextView
-        android:id="@+id/instructions2"
-        android:layout_width="377dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/your_job_is_to_memorize_the_locations_of_the_green_tiles_and_tap"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions1" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/flipped_correct_tile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions3"
-        app:srcCompat="@drawable/flipped_right"
-        android:contentDescription="@string/flipped_correct_tile" />
+        app:layout_constraintTop_toBottomOf="@+id/instructions1"
+        app:srcCompat="@drawable/flipped_right" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="120dp"
+        android:contentDescription="@string/unflipped_tile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions3"
-        app:srcCompat="@drawable/unflipped"
-        android:contentDescription="@string/unflipped_tile" />
-
-    <TextView
-        android:id="@+id/instructions3"
-        android:layout_width="304dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/the_green_tiles_while_avoiding_the_original_blue_tiles"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions2" />
-
-    <TextView
-        android:id="@+id/instructions10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/losing_three_lives_will_end_the_game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions9" />
-
-    <TextView
-        android:id="@+id/instructions11"
-        android:layout_width="363dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/tap_as_many_green_tiles_and_continue_for_as_long_as_possible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions10" />
+        app:layout_constraintTop_toBottomOf="@+id/instructions1"
+        app:srcCompat="@drawable/unflipped" />
 
     <Button
         android:id="@+id/start"
@@ -191,11 +121,9 @@
         android:layout_marginTop="16dp"
         android:onClick="playTileGameView"
         android:text="@string/start"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions11"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintTop_toBottomOf="@+id/instructions3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
