@@ -144,5 +144,8 @@ public class EnglishTextSetter implements TextSetter {
     public String statRank(){
         return "Ranking: ";
     }
+    public String score(){
+        return "Score: ";
+    }
 
 }

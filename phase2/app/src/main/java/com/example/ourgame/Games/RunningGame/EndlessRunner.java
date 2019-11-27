@@ -14,6 +14,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.ourgame.LanguageSetters.LanguageTextSetter;
+import com.example.ourgame.LanguageSetters.TextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.Statistics.DataWriter;
@@ -24,6 +26,7 @@ import java.util.List;
 
 public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback, EndlessRunnerView {
     private SurfaceHolder surfaceHolder;
+    private TextSetter textSetter;
     private EndlessRunnerGame game;
     private EndlessRunnerThread thread;
     private Paint paint;
@@ -45,6 +48,10 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         screen = new Rect(0, 0, getWidth(), getHeight());
 
         game = new EndlessRunnerGame(this);
+
+        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
+        textSetter = text.getTextsetter();
+
         paint = new Paint();
         thread = new EndlessRunnerThread(game);
 
@@ -104,10 +111,10 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         if (canvas != null){
             paint.setTextSize(50);
             paint.setColor(Color.RED);
-            canvas.drawText("Game Over", getWidth()/2-85, getHeight()/2, paint);
+            canvas.drawText(textSetter.getPictureNoMoreAttempts(), getWidth()/2-85, getHeight()/2, paint);
             paint.setTextSize(40);
             paint.setColor(Color.BLUE);
-            String scoreString = "Score: " + score;
+            String scoreString = textSetter.score() + score;
             canvas.drawText(scoreString, getWidth()/2-85, getHeight()/2+50, paint);
         }
         surfaceHolder.unlockCanvasAndPost(canvas);
@@ -117,4 +124,5 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     public EndlessRunnerThread getThread() {
         return thread;
     }
+
 }

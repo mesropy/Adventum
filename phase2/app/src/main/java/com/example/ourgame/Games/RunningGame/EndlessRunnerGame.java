@@ -2,6 +2,7 @@ package com.example.ourgame.Games.RunningGame;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.view.SurfaceView;
 
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.Statistics.DataWriter;
@@ -30,6 +31,8 @@ class EndlessRunnerGame extends Game {
 
     EndlessRunnerGame(EndlessRunnerView view) {
         super("Endless Runner", new DataWriter((Context) view));
+//        super("Endless Runner", new DataWriter(((EndlessRunner)view).getContext()));
+        
         this.view = view;
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
         gameState = State.RUNNING;

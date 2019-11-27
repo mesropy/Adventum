@@ -148,4 +148,8 @@ public class FrenchTextSetter implements TextSetter {
     public String statRank(){
         return "Classement: ";
     }
+
+    public String score(){
+        return "Le point: ";
+    }
 }

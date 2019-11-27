@@ -34,4 +34,5 @@ public interface TextSetter {
     String statPoints();
     String statPlaytime();
     String statRank();
+    String score();
 }
