@@ -42,28 +42,26 @@ public class LeaderBoardActivity extends AppCompatActivity {
     }
 
     private void displayLeaderBoard() {
-        Map<String, ?> pointsData = dataWriter.getPointsData().getAll();
+        Map<String, Integer> pointsData = dataWriter.getPointsData();
 
         List<String> userNames = new ArrayList<>();
         List<Integer> points = new ArrayList<>();
 
-        List<Map.Entry<String, ?>> entries = new ArrayList<Map.Entry<String, ?>>(pointsData.entrySet());
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(pointsData.entrySet());
 
         //sort the map containing user names and points by point values
         Collections.sort(
                 entries
-                , new Comparator<Map.Entry<String, ?>>() {
-                    public int compare(Map.Entry<String, ?> a, Map.Entry<String, ?> b) {
-                        Object aValue = a.getValue();
-                        Object bValue = b.getValue();
-                        return Integer.compare((Integer) bValue, (Integer) aValue);
+                , new Comparator<Map.Entry<String, Integer>>() {
+                    public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) {
+                        return Integer.compare(b.getValue(), a.getValue());
                     }
                 }
         );
         //after sorting map, place user names and values into arraylists
-        for (Map.Entry<String, ?> e : entries) {
+        for (Map.Entry<String, Integer> e : entries) {
             userNames.add(e.getKey());
-            points.add((Integer) e.getValue());
+            points.add(e.getValue());
         }
 
         if (userNames.size() >= 1) {
