@@ -6,6 +6,7 @@ import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -18,7 +19,6 @@ class TileGame extends Game {
     private int livesPerRound = 2;
 
     private int correctPressed;
-
     private int numRightTiles;
     // whether or not the tile is green / "right", goes in order
     // from left to right, then top to bottom
@@ -35,6 +35,9 @@ class TileGame extends Game {
     private int patternEndShowTime;
 
     private int tilePoints; // different from the points earned by the player
+
+    //the list of tile buttons for this TileGame
+    private ArrayList<Tile> tiles = new ArrayList<>();
 
     TileGame(Context context) {
         super("Tile", new DataWriter(context));

@@ -145,4 +145,14 @@ public class EnglishTextSetter implements TextSetter {
         return "Ranking: ";
     }
 
+    @Override
+    public String leaderboardUser() {
+        return "User: ";
+    }
+
+    @Override
+    public String leaderboardYourRank() {
+        return "Your Rank: ";
+    }
+
 }

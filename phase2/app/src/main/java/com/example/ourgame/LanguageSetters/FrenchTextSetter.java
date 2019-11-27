@@ -148,4 +148,14 @@ public class FrenchTextSetter implements TextSetter {
     public String statRank(){
         return "Classement: ";
     }
+
+    @Override
+    public String leaderboardUser() {
+        return "Utilisateur: ";
+    }
+
+    @Override
+    public String leaderboardYourRank() {
+        return "Ton rang: ";
+    }
 }
