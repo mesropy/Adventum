@@ -21,11 +21,44 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/rankingText"
+        android:layout_width="115dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/renner"
+        android:text="Ranking:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playtimeText" />
+
+    <TextView
+        android:id="@+id/playtimeText"
+        android:layout_width="129dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/renner"
+        android:text="Total Playtime:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointsText" />
+
+    <TextView
+        android:id="@+id/rankingValue"
+        android:layout_width="115dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="64dp"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rankingText"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
         android:id="@+id/pointsText"
         android:layout_width="115dp"
         android:layout_height="25dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="84dp"
         android:fontFamily="@font/renner"
         android:text="Total Points:"
         android:textSize="18sp"
@@ -42,15 +75,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/rankingValue"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="64dp"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/rankingText"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
         android:id="@+id/playtimeValue"
         android:layout_width="115dp"
         android:layout_height="25dp"
@@ -59,54 +83,28 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/playtimeText"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/playtimeText"
-        android:layout_width="129dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="28dp"
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="84dp"
         android:fontFamily="@font/renner"
-        android:text="Total Playtime:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pointsText" />
-
-    <TextView
-        android:id="@+id/rankingText"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/renner"
-        android:text="Ranking:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playtimeText" />
+        android:onClick="onContinuePressed"
+        android:text="@string/continue_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rankingText" />
 
     <Button
         android:id="@+id/mainMenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="90dp"
         android:fontFamily="@font/renner"
         android:onClick="onMainMenuPressed"
         android:text="@string/main_menu_button"
         app:layout_constraintBaseline_toBaselineOf="@+id/continueButton"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/continueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="96dp"
-        android:fontFamily="@font/renner"
-        android:onClick="onContinuePressed"
-        android:text="@string/continue_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rankingText"
-        app:layout_constraintVertical_bias="0.012" />
 
     <Button
         android:id="@+id/backButton"
@@ -118,9 +116,9 @@
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/continueButton"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

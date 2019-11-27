@@ -1,11 +1,19 @@
 package com.example.ourgame.Games.HangmanGame;
 
-import com.example.ourgame.R;
+import android.content.Context;
 
+import com.example.ourgame.Games.Game;
+import com.example.ourgame.R;
+import com.example.ourgame.Statistics.DataWriter;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class Hangman {
+class Hangman extends Game {
 
     // ids of images for each number of incorrect guesses
     // TODO: make these images match the theme
@@ -27,20 +35,36 @@ class Hangman {
     private boolean gameLost;
     private boolean gameWon;
 
+    private Context context;
 
-    Hangman(List<String> possibleWords) {
+    Hangman(Context context) throws IOException {
+        super("Hangman", new DataWriter(context));
 
+        this.context = context;
         this.incorrectGuesses = 0;
         this.incorrectGuessesAllowed = incorrectGuessImages.length - 1;
         this.guessedLetters = new ArrayList<>();
 
-        this.possibleWords = possibleWords;
+        possibleWords = getPossibleWords();
         this.wordToGuess = getANewWord();
         updateWordBlanks();
 
         this.gameLost = false;
         this.gameWon = false;
 
+    }
+
+    // returns possible words to guess in an array list, words from file
+    private List<String> getPossibleWords() throws IOException {
+        List<String> possibleWords = new ArrayList<>();
+        InputStream inputStream = context.getResources().openRawResource(R.raw.hangman_words);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String nextLine = bufferedReader.readLine();
+        while (nextLine != null) {
+            possibleWords.add(nextLine);
+            nextLine = bufferedReader.readLine();
+        }
+        return possibleWords;
     }
 
 
@@ -71,12 +95,12 @@ class Hangman {
         this.wordBlanks = blanksStringBuilder.toString().trim();
     }
 
-    int getImageId() {
-        return incorrectGuessImages[incorrectGuesses];
-    }
-
     String getWordBlanks() {
         return wordBlanks;
+    }
+
+    int getImageId() {
+        return incorrectGuessImages[incorrectGuesses];
     }
 
     boolean correctGuess(String guess) {
@@ -87,8 +111,8 @@ class Hangman {
     // guess - letter guessed
     // update hangman based on the incorrect guess
     void updateGuessIncorrect(String guess) {
+        guessedLetters.add(guess);
         incorrectGuesses++;
-
         updateGameLost();
     }
 
@@ -97,7 +121,6 @@ class Hangman {
     void updateGuessCorrect(String guess) {
         guessedLetters.add(guess);
         updateWordBlanks();
-
         updateGameWon();
     }
 
@@ -124,4 +147,10 @@ class Hangman {
         return gameLost || gameWon;
     }
 
+
+    @Override
+    public boolean canUpdateRanking() {
+        // TODO: implement this
+        return false;
+    }
 }

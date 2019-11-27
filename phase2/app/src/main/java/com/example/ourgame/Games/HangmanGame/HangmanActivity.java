@@ -1,8 +1,5 @@
 package com.example.ourgame.Games.HangmanGame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
@@ -10,16 +7,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.Statistics.StatisticsActivity;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HangmanActivity extends AppCompatActivity {
 
@@ -37,7 +30,7 @@ public class HangmanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hangman);
 
         try {
-            hangman = new Hangman(getPossibleWords());
+            hangman = new Hangman(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,24 +46,11 @@ public class HangmanActivity extends AppCompatActivity {
         resultImage.setImageResource(hangman.getImageId());
 
         continueButton = findViewById(R.id.continueButton);
-        continueButton.setEnabled(false);
+        continueButton.setVisibility(View.GONE);
 
     }
 
-    // returns possible words to guess in an array list, words from file
-    private List<String> getPossibleWords() throws IOException {
-        List<String> possibleWords = new ArrayList<>();
-        InputStream inputStream = this.getResources().openRawResource(R.raw.hangman_words);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        String nextLine = bufferedReader.readLine();
-        while (nextLine != null) {
-            possibleWords.add(nextLine);
-            nextLine = bufferedReader.readLine();
-        }
-        return possibleWords;
-    }
-
-    protected void onLetterPressed(View view){
+    public void onLetterPressed(View view) {
         // when a letter is pressed, only do something if the game isn't over
         if(!hangman.isGameOver()) {
             String letter = ((Button) view).getText().toString().trim().toLowerCase();
@@ -93,17 +73,28 @@ public class HangmanActivity extends AppCompatActivity {
         hangman.updateGuessCorrect(letter);
         wordBlanks.setText(hangman.getWordBlanks());
         if (hangman.isGameWon()){
-            resultText.setText("You win!");
+            onGameWon();
         }
+    }
+
+    private void onGameWon() {
+        resultText.setText(R.string.win_result);
+        hangman.updateStatistics();
+        continueButton.setVisibility(View.VISIBLE);
     }
 
     private void onIncorrectGuess(String letter) {
         hangman.updateGuessIncorrect(letter);
         resultImage.setImageResource(hangman.getImageId());
         if (hangman.isGameLost()){
-            resultText.setText(R.string.no_more_attempts);
-            continueButton.setEnabled(true);
+            onGameLost();
         }
+    }
+
+    private void onGameLost() {
+        resultText.setText(R.string.no_more_attempts);
+        hangman.updateStatistics();
+        continueButton.setVisibility(View.VISIBLE);
     }
 
     public void OnContinueButtonPressed(View view) {
