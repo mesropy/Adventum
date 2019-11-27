@@ -121,7 +121,6 @@ class EndlessRunnerGame extends Game {
     }
 
     public boolean canUpdateRanking() {
-        // TODO: implement this
-        return false;
+        return score >= 50;
     }
 }

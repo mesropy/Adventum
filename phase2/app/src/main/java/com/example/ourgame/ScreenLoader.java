@@ -14,7 +14,7 @@ import com.example.ourgame.Statistics.StatisticsActivity;
 
 public class ScreenLoader {
 
-    Context context;
+    private Context context;
 
     public ScreenLoader(Context context) {
         this.context = context;

@@ -24,7 +24,7 @@ class Hangman extends Game {
 
     private int incorrectGuesses;
     private int incorrectGuessesAllowed;
-    private List<String> guessedLetters;
+    private List<String> correctlyGuessedLetters;
 
     private List<String> possibleWords;
     private String wordToGuess;
@@ -43,7 +43,7 @@ class Hangman extends Game {
         this.context = context;
         this.incorrectGuesses = 0;
         this.incorrectGuessesAllowed = incorrectGuessImages.length - 1;
-        this.guessedLetters = new ArrayList<>();
+        this.correctlyGuessedLetters = new ArrayList<>();
 
         possibleWords = getPossibleWords();
         this.wordToGuess = getANewWord();
@@ -83,7 +83,7 @@ class Hangman extends Game {
         for (int i = 0; i < wordToGuess.length(); i++) {
             String letterInWordToGuess = Character.toString(wordToGuess.charAt(i));
 
-            if (guessedLetters.contains(letterInWordToGuess)) {
+            if (correctlyGuessedLetters.contains(letterInWordToGuess)) {
                 blanksStringBuilder.append(letterInWordToGuess);
             } else {
                 blanksStringBuilder.append("_");
@@ -111,7 +111,6 @@ class Hangman extends Game {
     // guess - letter guessed
     // update hangman based on the incorrect guess
     void updateGuessIncorrect(String guess) {
-        guessedLetters.add(guess);
         incorrectGuesses++;
         updateGameLost();
     }
@@ -119,7 +118,7 @@ class Hangman extends Game {
     // guess - letter guessed
     // update hangman based on the correct guess
     void updateGuessCorrect(String guess) {
-        guessedLetters.add(guess);
+        correctlyGuessedLetters.add(guess);
         updateWordBlanks();
         updateGameWon();
     }
@@ -150,7 +149,6 @@ class Hangman extends Game {
 
     @Override
     public boolean canUpdateRanking() {
-        // TODO: implement this
-        return false;
+        return incorrectGuesses <= 0;
     }
 }

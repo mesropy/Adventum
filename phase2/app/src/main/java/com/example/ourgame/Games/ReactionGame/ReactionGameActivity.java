@@ -109,7 +109,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         game.addPointsEarned();
         game.setPlayTime();
         game.updateStatistics();
-        screenLoader.loadStatisticsAfterGame(5000);
+        screenLoader.loadStatisticsAfterGame();
     }
 
     /**
