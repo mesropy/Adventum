@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         // Gameview created
         screen = new Rect(0, 0, getWidth(), getHeight());
 
-        game = new EndlessRunnerGame(this);
+        game = new EndlessRunnerGame(this, new DataWriter(context));
         paint = new Paint();
         thread = new EndlessRunnerThread(game);
 

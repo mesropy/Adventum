@@ -5,6 +5,7 @@ import android.graphics.Rect;
 
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Statistics.WriteData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +30,12 @@ class EndlessRunnerGame extends Game {
 
     private long gameStartTime;
 
-    EndlessRunnerGame(EndlessRunnerView view){
+    EndlessRunnerGame(EndlessRunnerView view, WriteData dataWriter){
         this.view = view;
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
         gameState = State.RUNNING;
         randomGenerator = new Random();
-        setData(new DataWriter((Context)view));
+        setData(dataWriter);
         start();
     }
 
