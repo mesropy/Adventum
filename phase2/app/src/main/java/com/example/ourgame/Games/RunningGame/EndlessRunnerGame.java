@@ -22,7 +22,7 @@ class EndlessRunnerGame extends Game {
     private List<Sprite> obstacles;
     private int groundHeight;
     private State gameState;
-    private long totalTime;
+    private int totalTime;
     private Random randomGenerator;
     private int obstacleDistMax = 300;
     private int obstacleDistMin = 140;
@@ -63,8 +63,8 @@ class EndlessRunnerGame extends Game {
 
     private void loseGame() {
         gameState = State.GAMEOVER;
-        saveStatistics();
         totalTime += score;
+        saveStatistics();
         view.loseGame(score);
     }
 
@@ -116,7 +116,7 @@ class EndlessRunnerGame extends Game {
     }
 
     public void setPlayTime() {
-        setPlayTime((int) (totalTime / 1000));
+        setPlayTime(totalTime);
     }
 
     public boolean canUpdateRanking() {
