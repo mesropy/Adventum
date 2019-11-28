@@ -15,6 +15,7 @@ import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Statistics.StatisticsActivity;
+import com.example.ourgame.Utilities.DataWriter;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         // Gameview created
         screen = new Rect(0, 0, getWidth(), getHeight());
 
-        game = new EndlessRunnerGame(this);
+        game = new EndlessRunnerGame(this, new DataWriter(context));
 
         LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
         language = text.getTextsetter();

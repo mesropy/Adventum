@@ -5,6 +5,7 @@ import android.graphics.Rect;
 
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Utilities.WriteData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,8 @@ class EndlessRunnerGame extends Game {
     private int obstacleDistMin = 140;
     private long gameStartTime;
 
-    EndlessRunnerGame(EndlessRunnerView view) {
-        super("Endless Runner", new DataWriter((Context) view));
+    EndlessRunnerGame(EndlessRunnerView view, WriteData dataWriter) {
+        super("Endless Runner", dataWriter);
 //        super("Endless Runner", new DataWriter(((EndlessRunner)view).getContext()));
 
         this.view = view;
@@ -64,6 +65,8 @@ class EndlessRunnerGame extends Game {
     private void loseGame() {
         gameState = State.GAMEOVER;
         totalTime += score;
+        addPoints();
+        setPlayTime();
         saveStatistics();
         view.loseGame(score);
     }
