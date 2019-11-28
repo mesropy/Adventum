@@ -18,8 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Games.PictureInstructionsActivity"></activity>
-        <activity android:name=".Games.Instructions" />
+        <activity android:name=".Games.InstructionsActivity" />
         <activity android:name=".Menus.SettingsActivity" />
         <activity android:name=".Statistics.LeaderBoardActivity" />
         <activity android:name=".Games.RunningGame.EndlessRunnerActivity" />
