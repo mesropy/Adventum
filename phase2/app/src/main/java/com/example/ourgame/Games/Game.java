@@ -27,8 +27,7 @@ public abstract class Game {
         this.playTime = playTime;
     }
 
-
-    public int getPointsEarned() {
+    protected int getPointsEarned() {
         return pointsEarned;
     }
     protected void addPointsEarned(int points) {

@@ -1,6 +1,5 @@
 package com.example.ourgame.Games.TileGame;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.example.ourgame.LanguageSetters.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.LanguageSetters.TextSetter;
-import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.ThemeSetters.Theme;
 import com.example.ourgame.ThemeSetters.ThemeBuilder;
 
@@ -26,13 +24,11 @@ import java.util.ArrayList;
  */
 
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
-    
+
     private TileGame tileGame;
     private TextSetter textSetter;
     private ScreenLoader screenLoader;
 
-    private ArrayList<Integer> buttonsClicked = new ArrayList<>();
-    private TextView title;
     private TextView livesText;
     private TextView resultText;
     private long startTime = 0;
@@ -66,12 +62,9 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
             R.id.tile215,
             R.id.tile216};
 
-    private Button[] tileButtons;
-    private Button[] tileButtons2;
-
     /**
-     * Method to initialize items in this activity. Initializes onClickListener methods for
-     * all tileButtonIds.
+     * Method to initialize items in this activity. Initializes all required variables, objects
+     * etc.
      *
      * @param savedInstanceState the previous state or activity that can be restored
      */
@@ -81,10 +74,17 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         livesText = findViewById(R.id.livesText);
         resultText = findViewById(R.id.resultText);
-        title = findViewById(R.id.titleText);
+        TextView title = findViewById(R.id.titleText);
 
         tileGame = new TileGame(this);
-        tileGame.setInitialTiles(tileButtonIds.length);
+
+        ArrayList<Tile> tiles = new ArrayList<>();
+        for (int tileButtonId : tileButtonIds) {
+            tiles.add(new Tile((Button) findViewById(tileButtonId), true));
+        }
+        tileGame.addTiles(tiles);
+        tileGame.setOnClickListeners(this);
+        tileGame.setTileTypes(tileButtonIds.length);
 
         screenLoader = new ScreenLoader(this);
 
@@ -99,23 +99,9 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         title.setText(textSetter.getTileTitle());
         livesText.setText(textSetter.getTileLivesRemain());
 
-        // initialize tileButtons
-        tileButtons = new Button[tileButtonIds.length];
-        tileButtons2 = new Button[tileButtonIds2.length];
-        for (int i = 0; i < tileButtonIds.length; i++) {
-            tileButtons[i] = findViewById(tileButtonIds[i]);
-        }
-        for (int i = 0; i < tileButtonIds2.length; i++) {
-            tileButtons2[i] = findViewById(tileButtonIds2[i]);
-        }
-        // add on click listener for each tile button
-        for (Button tileButton : tileButtons) {
-            tileButton.setOnClickListener(this);
-        }
-        for (Button tileButton : tileButtons2) {
-            tileButton.setOnClickListener(this);
-            tileButton.setVisibility(View.INVISIBLE);
-            tileButton.setClickable(false);
+        for (int value : tileButtonIds2) {
+            findViewById(value).setVisibility(View.INVISIBLE);
+            findViewById(value).setClickable(false);
         }
     }
 
@@ -140,13 +126,15 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         Button button = (Button) view;
 
-        if (!buttonsClicked.contains(button.getId())) {
-            buttonsClicked.add(button.getId());
+        Tile tile = tileGame.getTileByButton(button);
 
-            if (button.getTag() == "wrong") {
-                clickedOnWrongTile(button);
+        if (tile != null) {
+            tile.flipTile();
+
+            if (tile.getIsCorrect()) {
+                clickedOnARightTile();
             } else {
-                clickedOnARightTile(button);
+                clickedOnWrongTile();
             }
         }
     }
@@ -154,12 +142,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Method to determine what happens when a player taps an incorrect tile. Removes a life from
      * the round and checks if the player has no more lives, ending the game if so.
-     *
-     * @param button the button object that has been tapped
      */
-    private void clickedOnWrongTile(Button button) {
-        // flip tile
-        button.setBackgroundResource(tileGame.getWrongTileImageId());
+    private void clickedOnWrongTile() {
 
         tileGame.loseRoundLife();
 
@@ -178,12 +162,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     /**
      * Method to determine what happens when player taps a correct green tile. Increases points and
      * checks if they have clicked all green tiles.
-     *
-     * @param button the button object that has been tapped
      */
-    private void clickedOnARightTile(Button button) {
-        // flip tile
-        button.setBackgroundResource(tileGame.getRightTileImageId());
+    private void clickedOnARightTile() {
 
         tileGame.incrementCorrectPressed();
 
@@ -203,12 +183,9 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         String s = textSetter.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
         livesText.setText(s);
         resultText.setText(textSetter.getTileResultTextLost());
-        if (tileGame.getPointsEarned() < 10) {
-            displayPatternRed(tileButtons);
-        }
-        else{
-            displayPatternRed(tileButtons2);
-        }
+
+        displayPatternRed();
+
     }
 
     /**
@@ -216,15 +193,12 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * for them to memorize.
      */
     private void roundWon() {
-        if (tileGame.getPointsEarned() < 10) {
-            displayPatternRed(tileButtons);
-        }
-        else{
-            displayPatternRed(tileButtons2);
-        }
+
+        displayPatternRed();
+
         resultText.setText(textSetter.getTileResultTextWon());
         tileGame.addTilePoint();
-        if (tileGame.getPointsEarned() == 10) {
+        if (tileGame.getTilePoints() == 10) {
             tileGame.resetShowTime();
             new Handler().postDelayed(new Runnable() {
                 public void run() {
@@ -242,7 +216,6 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
     private void restartRound() {
         tileGame.resetRoundLives();
         tileGame.resetCorrectPressed();
-        buttonsClicked.clear();
         waitThenStartLevel();
     }
 
@@ -252,17 +225,15 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void startRound() {
         tileGame.shuffleTiles();
-        if (tileGame.getPointsEarned() < 10) {
-            displayPattern(tileButtons);
-            waitThenHidePattern(tileButtonIds);
-        }
-        else{
-            displayPattern(tileButtons2);
-            waitThenHidePattern(tileButtonIds2);
-        }
+        displayPattern();
+        waitThenHidePattern();
         resultText.setText("");
     }
 
+    /**
+     * Method to be called when the player loses all their lives and brings them to the game over
+     * screen.
+     */
     private void gameOver() {
         tileGame.updatePoints();
         //records the time spent playing this game in seconds
@@ -278,22 +249,18 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * Method to display the pattern to the player for them to memorize the locations of correct
      * green tiles.
      */
-    private void displayPattern(Button[] tileButtons) {
-        for (int i = 0; i < tileButtons.length; i++) {
-            Button tileButton = tileButtons[i];
-            int tileImageId;
+    private void displayPattern() {
 
-            // set image id to either right or wrong image
-            if (tileGame.getRightTile().get(i)) { // this tile is right / green
-                tileImageId = tileGame.getRightTileImageId();
-                tileButton.setTag("right");
-            } else { // otherwise is wrong, show unflipped (blue)
-                tileImageId = tileGame.getUnflippedTileImageId();
-                tileButton.setTag("wrong");
+        ArrayList<Tile> temp = tileGame.getTiles();
+
+        for (Tile tile : temp) {
+
+            if (tile.getIsCorrect()) {
+                tile.flipTile();
+            } else {
+                tile.unFlipTile();
             }
-            tileButton.setBackgroundResource(tileImageId);
-
-            tileButton.setClickable(false);
+            tile.setClickable(false);
         }
     }
 
@@ -301,20 +268,13 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * Method to display the pattern to the player if they have lost a round. Shows them the correct
      * locations of green tiles along with red tiles for the incorrect locations.
      */
-    private void displayPatternRed(Button[] tileButtons) {
-        for (int i = 0; i < tileButtons.length; i++) {
-            Button tileButton = tileButtons[i];
-            int tileImageId;
+    private void displayPatternRed() {
 
-            // set image id to either right or wrong image
-            if (tileGame.getRightTile().get(i)) { // this tile is right / green
-                tileImageId = tileGame.getRightTileImageId();
-            } else { // otherwise is wrong
-                tileImageId = tileGame.getWrongTileImageId();
-            }
-            tileButton.setBackgroundResource(tileImageId);
+        ArrayList<Tile> temp = tileGame.getTiles();
 
-            tileButton.setClickable(false);
+        for (Tile tile : temp) {
+            tile.flipTile();
+            tile.setClickable(false);
         }
     }
 
@@ -322,14 +282,14 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      * Method that delays the game so that the player has a chance to view and memorize the
      * locations of tiles before they become hidden.
      */
-    private void waitThenHidePattern(int[] tileButtonIds) {
-        final int[] tb = tileButtonIds;
+    private void waitThenHidePattern() {
+
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                for (int tileButtonId : tb) {
-                    Button tileButton = findViewById(tileButtonId);
-                    tileButton.setBackgroundResource(R.drawable.unflipped);
-                    tileButton.setClickable(true);
+                ArrayList<Tile> temp = tileGame.getTiles();
+                for (Tile tile : temp) {
+                    tile.unFlipTile();
+                    tile.setClickable(true);
                 }
             }
         }, tileGame.getPatternShowTime());
@@ -347,18 +307,28 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         }, tileGame.getPatternEndShowTime());
     }
 
+    /**
+     * Setup the next level of the game by removing the 3x3 tiles and adding the new 4x4 tiles.
+     */
     protected void levelUp() {
-        for (Button tileButton : tileButtons) {
-            tileButton.setVisibility(View.INVISIBLE);
-            tileButton.setClickable(false);
+        ArrayList<Tile> firstRoundTiles = tileGame.getTiles();
+        for (Tile tile : firstRoundTiles) {
+            tile.setVisibility(false);
+            tile.setClickable(false);
         }
 
-        tileGame.setInitialTiles(tileButtonIds2.length);
-        for (Button tileButton : tileButtons2) {
-            tileButton.setVisibility(View.VISIBLE);
-            tileButton.setClickable(true);
+        ArrayList<Tile> secondRoundTiles = new ArrayList<>();
+        for (int value : tileButtonIds2) {
+            secondRoundTiles.add(new Tile((Button) findViewById(value), true));
         }
 
+        tileGame.setTileTypes(tileButtonIds2.length);
+        tileGame.addTiles(secondRoundTiles);
+        for (Tile tile : secondRoundTiles) {
+            tile.setVisibility(true);
+            tile.setClickable(true);
+        }
+        tileGame.setOnClickListeners(this);
     }
 
 }
