@@ -20,16 +20,13 @@ package com.example.ourgame.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.example.ourgame.MainActivity;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.SettingsActivity;
+import com.example.ourgame.Utilities.ScreenLoader;
 
 
 /**

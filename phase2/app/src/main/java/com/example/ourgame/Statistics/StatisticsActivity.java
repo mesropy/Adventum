@@ -8,14 +8,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
-import com.example.ourgame.LanguageSetters.TextSetter;
+import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.ThemeSetters.Theme;
-import com.example.ourgame.ThemeSetters.ThemeBuilder;
-
-import org.w3c.dom.Text;
+import com.example.ourgame.Utilities.ScreenLoader;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Utilities.WriteData;
 
 /**
  * An activity class for the Statistics screen, which shows the user their statistics for the games
@@ -25,7 +25,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
     WriteData dataWriter;
     ScreenLoader screenLoader;
-    private TextSetter textSetter;
+    private Language language;
 
     TextView pointsText;
     TextView playtimeText;
@@ -55,15 +55,15 @@ public class StatisticsActivity extends AppCompatActivity {
         screenLoader = new ScreenLoader(this);
 
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
-        textSetter = text.getTextsetter();
+        language = text.getTextsetter();
 
-        continueButton.setText(textSetter.getContinue());
-        title.setText(textSetter.statistics());
-        points.setText(textSetter.statPoints());
-        playtime.setText(textSetter.statPlaytime());
-        rank.setText(textSetter.statRank());
-        mainMenu.setText(textSetter.mainMenu());
-        backButton.setText(textSetter.back());
+        continueButton.setText(language.getContinue());
+        title.setText(language.statistics());
+        points.setText(language.statPoints());
+        playtime.setText(language.statPlaytime());
+        rank.setText(language.statRank());
+        mainMenu.setText(language.mainMenu());
+        backButton.setText(language.back());
 
         ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));

@@ -1,32 +1,32 @@
-package com.example.ourgame.ThemeSetters;
+package com.example.ourgame.Themes;
 
 import com.example.ourgame.R;
 
-class WinterTheme implements Theme {
+class SummerTheme implements Theme {
 
     @Override
     public int mainActivityLayout() {
-        return R.drawable.winter1;
+        return R.drawable.summer1;
     }
 
     @Override
     public int SettingsActivityLayout() {
-        return R.drawable.winter2;
+        return R.drawable.summer2;
     }
 
     @Override
     public int HangmanActivityLayout() {
-        return R.drawable.winter3;
+        return R.drawable.summer3;
     }
 
     @Override
     public int PictureGameIntroLayout() {
-        return R.drawable.winter4;
+        return R.drawable.summer4;
     }
 
     @Override
     public int PictureGameLayout() {
-        return R.drawable.winter5;
+        return R.drawable.summer5;
     }
 
     @Override

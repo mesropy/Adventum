@@ -3,7 +3,7 @@ package com.example.ourgame.login;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import com.example.ourgame.Statistics.WriteData;
+import com.example.ourgame.Utilities.WriteData;
 
 /**
  * A class for a RegistrationInteractor, which determines whether the user can register a new

@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.Statistics;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -6,11 +6,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
-import com.example.ourgame.LanguageSetters.TextSetter;
-import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.ThemeSetters.Theme;
-import com.example.ourgame.ThemeSetters.ThemeBuilder;
+import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.R;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class LeaderBoardActivity extends AppCompatActivity {
 
     DataWriter dataWriter;
-    TextSetter textSetter;
+    Language language;
     TextView firstText, secondText, thirdText, fourthText, fifthText, personal;
     TextView firstPoints, secondPoints, thirdPoints, fourthPoints, fifthPoints;
 
@@ -47,14 +48,14 @@ public class LeaderBoardActivity extends AppCompatActivity {
         String user = dataWriter.getUser();
 
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
-        textSetter = text.getTextsetter();
+        language = text.getTextsetter();
 
         TextView title = findViewById(R.id.title3);
         TextView points = findViewById(R.id.pointsTitle);
         TextView name = findViewById(R.id.userTitle);
-        points.setText(textSetter.statPoints());
-        name.setText(textSetter.leaderboardUser());
-        title.setText(textSetter.getMainLeaderBoard());
+        points.setText(language.statPoints());
+        name.setText(language.leaderboardUser());
+        title.setText(language.getMainLeaderBoard());
 
         ConstraintLayout constraintLayout = findViewById(R.id.leaderboardLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
@@ -108,7 +109,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
             fifthPoints.setText(getString(R.string.points_text, points.get(4)));
         }
 
-        String string = textSetter.leaderboardYourRank();
+        String string = language.leaderboardYourRank();
         int rank = userNames.indexOf(dataWriter.getUser()) + 1;
         String rankS = String.valueOf(rank);
         string = string + rankS;

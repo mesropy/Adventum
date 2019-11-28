@@ -1,6 +1,6 @@
-package com.example.ourgame.LanguageSetters;
+package com.example.ourgame.Languages;
 
-public class FrenchTextSetter implements TextSetter {
+public class French implements Language {
 
     public String getMainPlayButton() {
         return "Jouer";
@@ -147,6 +147,10 @@ public class FrenchTextSetter implements TextSetter {
     }
     public String statRank(){
         return "Classement: ";
+    }
+
+    public String score(){
+        return "Le point: ";
     }
 
     @Override

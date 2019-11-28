@@ -3,7 +3,7 @@ package com.example.ourgame.Games.TileGame;
 import android.content.Context;
 import android.widget.Button;
 
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.R;
 

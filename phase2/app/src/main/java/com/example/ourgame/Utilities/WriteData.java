@@ -1,4 +1,4 @@
-package com.example.ourgame.Statistics;
+package com.example.ourgame.Utilities;
 
 public interface WriteData {
 

@@ -9,10 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
-import com.example.ourgame.LanguageSetters.TextSetter;
+import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Utilities.ScreenLoader;
 
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ public class HangmanActivity extends AppCompatActivity {
 
     private Hangman hangman;
     private ScreenLoader screenLoader;
-    private TextSetter textSetter;
+    private Language language;
 
     private TextView wordBlanks;
     private TextView resultText;
@@ -31,14 +31,14 @@ public class HangmanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman);
+
         try {
             hangman = new Hangman(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage());
-        textSetter = text.getTextsetter();
         screenLoader = new ScreenLoader(this);
+
 
         wordBlanks = findViewById(R.id.wordBlanks);
         resultText = findViewById(R.id.resultText);
@@ -50,11 +50,19 @@ public class HangmanActivity extends AppCompatActivity {
         resultImage.setImageResource(hangman.getImageId());
 
         continueButton = findViewById(R.id.continueButton);
-        continueButton.setText(textSetter.getContinue());
         continueButton.setVisibility(View.GONE);
 
+        // set language
+        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage());
+        language = text.getTextsetter();
+        setLanguage();
+
+    }
+
+    private void setLanguage(){
+        continueButton.setText(language.getContinue());
         TextView title = findViewById(R.id.title);
-        title.setText(textSetter.getHangmanTitle());
+        title.setText(language.getHangmanTitle());
     }
 
     public void onLetterPressed(View view) {
@@ -85,8 +93,8 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     private void onGameWon() {
-        resultText.setText(textSetter.getTileResultTextCorrect());
-        hangman.updateStatistics();
+        resultText.setText(language.getTileResultTextCorrect());
+        hangman.saveStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }
 
@@ -99,8 +107,8 @@ public class HangmanActivity extends AppCompatActivity {
     }
 
     private void onGameLost() {
-        resultText.setText(textSetter.getPictureNoMoreAttempts());
-        hangman.updateStatistics();
+        resultText.setText(language.getPictureNoMoreAttempts());
+        hangman.saveStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }
 

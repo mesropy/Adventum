@@ -1,6 +1,6 @@
 package com.example.ourgame.Games;
 
-import com.example.ourgame.Statistics.WriteData;
+import com.example.ourgame.Utilities.WriteData;
 
 public abstract class Game {
 
@@ -39,7 +39,7 @@ public abstract class Game {
      * Update the statistics of this game, as well as the overall game. Call this at the
      * end of each level or at the end of the game
      */
-    public void updateStatistics() {
+    public void saveStatistics() {
         if (canUpdateRanking()) {
             data.increaseRanking(username);
         }

@@ -4,7 +4,8 @@ import android.content.Context;
 import android.graphics.Rect;
 
 import com.example.ourgame.Games.Game;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Utilities.WriteData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +23,16 @@ class EndlessRunnerGame extends Game {
     private List<Sprite> obstacles;
     private int groundHeight;
     private State gameState;
-    private long totalTime;
+    private int totalTime;
     private Random randomGenerator;
     private int obstacleDistMax = 300;
     private int obstacleDistMin = 140;
     private long gameStartTime;
 
-    EndlessRunnerGame(EndlessRunnerView view) {
-        super("Endless Runner", new DataWriter((Context) view));
+    EndlessRunnerGame(EndlessRunnerView view, WriteData dataWriter) {
+        super("Endless Runner", dataWriter);
+//        super("Endless Runner", new DataWriter(((EndlessRunner)view).getContext()));
+
         this.view = view;
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
         gameState = State.RUNNING;
@@ -61,8 +64,10 @@ class EndlessRunnerGame extends Game {
 
     private void loseGame() {
         gameState = State.GAMEOVER;
-        updateStatistics();
         totalTime += score;
+        addPoints();
+        setPlayTime();
+        saveStatistics();
         view.loseGame(score);
     }
 
@@ -114,11 +119,10 @@ class EndlessRunnerGame extends Game {
     }
 
     public void setPlayTime() {
-        setPlayTime((int) (totalTime / 1000));
+        setPlayTime(totalTime);
     }
 
     public boolean canUpdateRanking() {
-        // TODO: implement this
-        return false;
+        return score >= 50;
     }
 }

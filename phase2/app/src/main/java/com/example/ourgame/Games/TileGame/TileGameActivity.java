@@ -9,8 +9,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
+import com.example.ourgame.Utilities.ScreenLoader;
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.ScreenLoader;
 import com.example.ourgame.LanguageSetters.TextSetter;
 import com.example.ourgame.ThemeSetters.Theme;
@@ -26,7 +30,7 @@ import java.util.ArrayList;
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TileGame tileGame;
-    private TextSetter textSetter;
+    private Language language;
     private ScreenLoader screenLoader;
 
     private TextView livesText;
@@ -89,15 +93,15 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         screenLoader = new ScreenLoader(this);
 
         LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage());
-        textSetter = text.getTextsetter();
+        language = text.getTextsetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
         ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getTheme());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
-        title.setText(textSetter.getTileTitle());
-        livesText.setText(textSetter.getTileLivesRemain());
+        title.setText(language.getTileTitle());
+        livesText.setText(language.getTileLivesRemain());
 
         for (int value : tileButtonIds2) {
             findViewById(value).setVisibility(View.INVISIBLE);
@@ -155,7 +159,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
                 restartRound();
             }
         } else {
-            resultText.setText(textSetter.getTileResultTextInCorrect());
+            resultText.setText(language.getTileResultTextInCorrect());
         }
     }
 
@@ -170,7 +174,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         if (tileGame.allRightTilesPressed()) {
             roundWon();
         } else {
-            resultText.setText(textSetter.getTileResultTextCorrect());
+            resultText.setText(language.getTileResultTextCorrect());
         }
     }
 
@@ -180,7 +184,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
      */
     private void roundLost() {
         tileGame.loseLife();
-        String s = textSetter.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
+        String s = language.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
         livesText.setText(s);
         resultText.setText(textSetter.getTileResultTextLost());
 
@@ -239,7 +243,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         //records the time spent playing this game in seconds
         int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
         tileGame.setPlayTime(playTime);
-        tileGame.updateStatistics();
+        tileGame.saveStatistics();
 
         // go to next game
         screenLoader.loadStatisticsAfterGame(3000);

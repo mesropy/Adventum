@@ -8,10 +8,10 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.LanguageSetters.TextSetter;
+import com.example.ourgame.Utilities.ScreenLoader;
+import com.example.ourgame.Languages.Language;
 
 import java.util.Random;
 
@@ -21,7 +21,7 @@ import java.util.Random;
 public class ReactionGameActivity extends AppCompatActivity  {
 
     private ReactionGame game;
-    private TextSetter textSetter;
+    private Language language;
     private ScreenLoader screenLoader;
 
     private ConstraintLayout currentLayout;
@@ -44,6 +44,9 @@ public class ReactionGameActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reaction_time);
 
+        game = new ReactionGame(this);
+        screenLoader = new ScreenLoader(this);
+
         currentLayout = findViewById(R.id.main_layout);
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
@@ -51,23 +54,26 @@ public class ReactionGameActivity extends AppCompatActivity  {
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
-        TextView tapToContinue = findViewById(R.id.continueText);
 
-        game = new ReactionGame(this);
+        // set language
         LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
-        textSetter = text.getTextsetter();
-        title.setText(textSetter.getReactionTitle());
-        tapToContinue.setText(textSetter.getReactionContinueText());
+        language = text.getTextsetter();
+        setLanguage();
 
-        screenLoader = new ScreenLoader(this);
+        setInstructions();
+    }
+
+    private void setLanguage() {
+        TextView tapToContinue = findViewById(R.id.continueText);
+        title.setText(language.getReactionTitle());
+        tapToContinue.setText(language.getReactionContinueText());
 
         if (game.getLanguage().equals("french")) {
             title.setText(R.string.reaction_game_french);
             tapToContinue.setText(R.string.press_any_key_french);
         }
-
-        setInstructions();
     }
+
 
     /**
      * A method to determine what state the screen will go to when tapped, depending on the
@@ -102,8 +108,8 @@ public class ReactionGameActivity extends AppCompatActivity  {
         // go to stats page then to the tile game
         game.addPointsEarned();
         game.setPlayTime();
-        game.updateStatistics();
-        screenLoader.loadStatisticsAfterGame(5000);
+        game.saveStatistics();
+        screenLoader.loadStatisticsAfterGame();
     }
 
     /**
@@ -127,7 +133,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
             message.setText(R.string.wait_french);
         }
 //        message.setText(R.string.wait);
-        message.setText(textSetter.getReactionMessageWait());
+        message.setText(language.getReactionMessageWait());
         currentLayout.setBackgroundResource(R.color.error_red);
         timerHandler.postDelayed(timerRunnable, new Random().nextInt(3000) + 1000);
     }
@@ -143,7 +149,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
             message.setText(R.string.reaction_intro_french);
         }
 //        message.setText(R.string.reaction_intro);
-        message.setText(textSetter.getReactionMessageInstruction());
+        message.setText(language.getReactionMessageInstruction());
     }
 
     /**
@@ -180,7 +186,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
             message.setText(R.string.go_french);
         }
 
-        message.setText(textSetter.getReactionMessageGo());
+        message.setText(language.getReactionMessageGo());
         game.setStartTime(System.currentTimeMillis());
         currentLayout.setBackgroundResource(R.color.go_green);
     }
@@ -196,7 +202,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
             message.setText(R.string.too_soon_french);
         }
 //        message.setText(R.string.too_soon);
-        message.setText(textSetter.getReactionMessageTooSoon());
+        message.setText(language.getReactionMessageTooSoon());
         currentLayout.setBackgroundResource(R.color.menu_blue);
     }
 }

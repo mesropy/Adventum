@@ -18,8 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".LeaderBoardActivity" />
+        <activity android:name=".Games.InstructionsActivity" />
+        <activity android:name=".Menus.SettingsActivity" />
+        <activity android:name=".Statistics.LeaderBoardActivity" />
         <activity android:name=".Games.RunningGame.EndlessRunnerActivity" />
         <activity android:name=".Statistics.StatisticsActivity" />
         <activity android:name=".Games.PictureGame.PictureInstructions" />
@@ -32,42 +33,41 @@
         </activity>
         <activity
             android:name=".Games.TileGame.TileGameActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Menus.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Menus.MainActivity" />
         </activity>
         <activity
             android:name=".Games.HangmanGame.HangmanActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Menus.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Menus.MainActivity" />
         </activity>
-
         <activity
             android:name=".Games.PictureGame.PictureGameActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Menus.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Menus.MainActivity" />
         </activity>
         <activity
             android:name=".Games.ReactionGame.ReactionGameActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Menus.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Menus.MainActivity" />
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Menus.MainActivity" />
         <activity android:name=".Games.TileGame.TileGameInstructions" />
 
         <meta-data

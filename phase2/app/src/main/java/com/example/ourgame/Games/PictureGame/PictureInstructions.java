@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.LanguageSetters.TextSetter;
-import com.example.ourgame.ThemeSetters.Theme;
-import com.example.ourgame.ThemeSetters.ThemeBuilder;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 
 /**
  * An activity class for the Picture Game instructions
@@ -34,12 +34,12 @@ public class PictureInstructions extends AppCompatActivity {
         DataWriter dataWriter = new DataWriter(this);
         String user = dataWriter.getUser();
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
-        TextSetter textSetter = text.getTextsetter();
+        Language language = text.getTextsetter();
 
-        instruction.setText(textSetter.getPictureInstruction());
-        title.setText(textSetter.getPictureTitle());
-        title2.setText(textSetter.instruction());
-        start.setText(textSetter.start());
+        instruction.setText(language.getPictureInstruction());
+        title.setText(language.getPictureTitle());
+        title2.setText(language.instruction());
+        start.setText(language.start());
 
         ConstraintLayout constraintLayout = findViewById(R.id.pictureintroLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));

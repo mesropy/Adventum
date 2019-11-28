@@ -1,4 +1,4 @@
-package com.example.ourgame.ThemeSetters;
+package com.example.ourgame.Themes;
 
 public class ThemeBuilder {
 

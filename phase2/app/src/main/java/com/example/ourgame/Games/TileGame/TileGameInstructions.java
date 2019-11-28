@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.LanguageSetters.TextSetter;
-import com.example.ourgame.ThemeSetters.Theme;
-import com.example.ourgame.ThemeSetters.ThemeBuilder;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 
 /**
  * An Activity class for the Instructions of the Tile Game
@@ -36,13 +36,13 @@ public class TileGameInstructions extends AppCompatActivity {
         DataWriter dataWriter = new DataWriter(this);
         String user = dataWriter.getUser();
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
-        TextSetter textSetter = text.getTextsetter();
-        title.setText(textSetter.getTileTitle());
-        title2.setText(textSetter.instruction());
-        start.setText(textSetter.start());
-        intro1.setText(textSetter.getTileIntroduction1());
-        intro2.setText(textSetter.getTileIntroduction2());
-        intro3.setText(textSetter.getTileIntroduction3());
+        Language language = text.getTextsetter();
+        title.setText(language.getTileTitle());
+        title2.setText(language.instruction());
+        start.setText(language.start());
+        intro1.setText(language.getTileIntroduction1());
+        intro2.setText(language.getTileIntroduction2());
+        intro3.setText(language.getTileIntroduction3());
 
         ConstraintLayout constraintLayout = findViewById(R.id.tileIntroLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
