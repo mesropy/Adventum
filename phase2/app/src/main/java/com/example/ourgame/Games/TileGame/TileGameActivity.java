@@ -88,7 +88,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         screenLoader = new ScreenLoader(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage(), this);
         textSetter = text.getTextsetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
@@ -97,7 +97,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
         title.setText(textSetter.getTileTitle());
-        livesText.setText(textSetter.getTileLivesRemain());
+        String s = textSetter.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
+        livesText.setText(s);
 
         // initialize tileButtons
         tileButtons = new Button[tileButtonIds.length];

@@ -54,7 +54,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         screenLoader = new ScreenLoader(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user), this);
         textSetter = text.getTextsetter();
 
         continueButton.setText(textSetter.getContinue());

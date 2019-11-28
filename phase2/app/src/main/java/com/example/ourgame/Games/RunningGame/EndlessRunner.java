@@ -49,7 +49,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
         game = new EndlessRunnerGame(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), context);
         textSetter = text.getTextsetter();
 
         paint = new Paint();

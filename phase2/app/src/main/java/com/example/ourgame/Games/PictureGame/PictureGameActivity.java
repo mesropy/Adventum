@@ -44,7 +44,7 @@ public class PictureGameActivity extends AppCompatActivity {
 
         pictureGame = new PictureGame(this);
         screenLoader = new ScreenLoader(this);
-        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage(), this);
         textSetter = text.getTextsetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);

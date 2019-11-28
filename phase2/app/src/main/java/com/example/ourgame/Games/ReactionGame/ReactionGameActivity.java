@@ -54,7 +54,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         TextView tapToContinue = findViewById(R.id.continueText);
 
         game = new ReactionGame(this);
-        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), this);
         textSetter = text.getTextsetter();
         title.setText(textSetter.getReactionTitle());
         tapToContinue.setText(textSetter.getReactionContinueText());

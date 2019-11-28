@@ -33,7 +33,7 @@ public class PictureInstructions extends AppCompatActivity {
 
         DataWriter dataWriter = new DataWriter(this);
         String user = dataWriter.getUser();
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user), this);
         TextSetter textSetter = text.getTextsetter();
 
         instruction.setText(textSetter.getPictureInstruction());

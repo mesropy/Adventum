@@ -35,7 +35,7 @@ public class TileGameInstructions extends AppCompatActivity {
 
         DataWriter dataWriter = new DataWriter(this);
         String user = dataWriter.getUser();
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user), this);
         TextSetter textSetter = text.getTextsetter();
         title.setText(textSetter.getTileTitle());
         title2.setText(textSetter.instruction());

@@ -36,7 +36,7 @@ public class HangmanActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage(), this);
         textSetter = text.getTextsetter();
         screenLoader = new ScreenLoader(this);
 
