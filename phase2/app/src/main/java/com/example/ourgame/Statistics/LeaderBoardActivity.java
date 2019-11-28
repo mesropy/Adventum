@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.Statistics;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.R;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
 
@@ -44,8 +45,10 @@ public class LeaderBoardActivity extends AppCompatActivity {
         fifthPoints = findViewById(R.id.fifthPoints);
         dataWriter = new DataWriter(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage());
-        language = text.getTextSetter();
+        String user = dataWriter.getUser();
+
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
+        language = text.getTextsetter();
 
         TextView title = findViewById(R.id.title3);
         TextView points = findViewById(R.id.pointsTitle);
@@ -55,7 +58,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         title.setText(language.getMainLeaderBoard());
 
         ConstraintLayout constraintLayout = findViewById(R.id.leaderboardLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
@@ -107,7 +110,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
         String string = language.leaderboardYourRank();
-        int rank = userNames.indexOf(dataWriter.getCurrentUser()) + 1;
+        int rank = userNames.indexOf(dataWriter.getUser()) + 1;
         String rankS = String.valueOf(rank);
         string = string + rankS;
         personal.setText(string);

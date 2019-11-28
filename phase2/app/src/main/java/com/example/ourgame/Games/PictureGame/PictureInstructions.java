@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
@@ -32,8 +32,9 @@ public class PictureInstructions extends AppCompatActivity {
         Button start = findViewById(R.id.gotItButton);
 
         DataWriter dataWriter = new DataWriter(this);
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage());
-        Language language = text.getTextSetter();
+        String user = dataWriter.getUser();
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
+        Language language = text.getTextsetter();
 
         instruction.setText(language.getPictureInstruction());
         title.setText(language.getPictureTitle());
@@ -41,7 +42,7 @@ public class PictureInstructions extends AppCompatActivity {
         start.setText(language.start());
 
         ConstraintLayout constraintLayout = findViewById(R.id.pictureintroLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.PictureGameIntroLayout());
     }

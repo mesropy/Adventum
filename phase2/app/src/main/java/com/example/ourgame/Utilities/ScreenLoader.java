@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.Utilities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import com.example.ourgame.Games.PictureGame.PictureGameActivity;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
 import com.example.ourgame.Games.TileGame.TileGameActivity;
+import com.example.ourgame.Statistics.LeaderBoardActivity;
+import com.example.ourgame.Menus.MainActivity;
+import com.example.ourgame.Menus.SettingsActivity;
 import com.example.ourgame.Statistics.StatisticsActivity;
 
 

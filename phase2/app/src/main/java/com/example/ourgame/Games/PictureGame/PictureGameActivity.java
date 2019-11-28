@@ -14,7 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
@@ -50,7 +50,7 @@ public class PictureGameActivity extends AppCompatActivity {
 
         // set language
         LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage());
-        language = text.getTextSetter();
+        language = text.getTextsetter();
         setLanguage();
 
         // set theme
@@ -147,7 +147,7 @@ public class PictureGameActivity extends AppCompatActivity {
         // go to game over page then stats page
         int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
         pictureGame.setPlayTime(playTime);
-        pictureGame.updateStatistics();
+        pictureGame.saveStatistics();
         screenLoader.loadStatisticsAfterGame();
     }
 

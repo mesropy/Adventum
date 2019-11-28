@@ -1,4 +1,4 @@
-package com.example.ourgame.Statistics;
+package com.example.ourgame.Utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -32,9 +32,9 @@ public class DataWriter implements WriteData {
     private SharedPreferences currUserData;
 
     private Context context;
-    private String currentUsername;
 
     public DataWriter(Context context){
+        this.context = context;
 
         loginData = context.getSharedPreferences(context.getString(R.string.preference_file_login), Context.MODE_PRIVATE);
         pointsData = context.getSharedPreferences(context.getString(R.string.preference_file_points), Context.MODE_PRIVATE);
@@ -45,9 +45,6 @@ public class DataWriter implements WriteData {
         currUserData = context.getSharedPreferences(context.getString(R.string.preference_file_user), Context.MODE_PRIVATE);
         themeData = context.getSharedPreferences(context.getString(R.string.preference_file_theme), Context.MODE_PRIVATE);
         characterData = context.getSharedPreferences(context.getString(R.string.preference_file_character), Context.MODE_PRIVATE);
-
-        this.context = context;
-        this.currentUsername = getCurrentUser();
     }
 
     /**
@@ -95,115 +92,112 @@ public class DataWriter implements WriteData {
         editor.apply();
     }
 
-    @Override
-    public String getCharacterData() {
-        return characterData.getString(currentUsername, "male");
+    public String getCharacterData(String username) {
+        return characterData.getString(username, "male");
     }
 
-    @Override
-    public void setCharacterData(String character) {
+    public void setCharacterData(String username, String character) {
         SharedPreferences.Editor editor = characterData.edit();
-        editor.putString(currentUsername, character);
+        editor.putString(username, character);
         editor.apply();
     }
 
-    @Override
-    public void setThemeData(String theme) {
+    public void setThemeData(String username, String theme) {
         SharedPreferences.Editor editor = themeData.edit();
-        editor.putString(currentUsername, theme);
+        editor.putString(username, theme);
         editor.apply();
     }
 
-    @Override
-    public String getThemeData() {
-        return themeData.getString(currentUsername, "Not Found");
+    public String getThemeData(String username) {
+        return themeData.getString(username, "Not Found");
     }
 
     @Override
-    public String getPassword() {
-        return loginData.getString(currentUsername, "Not Found");
+    public String getPassword(String username) {
+        return loginData.getString(username, "Not Found");
     }
 
     @Override
-    public int getPoints() {
-        return pointsData.getInt(currentUsername, -1);
+    public int getPoints(String username) {
+        return pointsData.getInt(username, -1);
     }
 
     @Override
-    public void setCurrentUser(String username) {
+    public void setUser(String username) {
         SharedPreferences.Editor editor = currUserData.edit();
         editor.putString(context.getString(R.string.preference_file_user), username);
         editor.apply();
-        currentUsername = username;
     }
 
     @Override
-    public String getCurrentUser() {
+    public String getUser() {
         return currUserData.getString(context.getString(R.string.preference_file_user), "Not found");
     }
 
     @Override
-    public int getPlayTime() {
-        return timeData.getInt(currentUsername, -1);
+    public int getPlayTime(String username) {
+        return timeData.getInt(username, -1);
     }
 
     @Override
-    public String getRanking() {
-        return rankingData.getString(currentUsername, "Not Found");
+    public String getRanking(String username) {
+        return rankingData.getString(username, "Not Found");
     }
 
     /**
      * Add points the user has obtained in a game
+     * @param username the user to add points to
      * @param points the amount of points to give to the user
      */
     @Override
-    public void addPoints(int points) {
-        int currentPoints = getPoints();
+    public void addPoints(String username, int points) {
+        int currentPoints = getPoints(username);
         SharedPreferences.Editor editor = pointsData.edit();
-        editor.putInt(currentUsername, points + currentPoints);
+        editor.putInt(username, points + currentPoints);
         editor.apply();
     }
 
     @Override
-    public String getLanguage() {
-        return languageData.getString(currentUsername, "Not Found");
+    public String getLanguage(String username) {
+        return languageData.getString(username, "Not Found");
     }
 
     @Override
-    public void setLanguage(String newLanguage) {
+    public void setLanguage(String username, String newLanguage) {
         SharedPreferences.Editor editor = languageData.edit();
-        editor.putString(currentUsername, newLanguage);
+        editor.putString(username, newLanguage);
         editor.apply();
     }
 
     /**
      * Add the amount of time this player has played in a game
+     * @param username the user to add play time to
      * @param playTime the amount of time played
      */
     @Override
-    public void addPlayTime(int playTime) {
+    public void addPlayTime(String username, int playTime) {
         SharedPreferences.Editor editor = timeData.edit();
-        editor.putInt(currentUsername, playTime + getPlayTime());
+        editor.putInt(username, playTime + getPlayTime(username));
         editor.apply();
     }
 
     /**
      * Updates the user's ranking at the end of a game if it achieved something difficult
      * (ex/ solve every level very quickly)
-     **/
+     *
+     * @param username the user to increase the ranking of
+     */
     @Override
-    public void increaseRanking() {
-        String currentRanking = getRanking();
+    public void increaseRanking(String username) {
+        String currentRanking = getRanking(username);
         String newRanking;
-
-        // TODO: make implementation of this more intuitive
 
         // only increase if not the highest ranking
         for (int i = 0; i < rankings.length - 1; i++)
             if (currentRanking.equals(rankings[i])) {
                 newRanking = rankings[i + 1];
                 SharedPreferences.Editor editor = rankingData.edit();
-                editor.putString(currentUsername, newRanking);
+                editor.putString(username, newRanking);
                 editor.apply();
                 break;
             }
@@ -211,31 +205,34 @@ public class DataWriter implements WriteData {
 
     /**
      * Adds the name of the last game the user had played
-     * @param lastGame the game that was last played by the user
+     * @param username the user who had played a game
+     * @param lastgame the game that was last played by the user
      */
     @Override
-    public void addLastGame(String lastGame) {
+    public void addLastGame(String username, String lastgame) {
         SharedPreferences.Editor editor = lastGameData.edit();
-        editor.putString(currentUsername, lastGame);
+        editor.putString(username, lastgame);
         editor.apply();
     }
 
     /**
      * Gets the name of the game the user had last played
+     * @param username the user who had played a game
      * @return the name of the game
      */
     @Override
-    public String getLastGame() {
-        return lastGameData.getString(currentUsername, "Not Found");
+    public String getLastGame(String username) {
+        return lastGameData.getString(username, "Not Found");
     }
 
     /**
      * Check if an account with the given username exists in the raw2
+     * @param username the username being checked
      * @return a boolean representing if the username was found or not
      */
     @Override
-    public boolean checkUser() {
-        return !((loginData.getString(currentUsername, "Not Found")).equals("Not Found"));
+    public boolean checkUser(String username) {
+        return !((loginData.getString(username, "Not Found")).equals("Not Found"));
     }
 
     /**

@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
@@ -87,7 +87,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         screenLoader = new ScreenLoader(this);
 
         LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage());
-        language = text.getTextSetter();
+        language = text.getTextsetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
         ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getTheme());
@@ -266,7 +266,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         //records the time spent playing this game in seconds
         int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
         tileGame.setPlayTime(playTime);
-        tileGame.updateStatistics();
+        tileGame.saveStatistics();
 
         // go to next game
         screenLoader.loadStatisticsAfterGame(3000);

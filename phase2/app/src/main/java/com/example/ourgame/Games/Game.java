@@ -1,6 +1,6 @@
 package com.example.ourgame.Games;
 
-import com.example.ourgame.Statistics.WriteData;
+import com.example.ourgame.Utilities.WriteData;
 
 public abstract class Game {
 
@@ -13,7 +13,7 @@ public abstract class Game {
 
     protected Game(String gameName, WriteData data) {
         this.data = data;
-        this.username = data.getCurrentUser();
+        this.username = data.getUser();
         this.gameName = gameName;
         this.pointsEarned = 0;
         this.playTime = 0;
@@ -40,24 +40,24 @@ public abstract class Game {
      * Update the statistics of this game, as well as the overall game. Call this at the
      * end of each level or at the end of the game
      */
-    public void updateStatistics() {
+    public void saveStatistics() {
         if (canUpdateRanking()) {
-            data.increaseRanking();
+            data.increaseRanking(username);
         }
-        data.addLastGame(gameName);
-        data.addPlayTime(playTime);
-        data.addPoints(pointsEarned);
+        data.addLastGame(username, gameName);
+        data.addPlayTime(username, playTime);
+        data.addPoints(username, pointsEarned);
     }
 
     public abstract boolean canUpdateRanking();
 
 
     public String getLanguage() {
-        return data.getLanguage();
+        return data.getLanguage(username);
     }
 
     public String getTheme() {
-        return data.getThemeData();
+        return data.getThemeData(username);
     }
 
 }

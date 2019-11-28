@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Utilities.ScreenLoader;
 
 import java.io.IOException;
 
@@ -54,7 +54,7 @@ public class HangmanActivity extends AppCompatActivity {
 
         // set language
         LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage());
-        language = text.getTextSetter();
+        language = text.getTextsetter();
         setLanguage();
 
     }
@@ -94,7 +94,7 @@ public class HangmanActivity extends AppCompatActivity {
 
     private void onGameWon() {
         resultText.setText(language.getTileResultTextCorrect());
-        hangman.updateStatistics();
+        hangman.saveStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }
 
@@ -108,7 +108,7 @@ public class HangmanActivity extends AppCompatActivity {
 
     private void onGameLost() {
         resultText.setText(language.getPictureNoMoreAttempts());
-        hangman.updateStatistics();
+        hangman.saveStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }
 

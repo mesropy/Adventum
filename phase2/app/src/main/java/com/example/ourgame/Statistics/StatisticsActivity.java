@@ -11,9 +11,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Utilities.WriteData;
 
 /**
  * An activity class for the Statistics screen, which shows the user their statistics for the games
@@ -28,6 +30,7 @@ public class StatisticsActivity extends AppCompatActivity {
     TextView pointsText;
     TextView playtimeText;
     TextView rankingText;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +50,12 @@ public class StatisticsActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
 
         dataWriter = new DataWriter(this);
+        user = dataWriter.getUser();
+
         screenLoader = new ScreenLoader(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage());
-        language = text.getTextSetter();
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
+        language = text.getTextsetter();
 
         continueButton.setText(language.getContinue());
         title.setText(language.statistics());
@@ -61,7 +66,7 @@ public class StatisticsActivity extends AppCompatActivity {
         backButton.setText(language.back());
 
         ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.PictureGameLayout());
 
@@ -70,11 +75,11 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void displayStatistics() {
-        String str = Integer.toString(dataWriter.getPoints());
+        String str = Integer.toString(dataWriter.getPoints(user));
         pointsText.setText(str);
-        String str2 = dataWriter.getPlayTime() + " secs.";
+        String str2 = dataWriter.getPlayTime(user) + " secs.";
         playtimeText.setText(str2);
-        rankingText.setText(dataWriter.getRanking());
+        rankingText.setText(dataWriter.getRanking(user));
     }
 
     private void setUpNavigationButtons() {

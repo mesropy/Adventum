@@ -3,7 +3,7 @@ package com.example.ourgame.Games.ReactionGame;
 import android.content.Context;
 
 import com.example.ourgame.Games.Game;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 
 enum State {
     INSTRUCTION,

@@ -5,7 +5,7 @@
     android:id="@+id/leaderboardLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeaderBoardActivity">
+    tools:context=".Statistics.LeaderBoardActivity">
 
     <TextView
         android:id="@+id/title3"

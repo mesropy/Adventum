@@ -1,18 +1,18 @@
 package com.example.ourgame.Languages;
 
 public class LanguageTextSetter {
-    private Language textSetter;
+    private Language textsetter;
 
     public LanguageTextSetter(String string){
         if(string.equals("english")){
-            textSetter = new English();
+            textsetter = new English();
         }
         else if(string.equals("french")){
-            textSetter = new French();
+            textsetter = new French();
         }
     }
 
-    public Language getTextSetter() {
-        return textSetter;
+    public Language getTextsetter() {
+        return textsetter;
     }
 }

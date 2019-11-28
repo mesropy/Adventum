@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
+import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
 
 import java.util.Random;
@@ -57,7 +57,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
 
         // set language
         LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
-        language = text.getTextSetter();
+        language = text.getTextsetter();
         setLanguage();
 
         setInstructions();
@@ -108,7 +108,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         // go to stats page then to the tile game
         game.addPointsEarned();
         game.setPlayTime();
-        game.updateStatistics();
+        game.saveStatistics();
         screenLoader.loadStatisticsAfterGame();
     }
 

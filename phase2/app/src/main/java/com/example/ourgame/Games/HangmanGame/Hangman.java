@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.R;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 
 import java.io.BufferedReader;
 import java.io.IOException;

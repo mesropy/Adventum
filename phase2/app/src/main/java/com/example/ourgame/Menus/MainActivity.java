@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.Menus;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,18 +13,21 @@ import com.example.ourgame.Games.HangmanGame.HangmanActivity;
 import com.example.ourgame.Games.PictureGame.PictureInstructions;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
-import com.example.ourgame.Games.TileGame.TileGameInstructions;
-import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Languages.LanguageTextSetter;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.R;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Games.TileGame.TileGameInstructions;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
+import com.example.ourgame.Utilities.ScreenLoader;
 
 /**
  * An activity class for the main homepage the user is brought to once they register or sign in
  */
 public class MainActivity extends AppCompatActivity {
 
+    public String user;
     private DataWriter data;
     private ScreenLoader screenLoader;
 
@@ -52,18 +55,18 @@ public class MainActivity extends AppCompatActivity {
         settingsButton = findViewById(R.id.settingsButton);
 
         data = new DataWriter(this);
+        user = data.getUser();
         setLanguage();
 
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.mainActivityLayout());
     }
 
     private void setLanguage() {
-        String user = data.getCurrentUser();
-        String language = data.getLanguage();
+        String language = data.getLanguage(user);
         LanguageTextSetter text = new LanguageTextSetter(language);
-        Language textsetter = text.getTextSetter();
+        Language textsetter = text.getTextsetter();
 
         String welcomeMessage;
         if (language.equals("english")) {

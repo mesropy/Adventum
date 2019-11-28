@@ -2,10 +2,9 @@ package com.example.ourgame.Games.RunningGame;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.view.SurfaceView;
 
 import com.example.ourgame.Games.Game;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +63,7 @@ class EndlessRunnerGame extends Game {
 
     private void loseGame() {
         gameState = State.GAMEOVER;
-        updateStatistics();
+        saveStatistics();
         totalTime += score;
         view.loseGame(score);
     }

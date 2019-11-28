@@ -2,11 +2,10 @@ package com.example.ourgame.Games.TileGame;
 
 import android.content.Context;
 
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 

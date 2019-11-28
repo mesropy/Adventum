@@ -20,8 +20,8 @@ package com.example.ourgame.login;
 
 import android.content.Context;
 
-import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.Statistics.WriteData;
+import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Utilities.WriteData;
 
 
 /**
@@ -129,7 +129,7 @@ public class LoginPresenter implements LoginInteractor.OnLoginFinishedListener, 
     @Override
     public void onSuccess(String username) {
         if (loginView != null) {
-            dataWriter.setCurrentUser(username);
+            dataWriter.setUser(username);
             loginView.navigateToHome(username);
         }
     }

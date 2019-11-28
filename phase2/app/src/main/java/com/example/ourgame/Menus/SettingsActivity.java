@@ -1,4 +1,4 @@
-package com.example.ourgame;
+package com.example.ourgame.Menus;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -11,14 +11,15 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.R;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
+import com.example.ourgame.Utilities.ScreenLoader;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    // TODO: display user's character and username
-
+    private String user;
     private DataWriter data;
     private ScreenLoader screenLoader;
     private ImageView character;
@@ -33,18 +34,17 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // TODO: divide this method into helper methods
-
         languageRadioGroup = findViewById(R.id.languageRadioGroup);
         englishButton = findViewById(R.id.englishButton);
         frenchButton = findViewById(R.id.frenchButton);
         character = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
+        user = data.getUser();
         screenLoader = new ScreenLoader(this);
 
         ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.SettingsActivityLayout());
 
@@ -56,26 +56,26 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         winter.setOnClickListener(this);
         summer.setOnClickListener(this);
 
-        if (data.getCharacterData().equals("boy")){
+        if (data.getCharacterData(user).equals("boy")){
             character.setImageResource(R.drawable.kid);
-        }else if (data.getCharacterData().equals("girl")){
+        }else if (data.getCharacterData(user).equals("girl")){
             character.setImageResource(R.drawable.girl);
-        }else if (data.getCharacterData().equals("female")){
+        }else if (data.getCharacterData(user).equals("female")){
             character.setImageResource(R.drawable.female);
         }else {
             character.setImageResource(R.drawable.male);
         }
 
-        if (data.getLanguage().equals("french")) {
+        if (data.getLanguage(user).equals("french")) {
             frenchButton.setChecked(true);
-        } else if (data.getLanguage().equals("english")) {
+        } else if (data.getLanguage(user).equals("english")) {
             englishButton.setChecked(true);
         }
 
-        if (data.getThemeData().equals("autumn")) {
+        if (data.getThemeData(user).equals("autumn")) {
             winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
             summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-        } else if (data.getThemeData().equals("winter")) {
+        } else if (data.getThemeData(user).equals("winter")) {
             autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
             summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
         } else {
@@ -86,27 +86,25 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     // go to choose character page, then return to settings
     public void onChooseCharacterPressed(View view) {
-        switch (data.getCharacterData()){
+        switch (data.getCharacterData(user)){
             case "boy":
                 character.setImageResource(R.drawable.girl);
-                data.setCharacterData("girl");
+                data.setCharacterData(user, "girl");
                 break;
             case "girl":
                 character.setImageResource(R.drawable.male);
-                data.setCharacterData("male");
+                data.setCharacterData(user, "male");
                 break;
             case "male":
                 character.setImageResource(R.drawable.female);
-                data.setCharacterData("female");
+                data.setCharacterData(user, "female");
                 break;
             case "female":
                 character.setImageResource(R.drawable.kid);
-                data.setCharacterData("boy");
+                data.setCharacterData(user, "boy");
                 break;
         }
     }
-
-    // TODO: remove duplicate code in cases
 
     @Override
     public void onClick(View view) {
@@ -115,19 +113,19 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 autumn.clearColorFilter();
                 winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
                 summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData("autumn");
+                data.setThemeData(user, "autumn");
                 break;
             case R.id.winterButton:
                 winter.clearColorFilter();
                 autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
                 summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData("winter");
+                data.setThemeData(user, "winter");
                 break;
             case R.id.summerButton:
                 summer.clearColorFilter();
                 winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
                 autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData("summer");
+                data.setThemeData(user, "summer");
                 break;
 
         }
@@ -139,9 +137,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         // use this to save selected language
         int checkedLanguageId = languageRadioGroup.getCheckedRadioButtonId();
         if (checkedLanguageId == R.id.englishButton) {
-            data.setLanguage("english");
+            data.setLanguage(user, "english");
         } else if (checkedLanguageId == R.id.frenchButton) {
-            data.setLanguage("french");
+            data.setLanguage(user, "french");
         }
 
         screenLoader.loadMainMenu();

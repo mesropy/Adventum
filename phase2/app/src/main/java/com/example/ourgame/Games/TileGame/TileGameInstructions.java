@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
@@ -34,8 +34,9 @@ public class TileGameInstructions extends AppCompatActivity {
         Button start = findViewById(R.id.start);
 
         DataWriter dataWriter = new DataWriter(this);
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage());
-        Language language = text.getTextSetter();
+        String user = dataWriter.getUser();
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user));
+        Language language = text.getTextsetter();
         title.setText(language.getTileTitle());
         title2.setText(language.instruction());
         start.setText(language.start());
@@ -44,7 +45,7 @@ public class TileGameInstructions extends AppCompatActivity {
         intro3.setText(language.getTileIntroduction3());
 
         ConstraintLayout constraintLayout = findViewById(R.id.tileIntroLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
     }

@@ -21,8 +21,7 @@ package com.example.ourgame.login;
 import android.os.Handler;
 import android.text.TextUtils;
 
-import com.example.ourgame.Statistics.DataWriter;
-import com.example.ourgame.Statistics.WriteData;
+import com.example.ourgame.Utilities.WriteData;
 
 /**
  * A class for a LoginInteractor, which determines if the user can login or not
@@ -58,9 +57,9 @@ public class LoginInteractor {
                     listener.onUsernameEmpty();
                 } else if (TextUtils.isEmpty(password)) {
                     listener.onPasswordEmpty();
-                } else if (!data.checkUser()) {
+                } else if (!data.checkUser(username)) {
                     listener.onLoginError();
-                } else if (!data.getPassword().equals(password)) {
+                } else if (!data.getPassword(username).equals(password)) {
                     listener.onLoginError();
                 } else {
                     listener.onSuccess(username);
