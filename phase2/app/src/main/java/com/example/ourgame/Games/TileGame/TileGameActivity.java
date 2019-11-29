@@ -15,10 +15,10 @@ import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
-import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.LanguageSetters.TextSetter;
-import com.example.ourgame.ThemeSetters.Theme;
-import com.example.ourgame.ThemeSetters.ThemeBuilder;
+import com.example.ourgame.Utilities.ScreenLoader;
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 
 
 import java.util.ArrayList;
@@ -186,7 +186,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         tileGame.loseLife();
         String s = language.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
         livesText.setText(s);
-        resultText.setText(textSetter.getTileResultTextLost());
+        resultText.setText(language.getTileResultTextLost());
 
         displayPatternRed();
 
@@ -200,7 +200,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         displayPatternRed();
 
-        resultText.setText(textSetter.getTileResultTextWon());
+        resultText.setText(language.getTileResultTextWon());
         tileGame.addTilePoint();
         if (tileGame.getTilePoints() == 10) {
             tileGame.resetShowTime();
