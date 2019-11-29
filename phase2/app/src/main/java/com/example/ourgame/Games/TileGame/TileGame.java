@@ -1,12 +1,12 @@
 package com.example.ourgame.Games.TileGame;
 
 import android.content.Context;
+import android.widget.Button;
 
-import com.example.ourgame.Statistics.DataWriter;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -53,7 +53,6 @@ class TileGame extends Game {
         unflippedTileImageId = R.drawable.unflipped;
     }
 
-
     void updatePoints() {
         addPointsEarned(2 * tilePoints / 10);
     }
@@ -62,24 +61,84 @@ class TileGame extends Game {
         tilePoints++;
     }
 
+    int getTilePoints() {
+        return tilePoints;
+    }
+
     @Override
     public boolean canUpdateRanking() {
         return getPlayTime() <= (50 * 3 * patternShowTime * patternEndShowTime) &&
                 currentLives == lives; // didn't lose any lives / won all rounds
     }
 
-    void setInitialTiles(int numberOfTiles) {
-        rightTile.clear();
+    /**
+     * Sets up the tiles in this game by setting them to either be correct green tiles or incorrect
+     * red tiles the player can tap.
+     *
+     * @param numberOfTiles the number of tiles used in this TileGame
+     */
+    void setTileTypes(int numberOfTiles) {
 
+        rightTile.clear();
         numRightTiles = numberOfTiles / 2;
-        for(int i = 0; i < numRightTiles; i++){
-            rightTile.add(true);
+        for (int i = 0; i < numberOfTiles; i++) {
+
+            if (i < numRightTiles) {
+                rightTile.add(true);
+            } else {
+                rightTile.add(false);
+            }
         }
-        for(int i = numRightTiles; i < numberOfTiles; i++){
-            rightTile.add(false);
-        }
+    }
+
+    /**
+     * Removes the previous set of game tiles and adds in new tiles received by an ArrayList
+     *
+     * @param tiles an ArrayList containing the new set of tiles
+     */
+    void addTiles(ArrayList<Tile> tiles) {
+        this.tiles.clear();
+        this.tiles.addAll(tiles);
 
     }
+
+    /**
+     * Return the tile object with the associated button object in this game's ArrayList of tiles.
+     * Return null if the tile is not found.
+     *
+     * @param button the button of the tile object
+     * @return the tile that contains the button object that was passed in
+     */
+    Tile getTileByButton(Button button) {
+
+        for (Tile tile : tiles) {
+            if (tile.getButton() == button) {
+                return tile;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Sets the onClickListener methods for the tiles in this game.
+     *
+     * @param activity the TileGameActivity that the buttons are present in
+     */
+    void setOnClickListeners(TileGameActivity activity) {
+        for (Tile tile : tiles) {
+            tile.setOnClickListener(activity);
+        }
+    }
+
+    /**
+     * Return an ArrayList containing the tiles of this game.
+     *
+     * @return an ArrayList containing tile objects
+     */
+    ArrayList<Tile> getTiles() {
+        return tiles;
+    }
+
     boolean noMoreLives() {
         return currentLives <= 0;
     }
@@ -116,8 +175,21 @@ class TileGame extends Game {
         return rightTile;
     }
 
+    /**
+     * Method to shuffle the locations of correct and incorrect tiles once the player loses or
+     * wins a round.
+     */
     void shuffleTiles() {
         Collections.shuffle(rightTile);
+
+        for (int i = 0; i < rightTile.size(); i++) {
+
+            if (rightTile.get(i)) {
+                tiles.get(i).setRightTile();
+            } else {
+                tiles.get(i).setWrongTile();
+            }
+        }
     }
 
     int getRightTileImageId() {
@@ -134,7 +206,7 @@ class TileGame extends Game {
 
     int getPatternShowTime() {
         int time = patternShowTime;
-        if(patternShowTime > 500) {
+        if (patternShowTime > 500) {
             patternShowTime = patternShowTime - 200;
         }
         return time;

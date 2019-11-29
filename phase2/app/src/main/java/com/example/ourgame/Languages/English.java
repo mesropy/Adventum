@@ -1,4 +1,4 @@
-package com.example.ourgame.LanguageSetters;
+package com.example.ourgame.Languages;
 
 import android.content.Context;
 
@@ -11,11 +11,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrenchTextSetter implements TextSetter {
+public class English implements Language {
 
     private List<String> gameIntros = new ArrayList<>();
-    FrenchTextSetter(Context context) throws IOException {
-        InputStream inputStream = context.getResources().openRawResource(R.raw.game_instruction_french);
+
+    English(Context context) throws IOException{
+        InputStream inputStream = context.getResources().openRawResource(R.raw.game_instruction_english);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
         try {
@@ -33,64 +34,59 @@ public class FrenchTextSetter implements TextSetter {
         }
     }
 
-    public String getMainPlayButton() {
-        return "Jouer";
+    public String getMainPlayButton() { return "Play";
     }
     public String getMainLeaderBoard() {
-        return "Classement";
+        return "Leaderboard";
     }
     public String getMainSettings() {
-        return "Paramètres";
+        return "Settings";
     }
     public String getReactionTitle() {
-        return "Temps de réaction";
+        return "Reaction Time";
     }
     public String getReactionMessageWait() {
-        return "Attendez";
+        return "Wait";
     }
     public String getReactionMessageInstruction() {
         return gameIntros.get(4);
     }
     public String getReactionMessageGo() {
-        return "Aller!";
+        return "Go!";
     }
     public String getReactionMessageTooSoon() {
-        return "Trop tôt";
+        return "Too soon";
     }
     public String getReactionContinueText() {
-        return "Appuyez sur pour continuer";
+        return "Tap to continue";
     }
 
     @Override
     public String getTileTitle() {
-        return "Jeu de tuile";
+        return "Tile Game";
     }
 
-    @Override
     public String getTileLivesRemain() {
-        return "Vies restantes: ";
+        return "Lives remaining: ";
     }
 
-    @Override
     public String getTileResultTextCorrect() {
         return "Correct!";
     }
 
-    @Override
     public String getTileResultTextInCorrect() {
         return "Incorrect!";
     }
 
-    @Override
     public String getTileResultTextLost() {
-        return "Tu as perdu un live!";
+        return "You lost one live!";
+    }
+
+    public String getTileResultTextWon() {
+        return "You passed this round!";
     }
 
     @Override
-    public String getTileResultTextWon() {
-        return "Vous avez passé ce tour!";
-    }
-
     public String getTileIntroduction1() {
         return gameIntros.get(0);
     }
@@ -112,7 +108,7 @@ public class FrenchTextSetter implements TextSetter {
 
     @Override
     public String start() {
-        return "DÉBUT!";
+        return "START!";
     }
 
     @Override
@@ -122,70 +118,70 @@ public class FrenchTextSetter implements TextSetter {
 
     @Override
     public String getPictureTitle() {
-        return "Jeu d'images";
+        return "Picture Game";
     }
 
     @Override
     public String getPictureNoMoreAttempts() {
-        return "Plus de tentatives";
+        return "No more attempts!";
     }
 
     @Override
     public String getPictureNumAttempts() {
-        return "Nombre de Tentatives";
+        return "Number of Attempts:";
     }
 
     @Override
     public String getContinue() {
-        return "Continuer";
+        return "Continue";
     }
 
     @Override
     public String getEnter() {
-        return "Entrer";
+        return "Enter";
     }
 
     @Override
     public String getHangmanTitle() {
-        return "Jeu du Pendu";
+        return "Hangman";
     }
 
     public String mainMenu() {
-        return "Menu principal";
+        return "Main Menu";
     }
 
     public String back(){
-        return "Retour";
+        return "Back";
     }
     public String statistics(){
-        return "Statistiques";
+        return "Statistics";
     }
     public String statPoints(){
-        return "Points totaux: ";
+        return "Total Points: ";
     }
     public String statPlaytime(){
-        return "Temps de lecture total: ";
+        return "Total Playtime: ";
     }
     public String statRank(){
-        return "Classement: ";
+        return "Ranking: ";
     }
-
     public String score(){
-        return "Le point: ";
+        return "Score: ";
     }
 
     @Override
     public String leaderboardUser() {
-        return "Utilisateur: ";
+        return "User: ";
     }
 
     @Override
     public String leaderboardYourRank() {
-        return "Ton rang: ";
+        return "Your Rank: ";
     }
 
     @Override
     public String typeAnswer() {
-        return "tapez votre réponse ici";
+        return "type your answer here";
     }
+
 }

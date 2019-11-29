@@ -7,26 +7,21 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.LinearLayout;
 
-import com.example.ourgame.LanguageSetters.LanguageTextSetter;
-import com.example.ourgame.LanguageSetters.TextSetter;
+import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
-import com.example.ourgame.ScreenLoader;
-import com.example.ourgame.Statistics.DataWriter;
 import com.example.ourgame.Statistics.StatisticsActivity;
+import com.example.ourgame.Utilities.DataWriter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback, EndlessRunnerView {
     private SurfaceHolder surfaceHolder;
-    private TextSetter textSetter;
+    private Language language;
     private EndlessRunnerGame game;
     private EndlessRunnerThread thread;
     private Paint paint;
@@ -47,10 +42,10 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         // Gameview created
         screen = new Rect(0, 0, getWidth(), getHeight());
 
-        game = new EndlessRunnerGame(this);
+        game = new EndlessRunnerGame(this, new DataWriter(context));
 
         LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), context);
-        textSetter = text.getTextsetter();
+        language = text.getTextsetter();
 
         paint = new Paint();
         thread = new EndlessRunnerThread(game);
@@ -111,10 +106,10 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         if (canvas != null){
             paint.setTextSize(50);
             paint.setColor(Color.RED);
-            canvas.drawText(textSetter.getPictureNoMoreAttempts(), getWidth()/2-85, getHeight()/2, paint);
+            canvas.drawText(language.getPictureNoMoreAttempts(), getWidth()/2-85, getHeight()/2, paint);
             paint.setTextSize(40);
             paint.setColor(Color.BLUE);
-            String scoreString = textSetter.score() + score;
+            String scoreString = language.score() + score;
             canvas.drawText(scoreString, getWidth()/2-85, getHeight()/2+50, paint);
         }
         surfaceHolder.unlockCanvasAndPost(canvas);

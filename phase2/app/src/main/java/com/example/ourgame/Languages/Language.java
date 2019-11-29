@@ -1,6 +1,6 @@
-package com.example.ourgame.LanguageSetters;
+package com.example.ourgame.Languages;
 
-public interface TextSetter {
+public interface Language {
     String getMainPlayButton();
     String getMainLeaderBoard();
     String getMainSettings();

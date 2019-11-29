@@ -1,6 +1,4 @@
-package com.example.ourgame.ThemeSetters;
-
-import android.graphics.drawable.Drawable;
+package com.example.ourgame.Themes;
 
 public interface Theme {
     int mainActivityLayout();
