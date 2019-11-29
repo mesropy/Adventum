@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Button statisticsButton;
     private Button leaderBoardButton;
     private Button settingsButton;
+    private ImageView characterImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +55,13 @@ public class MainActivity extends AppCompatActivity {
         statisticsButton = findViewById(R.id.statisticsButton);
         leaderBoardButton = findViewById(R.id.leaderBoardButton);
         settingsButton = findViewById(R.id.settingsButton);
+        characterImage = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
         user = data.getUser();
         setLanguage();
+
+        characterImage.setImageResource(data.getCharacterData(user));
 
         ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
         Theme theme = themeBuilder.getTheme();

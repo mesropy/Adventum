@@ -3,6 +3,7 @@ package com.example.ourgame.Statistics;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,7 @@ public class StatisticsActivity extends AppCompatActivity {
         Button mainMenu = findViewById(R.id.mainMenuButton);
         Button continueButton = findViewById(R.id.continueButton);
         Button backButton = findViewById(R.id.backButton);
+        ImageView characterImage = findViewById(R.id.characterImage);
 
         dataWriter = new DataWriter(this);
         user = dataWriter.getUser();
@@ -64,6 +66,7 @@ public class StatisticsActivity extends AppCompatActivity {
         rank.setText(language.statRank());
         mainMenu.setText(language.mainMenu());
         backButton.setText(language.back());
+        characterImage.setImageResource(dataWriter.getCharacterData(user));
 
         ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));

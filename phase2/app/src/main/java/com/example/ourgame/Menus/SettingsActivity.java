@@ -56,15 +56,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         winter.setOnClickListener(this);
         summer.setOnClickListener(this);
 
-        if (data.getCharacterData(user).equals("boy")){
-            character.setImageResource(R.drawable.kid);
-        }else if (data.getCharacterData(user).equals("girl")){
-            character.setImageResource(R.drawable.girl);
-        }else if (data.getCharacterData(user).equals("female")){
-            character.setImageResource(R.drawable.female);
-        }else {
-            character.setImageResource(R.drawable.male);
-        }
+        character.setImageResource(data.getCharacterData(user));
+
 
         if (data.getLanguage(user).equals("french")) {
             frenchButton.setChecked(true);
@@ -87,21 +80,25 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     // go to choose character page, then return to settings
     public void onChooseCharacterPressed(View view) {
         switch (data.getCharacterData(user)){
-            case "boy":
+            case R.drawable.boy:
                 character.setImageResource(R.drawable.girl);
-                data.setCharacterData(user, "girl");
+                data.setCharacterData(user, R.drawable.girl);
                 break;
-            case "girl":
+            case R.drawable.girl:
                 character.setImageResource(R.drawable.male);
-                data.setCharacterData(user, "male");
+                data.setCharacterData(user, R.drawable.male);
                 break;
-            case "male":
+            case R.drawable.male:
                 character.setImageResource(R.drawable.female);
-                data.setCharacterData(user, "female");
+                data.setCharacterData(user, R.drawable.female);
                 break;
-            case "female":
+            case R.drawable.female:
                 character.setImageResource(R.drawable.kid);
-                data.setCharacterData(user, "boy");
+                data.setCharacterData(user, R.drawable.kid);
+                break;
+            case R.drawable.kid:
+                character.setImageResource(R.drawable.boy);
+                data.setCharacterData(user, R.drawable.boy);
                 break;
         }
     }
