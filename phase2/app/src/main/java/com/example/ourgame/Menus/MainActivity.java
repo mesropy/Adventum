@@ -42,10 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ConstraintLayout constraintLayout = findViewById(R.id.mainactivityLayout);
-//        Drawable drawable = getDrawable(R.drawable.autumn_option_temp);
-//        constraintLayout.setBackground(drawable);
-
+        data = new DataWriter(this);
+        user = data.getUser();
+        setLanguage();
         screenLoader = new ScreenLoader(this);
 
         welcomeText = findViewById(R.id.welcomeText);
@@ -54,35 +53,25 @@ public class MainActivity extends AppCompatActivity {
         leaderBoardButton = findViewById(R.id.leaderBoardButton);
         settingsButton = findViewById(R.id.settingsButton);
 
-        data = new DataWriter(this);
-        user = data.getUser();
-        setLanguage();
-
+        // theme
         ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
+        ConstraintLayout constraintLayout = findViewById(R.id.mainactivityLayout);
         constraintLayout.setBackgroundResource(theme.mainActivityLayout());
     }
 
     private void setLanguage() {
-        String language = data.getLanguage(user);
-        LanguageTextSetter text = new LanguageTextSetter(language, this);
-        Language textsetter = text.getTextsetter();
+        LanguageTextSetter languageTextSetter = new LanguageTextSetter(data.getLanguage(user),
+                this);
+        Language language = languageTextSetter.getTextsetter();
 
-        String welcomeMessage;
-        if (language.equals("english")) {
-            welcomeMessage = "Welcome " + user + "!";
-        } else if (language.equals("french")) {
-            welcomeMessage = "Bienvenu " + user + "!";
-        } else { // spanish
-            welcomeMessage = "Welcome " + user + "!";
-        }
-        playButton.setText(textsetter.getMainPlayButton());
-        statisticsButton.setText(textsetter.statistics());
-        leaderBoardButton.setText(textsetter.getMainLeaderBoard());
-        settingsButton.setText(textsetter.getMainSettings());
+        String welcomeMessage = language.getWelcomeMessage(user);
+        playButton.setText(language.getMainPlayButton());
+        statisticsButton.setText(language.statistics());
+        leaderBoardButton.setText(language.getMainLeaderBoard());
+        settingsButton.setText(language.getMainSettings());
         welcomeText.setText(welcomeMessage);
     }
-
 
     /**
      * Method to send the user to play the next game
@@ -115,28 +104,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Sends the user to the Tile Game
-     */
-    private void playTileGame(){
-        Intent intent = new Intent(this, TileGameInstructions.class);
-        startActivity(intent);
-        finish();
-    }
-
-    /**
      * Sends the user to the Running Game -- TESTING ONLY
      */
     public void playRunningGame(View view){
         Intent intent = new Intent(this, EndlessRunnerActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    /**
-     * Sends the user to the Picture Guessing Game
-     */
-    private void playPictureGame(){
-        Intent intent = new Intent(this, PictureInstructions.class);
         startActivity(intent);
         finish();
     }

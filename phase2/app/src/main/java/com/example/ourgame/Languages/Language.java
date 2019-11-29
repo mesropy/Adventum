@@ -38,4 +38,5 @@ public interface Language {
     String leaderboardUser();
     String leaderboardYourRank();
     String typeAnswer();
+    String getWelcomeMessage(String user);
 }

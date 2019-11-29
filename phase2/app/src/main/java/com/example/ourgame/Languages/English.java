@@ -184,4 +184,8 @@ public class English implements Language {
         return "type your answer here";
     }
 
+    @Override
+    public String getWelcomeMessage(String user){
+        return "Welcome " + user + "!";
+    }
 }

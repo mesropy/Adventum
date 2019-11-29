@@ -188,4 +188,9 @@ public class French implements Language {
     public String typeAnswer() {
         return "tapez votre réponse ici";
     }
+
+    @Override
+    public String getWelcomeMessage(String user){
+        return "Bienvenu " + user + "!";
+    }
 }
