@@ -32,7 +32,7 @@ public class InstructionsActivity extends AppCompatActivity {
         screenLoader = new ScreenLoader(this);
         data = new DataWriter(this);
         LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(data.getUser()), this);
-        language = text.getTextsetter();
+        language = text.getTextSetter();
 
         gameName = getIntent().getStringExtra("game");
 
@@ -54,6 +54,9 @@ public class InstructionsActivity extends AppCompatActivity {
 
     private void setGameTitle(){
         String gameTitle;
+
+        // TODO: remove switch block, based on how language implemented
+        // gameTitle = language.getTitle();
 
         switch (gameName) {
             case "Hangman":
@@ -82,6 +85,10 @@ public class InstructionsActivity extends AppCompatActivity {
 
     private void setInstructions() {
         String instructions;
+
+        // TODO: remove this switch block, basec on how language is implemented
+        // same as for setTitle()
+
         switch (gameName) {
             case "Hangman":
                 instructions = "";

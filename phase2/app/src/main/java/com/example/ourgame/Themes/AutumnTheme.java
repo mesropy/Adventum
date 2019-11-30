@@ -5,6 +5,11 @@ import com.example.ourgame.R;
 class AutumnTheme implements Theme {
 
     @Override
+    public ThemeType getTheme(){
+        return ThemeType.AUTUMN;
+    }
+
+    @Override
     public int mainActivityLayout() {
         return R.drawable.autumn1;
     }

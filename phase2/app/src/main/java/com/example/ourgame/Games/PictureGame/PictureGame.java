@@ -3,6 +3,7 @@ package com.example.ourgame.Games.PictureGame;
 import android.content.Context;
 
 import com.example.ourgame.Games.Game;
+import com.example.ourgame.Games.GameName;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
 
@@ -20,7 +21,7 @@ class PictureGame extends Game {
 
 
   PictureGame(Context context) {
-      super("Picture", new DataWriter(context));
+      super(GameName.PICTURE, new DataWriter(context));
     numAttempts = 0;
     numAttemptsAllowed = 5;
     currentLevel = 0;

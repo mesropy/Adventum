@@ -34,7 +34,7 @@ public class PictureInstructions extends AppCompatActivity {
         DataWriter dataWriter = new DataWriter(this);
         String user = dataWriter.getUser();
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user), this);
-        Language language = text.getTextsetter();
+        Language language = text.getTextSetter();
 
         instruction.setText(language.getPictureInstruction());
         title.setText(language.getPictureTitle());

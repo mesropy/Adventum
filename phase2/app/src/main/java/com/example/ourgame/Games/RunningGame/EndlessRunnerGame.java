@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 
 import com.example.ourgame.Games.Game;
+import com.example.ourgame.Games.GameName;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.WriteData;
 
@@ -30,7 +31,7 @@ class EndlessRunnerGame extends Game {
     private long gameStartTime;
 
     EndlessRunnerGame(EndlessRunnerView view, WriteData dataWriter) {
-        super("Endless Runner", dataWriter);
+        super(GameName.RUNNING, dataWriter);
 //        super("Endless Runner", new DataWriter(((EndlessRunner)view).getContext()));
 
         this.view = view;

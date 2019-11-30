@@ -50,13 +50,13 @@ public class PictureGameActivity extends AppCompatActivity {
 
         // set language
         LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage(), this);
-        language = text.getTextsetter();
+        language = text.getTextSetter();
         setLanguage();
 
         // set theme
-        ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(pictureGame.getTheme());
         Theme theme = themeBuilder.getTheme();
+        ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
         constraintLayout.setBackgroundResource(theme.PictureGameLayout());
 
     }

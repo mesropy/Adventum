@@ -5,6 +5,11 @@ import com.example.ourgame.R;
 class WinterTheme implements Theme {
 
     @Override
+    public ThemeType getTheme(){
+        return ThemeType.WINTER;
+    }
+
+    @Override
     public int mainActivityLayout() {
         return R.drawable.winter1;
     }

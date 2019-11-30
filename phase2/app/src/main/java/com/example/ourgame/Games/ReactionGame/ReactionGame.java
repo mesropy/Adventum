@@ -3,6 +3,7 @@ package com.example.ourgame.Games.ReactionGame;
 import android.content.Context;
 
 import com.example.ourgame.Games.Game;
+import com.example.ourgame.Games.GameName;
 import com.example.ourgame.Utilities.DataWriter;
 
 enum State {
@@ -23,7 +24,7 @@ public class ReactionGame extends Game {
     private State currentState;
 
     ReactionGame(Context context){
-        super("Reaction", new DataWriter(context));
+        super(GameName.REACTION, new DataWriter(context));
     }
 
     int getCount() {

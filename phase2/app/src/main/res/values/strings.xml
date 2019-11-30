@@ -156,4 +156,6 @@
     <string name="h">after game</string>
     <string name="preference_file_character">com.example.ourgame.character</string>
     <string name="win_result">You win!</string>
+    <string name="language_english">English</string>
+    <string name="language_french">French</string>
 </resources>

@@ -23,27 +23,29 @@
 
     <RadioGroup
         android:id="@+id/languageRadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        android:layout_width="112dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsText">
 
         <RadioButton
-            android:id="@+id/englishButton"
+            android:id="@+id/english"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/renner"
+            android:tag="@string/language_english"
             android:text="English"
             android:textColor="@android:color/secondary_text_light"
             android:textSize="18sp" />
 
         <RadioButton
-            android:id="@+id/frenchButton"
+            android:id="@+id/french"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/renner"
+            android:tag="@string/language_french"
             android:text="français"
             android:textColor="@android:color/secondary_text_light"
             android:textSize="18sp" />
@@ -59,7 +61,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/lb_ic_playback_loop"
         android:backgroundTint="@color/lb_playback_icon_highlight_no_theme"
-        android:onClick="onChooseCharacterPressed"
+        android:onClick="onChangeCharacterPressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/languageRadioGroup"
         app:layout_constraintTop_toBottomOf="@+id/characterImage" />
@@ -78,77 +80,67 @@
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="64dp"
+        android:layout_height="61dp"
         android:background="@drawable/lb_ic_play"
         android:backgroundTint="@color/go_green"
         android:onClick="onSaveButtonPressed"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summerButton" />
+        app:layout_constraintTop_toBottomOf="@+id/themeButtons"
+        app:layout_constraintVertical_bias="0.27" />
 
-    <ImageButton
-        android:id="@+id/autumnButton"
-        android:layout_width="233dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:adjustViewBounds="false"
-        android:background="#00FFFFFF"
-        android:cropToPadding="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/changeCharacterButton"
-        app:srcCompat="@drawable/autumn_option_temp" />
-
-    <ImageButton
-        android:id="@+id/winterButton"
-        android:layout_width="233dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="false"
-        android:background="#00FFFFFF"
-        android:cropToPadding="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/autumnButton"
-        app:srcCompat="@drawable/autumn_option_temp" />
-
-    <ImageButton
-        android:id="@+id/summerButton"
-        android:layout_width="233dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:adjustViewBounds="false"
-        android:background="#00FFFFFF"
-        android:cropToPadding="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/winterButton"
-        app:srcCompat="@drawable/autumn_option_temp" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+    <LinearLayout
+        android:id="@+id/themeButtons"
+        android:layout_width="@dimen/theme_button_width"
+        android:layout_height="311dp"
+        android:layout_marginTop="28dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingsText"
-        app:srcCompat="@drawable/language" />
+        app:layout_constraintTop_toBottomOf="@+id/changeCharacterButton">
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autumnButton"
-        app:srcCompat="@drawable/theme" />
+        <ImageButton
+            android:id="@+id/summerButton"
+            android:layout_width="@dimen/theme_button_width"
+            android:layout_height="@dimen/theme_button_height"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="12dp"
+            android:adjustViewBounds="false"
+            android:background="#00FFFFFF"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            android:tag="summer"
+            app:srcCompat="@drawable/autumn_option_temp" />
+
+        <ImageButton
+            android:id="@+id/winterButton"
+            android:layout_width="@dimen/theme_button_width"
+            android:layout_height="@dimen/theme_button_height"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="false"
+            android:background="#00FFFFFF"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            android:tag="winter"
+            app:srcCompat="@drawable/autumn_option_temp" />
+
+        <ImageButton
+            android:id="@+id/autumnButton"
+            android:layout_width="@dimen/theme_button_width"
+            android:layout_height="@dimen/theme_button_height"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="false"
+            android:background="#00FFFFFF"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            android:tag="autumn"
+            app:srcCompat="@drawable/autumn_option_temp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

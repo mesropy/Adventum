@@ -1,15 +1,24 @@
 package com.example.ourgame.Languages;
 
 public interface Language {
+   // main menu
     String getMainPlayButton();
     String getMainLeaderBoard();
     String getMainSettings();
+    String getWelcomeMessage(String user);
+
+    // String getTitle(GameName gameName);
+    // String getInstructions(GameName gameName);
+
+    // reaction game
     String getReactionTitle();
     String getReactionMessageWait();
     String getReactionMessageGo();
     String getReactionMessageTooSoon();
     String getReactionMessageInstruction();
     String getReactionContinueText();
+
+    // tile game
     String getTileTitle();
     String getTileLivesRemain();
     String getTileResultTextCorrect();
@@ -19,24 +28,33 @@ public interface Language {
     String getTileIntroduction1();
     String getTileIntroduction2();
     String getTileIntroduction3();
-    String instruction();
-    String start();
+
+    // picture game
     String getPictureInstruction();
     String getPictureTitle();
     String getPictureNoMoreAttempts();
     String getPictureNumAttempts();
-    String getContinue();
-    String getEnter();
+    String typeAnswer();
+
+    // hangman game
     String getHangmanTitle();
-    String mainMenu();
-    String back();
+
+    // statistics
     String statistics();
     String statPoints();
     String statPlaytime();
     String statRank();
     String score();
+
+    // leaderboard
     String leaderboardUser();
     String leaderboardYourRank();
-    String typeAnswer();
-    String getWelcomeMessage(String user);
+
+    // other / general
+    String instruction();
+    String start();
+    String getContinue();
+    String getEnter();
+    String mainMenu();
+    String back();
 }

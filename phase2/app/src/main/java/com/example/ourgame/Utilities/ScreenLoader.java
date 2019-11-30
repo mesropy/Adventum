@@ -5,12 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 
-import com.example.ourgame.Games.Game;
+import com.example.ourgame.Games.GameName;
 import com.example.ourgame.Games.HangmanGame.HangmanActivity;
 import com.example.ourgame.Games.InstructionsActivity;
 import com.example.ourgame.Games.PictureGame.PictureGameActivity;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
-import com.example.ourgame.Games.RunningGame.EndlessRunner;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
 import com.example.ourgame.Games.TileGame.TileGameActivity;
 import com.example.ourgame.Statistics.LeaderBoardActivity;
@@ -23,7 +22,7 @@ public class ScreenLoader {
 
     private Context context;
     // improve this
-    private String [] games = {"Hangman", "Picture", "Reaction", "Running", "Tile"};
+    private String [] games = GameName.names();
 
     public ScreenLoader(Context context) {
         this.context = context;
@@ -86,6 +85,14 @@ public class ScreenLoader {
     public void loadGame(String gameName){
         Intent intent;
 
+        /*
+        for (String game : games){
+            if(game.equals(gameName)){
+                // something with intent
+            }
+        }
+        */
+
         switch (gameName) {
             case "Hangman":
                 intent = new Intent(context, HangmanActivity.class);
@@ -109,7 +116,7 @@ public class ScreenLoader {
 
     // correct?
     // TODO: use this
-    private void loadScreen(Object activityClass){
+    private void loadScreen(Activity activityClass){
         Intent intent = new Intent(context, activityClass.getClass());
         context.startActivity(intent);
     }

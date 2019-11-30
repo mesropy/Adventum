@@ -6,12 +6,12 @@ public abstract class Game {
 
     private WriteData data;
     private String username;
-    private String gameName;
+    private GameName gameName;
 
     private int pointsEarned; // points for this game, not total points
     private int playTime;
 
-    protected Game(String gameName, WriteData data) {
+    protected Game(GameName gameName, WriteData data) {
         this.data = data;
         this.username = data.getUser();
         this.gameName = gameName;
@@ -43,7 +43,7 @@ public abstract class Game {
         if (canUpdateRanking()) {
             data.increaseRanking(username);
         }
-        data.addLastGame(username, gameName);
+        data.addLastGame(username, gameName.toString().toLowerCase());
         data.addPlayTime(username, playTime);
         data.addPoints(username, pointsEarned);
     }

@@ -3,6 +3,7 @@ package com.example.ourgame.Games.TileGame;
 import android.content.Context;
 import android.widget.Button;
 
+import com.example.ourgame.Games.GameName;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.R;
@@ -40,7 +41,7 @@ class TileGame extends Game {
     private ArrayList<Tile> tiles = new ArrayList<>();
 
     TileGame(Context context) {
-        super("Tile", new DataWriter(context));
+        super(GameName.TILE, new DataWriter(context));
 
         currentLives = lives;
         currentNumRoundLives = livesPerRound;

@@ -15,10 +15,6 @@ import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
-import com.example.ourgame.Utilities.ScreenLoader;
-import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 
 
 import java.util.ArrayList;
@@ -93,7 +89,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         screenLoader = new ScreenLoader(this);
 
         LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage(), this);
-        language = text.getTextsetter();
+        language = text.getTextSetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
         ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getTheme());

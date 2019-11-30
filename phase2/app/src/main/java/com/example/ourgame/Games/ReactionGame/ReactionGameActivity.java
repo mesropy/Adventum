@@ -54,7 +54,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
 
         game = new ReactionGame(this);
         LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), this);
-        language = text.getTextsetter();
+        language = text.getTextSetter();
 
         screenLoader = new ScreenLoader(this);
 

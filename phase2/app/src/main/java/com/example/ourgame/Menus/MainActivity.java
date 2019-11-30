@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void setLanguage() {
         LanguageTextSetter languageTextSetter = new LanguageTextSetter(data.getLanguage(user),
                 this);
-        Language language = languageTextSetter.getTextsetter();
+        Language language = languageTextSetter.getTextSetter();
 
         String welcomeMessage = language.getWelcomeMessage(user);
         playButton.setText(language.getMainPlayButton());

@@ -3,6 +3,7 @@ package com.example.ourgame.Games.HangmanGame;
 import android.content.Context;
 
 import com.example.ourgame.Games.Game;
+import com.example.ourgame.Games.GameName;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
 
@@ -38,7 +39,7 @@ class Hangman extends Game {
     private Context context;
 
     Hangman(Context context) throws IOException {
-        super("Hangman", new DataWriter(context));
+        super(GameName.HANGMAN, new DataWriter(context));
 
         this.context = context;
         this.incorrectGuesses = 0;

@@ -1,6 +1,12 @@
 package com.example.ourgame.Themes;
 
+enum ThemeType{
+    AUTUMN, SUMMER, WINTER
+}
+
+
 public interface Theme {
+    ThemeType getTheme();
     int mainActivityLayout();
     int SettingsActivityLayout();
     int HangmanActivityLayout();

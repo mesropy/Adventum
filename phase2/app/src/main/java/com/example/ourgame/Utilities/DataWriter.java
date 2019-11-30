@@ -20,9 +20,10 @@ public class DataWriter implements WriteData {
      */
 
     private String[] rankings = {"Bronze", "Silver", "Gold", "Platinum"};
-    private int [] characterImageIds = {R.drawable.boy};
+    private int [] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl};
 
     private SharedPreferences loginData;
+    private SharedPreferences currUserData;
     private SharedPreferences pointsData;
     private SharedPreferences timeData;
     private SharedPreferences rankingData;
@@ -30,7 +31,6 @@ public class DataWriter implements WriteData {
     private SharedPreferences languageData;
     private SharedPreferences themeData;
     private SharedPreferences characterData;
-    private SharedPreferences currUserData;
 
     private Context context;
 
@@ -38,12 +38,12 @@ public class DataWriter implements WriteData {
         this.context = context;
 
         loginData = context.getSharedPreferences(context.getString(R.string.preference_file_login), Context.MODE_PRIVATE);
+        currUserData = context.getSharedPreferences(context.getString(R.string.preference_file_user), Context.MODE_PRIVATE);
         pointsData = context.getSharedPreferences(context.getString(R.string.preference_file_points), Context.MODE_PRIVATE);
         timeData = context.getSharedPreferences(context.getString(R.string.preference_file_time), Context.MODE_PRIVATE);
         rankingData = context.getSharedPreferences(context.getString(R.string.preference_file_ranking), Context.MODE_PRIVATE);
         lastGameData = context.getSharedPreferences(context.getString(R.string.preference_file_lastgame), Context.MODE_PRIVATE);
         languageData = context.getSharedPreferences(context.getString(R.string.preference_file_language), Context.MODE_PRIVATE);
-        currUserData = context.getSharedPreferences(context.getString(R.string.preference_file_user), Context.MODE_PRIVATE);
         themeData = context.getSharedPreferences(context.getString(R.string.preference_file_theme), Context.MODE_PRIVATE);
         characterData = context.getSharedPreferences(context.getString(R.string.preference_file_character), Context.MODE_PRIVATE);
     }
