@@ -5,7 +5,6 @@ import com.example.ourgame.Utilities.WriteData;
 public abstract class Game {
 
     private WriteData data;
-    private String username;
     private GameName gameName;
 
     private int pointsEarned; // points for this game, not total points
@@ -13,7 +12,6 @@ public abstract class Game {
 
     protected Game(GameName gameName, WriteData data) {
         this.data = data;
-        this.username = data.getUser();
         this.gameName = gameName;
         this.pointsEarned = 0;
         this.playTime = 0;
@@ -41,22 +39,22 @@ public abstract class Game {
      */
     public void saveStatistics() {
         if (canUpdateRanking()) {
-            data.increaseRanking(username);
+            data.increaseRanking();
         }
-        data.addLastGame(username, gameName.toString().toLowerCase());
-        data.addPlayTime(username, playTime);
-        data.addPoints(username, pointsEarned);
+        data.addLastGame(gameName.toString().toLowerCase());
+        data.addPlayTime(playTime);
+        data.addPoints(pointsEarned);
     }
 
     public abstract boolean canUpdateRanking();
 
 
     public String getLanguage() {
-        return data.getLanguage(username);
+        return data.getLanguage();
     }
 
     public String getTheme() {
-        return data.getThemeData(username);
+        return data.getThemeData();
     }
 
 }

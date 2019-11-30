@@ -45,9 +45,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         fifthPoints = findViewById(R.id.fifthPoints);
         dataWriter = new DataWriter(this);
 
-        String user = dataWriter.getUser();
-
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user), this);
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
         language = text.getTextSetter();
 
         TextView title = findViewById(R.id.title);
@@ -58,7 +56,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         title.setText(language.getMainLeaderBoard());
 
         ConstraintLayout constraintLayout = findViewById(R.id.leaderboardLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
@@ -110,7 +108,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
         String string = language.leaderboardYourRank();
-        int rank = userNames.indexOf(dataWriter.getUser()) + 1;
+        int rank = userNames.indexOf(dataWriter.getCurrentUser()) + 1;
         String rankS = String.valueOf(rank);
         string = string + rankS;
         personal.setText(string);

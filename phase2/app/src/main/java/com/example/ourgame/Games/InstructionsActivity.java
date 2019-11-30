@@ -31,7 +31,7 @@ public class InstructionsActivity extends AppCompatActivity {
 
         screenLoader = new ScreenLoader(this);
         data = new DataWriter(this);
-        LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(data.getUser()), this);
+        LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(), this);
         language = text.getTextSetter();
 
         gameName = getIntent().getStringExtra("game");
@@ -116,7 +116,7 @@ public class InstructionsActivity extends AppCompatActivity {
 
     private void setTheme(){
         ConstraintLayout constraintLayout = findViewById(R.id.instructionsLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(data.getUser()));
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.mainActivityLayout());
     }

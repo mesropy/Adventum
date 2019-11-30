@@ -31,7 +31,6 @@ public class StatisticsActivity extends AppCompatActivity {
     TextView pointsText;
     TextView playtimeText;
     TextView rankingText;
-    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +51,9 @@ public class StatisticsActivity extends AppCompatActivity {
         ImageView characterImage = findViewById(R.id.characterImage);
 
         dataWriter = new DataWriter(this);
-        user = dataWriter.getUser();
-
         screenLoader = new ScreenLoader(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(user), this);
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
         language = text.getTextSetter();
 
         continueButton.setText(language.getContinue());
@@ -66,10 +63,10 @@ public class StatisticsActivity extends AppCompatActivity {
         rank.setText(language.statRank());
         mainMenu.setText(language.mainMenu());
         backButton.setText(language.back());
-        characterImage.setImageResource(dataWriter.getCharacterData(user));
+        characterImage.setImageResource(dataWriter.getCharacterData());
 
         ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.PictureGameLayout());
 
@@ -78,11 +75,11 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void displayStatistics() {
-        String str = Integer.toString(dataWriter.getPoints(user));
+        String str = Integer.toString(dataWriter.getPoints());
         pointsText.setText(str);
-        String str2 = dataWriter.getPlayTime(user) + " secs.";
+        String str2 = dataWriter.getPlayTime() + " secs.";
         playtimeText.setText(str2);
-        rankingText.setText(dataWriter.getRanking(user));
+        rankingText.setText(dataWriter.getRanking());
     }
 
     private void setUpNavigationButtons() {

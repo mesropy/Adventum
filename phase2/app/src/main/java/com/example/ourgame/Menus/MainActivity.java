@@ -54,19 +54,19 @@ public class MainActivity extends AppCompatActivity {
         characterImage = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
-        user = data.getUser();
+        user = data.getCurrentUser();
         setLanguage();
 
-        characterImage.setImageResource(data.getCharacterData(user));
+        characterImage.setImageResource(data.getCharacterData());
 
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
         Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.mainactivityLayout);
         constraintLayout.setBackgroundResource(theme.mainActivityLayout());
     }
 
     private void setLanguage() {
-        LanguageTextSetter languageTextSetter = new LanguageTextSetter(data.getLanguage(user),
+        LanguageTextSetter languageTextSetter = new LanguageTextSetter(data.getLanguage(),
                 this);
         Language language = languageTextSetter.getTextSetter();
 

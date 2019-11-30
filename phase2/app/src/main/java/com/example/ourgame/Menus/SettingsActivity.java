@@ -44,14 +44,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         character = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
-        user = data.getUser();
+        user = data.getCurrentUser();
         screenLoader = new ScreenLoader(this);
 
 
         // TODO: find way to improve this
         // (get rid of ThemeBuilder, easily access theme in one line)
         // theme
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user).toUpperCase());
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData().toUpperCase());
         Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
         constraintLayout.setBackgroundResource(theme.SettingsActivityLayout());
@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private void displayCurrentSettings() {
 
         //character
-        character.setImageResource(data.getCharacterData(user));
+        character.setImageResource(data.getCharacterData());
 
 
         // language
@@ -87,7 +87,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         // loop through radio group and compare tags with getLanguage
         RadioButton selectedLanguageButton;
 
-        if (data.getLanguage(user).equals(getString(R.string.language_french))) {
+        if (data.getLanguage().equals(getString(R.string.language_french))) {
             selectedLanguageButton = findViewById(R.id.french);
         } else { // if (data.getLanguage(user).equals("english")) {
             selectedLanguageButton = findViewById(R.id.english);
@@ -95,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         selectedLanguageButton.setChecked(true);
 
         // theme
-        selectedTheme = data.getThemeData(user);
+        selectedTheme = data.getThemeData();
         displaySelectedTheme();
     }
 
@@ -147,13 +147,13 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         RadioButton checkedLanguageButton =
                 findViewById(languageRadioGroup.getCheckedRadioButtonId());
         String selectedLanguage = checkedLanguageButton.getTag().toString();
-        data.setLanguage(user, selectedLanguage);
+        data.setLanguage(selectedLanguage);
 
         // save theme
-        data.setThemeData(user, selectedTheme);
+        data.setThemeData(selectedTheme);
 
         // save character
-        data.setCharacterData(user, selectedCharacterId);
+        data.setCharacterData(selectedCharacterId);
 
         // load main menu
         screenLoader.loadMainMenu();
