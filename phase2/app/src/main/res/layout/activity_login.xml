@@ -1,31 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
-    tools:context=".login.Login"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
+    android:layout_gravity="center|center_horizontal|top|center_vertical"
     android:layout_marginTop="16dp"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".login.Login">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="278dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="117dp"
+            android:layout_height="44dp"
+            android:fontFamily="@font/renner"
+            android:text="GAME NAME"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="38dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_username"
+        android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/user_name"
-        android:inputType="text"/>
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/password"
         android:inputType="textPassword" />

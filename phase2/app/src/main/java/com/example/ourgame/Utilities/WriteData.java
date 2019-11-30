@@ -42,9 +42,9 @@ public interface WriteData {
 
     String getThemeData(String username);
 
-    String getCharacterData(String username);
+    int getCharacterData(String username);
     void setThemeData(String username, String theme);
-    void setCharacterData(String username, String character);
+    void setCharacterData(String username, int characterImageId);
 
 
 }
