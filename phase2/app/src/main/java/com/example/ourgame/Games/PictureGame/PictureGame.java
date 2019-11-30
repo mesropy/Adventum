@@ -18,20 +18,12 @@ class PictureGame extends Game {
   private int[] pointsToEarn = {2, 3, 5};
   private int currentLevel;
 
-  // other info
-  private String correctGuessMessage;
-  private String incorrectGuessMessage;
-  private String noMoreAttemptsMessage;
-
 
   PictureGame(Context context) {
       super("Picture", new DataWriter(context));
     numAttempts = 0;
     numAttemptsAllowed = 5;
     currentLevel = 0;
-    correctGuessMessage = "Correct!";
-    incorrectGuessMessage = "Sorry, try again!";
-    noMoreAttemptsMessage = "No more attempts!";
   }
 
   void incrementNumAttempts() {
@@ -45,18 +37,6 @@ class PictureGame extends Game {
   String getNumAttemptsText() {
     return numAttempts + " / " + numAttemptsAllowed;
   }
-
-//  String getCorrectGuessMessage() {
-//    return correctGuessMessage;
-//  }
-//
-//  String getIncorrectGuessMessage() {
-//    return incorrectGuessMessage;
-//  }
-//
-//  String getNoMoreAttemptsMessage() {
-//    return noMoreAttemptsMessage;
-//  }
 
   int getCurrentImageResource() {
     return imagesToGuess[currentLevel];

@@ -17,6 +17,10 @@ import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.ScreenLoader;
 
+enum SelectedTheme{
+    AUTUMN, SUMMER, WINTER
+}
+
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String user;
@@ -25,9 +29,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private ImageView character;
 
     private RadioGroup languageRadioGroup;
-    private RadioButton englishButton, frenchButton;
-    private ImageButton autumn, winter, summer;
+    private ImageButton autumnButton, winterButton, summerButton;
 
+    private SelectedTheme selectedTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,29 +39,36 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_settings);
 
         languageRadioGroup = findViewById(R.id.languageRadioGroup);
-        englishButton = findViewById(R.id.englishButton);
-        frenchButton = findViewById(R.id.frenchButton);
         character = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
         user = data.getUser();
         screenLoader = new ScreenLoader(this);
 
+        // theme
         ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(user));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.SettingsActivityLayout());
 
-        autumn = findViewById(R.id.autumnButton);
-        winter = findViewById(R.id.winterButton);
-        summer = findViewById(R.id.summerButton);
+        autumnButton = findViewById(R.id.autumnButton);
+        winterButton = findViewById(R.id.winterButton);
+        summerButton = findViewById(R.id.summerButton);
 
-        autumn.setOnClickListener(this);
-        winter.setOnClickListener(this);
-        summer.setOnClickListener(this);
+        autumnButton.setOnClickListener(this);
+        winterButton.setOnClickListener(this);
+        summerButton.setOnClickListener(this);
+
+        displayCurrentSettings();
+    }
+
+
+
+    private void displayCurrentSettings() {
+        RadioButton englishButton = findViewById(R.id.englishButton);
+        RadioButton frenchButton = findViewById(R.id.frenchButton);
 
         character.setImageResource(data.getCharacterData(user));
-
 
         if (data.getLanguage(user).equals("french")) {
             frenchButton.setChecked(true);
@@ -66,15 +77,13 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if (data.getThemeData(user).equals("autumn")) {
-            winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-            summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+            selectedTheme = SelectedTheme.AUTUMN;
         } else if (data.getThemeData(user).equals("winter")) {
-            autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-            summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-        } else {
-            winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-            autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
+            selectedTheme = SelectedTheme.WINTER;
+        } else { // summer
+            selectedTheme = SelectedTheme.SUMMER;
         }
+        displaySelectedTheme();
     }
 
     // go to choose character page, then return to settings
@@ -107,25 +116,38 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.autumnButton:
-                autumn.clearColorFilter();
-                winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData(user, "autumn");
+                selectedTheme = SelectedTheme.AUTUMN;
                 break;
             case R.id.winterButton:
-                winter.clearColorFilter();
-                autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                summer.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData(user, "winter");
+                selectedTheme = SelectedTheme.WINTER;
                 break;
             case R.id.summerButton:
-                summer.clearColorFilter();
-                winter.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                autumn.setColorFilter(Color.rgb(123, 123, 123), android.graphics.PorterDuff.Mode.MULTIPLY);
-                data.setThemeData(user, "summer");
+                selectedTheme = SelectedTheme.SUMMER;
                 break;
-
         }
+        displaySelectedTheme();
+
+    }
+
+    private void displaySelectedTheme(){
+        if(selectedTheme.equals(SelectedTheme.AUTUMN)){
+            autumnButton.clearColorFilter();
+            addGreyTintFilter(winterButton);
+            addGreyTintFilter(summerButton);
+        } else if (selectedTheme.equals(SelectedTheme.SUMMER)){
+            summerButton.clearColorFilter();
+            addGreyTintFilter(winterButton);
+            addGreyTintFilter(autumnButton);
+        } else if (selectedTheme.equals(SelectedTheme.WINTER)){
+            winterButton.clearColorFilter();
+            addGreyTintFilter(autumnButton);
+            addGreyTintFilter(summerButton);
+        }
+    }
+
+    private void addGreyTintFilter(ImageButton button){
+        button.setColorFilter(Color.rgb(123, 123, 123),
+                android.graphics.PorterDuff.Mode.MULTIPLY);
     }
 
     // save selected theme and language with data saver, and
@@ -138,6 +160,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         } else if (checkedLanguageId == R.id.frenchButton) {
             data.setLanguage(user, "french");
         }
+
+        data.setThemeData(user, selectedTheme.toString().toLowerCase());
 
         screenLoader.loadMainMenu();
     }

@@ -1,9 +1,40 @@
 package com.example.ourgame.Languages;
 
+import android.content.Context;
+
+import com.example.ourgame.R;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class English implements Language {
 
-    public String getMainPlayButton() {
-        return "Play";
+    private List<String> gameIntros = new ArrayList<>();
+
+    English(Context context) throws IOException{
+        InputStream inputStream = context.getResources().openRawResource(R.raw.game_instruction_english);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        try {
+            String str;
+            while((str = in.readLine()) != null){
+                if (!str.equals("")){
+                    gameIntros.add(str);
+                }
+            }
+        }
+        catch (IOException e) {
+            gameIntros.add("");
+        } finally {
+            in.close();
+        }
+    }
+
+    public String getMainPlayButton() { return "Play";
     }
     public String getMainLeaderBoard() {
         return "Leaderboard";
@@ -18,7 +49,7 @@ public class English implements Language {
         return "Wait";
     }
     public String getReactionMessageInstruction() {
-        return "When the screen turns green, tap as quickly as possible...";
+        return gameIntros.get(4);
     }
     public String getReactionMessageGo() {
         return "Go!";
@@ -57,23 +88,17 @@ public class English implements Language {
 
     @Override
     public String getTileIntroduction1() {
-        return "Every round, a set of tiles will appear green before turning blue " + "\n" +
-                "Your job is to memorize the locations of the green tiles and tap " +
-                "the green tiles while avoiding the original blue tiles.";
+        return gameIntros.get(0);
     }
 
     @Override
     public String getTileIntroduction2() {
-        return "If you pick an incorrect tile, it will turn red." + "\n" +
-                "If you pick a correct tile, it will turn green.";
+        return gameIntros.get(1);
     }
 
     @Override
     public String getTileIntroduction3() {
-        return "To continue to the next round, click all the correct tiles while avoiding the " +
-                "incorrect ones." + "\n" + "If you miss 2 tiles on one round you lose a life" +
-                "\n" + "Losing three lives will end the game!" + "\n" + "Tap as many green tiles "
-                + "and continue as long as possible.";
+        return gameIntros.get(2);
     }
 
     @Override
@@ -88,11 +113,7 @@ public class English implements Language {
 
     @Override
     public String getPictureInstruction() {
-        return "Here you will be given a series of pictures among which a variety of woodland " +
-                "creatures are hiding. It is your job to deem correctly what creature lies within " +
-                "the lines. You will have five guesses to correctly determine the given animal. " +
-                "Each consecutive level has increasingly difficult images for you to guess. " +
-                "Good luck!";
+        return gameIntros.get(3);
     }
 
     @Override
@@ -156,6 +177,11 @@ public class English implements Language {
     @Override
     public String leaderboardYourRank() {
         return "Your Rank: ";
+    }
+
+    @Override
+    public String typeAnswer() {
+        return "type your answer here";
     }
 
 }

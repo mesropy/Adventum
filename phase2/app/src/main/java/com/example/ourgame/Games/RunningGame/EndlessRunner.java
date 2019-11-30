@@ -44,7 +44,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
         game = new EndlessRunnerGame(this, new DataWriter(context));
 
-        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), context);
         language = text.getTextsetter();
 
         paint = new Paint();

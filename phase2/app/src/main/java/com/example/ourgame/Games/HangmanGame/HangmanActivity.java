@@ -37,6 +37,8 @@ public class HangmanActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage(), this);
+        language = text.getTextsetter();
         screenLoader = new ScreenLoader(this);
 
 
@@ -52,11 +54,7 @@ public class HangmanActivity extends AppCompatActivity {
         continueButton = findViewById(R.id.continueButton);
         continueButton.setVisibility(View.GONE);
 
-        // set language
-        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage());
-        language = text.getTextsetter();
         setLanguage();
-
     }
 
     private void setLanguage(){

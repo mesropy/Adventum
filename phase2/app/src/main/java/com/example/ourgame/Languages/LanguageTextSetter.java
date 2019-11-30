@@ -1,14 +1,26 @@
 package com.example.ourgame.Languages;
 
+import android.content.Context;
+
+import java.io.IOException;
+
 public class LanguageTextSetter {
     private Language textsetter;
 
-    public LanguageTextSetter(String string){
+    public LanguageTextSetter(String string, Context context){
         if(string.equals("english")){
-            textsetter = new English();
+            try {
+                textsetter = new English(context);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         else if(string.equals("french")){
-            textsetter = new French();
+            try {
+                textsetter = new French(context);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

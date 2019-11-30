@@ -31,9 +31,9 @@
 
     <EditText
         android:id="@+id/guessEditText"
-        android:layout_width="217dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="50dp"
         android:autofillHints=""
@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guessResultText"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintVertical_bias="0.073" />
 
     <Button
         android:id="@+id/continueButton"
@@ -68,13 +68,11 @@
         android:id="@+id/enterButton"
         android:layout_width="78dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
         android:onClick="onEnterGuessPressed"
         android:text="@string/enter_button"
         android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/guessEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.608"
         app:layout_constraintStart_toEndOf="@+id/guessEditText"
         tools:text="@string/enter_button" />
 

@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 
 public class TileGameActivity extends AppCompatActivity implements View.OnClickListener {
-
+    
     private TileGame tileGame;
     private Language language;
     private ScreenLoader screenLoader;
@@ -92,7 +92,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
 
         screenLoader = new ScreenLoader(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(tileGame.getLanguage(), this);
         language = text.getTextsetter();
 
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
@@ -101,7 +101,8 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
 
         title.setText(language.getTileTitle());
-        livesText.setText(language.getTileLivesRemain());
+        String s = language.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";
+        livesText.setText(s);
 
         for (int value : tileButtonIds2) {
             findViewById(value).setVisibility(View.INVISIBLE);

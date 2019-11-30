@@ -1,6 +1,37 @@
 package com.example.ourgame.Languages;
 
+import android.content.Context;
+
+import com.example.ourgame.R;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class French implements Language {
+
+    private List<String> gameIntros = new ArrayList<>();
+    French(Context context) throws IOException {
+        InputStream inputStream = context.getResources().openRawResource(R.raw.game_instruction_french);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        try {
+            String str;
+            while((str = in.readLine()) != null){
+                if (!str.equals("")){
+                    gameIntros.add(str);
+                }
+            }
+        }
+        catch (IOException e) {
+            gameIntros.add("");
+        } finally {
+            in.close();
+        }
+    }
 
     public String getMainPlayButton() {
         return "Jouer";
@@ -18,7 +49,7 @@ public class French implements Language {
         return "Attendez";
     }
     public String getReactionMessageInstruction() {
-        return "Lorsque l'écran devient vert, tapez le plus rapidement possible";
+        return gameIntros.get(4);
     }
     public String getReactionMessageGo() {
         return "Aller!";
@@ -61,23 +92,17 @@ public class French implements Language {
     }
 
     public String getTileIntroduction1() {
-        return "Chaque tour, un ensemble de carreaux apparaît en vert avant de virer au bleu " + "\n" +
-                "Votre travail consiste à mémoriser les emplacements des tuiles vertes et à taper sur " +
-                "les carreaux verts tout en évitant les carreaux bleus originaux.";
+        return gameIntros.get(0);
     }
 
     @Override
     public String getTileIntroduction2() {
-        return "Si vous choisissez une tuile incorrecte, elle deviendra rouge." + "\n" +
-                "Si vous choisissez une bonne tuile, elle deviendra verte.";
+        return gameIntros.get(1);
     }
 
     @Override
     public String getTileIntroduction3() {
-        return "Pour continuer au tour suivant, cliquez sur toutes les bonnes tuiles tout en évitant " +
-                "celles qui sont incorrectes. " + "\n" + "Si vous manquez 2 tuiles sur un tour, vous perdez une vie" +
-                "\n" + "Perdre trois vies mettra fin au jeu!" + "\n" +
-                "Appuyez sur autant de carreaux verts et continuez aussi longtemps que possible.";
+        return gameIntros.get(2);
     }
 
     @Override
@@ -92,11 +117,7 @@ public class French implements Language {
 
     @Override
     public String getPictureInstruction() {
-        return "Ici, vous recevrez une série de photos parmi lesquelles se cachent diverses " +
-                "créatures des bois. Il est de votre devoir de déterminer correctement quelle" +
-                " créature se trouve dans les lignes. Vous aurez cinq hypothèses pour déterminer " +
-                "correctement l'animal donné. Chaque niveau consécutif a des images de plus en " +
-                "plus difficiles à deviner. Bonne chance!";
+        return gameIntros.get(3);
     }
 
     @Override
@@ -161,5 +182,10 @@ public class French implements Language {
     @Override
     public String leaderboardYourRank() {
         return "Ton rang: ";
+    }
+
+    @Override
+    public String typeAnswer() {
+        return "tapez votre réponse ici";
     }
 }

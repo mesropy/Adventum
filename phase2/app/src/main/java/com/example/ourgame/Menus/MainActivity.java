@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setLanguage() {
         String language = data.getLanguage(user);
-        LanguageTextSetter text = new LanguageTextSetter(language);
+        LanguageTextSetter text = new LanguageTextSetter(language, this);
         Language textsetter = text.getTextsetter();
 
         String welcomeMessage;

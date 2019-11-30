@@ -44,9 +44,6 @@ public class ReactionGameActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reaction_time);
 
-        game = new ReactionGame(this);
-        screenLoader = new ScreenLoader(this);
-
         currentLayout = findViewById(R.id.main_layout);
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
@@ -55,11 +52,13 @@ public class ReactionGameActivity extends AppCompatActivity  {
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
 
-        // set language
-        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage());
+        game = new ReactionGame(this);
+        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), this);
         language = text.getTextsetter();
-        setLanguage();
 
+        screenLoader = new ScreenLoader(this);
+
+        setLanguage();
         setInstructions();
     }
 
@@ -67,13 +66,7 @@ public class ReactionGameActivity extends AppCompatActivity  {
         TextView tapToContinue = findViewById(R.id.continueText);
         title.setText(language.getReactionTitle());
         tapToContinue.setText(language.getReactionContinueText());
-
-        if (game.getLanguage().equals("french")) {
-            title.setText(R.string.reaction_game_french);
-            tapToContinue.setText(R.string.press_any_key_french);
-        }
     }
-
 
     /**
      * A method to determine what state the screen will go to when tapped, depending on the

@@ -37,4 +37,5 @@ public interface Language {
     String score();
     String leaderboardUser();
     String leaderboardYourRank();
+    String typeAnswer();
 }

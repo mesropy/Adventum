@@ -49,7 +49,7 @@ public class PictureGameActivity extends AppCompatActivity {
         continueButton.setVisibility(View.GONE);
 
         // set language
-        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage());
+        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage(), this);
         language = text.getTextsetter();
         setLanguage();
 
@@ -58,6 +58,7 @@ public class PictureGameActivity extends AppCompatActivity {
         ThemeBuilder themeBuilder = new ThemeBuilder(pictureGame.getTheme());
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.PictureGameLayout());
+
     }
 
     private void setLanguage() {
@@ -74,6 +75,7 @@ public class PictureGameActivity extends AppCompatActivity {
         continueButton.setText(language.getContinue());
         enterButton.setText(language.getEnter());
         numAttemptsText.setText(pictureGame.getNumAttemptsText());
+        guessEditText.setHint(language.typeAnswer());
     }
 
     @Override

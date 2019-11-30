@@ -31,7 +31,7 @@ public class InstructionsActivity extends AppCompatActivity {
 
         screenLoader = new ScreenLoader(this);
         data = new DataWriter(this);
-        LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(data.getUser()));
+        LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(data.getUser()), this);
         language = text.getTextsetter();
 
         gameName = getIntent().getStringExtra("game");
@@ -41,17 +41,70 @@ public class InstructionsActivity extends AppCompatActivity {
     }
 
     private void setTexts() {
-        TextView gameNameTitleText = findViewById(R.id.gameNameText);
-        TextView instructionsText = findViewById(R.id.instructionsText);
+        setGameTitle();
+        setInstructions();
+
+        // TODO: set languages for these
         TextView instructionsSubtitleText = findViewById(R.id.instructionsSubtitleText);
         Button playGameButton = findViewById(R.id.playGameButton);
-
-        gameNameTitleText.setText(getGameTitle());
-        instructionsText.setText(getInstructions());
-
-        // set languages for these
         //instructionsSubtitleText.setText(language.getInstructionsSubtitle());
         //playGameButton.setText(language.getPlayGameButton());
+    }
+
+
+    private void setGameTitle(){
+        String gameTitle;
+
+        switch (gameName) {
+            case "Hangman":
+                gameTitle = language.getHangmanTitle();
+                break;
+            //language.getHangmanInstruction();
+            case "Picture":
+                gameTitle = language.getPictureTitle();
+                break;
+            case "Reaction":
+                gameTitle = language.getReactionTitle();
+                break;
+            case "Running":
+                // language.getRunningTitle();
+                gameTitle = "";
+                break;
+            //language.getRunnerInstruction();
+            default:  // Tile
+                gameTitle = language.getTileTitle();
+                break;
+        }
+
+        TextView gameNameTitleText = findViewById(R.id.gameNameText);
+        gameNameTitleText.setText(gameTitle);
+    }
+
+    private void setInstructions() {
+        String instructions;
+        switch (gameName) {
+            case "Hangman":
+                instructions = "";
+                break;
+            //language.getHangmanInstruction();
+            case "Picture":
+                instructions = language.getPictureInstruction();
+                break;
+            case "Reaction":
+                instructions = language.getReactionMessageInstruction();
+                break;
+            case "Running":
+                instructions = " ";
+                break;
+            //language.getRunnerInstruction();
+            default:  // Tile
+                // TODO: combine other 2 instructions and the images
+                instructions = language.getTileIntroduction1();
+                break;
+        }
+
+        TextView instructionsText = findViewById(R.id.instructionsText);
+        instructionsText.setText(instructions);
     }
 
     private void setTheme(){
@@ -59,42 +112,6 @@ public class InstructionsActivity extends AppCompatActivity {
         ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData(data.getUser()));
         Theme theme = themeBuilder.getTheme();
         constraintLayout.setBackgroundResource(theme.mainActivityLayout());
-    }
-
-    private String getInstructions() {
-        switch (gameName) {
-            case "Hangman":
-                return "";
-            //language.getHangmanInstruction();
-            case "Picture":
-                return language.getPictureInstruction();
-            case "Reaction":
-                return language.getReactionMessageInstruction();
-            case "Running":
-                return " ";
-            //language.getRunnerInstruction();
-            default:  // Tile
-                // TODO: combine other 2 instructions and the images
-                return language.getTileIntroduction1();
-        }
-    }
-
-    private String getGameTitle(){
-        switch (gameName) {
-            case "Hangman":
-                return language.getHangmanTitle();
-            //language.getHangmanInstruction();
-            case "Picture":
-                return language.getPictureTitle();
-            case "Reaction":
-                return language.getReactionTitle();
-            case "Running":
-                // language.getRunningTitle();
-                return "";
-            //language.getRunnerInstruction();
-            default:  // Tile
-                return language.getTileTitle();
-        }
     }
 
     public void onPlayGamePressed(View view) {
