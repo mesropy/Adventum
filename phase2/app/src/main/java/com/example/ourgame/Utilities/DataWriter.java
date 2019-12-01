@@ -20,7 +20,7 @@ public class DataWriter implements WriteData {
      */
 
     private String[] rankings = {"Bronze", "Silver", "Gold", "Platinum"};
-    private int [] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl};
+    private int[] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl};
     private String currentUser;
 
     private SharedPreferences loginData;
@@ -35,7 +35,7 @@ public class DataWriter implements WriteData {
 
     private Context context;
 
-    public DataWriter(Context context){
+    public DataWriter(Context context) {
         this.context = context;
 
         loginData = context.getSharedPreferences(context.getString(R.string.preference_file_login),
@@ -63,6 +63,7 @@ public class DataWriter implements WriteData {
 
     /**
      * Method to create a new account for a new user
+     *
      * @param username the username of the new account
      * @param password the password of the new account
      */
@@ -161,6 +162,7 @@ public class DataWriter implements WriteData {
 
     /**
      * Add points the user has obtained in a game
+     *
      * @param points the amount of points to give to the user
      */
     @Override
@@ -185,6 +187,7 @@ public class DataWriter implements WriteData {
 
     /**
      * Add the amount of time this player has played in a game
+     *
      * @param playTime the amount of time played
      */
     @Override
@@ -216,6 +219,7 @@ public class DataWriter implements WriteData {
 
     /**
      * Adds the name of the last game the user had played
+     *
      * @param lastGame the game that was last played by the user
      */
     @Override
@@ -227,6 +231,7 @@ public class DataWriter implements WriteData {
 
     /**
      * Gets the name of the game the user had last played
+     *
      * @return the name of the game
      */
     @Override
@@ -236,6 +241,7 @@ public class DataWriter implements WriteData {
 
     /**
      * Check if an account with the given username exists in the raw2
+     *
      * @return a boolean representing if the username was found or not
      */
     @Override
@@ -245,17 +251,56 @@ public class DataWriter implements WriteData {
 
     /**
      * Return a map containing user names and their corresponding point values
+     *
      * @return a Map storing points data
      */
-    public Map<String, Integer> getPointsData(){
+    public Map<String, Integer> getPointsData() {
 
         Map<String, ?> data = pointsData.getAll();
 
         Map<String, Integer> returnData = new HashMap<>();
 
-        for (String key : data.keySet()){
+        for (String key : data.keySet()) {
             returnData.put(key, pointsData.getInt(key, -1));
         }
         return returnData;
+    }
+
+    /**
+     * Return a map containing user names and their corresponding play time
+     *
+     * @return a Map storing play time data
+     */
+    public Map<String, Integer> getPlayTimeData() {
+
+        Map<String, ?> data = timeData.getAll();
+
+        Map<String, Integer> returnData = new HashMap<>();
+
+        for (String key : data.keySet()) {
+            returnData.put(key, timeData.getInt(key, -1));
+        }
+
+        return returnData;
+
+    }
+
+    /**
+     * Return a map containing user names and their corresponding ranking
+     *
+     * @return a Map storing ranking of users
+     */
+    public Map<String, String> getRankingData() {
+
+        Map<String, ?> data = rankingData.getAll();
+
+        Map<String, String> returnData = new HashMap<>();
+
+        for (String key : data.keySet()) {
+            returnData.put(key, rankingData.getString(key, ""));
+        }
+
+        return returnData;
+
     }
 }

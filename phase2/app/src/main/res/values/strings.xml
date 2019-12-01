@@ -93,7 +93,7 @@
     <string name="check_stats_french">Vérifier les statistiques</string>
     <string name="title_activity_settings">Settings</string>
     <string name="rank_text">%1$s %2$s</string>
-    <string name="points_text">%1$d</string>
+    <string name="points_text">%1$s</string>
     <string name="personal_rank">Your Rank: %1$d</string>
     <string name="default_points">0</string>
     <string name="points">Points</string>
@@ -104,6 +104,9 @@
     <string name="default_user_3">3. No One</string>
     <string name="default_user_4">4. No One</string>
     <string name="default_user_5">5. No One</string>
+    <string name="playtime">Playtime</string>
+    <string name="ranking">Ranking</string>
+    <string name="back">Back</string>
 
     <string-array name="qwerty_keyboard">
 
