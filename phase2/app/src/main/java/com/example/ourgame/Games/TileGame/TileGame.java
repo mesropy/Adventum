@@ -14,6 +14,8 @@ import java.util.Collections;
 
 class TileGame extends Game {
 
+    private long startTime = 0;
+
     private int lives = 3;
     private int currentLives;
     private int currentNumRoundLives;
@@ -52,6 +54,14 @@ class TileGame extends Game {
         rightTileImageId = R.drawable.flipped_right;
         wrongTileImageId = R.drawable.flipped_wrong;
         unflippedTileImageId = R.drawable.unflipped;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public long getStartTime() {
+        return startTime;
     }
 
     void updatePoints() {
