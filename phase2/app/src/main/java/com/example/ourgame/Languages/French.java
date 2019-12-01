@@ -33,7 +33,7 @@ public class French implements Language {
         }
     }
 
-    public String getMainPlayButton() {
+    public String getPlayButton() {
         return "Jouer";
     }
     public String getMainLeaderBoard() {
@@ -117,7 +117,7 @@ public class French implements Language {
 
     @Override
     public String start() {
-        return "DÉBUT!";
+        return "COMMENCE!";
     }
 
     @Override
@@ -210,12 +210,12 @@ public class French implements Language {
     }
 
     @Override
-    public String leaderboardUser() {
+    public String leaderBoardUser() {
         return "Utilisateur: ";
     }
 
     @Override
-    public String leaderboardYourRank() {
+    public String leaderBoardYourRank() {
         return "Ton rang: ";
     }
 
@@ -232,5 +232,10 @@ public class French implements Language {
     @Override
     public String getWelcomeMessage(String user){
         return "Bienvenu " + user + "!";
+    }
+
+    @Override
+    public String getInstructionsSubtitle() {
+        return "Instructions";
     }
 }

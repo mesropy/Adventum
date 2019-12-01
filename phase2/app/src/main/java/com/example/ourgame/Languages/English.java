@@ -34,7 +34,7 @@ public class English implements Language {
         }
     }
 
-    public String getMainPlayButton() { return "Play";
+    public String getPlayButton() { return "Play";
     }
     public String getMainLeaderBoard() {
         return "Leaderboard";
@@ -206,12 +206,12 @@ public class English implements Language {
     }
 
     @Override
-    public String leaderboardUser() {
+    public String leaderBoardUser() {
         return "User: ";
     }
 
     @Override
-    public String leaderboardYourRank() {
+    public String leaderBoardYourRank() {
         return "Your Rank: ";
     }
 
@@ -228,5 +228,10 @@ public class English implements Language {
     @Override
     public String getWelcomeMessage(String user){
         return "Welcome " + user + "!";
+    }
+
+    @Override
+    public String getInstructionsSubtitle() {
+        return "Instructions";
     }
 }

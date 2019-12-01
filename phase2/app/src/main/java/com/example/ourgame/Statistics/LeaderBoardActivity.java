@@ -78,9 +78,9 @@ public class LeaderBoardActivity extends AppCompatActivity {
         Button playTimeButton = findViewById(R.id.playTimeButton);
         Button backButton = findViewById(R.id.backButton);
 
-        name.setText(language.leaderboardUser());
+        name.setText(language.leaderBoardUser());
         title.setText(language.getMainLeaderBoard());
-        personalRankLabel.setText(language.leaderboardYourRank());
+        personalRankLabel.setText(language.leaderBoardYourRank());
         valueTitle.setText(language.statPoints());
         rankByLabel.setText(language.rankBy());
         pointsButton.setText(language.points());

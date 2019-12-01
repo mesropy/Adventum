@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Language language = languageTextSetter.getTextSetter();
 
         String welcomeMessage = language.getWelcomeMessage(user);
-        playButton.setText(language.getMainPlayButton());
+        playButton.setText(language.getPlayButton());
         statisticsButton.setText(language.statistics());
         leaderBoardButton.setText(language.getMainLeaderBoard());
         settingsButton.setText(language.getMainSettings());
