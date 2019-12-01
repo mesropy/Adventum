@@ -10,7 +10,7 @@
     tools:context=".Games.HangmanGame.HangmanActivity">
 
     <ImageView
-        android:id="@+id/resultBackgroundImage2"
+        android:id="@+id/keyboardBackground"
         android:layout_width="367dp"
         android:layout_height="182dp"
         android:layout_marginTop="10dp"
@@ -28,7 +28,7 @@
         android:layout_height="42dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/renner"
-        android:text="Hangman"
+        android:text="@string/hangman_title"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
         android:layout_height="38dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/renner"
-        android:text="_ _ _ _ s a s _ "
+        android:text="@string/default_hangman_blanks"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="30sp"

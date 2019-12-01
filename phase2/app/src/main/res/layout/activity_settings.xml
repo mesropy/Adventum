@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/renner"
             android:tag="@string/language_english"
-            android:text="English"
+            android:text="@string/english"
             android:textColor="@android:color/secondary_text_light"
             android:textSize="18sp" />
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/renner"
             android:tag="@string/language_french"
-            android:text="français"
+            android:text="@string/french"
             android:textColor="@android:color/secondary_text_light"
             android:textSize="18sp" />
 
@@ -48,7 +48,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/renner"
-        android:text="Language"
+        android:text="@string/language"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
@@ -124,7 +124,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/renner"
-        android:text="Theme"
+        android:text="@string/theme"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/languageRadioGroup" />
@@ -163,7 +163,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
         android:onClick="onChangeCharacterPressed"
-        android:text="change character"
+        android:text="@string/change_character"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/characterImage" />
