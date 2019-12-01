@@ -23,7 +23,7 @@
         app:srcCompat="@color/lb_playback_controls_time_text_color" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleText"
         android:layout_width="267dp"
         android:layout_height="42dp"
         android:layout_marginTop="32dp"
@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toTopOf="@+id/resultText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
         app:srcCompat="@color/menu_blue" />
 
     <ImageView
@@ -56,7 +56,7 @@
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
         app:srcCompat="@drawable/hangman5" />
 
     <TextView

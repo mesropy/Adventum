@@ -8,7 +8,7 @@
     tools:context=".Statistics.StatisticsActivity">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -22,67 +22,76 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/pointsText"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/renner"
-        android:text="Total Points:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <TextView
-        android:id="@+id/pointsValue"
-        android:layout_width="119dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="32dp"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/pointsText"
-        app:layout_constraintStart_toEndOf="@+id/pointsText" />
-
-    <TextView
         android:id="@+id/rankingValue"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="105dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/rankingText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
         app:layout_constraintStart_toEndOf="@+id/rankingText" />
 
     <TextView
-        android:id="@+id/playtimeValue"
-        android:layout_width="115dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="32dp"
+        android:id="@+id/pointsValue"
+        android:layout_width="104dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="52dp"
+        android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/playtimeText"
-        app:layout_constraintStart_toEndOf="@+id/playtimeText" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/pointsText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toEndOf="@+id/pointsText" />
 
     <TextView
-        android:id="@+id/playtimeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/renner"
-        android:text="Total Playtime:"
+        android:id="@+id/playtimeValue"
+        android:layout_width="108dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pointsText" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/playtimeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toEndOf="@+id/playtimeText" />
 
     <TextView
         android:id="@+id/rankingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/renner"
         android:text="Ranking:"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playtimeText" />
+
+    <TextView
+        android:id="@+id/pointsText"
+        android:layout_width="115dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/renner"
+        android:text="Total Points:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/characterImage" />
+
+    <TextView
+        android:id="@+id/playtimeText"
+        android:layout_width="129dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/renner"
+        android:text="Total Playtime:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointsText" />
 
     <Button
         android:id="@+id/mainMenuButton"
@@ -99,38 +108,52 @@
         android:id="@+id/continueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="64dp"
         android:fontFamily="@font/renner"
         android:onClick="onContinuePressed"
         android:text="@string/continue_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rankingText"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintTop_toBottomOf="@+id/rankingValue" />
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/renner"
         android:onClick="onBackPressed"
         android:text="back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueButton" />
+        app:layout_constraintTop_toBottomOf="@+id/continueButton"
+        app:layout_constraintVertical_bias="0.078" />
+
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="157dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="76dp"
+        android:fontFamily="@font/renner"
+        android:text="username"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toEndOf="@+id/characterImage"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
     <ImageView
         android:id="@+id/characterImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rankingValue"
-        app:layout_constraintVertical_bias="0.39"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
         tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

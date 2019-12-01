@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,7 +68,7 @@ public class HangmanActivity extends AppCompatActivity {
 
     private void setLanguage(){
         continueButton.setText(language.getContinue());
-        TextView title = findViewById(R.id.title);
+        TextView title = findViewById(R.id.titleText);
         title.setText(language.getHangmanTitle());
     }
 

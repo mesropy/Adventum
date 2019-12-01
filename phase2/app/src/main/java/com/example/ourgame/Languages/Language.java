@@ -48,6 +48,11 @@ public interface Language {
 
     String score();
 
+    // settings
+    String getLanguageText();
+    String getThemeText();
+    String getChangeCharacter();
+
     // leaderboard
     String leaderboardUser();
     String leaderboardYourRank();

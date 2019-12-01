@@ -95,7 +95,7 @@ public class DataWriter implements WriteData {
         editor.apply();
 
         editor = languageData.edit();
-        editor.putString(username, "english");
+        editor.putString(username, "English");
         editor.apply();
 
         editor = themeData.edit();

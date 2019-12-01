@@ -6,12 +6,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import com.example.ourgame.Languages.Language;
+import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Themes.Theme;
@@ -39,12 +43,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        languageRadioGroup = findViewById(R.id.languageRadioGroup);
-        characterImage = findViewById(R.id.characterImage);
-
         data = new DataWriter(this);
         screenLoader = new ScreenLoader(this);
-
 
         // TODO: find way to improve this
         // (get rid of ThemeBuilder, easily access theme in one line)
@@ -53,6 +53,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
         constraintLayout.setBackgroundResource(theme.settingsActivityLayout());
+
+        languageRadioGroup = findViewById(R.id.languageRadioGroup);
+        characterImage = findViewById(R.id.characterImage);
 
         // initialize theme buttons and set on click listeners for each of them
         LinearLayout layout = findViewById(R.id.themeButtons);
@@ -63,9 +66,27 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             themeButtons[i].setOnClickListener(this);
         }
 
+        setLanguage();
         displayCurrentSettings();
     }
 
+    private void setLanguage(){
+        Language language = new LanguageTextSetter(data.getLanguage(), this).getTextSetter();
+
+        TextView titleText = findViewById(R.id.titleText);
+        TextView languageText = findViewById(R.id.languageText);
+        TextView themeText = findViewById(R.id.themeText);
+        Button changeCharacterButton = findViewById(R.id.changeCharacterButton);
+        Button backButton = findViewById(R.id.backButton);
+
+        // TODO: set title to "customize" if coming from registration
+
+        titleText.setText(language.getMainSettings());
+        languageText.setText(language.getLanguageText());
+        themeText.setText(language.getThemeText());
+        changeCharacterButton.setText(language.getChangeCharacter());
+        backButton.setText(language.back());
+    }
 
 
     private void displayCurrentSettings() {
@@ -73,10 +94,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         //character
         characterImage.setImageResource(data.getCharacterData());
 
+        //language
 
-        // language
-
-        // Language language = data.getLanguage(user);
         // RadioButton selectedLanguageButton = findViewById(language.getLanguageButtonId());
         // selectedLanguageButton.setChecked(true);
 
@@ -93,6 +112,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         selectedLanguageButton.setChecked(true);
 
         // theme
+
         selectedTheme = data.getThemeData();
         displaySelectedTheme();
     }
@@ -140,7 +160,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     // save selected theme, language and character with data saver, and
     // go to main menu
-    public void onSaveButtonPressed(View view) {
+    public void onBackButtonPressed(View view) {
         // save selected language
         RadioButton checkedLanguageButton =
                 findViewById(languageRadioGroup.getCheckedRadioButtonId());

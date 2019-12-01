@@ -69,7 +69,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
         language = text.getTextSetter();
 
-        TextView title = findViewById(R.id.title);
+        TextView title = findViewById(R.id.titleText);
         TextView name = findViewById(R.id.userTitle);
         TextView personalRankLabel = findViewById(R.id.personalRankLabel);
         TextView rankByLabel = findViewById(R.id.rankByLabel);

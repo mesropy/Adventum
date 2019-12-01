@@ -41,7 +41,26 @@ public class StatisticsActivity extends AppCompatActivity {
         playtimeText = findViewById(R.id.playtimeValue);
         rankingText = findViewById(R.id.rankingValue);
 
-        TextView title = findViewById(R.id.title);
+        dataWriter = new DataWriter(this);
+        screenLoader = new ScreenLoader(this);
+
+        String user = dataWriter.getCurrentUser();
+        TextView usernameText = findViewById(R.id.usernameText);
+        usernameText.setText(user);
+
+        setLanguage();
+
+        ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
+        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
+        Theme theme = themeBuilder.getTheme();
+        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
+
+        setUpNavigationButtons();
+        displayStatistics();
+    }
+
+    private void setLanguage() {
+        TextView title = findViewById(R.id.titleText);
         TextView points = findViewById(R.id.pointsText);
         TextView playtime = findViewById(R.id.playtimeText);
         TextView rank = findViewById(R.id.rankingText);
@@ -49,9 +68,6 @@ public class StatisticsActivity extends AppCompatActivity {
         Button continueButton = findViewById(R.id.continueButton);
         Button backButton = findViewById(R.id.backButton);
         ImageView characterImage = findViewById(R.id.characterImage);
-
-        dataWriter = new DataWriter(this);
-        screenLoader = new ScreenLoader(this);
 
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
         language = text.getTextSetter();
@@ -64,14 +80,6 @@ public class StatisticsActivity extends AppCompatActivity {
         mainMenu.setText(language.mainMenu());
         backButton.setText(language.back());
         characterImage.setImageResource(dataWriter.getCharacterData());
-
-        ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
-        Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
-
-        setUpNavigationButtons();
-        displayStatistics();
     }
 
     private void displayStatistics() {

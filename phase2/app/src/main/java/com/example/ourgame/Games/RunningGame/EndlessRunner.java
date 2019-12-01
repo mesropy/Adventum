@@ -16,6 +16,7 @@ import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Statistics.StatisticsActivity;
 import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Utilities.ScreenLoader;
 
 import java.util.List;
 
@@ -95,9 +96,8 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void nextGame() {
-        final Intent intent = new Intent(context, StatisticsActivity.class);
-        intent.putExtra("next activity", context.getString(R.string.runner_game));
-        context.startActivity(intent);
+        ScreenLoader screenLoader = new ScreenLoader(context);
+        screenLoader.loadStatisticsAfterGame();
     }
 
     @Override

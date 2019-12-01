@@ -195,6 +195,21 @@ public class French implements Language {
     }
 
     @Override
+    public String getLanguageText() {
+        return "La langue";
+    }
+
+    @Override
+    public String getThemeText() {
+        return "Thème";
+    }
+
+    @Override
+    public String getChangeCharacter() {
+        return "Changer le personnage";
+    }
+
+    @Override
     public String leaderboardUser() {
         return "Utilisateur: ";
     }

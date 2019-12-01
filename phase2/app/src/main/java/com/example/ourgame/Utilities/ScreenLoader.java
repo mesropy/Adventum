@@ -94,16 +94,16 @@ public class ScreenLoader {
         */
 
         switch (gameName) {
-            case "Hangman":
+            case "HANGMAN":
                 intent = new Intent(context, HangmanActivity.class);
                 break;
-            case "Picture":
+            case "PICTURE":
                 intent = new Intent(context, PictureGameActivity.class);
                 break;
-            case "Reaction":
+            case "REACTION":
                 intent = new Intent(context, ReactionGameActivity.class);
                 break;
-            case "Running":
+            case "RUNNING":
                 intent = new Intent(context, EndlessRunnerActivity.class);
                 break;
             default:  // Tile

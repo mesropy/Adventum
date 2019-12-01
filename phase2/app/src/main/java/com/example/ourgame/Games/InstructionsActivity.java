@@ -59,17 +59,17 @@ public class InstructionsActivity extends AppCompatActivity {
         // gameTitle = language.getTitle();
 
         switch (gameName) {
-            case "Hangman":
+            case "HANGMAN":
                 gameTitle = language.getHangmanTitle();
                 break;
             //language.getHangmanInstruction();
-            case "Picture":
+            case "PICTURE":
                 gameTitle = language.getPictureTitle();
                 break;
-            case "Reaction":
+            case "REACTION":
                 gameTitle = language.getReactionTitle();
                 break;
-            case "Running":
+            case "RUNNING":
                 // language.getRunningTitle();
                 gameTitle = "";
                 break;
@@ -90,17 +90,17 @@ public class InstructionsActivity extends AppCompatActivity {
         // same as for setTitle()
 
         switch (gameName) {
-            case "Hangman":
+            case "HANGMAN":
                 instructions = "";
                 break;
             //language.getHangmanInstruction();
-            case "Picture":
+            case "PICTURE":
                 instructions = language.getPictureInstruction();
                 break;
-            case "Reaction":
+            case "REACTION":
                 instructions = language.getReactionMessageInstruction();
                 break;
-            case "Running":
+            case "RUNNING":
                 instructions = " ";
                 break;
             //language.getRunnerInstruction();

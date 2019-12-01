@@ -27,7 +27,7 @@ public class TileGameInstructions extends AppCompatActivity {
         setContentView(R.layout.activity_tile_game_instructions);
 
         TextView title = findViewById(R.id.titleText2);
-        TextView title2 = findViewById(R.id.title);
+        TextView title2 = findViewById(R.id.titleText);
         TextView intro1 = findViewById(R.id.instructions1);
         TextView intro2 = findViewById(R.id.instructions2);
         TextView intro3 = findViewById(R.id.instructions3);

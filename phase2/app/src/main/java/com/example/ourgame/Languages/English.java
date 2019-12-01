@@ -191,6 +191,21 @@ public class English implements Language {
     }
 
     @Override
+    public String getLanguageText() {
+        return "Language";
+    }
+
+    @Override
+    public String getThemeText() {
+        return "Theme";
+    }
+
+    @Override
+    public String getChangeCharacter() {
+        return "Change Character";
+    }
+
+    @Override
     public String leaderboardUser() {
         return "User: ";
     }
