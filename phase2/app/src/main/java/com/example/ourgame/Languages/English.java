@@ -62,6 +62,11 @@ public class English implements Language {
     }
 
     @Override
+    public String getReactionReadyMessage() {
+        return "Ready? ...";
+    }
+
+    @Override
     public String getTileTitle() {
         return "Tile Game";
     }

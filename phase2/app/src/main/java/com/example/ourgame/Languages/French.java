@@ -62,6 +62,11 @@ public class French implements Language {
     }
 
     @Override
+    public String getReactionReadyMessage() {
+        return "Prêt? ...";
+    }
+
+    @Override
     public String getTileTitle() {
         return "Jeu de tuile";
     }

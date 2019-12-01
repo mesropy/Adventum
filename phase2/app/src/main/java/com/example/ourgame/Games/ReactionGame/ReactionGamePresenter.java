@@ -118,6 +118,6 @@ class ReactionGamePresenter {
      */
     private void setInstructions() {
         game.setState(State.INSTRUCTION);
-        gameView.showInstructions();
+        gameView.showReady();
     }
 }

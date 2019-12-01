@@ -4,7 +4,7 @@ import com.example.ourgame.Games.GameView;
 
 interface ReactionGameView extends GameView {
 
-    void showInstructions();
+    void showReady();
 
     void showStart();
 

@@ -31,6 +31,7 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
     private TextView title;
     private TextView countText;
     private TextView averageText;
+    private TextView tapToContinue;
     private ImageView filterImage;
 
     @Override
@@ -42,6 +43,7 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
         title = findViewById(R.id.titleText);
         countText = findViewById(R.id.numLevelsText);
         averageText = findViewById(R.id.averageText);
+        tapToContinue = findViewById(R.id.continueText);
         filterImage = findViewById(R.id.filter);
 
         presenter = new ReactionGamePresenter(this, new ReactionGame(this));
@@ -51,8 +53,6 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
         countText.setVisibility(View.INVISIBLE);
         averageText.setVisibility(View.INVISIBLE);
         filterImage.setImageResource(R.color.transparent);
-
-        TextView tapToContinue = findViewById(R.id.continueText);
         title.setText(language.getReactionTitle());
         tapToContinue.setText(language.getReactionContinueText());
 
@@ -76,6 +76,7 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
     public void showWaiting() {
         message.setText(language.getReactionMessageWait());
         filterImage.setImageResource(R.color.stop_red);
+        tapToContinue.setText("");
     }
 
     @Override
@@ -84,18 +85,21 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
         timeString = time + "ms";
         message.setText(timeString);
         filterImage.setImageResource(R.color.transparent);
+        tapToContinue.setText(language.getReactionContinueText());
     }
 
     @Override
     public void showTooSoon() {
         message.setText(language.getReactionMessageTooSoon());
         filterImage.setImageResource(R.color.transparent);
+        tapToContinue.setText(language.getReactionContinueText());
     }
 
     @Override
     public void showGo() {
         message.setText(language.getReactionMessageGo());
         filterImage.setImageResource(R.color.go_green);
+        tapToContinue.setText("");
     }
 
     @Override
@@ -112,8 +116,8 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
     }
 
     @Override
-    public void showInstructions() {
-        message.setText(language.getReactionMessageInstruction());
+    public void showReady() {
+        message.setText(language.getReactionReadyMessage());
     }
 
     /**

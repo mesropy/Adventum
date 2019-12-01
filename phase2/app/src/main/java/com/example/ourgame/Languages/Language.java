@@ -17,6 +17,7 @@ public interface Language {
     String getReactionMessageTooSoon();
     String getReactionMessageInstruction();
     String getReactionContinueText();
+    String getReactionReadyMessage();
 
     // tile game
     String getTileTitle();
