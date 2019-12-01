@@ -99,7 +99,7 @@ public class DataWriter implements WriteData {
         editor.apply();
 
         editor = themeData.edit();
-        editor.putString(username, "autumn");
+        editor.putString(username, "woodland");
         editor.apply();
 
         editor = characterData.edit();
