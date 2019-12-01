@@ -59,7 +59,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         ConstraintLayout constraintLayout = findViewById(R.id.leaderboardLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
+        constraintLayout.setBackgroundResource(theme.hangmanActivityLayout());
 
         //Display ranking based on points data by default
         Map<String, Integer> pointsData = dataWriter.getPointsData();

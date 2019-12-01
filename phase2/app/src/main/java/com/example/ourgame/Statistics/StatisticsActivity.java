@@ -68,7 +68,7 @@ public class StatisticsActivity extends AppCompatActivity {
         ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.PictureGameLayout());
+        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
 
         setUpNavigationButtons();
         displayStatistics();

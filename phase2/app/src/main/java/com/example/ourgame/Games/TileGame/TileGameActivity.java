@@ -94,7 +94,7 @@ public class TileGameActivity extends AppCompatActivity implements View.OnClickL
         ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
         ThemeBuilder themeBuilder = new ThemeBuilder(tileGame.getTheme());
         Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
+        constraintLayout.setBackgroundResource(theme.hangmanActivityLayout());
 
         title.setText(language.getTileTitle());
         String s = language.getTileLivesRemain() + tileGame.getCurrentLives() + " /3";

@@ -6,10 +6,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
@@ -24,24 +27,32 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
     private ReactionGamePresenter presenter;
     private Language language;
 
-    private ConstraintLayout currentLayout;
+
     private TextView message;
     private TextView title;
     private TextView countText;
     private TextView averageText;
+    private ImageView filterImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reaction_time);
 
-        currentLayout = findViewById(R.id.main_layout);
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
         countText = findViewById(R.id.numLevelsText);
         countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
         averageText.setVisibility(View.INVISIBLE);
+        filterImage = findViewById(R.id.filter);
+        filterImage.setImageResource(R.color.transparent);
+
+        // set theme
+        ThemeBuilder themeBuilder = new ThemeBuilder((new DataWriter(this)).getThemeData());
+        Theme theme = themeBuilder.getTheme();
+        ConstraintLayout constraintLayout = findViewById(R.id.main_layout);
+        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
 
         presenter = new ReactionGamePresenter(this, new ReactionGame(this), new DataWriter(this));
     }
@@ -64,7 +75,7 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
     @Override
     public void showWaiting() {
         message.setText(language.getReactionMessageWait());
-        currentLayout.setBackgroundResource(R.color.error_red);
+        filterImage.setImageResource(R.color.stop_red);
     }
 
     @Override
@@ -72,19 +83,19 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
         String timeString;
         timeString = time + "ms";
         message.setText(timeString);
-        currentLayout.setBackgroundResource(R.color.menu_blue);
+        filterImage.setImageResource(R.color.transparent);
     }
 
     @Override
     public void showTooSoon() {
         message.setText(language.getReactionMessageTooSoon());
-        currentLayout.setBackgroundResource(R.color.menu_blue);
+        filterImage.setImageResource(R.color.transparent);
     }
 
     @Override
     public void showGo() {
         message.setText(language.getReactionMessageGo());
-        currentLayout.setBackgroundResource(R.color.go_green);
+        filterImage.setImageResource(R.color.go_green);
     }
 
     @Override

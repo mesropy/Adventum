@@ -8,10 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.ScreenLoader;
 
 import java.io.IOException;
@@ -53,6 +56,12 @@ public class HangmanActivity extends AppCompatActivity {
 
         continueButton = findViewById(R.id.continueButton);
         continueButton.setVisibility(View.GONE);
+
+        // set theme
+//        ThemeBuilder themeBuilder = new ThemeBuilder(hangman.getTheme());
+//        Theme theme = themeBuilder.getTheme();
+//        ConstraintLayout constraintLayout = findViewById(R.id.hangmanLayout);
+//        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
 
         setLanguage();
     }

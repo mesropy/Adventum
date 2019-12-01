@@ -21,11 +21,10 @@ import com.example.ourgame.Utilities.ScreenLoader;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private String user;
     private DataWriter data;
     private ScreenLoader screenLoader;
 
-    private ImageView character;
+    private ImageView characterImage;
     private RadioGroup languageRadioGroup;
     private ImageButton [] themeButtons;
 
@@ -41,20 +40,19 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_settings);
 
         languageRadioGroup = findViewById(R.id.languageRadioGroup);
-        character = findViewById(R.id.characterImage);
+        characterImage = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
-        user = data.getCurrentUser();
         screenLoader = new ScreenLoader(this);
 
 
         // TODO: find way to improve this
         // (get rid of ThemeBuilder, easily access theme in one line)
         // theme
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData().toUpperCase());
+        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
         Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
-        constraintLayout.setBackgroundResource(theme.SettingsActivityLayout());
+        constraintLayout.setBackgroundResource(theme.settingsActivityLayout());
 
         // initialize theme buttons and set on click listeners for each of them
         LinearLayout layout = findViewById(R.id.themeButtons);
@@ -73,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private void displayCurrentSettings() {
 
         //character
-        character.setImageResource(data.getCharacterData());
+        characterImage.setImageResource(data.getCharacterData());
 
 
         // language
@@ -110,7 +108,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             }
         }
         selectedCharacterId = nextCharacterId;
-        character.setImageResource(selectedCharacterId);
+        characterImage.setImageResource(selectedCharacterId);
     }
 
     // only called when a theme button is pressed, display the selected theme

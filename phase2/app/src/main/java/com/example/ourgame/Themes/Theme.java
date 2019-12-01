@@ -8,14 +8,15 @@ enum ThemeType{
 public interface Theme {
     ThemeType getTheme();
     int mainActivityLayout();
-    int SettingsActivityLayout();
-    int HangmanActivityLayout();
-    int PictureGameIntroLayout();
-    int PictureGameLayout();
-    int EndlessRunnerActivityLayout();
-    int TileGameIntroLayout();
-    int TileGameLayout();
-    int StatisticsAvtivityLayout();
-    int LearderBoardLayout();
+    int settingsActivityLayout();
+    int hangmanActivityLayout();
+    int pictureGameIntroLayout();
+    int pictureGameLayout();
+    int endlessRunnerActivityLayout();
+    int reactionGameLayout();
+    int tileGameIntroLayout();
+    int tileGameLayout();
+    int statisticsActivityLayout();
+    int leaderBoardLayout();
 
 }

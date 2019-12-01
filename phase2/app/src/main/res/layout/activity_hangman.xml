@@ -5,7 +5,22 @@
     android:id="@+id/hangmanLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/autumn_woodland"
+    android:backgroundTintMode="multiply"
     tools:context=".Games.HangmanGame.HangmanActivity">
+
+    <ImageView
+        android:id="@+id/resultBackgroundImage2"
+        android:layout_width="367dp"
+        android:layout_height="182dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/continueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultText"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@color/lb_playback_controls_time_text_color" />
 
     <TextView
         android:id="@+id/title"
@@ -22,6 +37,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/resultBackgroundImage"
+        android:layout_width="245dp"
+        android:layout_height="316dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.15"
+        app:layout_constraintBottom_toTopOf="@+id/resultText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@color/menu_blue" />
+
+    <ImageView
         android:id="@+id/resultImage"
         android:layout_width="245dp"
         android:layout_height="316dp"
@@ -29,18 +57,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:srcCompat="@android:color/darker_gray" />
+        app:srcCompat="@drawable/hangman5" />
 
     <TextView
         android:id="@+id/wordBlanks"
-        android:layout_width="218dp"
-        android:layout_height="29dp"
+        android:layout_width="255dp"
+        android:layout_height="38dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/renner"
         android:text="_ _ _ _ s a s _ "
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +93,7 @@
         android:id="@+id/keyboardTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -363,9 +391,9 @@
         android:text="@string/continue_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/keyboardBottom"
-        app:layout_constraintVertical_bias="0.325" />
+        app:layout_constraintTop_toBottomOf="@+id/keyboardBottom" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,7 +44,7 @@ public class PictureInstructions extends AppCompatActivity {
         ConstraintLayout constraintLayout = findViewById(R.id.pictureintroLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.PictureGameIntroLayout());
+        constraintLayout.setBackgroundResource(theme.pictureGameIntroLayout());
     }
 
     public void onGotItPressed(View view){

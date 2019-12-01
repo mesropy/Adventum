@@ -15,47 +15,52 @@ class SummerTheme implements Theme {
     }
 
     @Override
-    public int SettingsActivityLayout() {
+    public int settingsActivityLayout() {
         return R.drawable.summer2;
     }
 
     @Override
-    public int HangmanActivityLayout() {
+    public int hangmanActivityLayout() {
         return R.drawable.summer3;
     }
 
     @Override
-    public int PictureGameIntroLayout() {
+    public int pictureGameIntroLayout() {
         return R.drawable.summer4;
     }
 
     @Override
-    public int PictureGameLayout() {
+    public int pictureGameLayout() {
         return R.drawable.summer5;
     }
 
     @Override
-    public int EndlessRunnerActivityLayout() {
+    public int endlessRunnerActivityLayout() {
         return 0;
     }
 
     @Override
-    public int TileGameIntroLayout() {
+    public int tileGameIntroLayout() {
         return 0;
     }
 
     @Override
-    public int TileGameLayout() {
+    public int tileGameLayout() {
         return 0;
     }
 
     @Override
-    public int StatisticsAvtivityLayout() {
+    public int statisticsActivityLayout() {
         return 0;
     }
 
     @Override
-    public int LearderBoardLayout() {
+    public int leaderBoardLayout() {
+        return 0;
+    }
+
+    @Override
+    public int reactionGameLayout(){
         return 0;
     }
 }

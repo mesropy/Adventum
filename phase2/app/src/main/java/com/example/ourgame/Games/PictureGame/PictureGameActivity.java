@@ -56,8 +56,9 @@ public class PictureGameActivity extends AppCompatActivity {
         // set theme
         ThemeBuilder themeBuilder = new ThemeBuilder(pictureGame.getTheme());
         Theme theme = themeBuilder.getTheme();
+
         ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
-        constraintLayout.setBackgroundResource(theme.PictureGameLayout());
+        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
 
     }
 

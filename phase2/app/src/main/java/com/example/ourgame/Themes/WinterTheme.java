@@ -15,47 +15,52 @@ class WinterTheme implements Theme {
     }
 
     @Override
-    public int SettingsActivityLayout() {
+    public int settingsActivityLayout() {
         return R.drawable.winter2;
     }
 
     @Override
-    public int HangmanActivityLayout() {
+    public int hangmanActivityLayout() {
         return R.drawable.winter3;
     }
 
     @Override
-    public int PictureGameIntroLayout() {
+    public int pictureGameIntroLayout() {
         return R.drawable.winter4;
     }
 
     @Override
-    public int PictureGameLayout() {
+    public int pictureGameLayout() {
         return R.drawable.winter5;
     }
 
     @Override
-    public int EndlessRunnerActivityLayout() {
+    public int endlessRunnerActivityLayout() {
         return 0;
     }
 
     @Override
-    public int TileGameIntroLayout() {
+    public int tileGameIntroLayout() {
         return 0;
     }
 
     @Override
-    public int TileGameLayout() {
+    public int tileGameLayout() {
         return 0;
     }
 
     @Override
-    public int StatisticsAvtivityLayout() {
+    public int statisticsActivityLayout() {
         return 0;
     }
 
     @Override
-    public int LearderBoardLayout() {
+    public int leaderBoardLayout() {
+        return 0;
+    }
+
+    @Override
+    public int reactionGameLayout(){
         return 0;
     }
 }

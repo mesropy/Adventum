@@ -47,7 +47,7 @@ public class TileGameInstructions extends AppCompatActivity {
         ConstraintLayout constraintLayout = findViewById(R.id.tileIntroLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.HangmanActivityLayout());
+        constraintLayout.setBackgroundResource(theme.hangmanActivityLayout());
     }
 
     /**

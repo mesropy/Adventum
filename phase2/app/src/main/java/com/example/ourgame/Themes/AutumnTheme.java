@@ -11,51 +11,56 @@ class AutumnTheme implements Theme {
 
     @Override
     public int mainActivityLayout() {
-        return R.drawable.autumn1;
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int SettingsActivityLayout() {
-        return R.drawable.autumn2;
+    public int settingsActivityLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int HangmanActivityLayout() {
-        return R.drawable.autumn3;
+    public int hangmanActivityLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int PictureGameIntroLayout() {
-        return R.drawable.autumn4;
+    public int pictureGameIntroLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int PictureGameLayout() {
-        return R.drawable.autumn5;
+    public int pictureGameLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int EndlessRunnerActivityLayout() {
-        return 0;
+    public int endlessRunnerActivityLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int TileGameIntroLayout() {
-        return 0;
+    public int tileGameIntroLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int TileGameLayout() {
-        return 0;
+    public int tileGameLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int StatisticsAvtivityLayout() {
-        return 0;
+    public int statisticsActivityLayout() {
+        return R.drawable.autumn_woodland;
     }
 
     @Override
-    public int LearderBoardLayout() {
-        return 0;
+    public int leaderBoardLayout() {
+        return R.drawable.autumn_woodland;
+    }
+
+    @Override
+    public int reactionGameLayout(){
+        return R.drawable.autumn_woodland;
     }
 }
