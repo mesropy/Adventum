@@ -170,6 +170,21 @@ public class French implements Language {
         return "Classement: ";
     }
 
+    @Override
+    public String points() {
+        return "points";
+    }
+
+    @Override
+    public String ranking() {
+        return "classement";
+    }
+
+    @Override
+    public String playtime() {
+        return "temp de lecture";
+    }
+
     public String score(){
         return "Le point: ";
     }
@@ -182,6 +197,11 @@ public class French implements Language {
     @Override
     public String leaderboardYourRank() {
         return "Ton rang: ";
+    }
+
+    @Override
+    public String rankBy() {
+        return "Classement par:";
     }
 
     @Override

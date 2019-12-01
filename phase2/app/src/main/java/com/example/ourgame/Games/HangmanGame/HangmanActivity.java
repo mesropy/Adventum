@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,10 +59,10 @@ public class HangmanActivity extends AppCompatActivity {
         continueButton.setVisibility(View.GONE);
 
         // set theme
-//        ThemeBuilder themeBuilder = new ThemeBuilder(hangman.getTheme());
-//        Theme theme = themeBuilder.getTheme();
-//        ConstraintLayout constraintLayout = findViewById(R.id.hangmanLayout);
-//        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
+        ThemeBuilder themeBuilder = new ThemeBuilder(hangman.getTheme());
+        Theme theme = themeBuilder.getTheme();
+        ConstraintLayout constraintLayout = findViewById(R.id.hangmanLayout);
+        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
 
         setLanguage();
     }

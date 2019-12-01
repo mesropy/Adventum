@@ -165,6 +165,22 @@ public class English implements Language {
     public String statRank(){
         return "Ranking: ";
     }
+
+    @Override
+    public String points() {
+        return "points";
+    }
+
+    @Override
+    public String ranking() {
+        return "ranking";
+    }
+
+    @Override
+    public String playtime() {
+        return "playtime";
+    }
+
     public String score(){
         return "Score: ";
     }
@@ -177,6 +193,11 @@ public class English implements Language {
     @Override
     public String leaderboardYourRank() {
         return "Your Rank: ";
+    }
+
+    @Override
+    public String rankBy() {
+        return "Rank by:";
     }
 
     @Override

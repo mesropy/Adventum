@@ -77,7 +77,7 @@ public class PictureGameActivity extends AppCompatActivity implements PictureGam
         guessResultText.setText("");
         guessEditText.setText("");
         guessEditText.setEnabled(true);
-        enterButton.setVisibility(View.VISIBLE);
+        enterButton.setEnabled(true);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class PictureGameActivity extends AppCompatActivity implements PictureGam
         guessResultText.setText(language.getTileResultTextCorrect());
         continueButton.setVisibility(View.VISIBLE);
         guessEditText.setEnabled(false);
-        enterButton.setVisibility(View.GONE);
+        enterButton.setEnabled(false);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class PictureGameActivity extends AppCompatActivity implements PictureGam
         guessResultText.setText(language.getPictureNoMoreAttempts());
         continueButton.setVisibility(View.VISIBLE);
         guessEditText.setEnabled(false);
-        enterButton.setVisibility(View.GONE);
+        enterButton.setEnabled(false);
     }
 
 }

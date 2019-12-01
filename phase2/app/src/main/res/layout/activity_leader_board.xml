@@ -11,221 +11,309 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/renner"
         android:text="@string/leaderboard"
         android:textAllCaps="true"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/fifth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_user_5"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/personalRankBackground"
+        android:layout_width="173dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@color/lb_search_bar_text" />
 
     <TextView
-        android:id="@+id/second"
+        android:id="@+id/personalRankLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_user_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
-
-    <TextView
-        android:id="@+id/personal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/renner"
         android:text="@string/personal_rank"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
-        android:id="@+id/third"
+        android:id="@+id/personalRankValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_user_3"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="124dp"
+        android:fontFamily="@font/renner"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/personalRankLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
-
-    <TextView
-        android:id="@+id/fourth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_user_4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
-
-    <TextView
-        android:id="@+id/first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_user_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
-
-    <TextView
-        android:id="@+id/firstPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_points"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
-
-    <TextView
-        android:id="@+id/secondPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_points"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226" />
-
-    <TextView
-        android:id="@+id/thirdPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_points"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.252" />
-
-    <TextView
-        android:id="@+id/fourthPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_points"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
-
-    <TextView
-        android:id="@+id/fifthPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_points"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toEndOf="@+id/personalRankLabel" />
 
     <TextView
         android:id="@+id/valueTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/renner"
         android:text="@string/points"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/userTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:layout_constraintStart_toEndOf="@+id/userTitle" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="323dp"
+        android:layout_height="143dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.154" />
+        app:layout_constraintTop_toBottomOf="@+id/userTitle">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/firstUserLabel"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="1."
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/firstUserText"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_user_1"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="145dp" />
+
+            <TextView
+                android:id="@+id/firstValueText"
+                android:layout_width="21dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_points"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/secondUserLabel"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="2."
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/secondUserText"
+                android:layout_width="230dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_user_1"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="145dp" />
+
+            <TextView
+                android:id="@+id/secondPointsText"
+                android:layout_width="21dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_points"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/thirdUserLabel"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="3."
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/thirdUserText"
+                android:layout_width="206dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_user_1"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="145dp" />
+
+            <TextView
+                android:id="@+id/thirdValueText"
+                android:layout_width="61dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_points"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/forthUserLabel"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="4."
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/forthUserText"
+                android:layout_width="241dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_user_1"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="145dp" />
+
+            <TextView
+                android:id="@+id/forthValueText"
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_points"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/fifthUserLabel"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="5."
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/fifthUserText"
+                android:layout_width="144dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_user_1"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="88dp"
+                tools:layout_editor_absoluteY="145dp" />
+
+            <TextView
+                android:id="@+id/fifthValueText"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/renner"
+                android:text="@string/default_points"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </TableRow>
+
+    </TableLayout>
 
     <TextView
         android:id="@+id/userTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="86dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/renner"
         android:text="@string/user"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.154" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <Button
-        android:id="@+id/button7"
+    <TextView
+        android:id="@+id/rankByLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="rankPoints"
-        android:text="@string/points"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/renner"
+        android:text="Rank by:"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="357dp"
+        android:layout_height="62dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rankByLabel"
+        app:layout_constraintVertical_bias="0.08">
+
+        <Button
+            android:id="@+id/pointsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/renner"
+            android:onClick="rankPoints"
+            android:text="@string/points" />
+
+        <Button
+            android:id="@+id/playTimeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/renner"
+            android:onClick="rankPlayTime"
+            android:text="@string/playtime" />
+
+        <Button
+            android:id="@+id/rankingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/renner"
+            android:onClick="rankRanking"
+            android:text="@string/ranking" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="rankPlayTime"
-        android:text="@string/playtime"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="rankRanking"
-        android:text="@string/ranking"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.639" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
         android:onClick="onBackPressed"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.821" />
+        app:layout_constraintTop_toBottomOf="@+id/personalRankValue"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -94,16 +94,15 @@
     <string name="title_activity_settings">Settings</string>
     <string name="rank_text">%1$s %2$s</string>
     <string name="points_text">%1$s</string>
-    <string name="personal_rank">Your Rank: %1$d</string>
+    <string name="personal_rank">Your Rank:</string>
     <string name="default_points">0</string>
     <string name="points">Points</string>
     <string name="user">User</string>
     <string name="leaderboard">Leaderboard</string>
-    <string name="default_user_1">1. No One</string>
+    <string name="default_user_1">No One</string>
     <string name="default_user_2">2. No One</string>
-    <string name="default_user_3">3. No One</string>
-    <string name="default_user_4">4. No One</string>
-    <string name="default_user_5">5. No One</string>
+    <string name="default_user_4" translatable="false">4. No One</string>
+    <string name="default_user_5" translatable="false">5. No One</string>
     <string name="playtime">Playtime</string>
     <string name="ranking">Ranking</string>
     <string name="back">Back</string>

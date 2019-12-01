@@ -44,11 +44,16 @@ public interface Language {
     String statPoints();
     String statPlaytime();
     String statRank();
+
     String score();
 
     // leaderboard
     String leaderboardUser();
     String leaderboardYourRank();
+    String rankBy();
+    String points();
+    String ranking();
+    String playtime();
 
     // other / general
     String instruction();

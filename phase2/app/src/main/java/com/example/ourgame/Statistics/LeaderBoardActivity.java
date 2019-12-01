@@ -3,18 +3,18 @@ package com.example.ourgame.Statistics;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Menus.MainActivity;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
+import com.example.ourgame.Utilities.ScreenLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,48 +23,70 @@ import java.util.Map;
 public class LeaderBoardActivity extends AppCompatActivity {
 
     DataWriter dataWriter;
+    ScreenLoader screenLoader;
     Language language;
-    TextView firstText, secondText, thirdText, fourthText, fifthText, personal;
-    TextView firstPoints, secondPoints, thirdPoints, fourthPoints, fifthPoints;
+    TextView firstText, secondText, thirdText, forthText, fifthText, personalRankText;
+    TextView firstPoints, secondPoints, thirdPoints, forthPoints, fifthPoints;
+    TextView valueTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
-        firstText = findViewById(R.id.first);
-        secondText = findViewById(R.id.second);
-        thirdText = findViewById(R.id.third);
-        fourthText = findViewById(R.id.fourth);
-        fifthText = findViewById(R.id.fifth);
-        personal = findViewById(R.id.personal);
+        firstText = findViewById(R.id.firstUserText);
+        secondText = findViewById(R.id.secondUserText);
+        thirdText = findViewById(R.id.thirdUserText);
+        forthText = findViewById(R.id.forthUserText);
+        fifthText = findViewById(R.id.fifthUserText);
+        personalRankText = findViewById(R.id.personalRankValue);
 
-        firstPoints = findViewById(R.id.firstPoints);
-        secondPoints = findViewById(R.id.secondPoints);
-        thirdPoints = findViewById(R.id.thirdPoints);
-        fourthPoints = findViewById(R.id.fourthPoints);
-        fifthPoints = findViewById(R.id.fifthPoints);
+        firstPoints = findViewById(R.id.firstValueText);
+        secondPoints = findViewById(R.id.secondPointsText);
+        thirdPoints = findViewById(R.id.thirdValueText);
+        forthPoints = findViewById(R.id.forthValueText);
+        fifthPoints = findViewById(R.id.fifthValueText);
+
+        valueTitle = findViewById(R.id.valueTitle);
+
         dataWriter = new DataWriter(this);
+        screenLoader = new ScreenLoader(this);
 
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
-        language = text.getTextSetter();
-
-        TextView title = findViewById(R.id.title);
-        TextView points = findViewById(R.id.valueTitle);
-        TextView name = findViewById(R.id.userTitle);
-        points.setText(language.statPoints());
-        name.setText(language.leaderboardUser());
-        title.setText(language.getMainLeaderBoard());
+        setLanguage();
 
         ConstraintLayout constraintLayout = findViewById(R.id.leaderboardLayout);
         ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
         Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.hangmanActivityLayout());
+        constraintLayout.setBackgroundResource(theme.leaderBoardLayout());
 
         //Display ranking based on points data by default
         Map<String, Integer> pointsData = dataWriter.getPointsData();
         List<Map.Entry<String, Integer>> data = new ArrayList<>(pointsData.entrySet());
         displayLeaderBoard(new SortNumberStrategy(data));
+    }
+
+    private void setLanguage() {
+        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
+        language = text.getTextSetter();
+
+        TextView title = findViewById(R.id.title);
+        TextView name = findViewById(R.id.userTitle);
+        TextView personalRankLabel = findViewById(R.id.personalRankLabel);
+        TextView rankByLabel = findViewById(R.id.rankByLabel);
+        Button pointsButton = findViewById(R.id.pointsButton);
+        Button rankingButton = findViewById(R.id.rankingButton);
+        Button playTimeButton = findViewById(R.id.playTimeButton);
+        Button backButton = findViewById(R.id.backButton);
+
+        name.setText(language.leaderboardUser());
+        title.setText(language.getMainLeaderBoard());
+        personalRankLabel.setText(language.leaderboardYourRank());
+        valueTitle.setText(language.statPoints());
+        rankByLabel.setText(language.rankBy());
+        pointsButton.setText(language.points());
+        rankingButton.setText(language.ranking());
+        playTimeButton.setText(language.playtime());
+        backButton.setText(language.back());
     }
 
     /**
@@ -78,6 +100,8 @@ public class LeaderBoardActivity extends AppCompatActivity {
         Map<String, Integer> pointsData = dataWriter.getPointsData();
         List<Map.Entry<String, Integer>> data = new ArrayList<>(pointsData.entrySet());
         displayLeaderBoard(new SortNumberStrategy(data));
+
+        valueTitle.setText(language.statPoints());
     }
 
     /**
@@ -91,6 +115,8 @@ public class LeaderBoardActivity extends AppCompatActivity {
         Map<String, Integer> playData = dataWriter.getPlayTimeData();
         List<Map.Entry<String, Integer>> data = new ArrayList<>(playData.entrySet());
         displayLeaderBoard(new SortNumberStrategy(data));
+
+        valueTitle.setText(language.statPlaytime());
     }
 
     /**
@@ -104,12 +130,12 @@ public class LeaderBoardActivity extends AppCompatActivity {
         Map<String, String> rankingData = dataWriter.getRankingData();
         List<Map.Entry<String, String>> data = new ArrayList<>(rankingData.entrySet());
         displayLeaderBoard(new SortRankingStrategy(data));
+
+        valueTitle.setText(language.statRank());
     }
 
     public void onBackPressed(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        screenLoader.loadMainMenu();
     }
 
     /**
@@ -134,30 +160,28 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
         if (userNames.size() >= 1) {
-            firstText.setText(getString(R.string.rank_text, "1. ", userNames.get(0)));
-            firstPoints.setText(getString(R.string.points_text, values.get(0)));
+            firstText.setText(userNames.get(0));
+            firstPoints.setText(values.get(0).toString());
         }
         if (userNames.size() >= 2) {
-            secondText.setText(getString(R.string.rank_text, "2. ", userNames.get(1)));
-            secondPoints.setText(getString(R.string.points_text, values.get(1)));
+            secondText.setText(userNames.get(1));
+            secondPoints.setText(values.get(1).toString());
         }
         if (userNames.size() >= 3) {
-            thirdText.setText(getString(R.string.rank_text, "3. ", userNames.get(2)));
-            thirdPoints.setText(getString(R.string.points_text, values.get(2)));
+            thirdText.setText(userNames.get(2));
+            thirdPoints.setText(values.get(2).toString());
         }
         if (userNames.size() >= 4) {
-            fourthText.setText(getString(R.string.rank_text, "4. ", userNames.get(3)));
-            fourthPoints.setText(getString(R.string.points_text, values.get(3)));
+            forthText.setText(userNames.get(3));
+            forthPoints.setText(values.get(3).toString());
         }
         if (userNames.size() >= 5) {
-            fifthText.setText(getString(R.string.rank_text, "5. ", userNames.get(4)));
-            fifthPoints.setText(getString(R.string.points_text, values.get(4)));
+            fifthText.setText(userNames.get(4));
+            fifthPoints.setText(values.get(4).toString());
         }
 
-        String string = language.leaderboardYourRank();
         int rank = userNames.indexOf(dataWriter.getCurrentUser()) + 1;
-        String rankS = String.valueOf(rank);
-        string = string + rankS;
-        personal.setText(string);
+        String rankString = "" + rank;
+        personalRankText.setText(rankString);
     }
 }
