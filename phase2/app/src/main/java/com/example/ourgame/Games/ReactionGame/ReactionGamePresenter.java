@@ -2,9 +2,10 @@ package com.example.ourgame.Games.ReactionGame;
 
 import android.content.Context;
 import android.os.Handler;
+
 import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
-import com.example.ourgame.Utilities.WriteData;
 
 import java.util.Random;
 
@@ -23,12 +24,13 @@ class ReactionGamePresenter {
         }
     };
 
-    ReactionGamePresenter(ReactionGameView gameView, ReactionGame game, WriteData dataWriter){
+    ReactionGamePresenter(ReactionGameView gameView, ReactionGame game){
         this.gameView = gameView;
         this.game = game;
 
-        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), (Context) gameView);
-        gameView.setLang(text.getTextSetter());
+        LanguageTextSetter text = new LanguageTextSetter(
+                (new DataWriter((Context)gameView)).getLanguage(), (Context) gameView);
+        gameView.setLanguage(text.getTextSetter());
         gameView.setInitial();
         setInstructions();
 

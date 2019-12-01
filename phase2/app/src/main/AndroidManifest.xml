@@ -23,7 +23,6 @@
         <activity android:name=".Statistics.LeaderBoardActivity" />
         <activity android:name=".Games.RunningGame.EndlessRunnerActivity" />
         <activity android:name=".Statistics.StatisticsActivity" />
-        <activity android:name=".Games.PictureGame.PictureInstructions" />
         <activity android:name=".login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

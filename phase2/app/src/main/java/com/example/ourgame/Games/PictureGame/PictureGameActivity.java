@@ -12,18 +12,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
-import com.example.ourgame.R;
-import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
+import com.example.ourgame.R;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
+import com.example.ourgame.Utilities.DataWriter;
 
-public class PictureGameActivity extends AppCompatActivity {
+public class PictureGameActivity extends AppCompatActivity implements PictureGameView {
 
-    private PictureGame pictureGame;
     private Language language;
-    private ScreenLoader screenLoader;
+    private PictureGamePresenter presenter;
 
     // Views (UI elements) to keep track of
     private ImageView imageToGuess;
@@ -33,86 +31,82 @@ public class PictureGameActivity extends AppCompatActivity {
     private Button enterButton;
     private TextView numAttemptsText;
 
-    private long startTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_game);
 
-        pictureGame = new PictureGame(this);
-        screenLoader = new ScreenLoader(this);
-
         imageToGuess = findViewById(R.id.imageToGuess);
-        imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
         continueButton = findViewById(R.id.continueButton);
-        continueButton.setVisibility(View.GONE);
-
-        // set language
-        LanguageTextSetter text = new LanguageTextSetter(pictureGame.getLanguage(), this);
-        language = text.getTextSetter();
-        setLanguage();
-
-        // set theme
-        ThemeBuilder themeBuilder = new ThemeBuilder(pictureGame.getTheme());
-        Theme theme = themeBuilder.getTheme();
-
-        ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
-
-    }
-
-    private void setLanguage() {
-
         guessEditText = findViewById(R.id.guessEditText);
         guessResultText = findViewById(R.id.guessResultText);
         enterButton = findViewById(R.id.enterButton);
         numAttemptsText = findViewById(R.id.numAttemptsText);
+
+        presenter = new PictureGamePresenter(this, new PictureGame(this));
+    }
+
+    @Override
+    public void setLanguage(Language lang) {
+        language = lang;
+    }
+
+    @Override
+    public void setInitial() {
         TextView titleText = findViewById(R.id.titleText);
         TextView numAttemptsLabel = findViewById(R.id.numAttemptsLabel);
-
         titleText.setText(language.getPictureTitle());
         numAttemptsLabel.setText(language.getPictureNumAttempts());
         continueButton.setText(language.getContinue());
         enterButton.setText(language.getEnter());
-        numAttemptsText.setText(pictureGame.getNumAttemptsText());
         guessEditText.setHint(language.typeAnswer());
+
+        // set theme
+        ThemeBuilder themeBuilder = new ThemeBuilder((new DataWriter(this)).getThemeData());
+        Theme theme = themeBuilder.getTheme();
+        ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
+        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
+    }
+
+    @Override
+    public void displayLevel(String numAttempts, int levelImage) {
+        displayNumAttempts(numAttempts);
+        imageToGuess.setImageResource(levelImage);
+        continueButton.setVisibility(View.GONE);
+        guessResultText.setText("");
+        guessEditText.setText("");
+        guessEditText.setEnabled(true);
+        enterButton.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void displayNumAttempts(String numAttempts){
+        numAttemptsText.setText(numAttempts);
     }
 
     @Override
     protected void onStart() {
-        startTime = System.currentTimeMillis();
         super.onStart();
+        presenter.onStart();
     }
 
     // call when enter button is pressed, player is entering the guess they inputted in edit text
     public void onEnterGuessPressed(View view) {
-
-        pictureGame.incrementNumAttempts();
-        numAttemptsText.setText(pictureGame.getNumAttemptsText());
-
         String guess = guessEditText.getText().toString();
-
-        if (pictureGame.guessCorrect(guess)) {
-            onCorrectGuess();
-        } else {
-            onIncorrectGuess();
-        }
+        presenter.guessEntered(guess);
     }
 
-    private void onCorrectGuess() {
+    @Override
+    public void displayCorrectGuess() {
         guessResultText.setText(language.getTileResultTextCorrect());
-        // can later highlight animal in image (not doing this now)
-        pictureGame.addPoints();
-
-        // Show next level button
         continueButton.setVisibility(View.VISIBLE);
-        // make guess edit text not editable, and remove enter button
         guessEditText.setEnabled(false);
         enterButton.setVisibility(View.GONE);
     }
 
-    private void onIncorrectGuess() {
+    @Override
+    public void displayIncorrectGuess() {
         guessResultText.setText(language.getTileResultTextInCorrect());
 
         // if the guess editText is edited, remove the incorrectGuessMessage
@@ -130,49 +124,19 @@ public class PictureGameActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-
-        if (pictureGame.usedAllAttempts()){
-            displayUsedAllAttempts();
-        }
     }
 
-    public void onNextButtonPressed(View view) {
-        if (pictureGame.reachedLastLevel()) {
-            gameOver();
-        } else {
-            pictureGame.nextLevel();
-            pictureGame.resetNumAttempts();
-            displayNextLevel();
-        }
+    public void onContinuePressed(View view) {
+        presenter.nextLevel();
     }
 
-    private void gameOver(){
-        // go to game over page then stats page
-        int playTime = Math.toIntExact((System.currentTimeMillis() - startTime) / 1000);
-        pictureGame.setPlayTime(playTime);
-        pictureGame.saveStatistics();
-        screenLoader.loadStatisticsAfterGame();
-    }
 
-    private void displayNextLevel() {
-        numAttemptsText.setText(pictureGame.getNumAttemptsText());
-        // show next image
-        imageToGuess.setImageResource(pictureGame.getCurrentImageResource());
-        // remove continue button, result text, and text in guess editText
-        continueButton.setVisibility(View.GONE);
-        guessResultText.setText("");
-        guessEditText.setText("");
-        // make guess editText editable, and enter button visible
-        guessEditText.setEnabled(true);
-        enterButton.setVisibility(View.VISIBLE);
-    }
-
-    private void displayUsedAllAttempts(){
+    @Override
+    public void displayUsedAllAttempts() {
         guessResultText.setText(language.getPictureNoMoreAttempts());
-        // Show next level button
         continueButton.setVisibility(View.VISIBLE);
-        // make guess edit text not editable, and remove enter button
         guessEditText.setEnabled(false);
         enterButton.setVisibility(View.GONE);
     }
+
 }

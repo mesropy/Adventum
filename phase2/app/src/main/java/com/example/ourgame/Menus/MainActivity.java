@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Games.HangmanGame.HangmanActivity;
-import com.example.ourgame.Games.PictureGame.PictureInstructions;
+import com.example.ourgame.Games.PictureGame.PictureGameActivity;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
 import com.example.ourgame.Languages.LanguageTextSetter;
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
      * Sends the user to the Picture Game -- TESTING ONLY
      */
     public void playPictureGame(View view) {
-        Intent intent = new Intent(this, PictureInstructions.class);
+        Intent intent = new Intent(this, PictureGameActivity.class);
         startActivity(intent);
         finish();
     }

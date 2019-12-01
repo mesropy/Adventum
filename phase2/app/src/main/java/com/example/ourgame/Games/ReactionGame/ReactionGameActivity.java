@@ -27,7 +27,6 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
     private ReactionGamePresenter presenter;
     private Language language;
 
-
     private TextView message;
     private TextView title;
     private TextView countText;
@@ -42,25 +41,26 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
         message = findViewById(R.id.instructionText);
         title = findViewById(R.id.titleText);
         countText = findViewById(R.id.numLevelsText);
-        countText.setVisibility(View.INVISIBLE);
         averageText = findViewById(R.id.averageText);
-        averageText.setVisibility(View.INVISIBLE);
         filterImage = findViewById(R.id.filter);
+
+        presenter = new ReactionGamePresenter(this, new ReactionGame(this));
+    }
+
+    public void setInitial() {
+        countText.setVisibility(View.INVISIBLE);
+        averageText.setVisibility(View.INVISIBLE);
         filterImage.setImageResource(R.color.transparent);
+
+        TextView tapToContinue = findViewById(R.id.continueText);
+        title.setText(language.getReactionTitle());
+        tapToContinue.setText(language.getReactionContinueText());
 
         // set theme
         ThemeBuilder themeBuilder = new ThemeBuilder((new DataWriter(this)).getThemeData());
         Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.main_layout);
         constraintLayout.setBackgroundResource(theme.pictureGameLayout());
-
-        presenter = new ReactionGamePresenter(this, new ReactionGame(this), new DataWriter(this));
-    }
-
-    public void setInitial() {
-        TextView tapToContinue = findViewById(R.id.continueText);
-        title.setText(language.getReactionTitle());
-        tapToContinue.setText(language.getReactionContinueText());
     }
 
     /**
@@ -107,7 +107,7 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
     }
 
     @Override
-    public void setLang(Language lang) {
+    public void setLanguage(Language lang) {
         language = lang;
     }
 

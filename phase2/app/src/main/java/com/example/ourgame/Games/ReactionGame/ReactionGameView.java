@@ -1,9 +1,12 @@
 package com.example.ourgame.Games.ReactionGame;
 
 import com.example.ourgame.Games.GameView;
-import com.example.ourgame.Languages.Language;
 
 interface ReactionGameView extends GameView {
+
+    void showInstructions();
+
+    void showStart();
 
     void showWaiting();
 
