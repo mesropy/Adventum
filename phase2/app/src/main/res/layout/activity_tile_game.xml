@@ -13,15 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:fontFamily="@font/renner"
-        android:text="Memory Game"
+        android:text="@string/tile_game"
         android:textColor="#636363"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/instructionText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/tile2"
@@ -166,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/renner"
-        android:text="Lives Remaining: 3/3"
+        android:text="@string/default_lives_remaining"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

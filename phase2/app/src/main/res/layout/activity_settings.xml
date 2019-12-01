@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/renner"
             android:tag="@string/language_english"
-            android:text="English"
+            android:text="@string/english"
             android:textColor="@android:color/secondary_text_light"
             android:textSize="18sp" />
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/renner"
             android:tag="@string/language_french"
-            android:text="français"
+            android:text="@string/french"
             android:textColor="@android:color/secondary_text_light"
             android:textSize="18sp" />
 
@@ -46,9 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/renner"
-        android:text="Language"
+        android:text="@string/language"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
@@ -58,7 +58,7 @@
         android:layout_width="79dp"
         android:layout_height="73dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.305"
@@ -77,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/themeText">
 
         <ImageButton
-            android:id="@+id/summerButton"
+            android:id="@+id/woodlandButton"
             android:layout_width="@dimen/theme_button_width"
             android:layout_height="@dimen/theme_button_height"
             android:layout_marginStart="0dp"
@@ -86,21 +86,8 @@
             android:background="#00FFFFFF"
             android:cropToPadding="false"
             android:scaleType="fitCenter"
-            android:tag="summer"
-            app:srcCompat="@drawable/autumn_option_temp" />
-
-        <ImageButton
-            android:id="@+id/winterButton"
-            android:layout_width="@dimen/theme_button_width"
-            android:layout_height="@dimen/theme_button_height"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="16dp"
-            android:adjustViewBounds="false"
-            android:background="#00FFFFFF"
-            android:cropToPadding="false"
-            android:scaleType="fitCenter"
-            android:tag="winter"
-            app:srcCompat="@drawable/autumn_option_temp" />
+            android:tag="woodland"
+            app:srcCompat="@drawable/woodland_theme_button" />
 
         <ImageButton
             android:id="@+id/autumnButton"
@@ -113,7 +100,20 @@
             android:cropToPadding="false"
             android:scaleType="fitCenter"
             android:tag="autumn"
-            app:srcCompat="@drawable/autumn_option_temp" />
+            app:srcCompat="@drawable/woodland_autumn_theme_button" />
+
+        <ImageButton
+            android:id="@+id/dessertButton"
+            android:layout_width="@dimen/theme_button_width"
+            android:layout_height="@dimen/theme_button_height"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="false"
+            android:background="#00FFFFFF"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            android:tag="dessert"
+            app:srcCompat="@drawable/dessert_theme_button" />
 
     </LinearLayout>
 
@@ -124,7 +124,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/renner"
-        android:text="Theme"
+        android:text="@string/theme"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/languageRadioGroup" />
@@ -163,7 +163,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
         android:onClick="onChangeCharacterPressed"
-        android:text="change character"
+        android:text="@string/change_character"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/characterImage" />

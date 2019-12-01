@@ -44,11 +44,10 @@ public class InstructionsActivity extends AppCompatActivity {
         setGameTitle();
         setInstructions();
 
-        // TODO: set languages for these
         TextView instructionsSubtitleText = findViewById(R.id.instructionsSubtitleText);
         Button playGameButton = findViewById(R.id.playGameButton);
-        //instructionsSubtitleText.setText(language.getInstructionsSubtitle());
-        //playGameButton.setText(language.getPlayGameButton());
+        instructionsSubtitleText.setText(language.getInstructionsSubtitle());
+        playGameButton.setText(language.start());
     }
 
 

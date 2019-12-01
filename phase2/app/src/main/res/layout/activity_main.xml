@@ -8,23 +8,23 @@
     tools:context=".Menus.MainActivity">
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/pictureGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/renner"
         android:onClick="playPictureGame"
-        android:text="Picture"
+        android:text="@string/picture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/hangmanGameButton" />
 
     <TextView
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/renner"
-        android:text="Welcome, (username)!"
+        android:text="@string/default_welcome_message"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -37,7 +37,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="172dp"
         android:fontFamily="@font/renner"
-        android:text="For testing only (DELETE when done)"
+        android:text="@string/main_menu_reminder"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.135"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:fontFamily="@font/renner"
-        android:text="Game Title"
+        android:text="@string/default_game_title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="playGame"
-        android:text="play"
+        android:text="@string/play_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
@@ -75,7 +75,7 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="checkStats"
-        android:text="Statistics"
+        android:text="@string/statistics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playButton" />
 
@@ -86,7 +86,7 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="checkLeaderBoard"
-        android:text="LeaderBoard"
+        android:text="@string/leaderboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statisticsButton" />
 
@@ -97,47 +97,47 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/renner"
         android:onClick="openSettings"
-        android:text="Settings"
+        android:text="@string/settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaderBoardButton" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/runningGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:fontFamily="@font/renner"
         android:onClick="playRunningGame"
-        android:text="Running"
+        android:text="@string/running"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reminderText" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/hangmanGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/renner"
         android:onClick="playHangmanGame"
-        android:text="Hangman"
+        android:text="@string/hangman"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/runningGameButton" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/tileGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/renner"
         android:onClick="playTileGame"
-        android:text="Tile"
+        android:text="@string/tile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/pictureGameButton" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/reactionGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -147,7 +147,7 @@
         android:text="@string/reaction_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/tileGameButton"
         app:layout_constraintVertical_bias="0.008" />
 
     <ImageView

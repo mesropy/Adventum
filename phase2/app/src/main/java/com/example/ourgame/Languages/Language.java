@@ -2,13 +2,16 @@ package com.example.ourgame.Languages;
 
 public interface Language {
    // main menu
-    String getMainPlayButton();
+    String getPlayButton();
     String getMainLeaderBoard();
     String getMainSettings();
     String getWelcomeMessage(String user);
 
     // String getTitle(GameName gameName);
     // String getInstructions(GameName gameName);
+
+    // instructions
+    String getInstructionsSubtitle();
 
     // reaction game
     String getReactionTitle();
@@ -53,9 +56,9 @@ public interface Language {
     String getThemeText();
     String getChangeCharacter();
 
-    // leaderboard
-    String leaderboardUser();
-    String leaderboardYourRank();
+    // leaderBoard
+    String leaderBoardUser();
+    String leaderBoardYourRank();
     String rankBy();
     String points();
     String ranking();

@@ -67,7 +67,6 @@
                 android:value=".Menus.MainActivity" />
         </activity>
         <activity android:name=".Menus.MainActivity" />
-        <activity android:name=".Games.TileGame.TileGameInstructions" />
 
         <meta-data
             android:name="preloaded_fonts"

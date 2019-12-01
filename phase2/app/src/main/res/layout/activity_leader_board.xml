@@ -86,7 +86,7 @@
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="1."
+                android:text="@string/one"
                 android:textSize="18sp" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_width="220dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="@string/default_user_1"
+                android:text="@string/default_user"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="88dp"
                 tools:layout_editor_absoluteY="145dp" />
@@ -118,7 +118,7 @@
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="2."
+                android:text="@string/two"
                 android:textSize="18sp" />
 
             <TextView
@@ -126,7 +126,7 @@
                 android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="@string/default_user_1"
+                android:text="@string/default_user"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="88dp"
                 tools:layout_editor_absoluteY="145dp" />
@@ -150,7 +150,7 @@
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="3."
+                android:text="@string/three"
                 android:textSize="18sp" />
 
             <TextView
@@ -158,7 +158,7 @@
                 android:layout_width="206dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="@string/default_user_1"
+                android:text="@string/default_user"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="88dp"
                 tools:layout_editor_absoluteY="145dp" />
@@ -182,7 +182,7 @@
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="4."
+                android:text="@string/four"
                 android:textSize="18sp" />
 
             <TextView
@@ -190,7 +190,7 @@
                 android:layout_width="241dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="@string/default_user_1"
+                android:text="@string/default_user"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="88dp"
                 tools:layout_editor_absoluteY="145dp" />
@@ -214,7 +214,7 @@
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="5."
+                android:text="@string/five"
                 android:textSize="18sp" />
 
             <TextView
@@ -222,7 +222,7 @@
                 android:layout_width="144dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/renner"
-                android:text="@string/default_user_1"
+                android:text="@string/default_user"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="88dp"
                 tools:layout_editor_absoluteY="145dp" />
@@ -257,7 +257,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/renner"
-        android:text="Rank by:"
+        android:text="@string/rank_by"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
@@ -268,13 +268,12 @@
         android:id="@+id/linearLayout"
         android:layout_width="357dp"
         android:layout_height="62dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rankByLabel"
-        app:layout_constraintVertical_bias="0.08">
+        app:layout_constraintTop_toBottomOf="@+id/rankByLabel">
 
         <Button
             android:id="@+id/pointsButton"

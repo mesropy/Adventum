@@ -14,11 +14,11 @@ import com.example.ourgame.Games.HangmanGame.HangmanActivity;
 import com.example.ourgame.Games.PictureGame.PictureGameActivity;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
+import com.example.ourgame.Games.TileGame.TileGameActivity;
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
-import com.example.ourgame.Games.TileGame.TileGameInstructions;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.ScreenLoader;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Language language = languageTextSetter.getTextSetter();
 
         String welcomeMessage = language.getWelcomeMessage(user);
-        playButton.setText(language.getMainPlayButton());
+        playButton.setText(language.getPlayButton());
         statisticsButton.setText(language.statistics());
         leaderBoardButton.setText(language.getMainLeaderBoard());
         settingsButton.setText(language.getMainSettings());
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
      * Sends the user to the Tile Game -- TESTING ONLY
      */
     public void playTileGame(View view) {
-        Intent intent = new Intent(this, TileGameInstructions.class);
+        Intent intent = new Intent(this, TileGameActivity.class);
         startActivity(intent);
         finish();
     }
