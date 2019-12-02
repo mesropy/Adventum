@@ -1,12 +1,8 @@
 package com.example.ourgame.Games.RunningGame;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.example.ourgame.R;
-import com.example.ourgame.Utilities.DataWriter;
-import com.example.ourgame.Utilities.WriteData;
 
 public class EndlessRunnerActivity extends AppCompatActivity {
 
@@ -14,10 +10,6 @@ public class EndlessRunnerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endless_runner);
-
-        WriteData data = new DataWriter(this);
-
-        // TODO: set theme
     }
 
     @Override

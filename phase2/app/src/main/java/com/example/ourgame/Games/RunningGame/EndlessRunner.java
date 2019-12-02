@@ -1,6 +1,7 @@
 package com.example.ourgame.Games.RunningGame;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,8 +11,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+
 import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
+import com.example.ourgame.Themes.Theme;
+import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 
@@ -25,6 +29,8 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     private Paint paint;
     private Context context;
     private Rect screen;
+    private Sprite background;
+    private BitmapFactory.Options options;
 
     public EndlessRunner(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -33,6 +39,13 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         surfaceHolder.addCallback(this);
         this.context = context;
 
+        options = new BitmapFactory.Options();
+        options.inScaled = false;
+    }
+
+    private void setTheme(Theme theme) {
+        background = new Sprite(BitmapFactory.decodeResource(context.getResources(), theme.pictureGameLayout(), options),
+                0, 0, screen.width(), screen.height(), 0);
     }
 
     @Override
@@ -44,6 +57,9 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
         LanguageFactory text = new LanguageFactory(game.getLanguage(), context);
         language = text.getTextSetter();
+
+        ThemeBuilder themeBuilder = new ThemeBuilder(game.getTheme());
+        setTheme(themeBuilder.getTheme());
 
         paint = new Paint();
         thread = new EndlessRunnerThread(game);
@@ -66,7 +82,8 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     public void draw(Player player, List<Sprite> obstacles, int score) {
         Canvas canvas = surfaceHolder.lockCanvas();
         if (canvas != null) {
-            canvas.drawColor(Color.WHITE);
+            //canvas.drawColor(Color.WHITE);
+            background.draw(canvas);
             player.draw(canvas);
             paint.setTextSize(50);
             paint.setColor(Color.RED);
