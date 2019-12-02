@@ -17,8 +17,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.R;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 
@@ -30,38 +28,38 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     private ImageView characterImage;
     private RadioGroup languageRadioGroup;
-    private ImageButton [] themeButtons;
+    private LinearLayout themesLayout;
+    private ImageButton[] themeButtons;
 
-    private int [] characterImageIds = {R.drawable.female, R.drawable.girl,
+    private int[] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl,
             R.drawable.male, R.drawable.kid};
+    // correspond to themes in theme linear layout
+    private int[] themeImageIds = {R.drawable.summer_woodland, R.drawable.autumn_woodland,
+            R.drawable.dessert};
 
-    private String selectedTheme;
+    private int themeButtonIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        data = new DataWriter(this);
-        screenLoader = new ScreenLoader(this);
-
-        // TODO: find way to improve this
-        // (get rid of ThemeBuilder, easily access theme in one line)
-        // theme
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
-        Theme theme = themeBuilder.getTheme();
-        ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
-        constraintLayout.setBackgroundResource(theme.settingsActivityLayout());
-
         languageRadioGroup = findViewById(R.id.languageRadioGroup);
         characterImage = findViewById(R.id.characterImage);
 
+        data = new DataWriter(this);
+        screenLoader = new ScreenLoader(this);
+
+        // theme
+        ConstraintLayout constraintLayout = findViewById(R.id.settingsActivityLayout);
+        constraintLayout.setBackgroundResource(data.getThemeData());
+
         // initialize theme buttons and set on click listeners for each of them
-        LinearLayout layout = findViewById(R.id.themeButtons);
-        int count = layout.getChildCount();
+        themesLayout = findViewById(R.id.themeButtons);
+        int count = themesLayout.getChildCount();
         themeButtons = new ImageButton[count];
-        for(int i=0; i<count; i++) {
-            themeButtons[i] = (ImageButton)layout.getChildAt(i);
+        for (int i = 0; i < count; i++) {
+            themeButtons[i] = (ImageButton) themesLayout.getChildAt(i);
             themeButtons[i].setOnClickListener(this);
         }
 
@@ -95,6 +93,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         //language
 
+        // Language language = data.getLanguage(user);
         // RadioButton selectedLanguageButton = findViewById(language.getLanguageButtonId());
         // selectedLanguageButton.setChecked(true);
 
@@ -111,7 +110,15 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         selectedLanguageButton.setChecked(true);
 
         // theme
-        selectedTheme = data.getThemeData();
+        int currentThemeImageId = data.getThemeData();
+        themeButtonIndex = 0;
+        // TODO: get index of theme from data
+        for (int i = 0; i < themeImageIds.length; i ++){
+            if (themeImageIds[i] == currentThemeImageId){
+                themeButtonIndex = i;
+                break;
+            }
+        }
         displaySelectedTheme();
     }
 
@@ -132,8 +139,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     // only called when a theme button is pressed, display the selected theme
     @Override
     public void onClick(View view) {
-        selectedTheme = view.getTag().toString();
-        data.setThemeData(selectedTheme);
+        themeButtonIndex = themesLayout.indexOfChild(view);
+        data.setThemeData(themeImageIds[themeButtonIndex]);
         displaySelectedTheme();
     }
 
@@ -142,8 +149,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         // add grey tint to all theme buttons, and remove any filters from
         // the selected one
         for(ImageButton themeButton : themeButtons){
-            String theme = themeButton.getTag().toString();
-            if (selectedTheme.equals(theme)) {
+            int themeIndex = themesLayout.indexOfChild(themeButton);
+            if (themeButtonIndex == themeIndex) {
                 themeButton.clearColorFilter();
             } else {
                 addGreyTintFilter(themeButton);

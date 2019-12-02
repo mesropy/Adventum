@@ -2,7 +2,7 @@ package com.example.ourgame.Games.HangmanGame;
 
 import android.content.Context;
 import android.widget.Button;
-import com.example.ourgame.Languages.LanguageFactory;
+import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.ScreenLoader;
 
@@ -16,7 +16,7 @@ class HangmanPresenter {
         this.gameView = gameView;
         this.game = game;
 
-        LanguageFactory text = new LanguageFactory(game.getLanguage(), (Context)gameView);
+        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), (Context)gameView);
         gameView.setLanguage(text.getTextSetter());
         screenLoader = new ScreenLoader((Context) gameView);
 
@@ -71,7 +71,6 @@ class HangmanPresenter {
     }
 
     private void setTheme(){
-        ThemeBuilder themeBuilder = new ThemeBuilder(game.getTheme());
-        gameView.setTheme(themeBuilder.getTheme());
+        gameView.setTheme((new DataWriter((Context)gameView)).getThemeData());
     }
 }

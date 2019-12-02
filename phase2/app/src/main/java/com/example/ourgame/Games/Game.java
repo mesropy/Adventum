@@ -52,9 +52,4 @@ public abstract class Game {
     public String getLanguage() {
         return data.getLanguage();
     }
-
-    public String getTheme() {
-        return data.getThemeData();
-    }
-
 }

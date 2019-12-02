@@ -14,8 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
 
 public class PictureGameActivity extends AppCompatActivity implements PictureGameView {
@@ -63,10 +61,8 @@ public class PictureGameActivity extends AppCompatActivity implements PictureGam
         guessEditText.setHint(language.typeAnswer());
 
         // set theme
-        ThemeBuilder themeBuilder = new ThemeBuilder((new DataWriter(this)).getThemeData());
-        Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.picturegameLayout);
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
+        constraintLayout.setBackgroundResource(new DataWriter(this).getThemeData());
     }
 
     @Override

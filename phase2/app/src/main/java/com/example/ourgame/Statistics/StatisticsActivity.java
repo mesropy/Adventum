@@ -13,8 +13,6 @@ import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.ScreenLoader;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.WriteData;
 
@@ -50,9 +48,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setLanguage();
 
         ConstraintLayout constraintLayout = findViewById(R.id.statisticsLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
-        Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
+        constraintLayout.setBackgroundResource(dataWriter.getThemeData());
 
         setUpNavigationButtons();
         displayStatistics();

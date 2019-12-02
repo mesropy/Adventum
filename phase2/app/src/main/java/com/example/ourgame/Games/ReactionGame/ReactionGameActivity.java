@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourgame.R;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Languages.Language;
 
@@ -52,10 +50,8 @@ public class ReactionGameActivity extends AppCompatActivity implements ReactionG
         tapToContinue.setText(language.getReactionContinueText());
 
         // set theme
-        ThemeBuilder themeBuilder = new ThemeBuilder((new DataWriter(this)).getThemeData());
-        Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.main_layout);
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
+        constraintLayout.setBackgroundResource(new DataWriter(this).getThemeData());
     }
 
     /**

@@ -12,8 +12,6 @@ import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.ScreenLoader;
 
 import java.util.ArrayList;
@@ -55,9 +53,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         setLanguage();
 
         ConstraintLayout constraintLayout = findViewById(R.id.leaderboardLayout);
-        ThemeBuilder themeBuilder = new ThemeBuilder(dataWriter.getThemeData());
-        Theme theme = themeBuilder.getTheme();
-        constraintLayout.setBackgroundResource(theme.leaderBoardLayout());
+        constraintLayout.setBackgroundResource(dataWriter.getThemeData());
 
         //Display ranking based on points data by default
         Map<String, Integer> pointsData = dataWriter.getPointsData();

@@ -214,7 +214,6 @@ public class English implements Language {
         return "playtime";
     }
 
-    @Override
     public String score(){
         return "Score: ";
     }
@@ -232,6 +231,11 @@ public class English implements Language {
     @Override
     public String getChangeCharacter() {
         return "Change Character";
+    }
+
+    @Override
+    public String save() {
+        return "save";
     }
 
     @Override
@@ -262,10 +266,5 @@ public class English implements Language {
     @Override
     public String getInstructionsSubtitle() {
         return "Instructions";
-    }
-
-    @Override
-    public String save(){
-        return "Save";
     }
 }

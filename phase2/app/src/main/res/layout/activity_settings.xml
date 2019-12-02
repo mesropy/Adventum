@@ -86,7 +86,7 @@
             android:background="#00FFFFFF"
             android:cropToPadding="false"
             android:scaleType="fitCenter"
-            android:tag="woodland"
+            android:tag="0"
             app:srcCompat="@drawable/woodland_theme_button" />
 
         <ImageButton
@@ -99,7 +99,7 @@
             android:background="#00FFFFFF"
             android:cropToPadding="false"
             android:scaleType="fitCenter"
-            android:tag="autumn"
+            android:tag="1"
             app:srcCompat="@drawable/woodland_autumn_theme_button" />
 
         <ImageButton
@@ -112,7 +112,7 @@
             android:background="#00FFFFFF"
             android:cropToPadding="false"
             android:scaleType="fitCenter"
-            android:tag="dessert"
+            android:tag="2"
             app:srcCompat="@drawable/dessert_theme_button" />
 
     </LinearLayout>

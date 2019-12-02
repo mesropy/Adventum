@@ -1,6 +1,7 @@
 package com.example.ourgame.Games.TileGame;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -8,11 +9,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
+import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
+
+
+import java.util.ArrayList;
 
 /**
  * The Activity class for a Memory Tile Game
@@ -21,6 +27,7 @@ import com.example.ourgame.Themes.ThemeBuilder;
 public class TileGameActivity extends AppCompatActivity implements TileGameView, View.OnClickListener{
 
     private TileGamePresenter presenter;
+//    private TileGame tileGame;
     private Language language;
 
     private TextView livesText;
@@ -40,6 +47,7 @@ public class TileGameActivity extends AppCompatActivity implements TileGameView,
         resultText = findViewById(R.id.resultText);
 
         presenter = new TileGamePresenter(this, new TileGame(this));
+
 
     }
 
@@ -110,10 +118,9 @@ public class TileGameActivity extends AppCompatActivity implements TileGameView,
 
     @Override
     public void setInitial() {
-        ThemeBuilder themeBuilder = new ThemeBuilder((new DataWriter(this)).getThemeData());
-        Theme theme = themeBuilder.getTheme();
-        ConstraintLayout constraintLayout = findViewById(R.id.backGound2);
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
+
+        ConstraintLayout constraintLayout = findViewById(R.id.backGround2);
+        constraintLayout.setBackgroundResource(new DataWriter(this).getThemeData());
 
         TextView title = findViewById(R.id.titleText);
         title.setText(language.getTileTitle());

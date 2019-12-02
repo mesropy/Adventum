@@ -16,8 +16,6 @@ import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.login.Login;
 
@@ -56,10 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         characterImage.setImageResource(data.getCharacterData());
 
-        ThemeBuilder themeBuilder = new ThemeBuilder(data.getThemeData());
-        Theme theme = themeBuilder.getTheme();
         ConstraintLayout constraintLayout = findViewById(R.id.mainactivityLayout);
-        constraintLayout.setBackgroundResource(theme.mainActivityLayout());
+        constraintLayout.setBackgroundResource(data.getThemeData());
     }
 
     private void setLanguage() {

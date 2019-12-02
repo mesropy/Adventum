@@ -56,6 +56,14 @@ class Hangman extends Game {
     }
 
     // returns possible words to guess in an array list, words from file
+
+    /**
+     * Returns a list of Strings which dictate the possible words that can be used
+     * in a game of Hangman, to be guessed as answers.
+     *
+     * @return the possible words allowed to be guessed
+     * @throws IOException
+     */
     private List<String> getPossibleWords() throws IOException {
         List<String> possibleWords = new ArrayList<>();
         InputStream inputStream = context.getResources().openRawResource(R.raw.hangman_words);
@@ -72,6 +80,12 @@ class Hangman extends Game {
     // return a new word to guess, based on possible words to guess, and
     // words this user has already tried guessing
     // TODO: need some way of storing this ^ and using it here
+
+    /**
+     * Return the next word from the list of possible words.
+     *
+     * @return the next word from the list of possible words
+     */
     private String getANewWord() {
         // to do: base this off of user
         int nextWordIndex = (int) ((Math.random()) * possibleWords.size());
@@ -79,6 +93,11 @@ class Hangman extends Game {
     }
 
     // update word blanks based on the letters that have been guessed
+
+    /**
+     * Updates the blanks  in the word being guessed.
+     * If the letter guessed is correct, the blank is replaced.
+     */
     private void updateWordBlanks() {
         StringBuilder blanksStringBuilder = new StringBuilder();
         for (int i = 0; i < wordToGuess.length(); i++) {
