@@ -11,13 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Games.GameName;
-import com.example.ourgame.Games.HangmanGame.HangmanActivity;
 import com.example.ourgame.Games.InstructionsActivity;
-import com.example.ourgame.Games.PictureGame.PictureGameActivity;
-import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
-import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
-import com.example.ourgame.Games.TileGame.TileGameActivity;
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
@@ -68,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setLanguage() {
-        LanguageTextSetter languageTextSetter = new LanguageTextSetter(data.getLanguage(),
+        LanguageFactory languageTextSetter = new LanguageFactory(data.getLanguage(),
                 this);
         Language language = languageTextSetter.getTextSetter();
 

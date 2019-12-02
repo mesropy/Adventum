@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
@@ -66,7 +66,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
     }
 
     private void setLanguage() {
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
+        LanguageFactory text = new LanguageFactory(dataWriter.getLanguage(), this);
         language = text.getTextSetter();
 
         TextView title = findViewById(R.id.titleText);

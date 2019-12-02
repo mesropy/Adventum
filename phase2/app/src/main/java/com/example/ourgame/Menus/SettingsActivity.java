@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Themes.Theme;
@@ -70,7 +70,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void setLanguage(){
-        Language language = new LanguageTextSetter(data.getLanguage(), this).getTextSetter();
+        Language language = new LanguageFactory(data.getLanguage(), this).getTextSetter();
 
         TextView titleText = findViewById(R.id.titleText);
         TextView languageText = findViewById(R.id.languageText);

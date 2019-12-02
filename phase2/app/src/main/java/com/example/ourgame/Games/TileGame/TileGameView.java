@@ -1,6 +1,5 @@
 package com.example.ourgame.Games.TileGame;
 
-import android.view.View;
 import android.widget.Button;
 
 import com.example.ourgame.Games.GameView;

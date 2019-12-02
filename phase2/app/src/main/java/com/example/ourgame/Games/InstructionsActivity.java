@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.R;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
@@ -32,7 +32,7 @@ public class InstructionsActivity extends AppCompatActivity {
 
         screenLoader = new ScreenLoader(this);
         data = new DataWriter(this);
-        LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(), this);
+        LanguageFactory text = new LanguageFactory(data.getLanguage(), this);
         language = text.getTextSetter();
 
         Intent intent = getIntent();

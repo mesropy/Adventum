@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Themes.Theme;
@@ -40,7 +40,7 @@ public class HangmanActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LanguageTextSetter text = new LanguageTextSetter(hangman.getLanguage(), this);
+        LanguageFactory text = new LanguageFactory(hangman.getLanguage(), this);
         language = text.getTextSetter();
         screenLoader = new ScreenLoader(this);
 
