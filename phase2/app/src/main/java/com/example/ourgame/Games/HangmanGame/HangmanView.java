@@ -7,7 +7,7 @@ public interface HangmanView extends GameView {
 
     void setUp(String wordBlanks, int imageId);
 
-    void setTheme(int themeImageId);
+    void setBackground(int themeImageId);
 
     void guessLetter(Button letterButton);
 

@@ -1,7 +1,6 @@
 package com.example.ourgame.Games.TileGame;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,16 +8,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
-import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 
-
-import java.util.ArrayList;
 
 /**
  * The Activity class for a Memory Tile Game

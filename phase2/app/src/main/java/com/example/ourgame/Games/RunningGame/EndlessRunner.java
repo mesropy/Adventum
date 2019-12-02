@@ -14,8 +14,6 @@ import android.view.SurfaceView;
 
 import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 
@@ -43,8 +41,8 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         options.inScaled = false;
     }
 
-    private void setTheme(Theme theme) {
-        background = new Sprite(BitmapFactory.decodeResource(context.getResources(), theme.pictureGameLayout(), options),
+    private void setTheme(int theme) {
+        background = new Sprite(BitmapFactory.decodeResource(context.getResources(), theme, options),
                 0, 0, screen.width(), screen.height(), 0);
     }
 
@@ -58,8 +56,11 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
         LanguageFactory text = new LanguageFactory(game.getLanguage(), context);
         language = text.getTextSetter();
 
+        /*
         ThemeBuilder themeBuilder = new ThemeBuilder(game.getTheme());
         setTheme(themeBuilder.getTheme());
+
+*/
 
         paint = new Paint();
         thread = new EndlessRunnerThread(game);

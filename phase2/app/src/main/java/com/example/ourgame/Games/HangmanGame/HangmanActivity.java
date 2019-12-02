@@ -71,7 +71,7 @@ public class HangmanActivity extends AppCompatActivity implements HangmanView{
     }
 
     @Override
-    public void setTheme(int themeImageId) {
+    public void setBackground(int themeImageId) {
         ConstraintLayout constraintLayout = findViewById(R.id.hangmanLayout);
         constraintLayout.setBackgroundResource(themeImageId);
 }
