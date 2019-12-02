@@ -40,10 +40,10 @@ public interface WriteData {
     // Check if "username" exists
     boolean checkUser(String username);
 
-    String getThemeData();
+    int getThemeData();
 
     int getCharacterData();
-    void setThemeData(String theme);
+    void setThemeData(int themeImageId);
     void setCharacterData(int characterImageId);
 
 

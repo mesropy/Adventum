@@ -14,8 +14,10 @@ import java.util.List;
 public class French implements Language {
 
     private List<String> gameIntros = new ArrayList<>();
-    French(Context context){
-        InputStream inputStream = context.getResources().openRawResource(R.raw.game_instruction_french);
+
+    French(Context context) {
+        InputStream inputStream = context.getResources().openRawResource(
+                R.raw.game_instruction_french);
 
         try (BufferedReader in = new BufferedReader(new InputStreamReader(inputStream))) {
             String str;
@@ -29,7 +31,6 @@ public class French implements Language {
         }
     }
 
-    @Override
     public String getPlayButton() {
         return "Jouer";
     }
@@ -214,7 +215,7 @@ public class French implements Language {
     }
 
     @Override
-    public String score(){
+    public String score() {
         return "Le point: ";
     }
 

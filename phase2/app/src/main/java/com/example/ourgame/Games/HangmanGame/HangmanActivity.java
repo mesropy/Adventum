@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
-import com.example.ourgame.Themes.Theme;
 import java.io.IOException;
 
 public class HangmanActivity extends AppCompatActivity implements HangmanView{
@@ -72,10 +71,10 @@ public class HangmanActivity extends AppCompatActivity implements HangmanView{
     }
 
     @Override
-    public void setTheme(Theme theme) {
+    public void setTheme(int themeImageId) {
         ConstraintLayout constraintLayout = findViewById(R.id.hangmanLayout);
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
-    }
+        constraintLayout.setBackgroundResource(themeImageId);
+}
 
     @Override
     public void guessLetter(Button letterButton) {

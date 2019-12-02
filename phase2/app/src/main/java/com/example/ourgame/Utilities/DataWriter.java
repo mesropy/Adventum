@@ -98,7 +98,7 @@ public class DataWriter implements WriteData {
         editor.apply();
 
         editor = themeData.edit();
-        editor.putString(username, "woodland");
+        editor.putInt(username, R.drawable.autumn_woodland);
         editor.apply();
 
         editor = characterData.edit();
@@ -106,24 +106,28 @@ public class DataWriter implements WriteData {
         editor.apply();
     }
 
+    @Override
     public int getCharacterData() {
         return characterData.getInt(currentUser, 0);
     }
 
+    @Override
     public void setCharacterData(int characterImageId) {
         SharedPreferences.Editor editor = characterData.edit();
         editor.putInt(currentUser, characterImageId);
         editor.apply();
     }
 
-    public void setThemeData(String theme) {
+    @Override
+    public void setThemeData(int themeImageId) {
         SharedPreferences.Editor editor = themeData.edit();
-        editor.putString(currentUser, theme);
+        editor.putInt(currentUser, themeImageId);
         editor.apply();
     }
 
-    public String getThemeData() {
-        return themeData.getString(currentUser, "Not Found");
+    @Override
+    public int getThemeData() {
+        return themeData.getInt(currentUser, R.drawable.autumn_woodland);
     }
 
     @Override
