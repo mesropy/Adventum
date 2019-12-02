@@ -16,6 +16,7 @@ import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
+import com.example.ourgame.Utilities.WriteData;
 
 import java.util.List;
 
@@ -50,17 +51,14 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder holder) {
         // Gameview created
         screen = new Rect(0, 0, getWidth(), getHeight());
+        WriteData dataWriter = new DataWriter(context);
 
-        game = new EndlessRunnerGame(this, new DataWriter(context));
+        game = new EndlessRunnerGame(this, dataWriter);
 
         LanguageFactory text = new LanguageFactory(game.getLanguage(), context);
         language = text.getTextSetter();
 
-        /*
-        ThemeBuilder themeBuilder = new ThemeBuilder(game.getTheme());
-        setTheme(themeBuilder.getTheme());
-
-*/
+        setTheme(dataWriter.getThemeData());
 
         paint = new Paint();
         thread = new EndlessRunnerThread(game);
