@@ -1,6 +1,5 @@
 package com.example.ourgame.Games;
 
-import android.content.Intent;
 
 public enum GameName {
     HANGMAN, PICTURE, REACTION, RUNNING, TILE;

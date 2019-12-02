@@ -1,12 +1,10 @@
 package com.example.ourgame.Games.TileGame;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
@@ -14,7 +12,7 @@ import com.example.ourgame.Utilities.ScreenLoader;
 
 import java.util.ArrayList;
 
-public class TileGamePresenter {
+class TileGamePresenter {
     private TileGameView gameView;
     private TileGame tileGame;
     private ScreenLoader screenLoader;
@@ -167,7 +165,7 @@ public class TileGamePresenter {
      * Method to start the round by shuffling positions of tiles and displaying them before hiding
      * them.
      */
-    void startRound() {
+    private void startRound() {
         tileGame.shuffleTiles();
         displayPattern();
         waitThenHidePattern();

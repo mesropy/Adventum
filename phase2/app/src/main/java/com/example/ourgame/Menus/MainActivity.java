@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.ourgame.Games.GameName;
 import com.example.ourgame.Games.HangmanGame.HangmanActivity;
+import com.example.ourgame.Games.InstructionsActivity;
 import com.example.ourgame.Games.PictureGame.PictureGameActivity;
 import com.example.ourgame.Games.ReactionGame.ReactionGameActivity;
 import com.example.ourgame.Games.RunningGame.EndlessRunnerActivity;
@@ -104,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
      * Sends the user to the Reaction Time Game -- TESTING ONLY
      */
     public void playReactionGame(View view){
-        Intent intent = new Intent(this, ReactionGameActivity.class);
+        Intent intent = new Intent(this, InstructionsActivity.class);
+        intent.putExtra("game", GameName.names()[2]);
         startActivity(intent);
         finish();
     }
@@ -113,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
      * Sends the user to the Running Game -- TESTING ONLY
      */
     public void playRunningGame(View view){
-        Intent intent = new Intent(this, EndlessRunnerActivity.class);
+        Intent intent = new Intent(this, InstructionsActivity.class);
+        intent.putExtra("game", GameName.names()[3]);
         startActivity(intent);
         finish();
     }
@@ -122,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
      * Sends the user to the Hangman Game -- TESTING ONLY
      */
     public void playHangmanGame(View view) {
-        Intent intent = new Intent(this, HangmanActivity.class);
+        Intent intent = new Intent(this, InstructionsActivity.class);
+        intent.putExtra("game", GameName.names()[0]);
         startActivity(intent);
         finish();
     }
@@ -131,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
      * Sends the user to the Tile Game -- TESTING ONLY
      */
     public void playTileGame(View view) {
-        Intent intent = new Intent(this, TileGameActivity.class);
+        Intent intent = new Intent(this, InstructionsActivity.class);
+        intent.putExtra("game", GameName.names()[4]);
         startActivity(intent);
         finish();
     }
@@ -140,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
      * Sends the user to the Picture Game -- TESTING ONLY
      */
     public void playPictureGame(View view) {
-        Intent intent = new Intent(this, PictureGameActivity.class);
+        Intent intent = new Intent(this, InstructionsActivity.class);
+        intent.putExtra("game", GameName.names()[1]);
         startActivity(intent);
         finish();
     }

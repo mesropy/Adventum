@@ -1,5 +1,6 @@
 package com.example.ourgame.Games;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +35,8 @@ public class InstructionsActivity extends AppCompatActivity {
         LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(), this);
         language = text.getTextSetter();
 
-        gameName = getIntent().getStringExtra("game");
+        Intent intent = getIntent();
+        gameName = intent.getStringExtra("game");
 
         setTexts();
         setTheme();
@@ -85,7 +87,7 @@ public class InstructionsActivity extends AppCompatActivity {
     private void setInstructions() {
         String instructions;
 
-        // TODO: remove this switch block, basec on how language is implemented
+        // TODO: remove this switch block, based on how language is implemented
         // same as for setTitle()
 
         switch (gameName) {
@@ -104,8 +106,8 @@ public class InstructionsActivity extends AppCompatActivity {
                 break;
             //language.getRunnerInstruction();
             default:  // Tile
-                // TODO: combine other 2 instructions and the images
-                instructions = language.getTileIntroduction1();
+                instructions = language.getTileIntroduction1() + "\n" + language.getTileIntroduction2() + "\n" +
+                language.getTileIntroduction3();
                 break;
         }
 

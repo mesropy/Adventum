@@ -100,7 +100,7 @@ class Tile {
     /**
      * Set the visibility of this tile's button object.
      *
-     * @param visible a boolean representing if the button is visibil or not
+     * @param visible a boolean representing if the button is visible or not
      */
     void setVisibility(boolean visible) {
 

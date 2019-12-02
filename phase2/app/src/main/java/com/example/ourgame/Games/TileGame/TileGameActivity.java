@@ -48,7 +48,6 @@ public class TileGameActivity extends AppCompatActivity implements TileGameView,
 
         presenter = new TileGamePresenter(this, new TileGame(this));
 
-
     }
 
     /**
