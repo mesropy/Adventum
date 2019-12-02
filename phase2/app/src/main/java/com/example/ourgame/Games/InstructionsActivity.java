@@ -55,14 +55,10 @@ public class InstructionsActivity extends AppCompatActivity {
     private void setGameTitle(){
         String gameTitle;
 
-        // TODO: remove switch block, based on how language implemented
-        // gameTitle = language.getTitle();
-
         switch (gameName) {
             case "HANGMAN":
                 gameTitle = language.getHangmanTitle();
                 break;
-            //language.getHangmanInstruction();
             case "PICTURE":
                 gameTitle = language.getPictureTitle();
                 break;
@@ -70,10 +66,8 @@ public class InstructionsActivity extends AppCompatActivity {
                 gameTitle = language.getReactionTitle();
                 break;
             case "RUNNING":
-                // language.getRunningTitle();
-                gameTitle = "";
+                gameTitle = language.getRunnerTitle();
                 break;
-            //language.getRunnerInstruction();
             default:  // Tile
                 gameTitle = language.getTileTitle();
                 break;
@@ -86,14 +80,10 @@ public class InstructionsActivity extends AppCompatActivity {
     private void setInstructions() {
         String instructions;
 
-        // TODO: remove this switch block, based on how language is implemented
-        // same as for setTitle()
-
         switch (gameName) {
             case "HANGMAN":
-                instructions = "";
+                instructions = language.getHangmanInstructions();
                 break;
-            //language.getHangmanInstruction();
             case "PICTURE":
                 instructions = language.getPictureInstruction();
                 break;
@@ -101,9 +91,8 @@ public class InstructionsActivity extends AppCompatActivity {
                 instructions = language.getReactionMessageInstruction();
                 break;
             case "RUNNING":
-                instructions = " ";
+                instructions = language.getRunnerInstructions();;
                 break;
-            //language.getRunnerInstruction();
             default:  // Tile
                 instructions = language.getTileIntroduction1() + "\n" + language.getTileIntroduction2() + "\n" +
                 language.getTileIntroduction3();

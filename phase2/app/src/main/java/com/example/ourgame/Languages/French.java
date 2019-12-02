@@ -125,11 +125,6 @@ public class French implements Language {
     }
 
     @Override
-    public String instruction() {
-        return "Instruction";
-    }
-
-    @Override
     public String start() {
         return "COMMENCE!";
     }
@@ -167,6 +162,31 @@ public class French implements Language {
     @Override
     public String getHangmanTitle() {
         return "Jeu du Pendu";
+    }
+
+    @Override
+    public String getHangmanInstructions() {
+        return "Vous venez de tomber sur un arbre étrange au milieu de nulle part. On vous a " +
+                "dit que vous aviez la possibilité de sauver la vie d'un homme, vous avez " +
+                "seulement besoin d'un bon jeu de devinettes. Dans le jeu suivant, vous recevrez " +
+                "un mot. Tout ce que vous avez à faire est de deviner la signification du mot en " +
+                "choisissant les lettres qui composent ce mot mystère. Cependant, il y a un " +
+                "problème! Vous devez comprendre ce mot dans un nombre limité d'essais afin de " +
+                "sauver l'homme! Bonne chance!";
+    }
+
+    @Override
+    public String getRunnerTitle() {
+        return "Jeu de Course";
+    }
+
+    @Override
+    public String getRunnerInstructions() {
+        return "Ce jeu est d'adresse et de persévérance. Vous fuyez quelque chose d’horrible et " +
+                "les conséquences de vous faire prendre sont horribles. Tout ce que vous devez " +
+                "savoir, c'est que vous venez de partir. Mais, alors que vous faites de votre " +
+                "mieux pour vous échapper, des obstacles continuent de se dresser. Touchez pour" +
+                " sauter et évitez ces obstacles pour vous échapper!";
     }
 
     @Override

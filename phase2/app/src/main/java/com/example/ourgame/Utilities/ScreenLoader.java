@@ -84,17 +84,8 @@ public class ScreenLoader {
     }
 
 
-    // TODO: find better way to do this
     public void loadGame(String gameName){
         Intent intent;
-
-        /*
-        for (String game : games){
-            if(game.equals(gameName)){
-                // something with intent
-            }
-        }
-        */
 
         switch (gameName) {
             case "HANGMAN":

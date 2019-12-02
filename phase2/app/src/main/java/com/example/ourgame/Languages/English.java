@@ -125,11 +125,6 @@ public class English implements Language {
     }
 
     @Override
-    public String instruction() {
-        return "Instruction";
-    }
-
-    @Override
     public String start() {
         return "START!";
     }
@@ -167,6 +162,29 @@ public class English implements Language {
     @Override
     public String getHangmanTitle() {
         return "Hangman";
+    }
+
+    @Override
+    public String getHangmanInstructions() {
+        return "You’ve just stumbled upon a strange tree in the middle of nowhere. You’ve been " +
+                "told you have the chance to save a mans life, you only need okay a guessing game." +
+                " In the following game, you will be provided with a word. All you have to do is " +
+                "guess what the word is by picking letters that make up this mystery word. " +
+                "However, there’s a catch! You must figure out this word in a limited number" +
+                " of tries in order to save the man! Good luck!";
+    }
+
+    @Override
+    public String getRunnerTitle() {
+        return "Running Game";
+    }
+
+    @Override
+    public String getRunnerInstructions() {
+        return "This game is of skill and perseverance. You’re running away from something " +
+                "horrible, and the consequences of getting caught are horrible. All you need " +
+                "to know is you just get away. But, as you try your best to escape, obstacles " +
+                "keep coming up. Tap to jump and avoid these obstacles to get away!";
     }
 
     @Override

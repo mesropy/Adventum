@@ -76,8 +76,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         Button changeCharacterButton = findViewById(R.id.changeCharacterButton);
         Button backButton = findViewById(R.id.backButton);
 
-        // TODO: set title to "customize" if coming from registration
-
         titleText.setText(language.getMainSettings());
         languageText.setText(language.getLanguageText());
         themeText.setText(language.getThemeText());
@@ -93,12 +91,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         //language
 
-        // Language language = data.getLanguage(user);
-        // RadioButton selectedLanguageButton = findViewById(language.getLanguageButtonId());
-        // selectedLanguageButton.setChecked(true);
-
-
-        // TODO: find way to remove this if/else block
         // loop through radio group and compare tags with getLanguage
         RadioButton selectedLanguageButton;
 
@@ -112,7 +104,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         // theme
         int currentThemeImageId = data.getThemeData();
         themeButtonIndex = 0;
-        // TODO: get index of theme from data
         for (int i = 0; i < themeImageIds.length; i ++){
             if (themeImageIds[i] == currentThemeImageId){
                 themeButtonIndex = i;

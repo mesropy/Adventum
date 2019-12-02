@@ -147,7 +147,7 @@
     <string name="language_french">French</string>
     <string name="default_hangman_blanks">_ _ _ _ s a s _</string>
     <string name="hangman_title">Hangman</string>
-    <string name="default_game_title">Game Title</string>
+    <string name="default_game_title">ADVENTUM</string>
     <string name="play_button">play</string>
     <string name="one">1.</string>
     <string name="two">2.</string>

@@ -39,6 +39,11 @@ public interface Language {
 
     // hangman game
     String getHangmanTitle();
+    String getHangmanInstructions();
+
+    // runner game
+    String getRunnerTitle();
+    String getRunnerInstructions();
 
     // statistics
     String statistics();
@@ -63,7 +68,6 @@ public interface Language {
     String playtime();
 
     // other / general
-    String instruction();
     String start();
     String getContinue();
     String getEnter();

@@ -17,7 +17,6 @@ import java.util.List;
 class Hangman extends Game {
 
     // ids of images for each number of incorrect guesses
-    // TODO: make these images match the theme
     // image at i-th index is the image to display after i incorrect guesses
     private int[] incorrectGuessImages = {R.drawable.hangman0,
             R.drawable.hangman1, R.drawable.hangman2, R.drawable.hangman3, R.drawable.hangman4,
@@ -80,9 +79,7 @@ class Hangman extends Game {
     }
 
 
-    // return a new word to guess, based on possible words to guess, and
-    // words this user has already tried guessing
-    // TODO: need some way of storing this ^ and using it here
+    // return a new word to guess, based on possible words to guess
 
     /**
      * Return the next word from the list of possible words.
