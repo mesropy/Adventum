@@ -1,6 +1,5 @@
 package com.example.ourgame.Games;
 
-
 public enum GameName {
     HANGMAN, PICTURE, REACTION, RUNNING, TILE;
 

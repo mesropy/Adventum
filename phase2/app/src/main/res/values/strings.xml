@@ -177,4 +177,5 @@
     <string name="points_label">Total Points:</string>
     <string name="playtime_label">Total Playtime:</string>
     <string name="default_lives_remaining">Lives Remaining: 3/3</string>
+    <string name="clear_data">clear data</string>
 </resources>

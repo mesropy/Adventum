@@ -1,9 +1,9 @@
 package com.example.ourgame.Utilities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.provider.ContactsContract;
 
 import com.example.ourgame.Games.GameName;
 import com.example.ourgame.Games.HangmanGame.HangmanActivity;
@@ -68,14 +68,17 @@ public class ScreenLoader {
 
     // loads instructions of the next game, after which the next game can be played
     public void loadNextGame() {
-
         Intent intent = new Intent(context, InstructionsActivity.class);
 
-        // TODO: if player has already played picture game, make sure it cannot go there
-        // TODO: make sure player doesn't play same game twice in a row
         // randomly pick one of the games
-        int i = (int) (Math.random() * games.length);
-        intent.putExtra("game", games[i]);
+        String nextGameName = games[(int) (Math.random() * games.length)];
+        String lastGameName = (new DataWriter(context)).getLastGame();
+
+        // keep picking a new game until it isn't the same as the last one
+        while(nextGameName.equals(lastGameName)){
+            nextGameName = games[(int) (Math.random() * games.length)];
+        }
+        intent.putExtra("game", nextGameName);
 
         context.startActivity(intent);
     }
@@ -111,13 +114,6 @@ public class ScreenLoader {
                 break;
         }
 
-        context.startActivity(intent);
-    }
-
-    // correct?
-    // TODO: use this
-    private void loadScreen(Activity activityClass){
-        Intent intent = new Intent(context, activityClass.getClass());
         context.startActivity(intent);
     }
 }

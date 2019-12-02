@@ -15,48 +15,61 @@ public class English implements Language {
 
     private List<String> gameIntros = new ArrayList<>();
 
-    English(Context context) throws IOException{
+    English(Context context) {
         InputStream inputStream = context.getResources().openRawResource(R.raw.game_instruction_english);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-        try {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(inputStream))) {
             String str;
-            while((str = in.readLine()) != null){
-                if (!str.equals("")){
+            while ((str = in.readLine()) != null) {
+                if (!str.equals("")) {
                     gameIntros.add(str);
                 }
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             gameIntros.add("");
-        } finally {
-            in.close();
         }
     }
 
+    @Override
     public String getPlayButton() { return "Play";
     }
+
+    @Override
     public String getMainLeaderBoard() {
         return "Leaderboard";
     }
+
+    @Override
     public String getMainSettings() {
         return "Settings";
     }
+
+    @Override
     public String getReactionTitle() {
         return "Reaction Time";
     }
+
+    @Override
     public String getReactionMessageWait() {
         return "Wait";
     }
+
+    @Override
     public String getReactionMessageInstruction() {
         return gameIntros.get(4);
     }
+
+    @Override
     public String getReactionMessageGo() {
         return "Go!";
     }
+
+    @Override
     public String getReactionMessageTooSoon() {
         return "Too soon";
     }
+
+    @Override
     public String getReactionContinueText() {
         return "Tap to continue";
     }
@@ -71,22 +84,27 @@ public class English implements Language {
         return "Tile Game";
     }
 
+    @Override
     public String getTileLivesRemain() {
         return "Lives remaining: ";
     }
 
+    @Override
     public String getTileResultTextCorrect() {
         return "Correct!";
     }
 
+    @Override
     public String getTileResultTextInCorrect() {
         return "Incorrect!";
     }
 
+    @Override
     public String getTileResultTextLost() {
         return "You lost one live!";
     }
 
+    @Override
     public String getTileResultTextWon() {
         return "You passed this round!";
     }
@@ -151,22 +169,32 @@ public class English implements Language {
         return "Hangman";
     }
 
+    @Override
     public String mainMenu() {
         return "Main Menu";
     }
 
+    @Override
     public String back(){
         return "Back";
     }
+
+    @Override
     public String statistics(){
         return "Statistics";
     }
+
+    @Override
     public String statPoints(){
         return "Total Points: ";
     }
+
+    @Override
     public String statPlaytime(){
         return "Total Playtime: ";
     }
+
+    @Override
     public String statRank(){
         return "Ranking: ";
     }
@@ -186,6 +214,7 @@ public class English implements Language {
         return "playtime";
     }
 
+    @Override
     public String score(){
         return "Score: ";
     }
@@ -235,6 +264,7 @@ public class English implements Language {
         return "Instructions";
     }
 
+    @Override
     public String save(){
         return "Save";
     }

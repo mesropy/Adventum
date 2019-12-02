@@ -1,8 +1,5 @@
 package com.example.ourgame.Menus;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,12 +11,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.R;
-import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
+import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 
 
@@ -111,7 +111,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         selectedLanguageButton.setChecked(true);
 
         // theme
-
         selectedTheme = data.getThemeData();
         displaySelectedTheme();
     }
@@ -123,12 +122,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         int nextCharacterId = characterImageIds[0];
         for(int i = 0; i < characterImageIds.length -1; i ++){
             if(data.getCharacterData() == characterImageIds[i]) {
-                if (i != characterImageIds.length - 1) {
-                    nextCharacterId = characterImageIds[i + 1];
-                } else {
-                    nextCharacterId = characterImageIds[0];
-
-                }
+                nextCharacterId = characterImageIds[i + 1];
             }
         }
         characterImage.setImageResource(nextCharacterId);

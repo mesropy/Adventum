@@ -20,7 +20,6 @@ public class DataWriter implements WriteData {
      */
 
     private String[] rankings = {"Bronze", "Silver", "Gold", "Platinum"};
-//    private int[] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl};
     private String currentUser;
 
     private SharedPreferences loginData;
@@ -84,9 +83,9 @@ public class DataWriter implements WriteData {
         editor.putInt(username, 0);
         editor.apply();
 
-        // Fourth add the user's default ranking
+        // Fourth add the user's default ranking (index of ranking array)
         editor = rankingData.edit();
-        editor.putString(username, "Bronze");
+        editor.putInt(username, 0);
         editor.apply();
 
         // Lastly add the user's default last game played
@@ -157,7 +156,7 @@ public class DataWriter implements WriteData {
 
     @Override
     public String getRanking() {
-        return rankingData.getString(currentUser, "Not Found");
+        return rankings[rankingData.getInt(currentUser, 0)];
     }
 
     /**
@@ -203,18 +202,18 @@ public class DataWriter implements WriteData {
      */
     @Override
     public void increaseRanking() {
-        String currentRanking = getRanking();
-        String newRanking;
+        int currentRankingIndex = rankingData.getInt(currentUser, 0);
 
+        int newRankingIndex = currentRankingIndex;
         // only increase if not the highest ranking
-        for (int i = 0; i < rankings.length - 1; i++)
-            if (currentRanking.equals(rankings[i])) {
-                newRanking = rankings[i + 1];
-                SharedPreferences.Editor editor = rankingData.edit();
-                editor.putString(currentUser, newRanking);
-                editor.apply();
-                break;
-            }
+        if (currentRankingIndex != rankings.length -1){
+            newRankingIndex += 1;
+        }
+
+        // save new ranking
+        SharedPreferences.Editor editor = rankingData.edit();
+        editor.putInt(currentUser, newRankingIndex);
+        editor.apply();
     }
 
     /**
@@ -247,6 +246,18 @@ public class DataWriter implements WriteData {
     @Override
     public boolean checkUser(String username) {
         return !(loginData.getString(username, "Not Found").equals("Not Found"));
+    }
+
+    public void clearUserData(){
+        loginData.edit().clear().apply();
+        currUserData.edit().clear().apply();
+        pointsData.edit().clear().apply();
+        timeData.edit().clear().apply();
+        rankingData.edit().clear().apply();
+        lastGameData.edit().clear().apply();
+        languageData.edit().clear().apply();
+        themeData.edit().clear().apply();
+        characterData.edit().clear().apply();
     }
 
     /**
@@ -297,7 +308,7 @@ public class DataWriter implements WriteData {
         Map<String, String> returnData = new HashMap<>();
 
         for (String key : data.keySet()) {
-            returnData.put(key, rankingData.getString(key, ""));
+            returnData.put(key, rankings[rankingData.getInt(key, 0)]);
         }
 
         return returnData;

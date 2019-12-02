@@ -41,7 +41,7 @@ public abstract class Game {
         if (canUpdateRanking()) {
             data.increaseRanking();
         }
-        data.addLastGame(gameName.toString().toLowerCase());
+        data.addLastGame(gameName.toString());
         data.addPlayTime(playTime);
         data.addPoints(pointsEarned);
     }

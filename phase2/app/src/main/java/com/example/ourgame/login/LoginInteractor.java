@@ -26,7 +26,7 @@ import com.example.ourgame.Utilities.WriteData;
 /**
  * A class for a LoginInteractor, which determines if the user can login or not
  */
-public class LoginInteractor {
+class LoginInteractor {
 
     interface OnLoginFinishedListener {
         void onUsernameEmpty();
@@ -48,7 +48,7 @@ public class LoginInteractor {
      *                 has inputted
      * @param data     the data object containing information of accounts and their credentials
      */
-    public void login(final String username, final String password, final OnLoginFinishedListener listener,
+    void login(final String username, final String password, final OnLoginFinishedListener listener,
                       final WriteData data) {
         Runnable runnable = new Runnable() {
             @Override

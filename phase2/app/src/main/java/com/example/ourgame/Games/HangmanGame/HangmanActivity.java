@@ -9,20 +9,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Themes.Theme;
-import com.example.ourgame.Themes.ThemeBuilder;
-import com.example.ourgame.Utilities.ScreenLoader;
-
 import java.io.IOException;
 
-public class HangmanActivity extends AppCompatActivity {
-
-    private Hangman hangman;
-    private ScreenLoader screenLoader;
+public class HangmanActivity extends AppCompatActivity implements HangmanView{
+    private HangmanPresenter presenter;
     private Language language;
 
     private TextView wordBlanks;
@@ -35,93 +28,83 @@ public class HangmanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman);
 
+        wordBlanks = findViewById(R.id.wordBlanks);
+        resultText = findViewById(R.id.resultText);
+        resultImage = findViewById(R.id.resultImage);
+        continueButton = findViewById(R.id.continueButton);
+
         try {
-            hangman = new Hangman(this);
+            presenter = new HangmanPresenter(this, new Hangman(this));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LanguageFactory text = new LanguageFactory(hangman.getLanguage(), this);
-        language = text.getTextSetter();
-        screenLoader = new ScreenLoader(this);
-
-
-        wordBlanks = findViewById(R.id.wordBlanks);
-        resultText = findViewById(R.id.resultText);
-
-        wordBlanks.setText(hangman.getWordBlanks());
-        resultText.setText("");
-
-        resultImage = findViewById(R.id.resultImage);
-        resultImage.setImageResource(hangman.getImageId());
-
-        continueButton = findViewById(R.id.continueButton);
-        continueButton.setVisibility(View.GONE);
-
-        // set theme
-        ThemeBuilder themeBuilder = new ThemeBuilder(hangman.getTheme());
-        Theme theme = themeBuilder.getTheme();
-        ConstraintLayout constraintLayout = findViewById(R.id.hangmanLayout);
-        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
-
-        setLanguage();
     }
 
-    private void setLanguage(){
+    public void onLetterPressed(View view) {
+        presenter.onLetterPressed((Button) view);
+    }
+
+    public void OnContinueButtonPressed(View view) {
+        presenter.onContinueButtonPressed();
+    }
+
+
+    @Override
+    public void setLanguage(Language lang) {
+        language = lang;
+    }
+
+    @Override
+    public void setInitial() {
         continueButton.setText(language.getContinue());
         TextView title = findViewById(R.id.titleText);
         title.setText(language.getHangmanTitle());
     }
 
-    public void onLetterPressed(View view) {
-        // when a letter is pressed, only do something if the game isn't over
-        if(!hangman.isGameOver()) {
-            String letter = ((Button) view).getText().toString().trim().toLowerCase();
+    @Override
+    public void setUp(String wordBlanks, int imageId) {
+        this.wordBlanks.setText(wordBlanks);
+        resultText.setText("");
 
-            if (hangman.correctGuess(letter)) {
-                onCorrectGuess(letter);
-            } else {
-                onIncorrectGuess(letter);
-            }
+        resultImage.setImageResource(imageId);
 
-            // disable this letter button
-            view.setClickable(false);
-
-            // change color to grey to show that it's disabled
-            view.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.lb_grey)));
-        }
+        continueButton.setVisibility(View.GONE);
     }
 
-    private void onCorrectGuess(String letter) {
-        hangman.updateGuessCorrect(letter);
-        wordBlanks.setText(hangman.getWordBlanks());
-        if (hangman.isGameWon()){
-            onGameWon();
-        }
+    @Override
+    public void setTheme(Theme theme) {
+        ConstraintLayout constraintLayout = findViewById(R.id.hangmanLayout);
+        constraintLayout.setBackgroundResource(theme.pictureGameLayout());
     }
 
-    private void onGameWon() {
+    @Override
+    public void guessLetter(Button letterButton) {
+        // disable this letter button
+        letterButton.setClickable(false);
+
+        // change color to grey to show that it's disabled
+        letterButton.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.lb_grey)));
+    }
+
+    @Override
+    public void updateBlanks(String wordBlanks) {
+        this.wordBlanks.setText(wordBlanks);
+    }
+
+    @Override
+    public void updateImage(int imageId) {
+        resultImage.setImageResource(imageId);
+    }
+
+    @Override
+    public void showGameWon() {
         resultText.setText(language.getTileResultTextCorrect());
-        hangman.saveStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }
 
-    private void onIncorrectGuess(String letter) {
-        hangman.updateGuessIncorrect(letter);
-        resultImage.setImageResource(hangman.getImageId());
-        if (hangman.isGameLost()){
-            onGameLost();
-        }
-    }
-
-    private void onGameLost() {
+    @Override
+    public void showGameLost() {
         resultText.setText(language.getPictureNoMoreAttempts());
-        hangman.saveStatistics();
         continueButton.setVisibility(View.VISIBLE);
     }
-
-    public void OnContinueButtonPressed(View view) {
-        screenLoader.loadStatisticsAfterGame();
-    }
-
-
 }
