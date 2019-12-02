@@ -36,6 +36,8 @@ class Hangman extends Game {
     private boolean gameLost;
     private boolean gameWon;
 
+    private long startTime;
+
     private Context context;
 
     Hangman(Context context) throws IOException {
@@ -53,6 +55,7 @@ class Hangman extends Game {
         this.gameLost = false;
         this.gameWon = false;
 
+        startTime = System.currentTimeMillis();
     }
 
     // returns possible words to guess in an array list, words from file
@@ -113,6 +116,7 @@ class Hangman extends Game {
     // update hangman based on the incorrect guess
     void updateGuessIncorrect() {
         incorrectGuesses++;
+        setPlayTime();
         updateGameLost();
     }
 
@@ -120,6 +124,8 @@ class Hangman extends Game {
     // update hangman based on the correct guess
     void updateGuessCorrect(String guess) {
         correctlyGuessedLetters.add(guess);
+        addPoints();
+        setPlayTime();
         updateWordBlanks();
         updateGameWon();
     }
@@ -145,6 +151,14 @@ class Hangman extends Game {
 
     boolean isGameOver() {
         return gameLost || gameWon;
+    }
+
+    void addPoints() {
+        addPointsEarned(correctlyGuessedLetters.size());
+    }
+
+    void setPlayTime() {
+        setPlayTime((int)((System.currentTimeMillis() - startTime)/1000));
     }
 
 

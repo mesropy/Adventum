@@ -126,11 +126,11 @@ class EndlessRunnerGame extends Game {
 
     // call these from the activity when updating statistics
 
-    public void addPoints() {
+    void addPoints() {
         addPointsEarned(score);
     }
 
-    public void setPlayTime() {
+    void setPlayTime() {
         setPlayTime(totalTime);
     }
 
