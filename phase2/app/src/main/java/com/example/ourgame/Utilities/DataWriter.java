@@ -20,7 +20,7 @@ public class DataWriter implements WriteData {
      */
 
     private String[] rankings = {"Bronze", "Silver", "Gold", "Platinum"};
-    private int[] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl};
+//    private int[] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl};
     private String currentUser;
 
     private SharedPreferences loginData;
@@ -103,12 +103,12 @@ public class DataWriter implements WriteData {
         editor.apply();
 
         editor = characterData.edit();
-        editor.putInt(username, characterImageIds[0]);
+        editor.putInt(username, R.drawable.female);
         editor.apply();
     }
 
     public int getCharacterData() {
-        return characterData.getInt(currentUser, characterImageIds[0]);
+        return characterData.getInt(currentUser, 0);
     }
 
     public void setCharacterData(int characterImageId) {

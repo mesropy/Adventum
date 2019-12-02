@@ -234,4 +234,8 @@ public class English implements Language {
     public String getInstructionsSubtitle() {
         return "Instructions";
     }
+
+    public String save(){
+        return "Save";
+    }
 }

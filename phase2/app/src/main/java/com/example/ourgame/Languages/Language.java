@@ -55,6 +55,7 @@ public interface Language {
     String getLanguageText();
     String getThemeText();
     String getChangeCharacter();
+    String save();
 
     // leaderBoard
     String leaderBoardUser();

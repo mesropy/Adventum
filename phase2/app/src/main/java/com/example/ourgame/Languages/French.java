@@ -238,4 +238,8 @@ public class French implements Language {
     public String getInstructionsSubtitle() {
         return "Instructions";
     }
+
+    public String save(){
+        return "Conserver";
+    }
 }

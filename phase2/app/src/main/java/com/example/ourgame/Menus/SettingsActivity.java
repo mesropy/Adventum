@@ -32,11 +32,10 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private RadioGroup languageRadioGroup;
     private ImageButton [] themeButtons;
 
-    private int [] characterImageIds = {R.drawable.boy, R.drawable.female, R.drawable.girl,
+    private int [] characterImageIds = {R.drawable.female, R.drawable.girl,
             R.drawable.male, R.drawable.kid};
 
     private String selectedTheme;
-    private int selectedCharacterId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         languageText.setText(language.getLanguageText());
         themeText.setText(language.getThemeText());
         changeCharacterButton.setText(language.getChangeCharacter());
-        backButton.setText(language.back());
+        backButton.setText(language.save());
     }
 
 
@@ -123,18 +122,24 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         int nextCharacterId = characterImageIds[0];
         for(int i = 0; i < characterImageIds.length -1; i ++){
-            if(selectedCharacterId == characterImageIds[i]){
-                nextCharacterId = characterImageIds[i+1];
+            if(data.getCharacterData() == characterImageIds[i]) {
+                if (i != characterImageIds.length - 1) {
+                    nextCharacterId = characterImageIds[i + 1];
+                } else {
+                    nextCharacterId = characterImageIds[0];
+
+                }
             }
         }
-        selectedCharacterId = nextCharacterId;
-        characterImage.setImageResource(selectedCharacterId);
+        characterImage.setImageResource(nextCharacterId);
+        data.setCharacterData(nextCharacterId);
     }
 
     // only called when a theme button is pressed, display the selected theme
     @Override
     public void onClick(View view) {
         selectedTheme = view.getTag().toString();
+        data.setThemeData(selectedTheme);
         displaySelectedTheme();
     }
 
@@ -166,12 +171,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 findViewById(languageRadioGroup.getCheckedRadioButtonId());
         String selectedLanguage = checkedLanguageButton.getTag().toString();
         data.setLanguage(selectedLanguage);
-
-        // save theme
-        data.setThemeData(selectedTheme);
-
-        // save character
-        data.setCharacterData(selectedCharacterId);
 
         // load main menu
         screenLoader.loadMainMenu();
