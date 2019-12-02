@@ -1,7 +1,6 @@
 package com.example.ourgame.Games.RunningGame;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,8 +12,6 @@ import android.view.SurfaceView;
 
 import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.R;
-import com.example.ourgame.Statistics.StatisticsActivity;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 

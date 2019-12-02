@@ -11,18 +11,10 @@ public class LanguageTextSetter {
 
     public LanguageTextSetter(String string, Context context){
         if(string.equals(context.getString(R.string.language_english))){
-            try {
-                textSetter = new English(context);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            textSetter = new English(context);
         }
         else if(string.equals(context.getString(R.string.language_french))){
-            try {
-                textSetter = new French(context);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            textSetter = new French(context);
         }
     }
 

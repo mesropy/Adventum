@@ -14,49 +14,62 @@ import java.util.List;
 public class French implements Language {
 
     private List<String> gameIntros = new ArrayList<>();
-    French(Context context) throws IOException {
+    French(Context context){
         InputStream inputStream = context.getResources().openRawResource(R.raw.game_instruction_french);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-        try {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(inputStream))) {
             String str;
-            while((str = in.readLine()) != null){
-                if (!str.equals("")){
+            while ((str = in.readLine()) != null) {
+                if (!str.equals("")) {
                     gameIntros.add(str);
                 }
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             gameIntros.add("");
-        } finally {
-            in.close();
         }
     }
 
+    @Override
     public String getPlayButton() {
         return "Jouer";
     }
+
+    @Override
     public String getMainLeaderBoard() {
         return "Classement";
     }
+
+    @Override
     public String getMainSettings() {
         return "Paramètres";
     }
+
+    @Override
     public String getReactionTitle() {
         return "Temps de réaction";
     }
+
+    @Override
     public String getReactionMessageWait() {
         return "Attendez";
     }
+
+    @Override
     public String getReactionMessageInstruction() {
         return gameIntros.get(4);
     }
+
+    @Override
     public String getReactionMessageGo() {
         return "Aller!";
     }
+
+    @Override
     public String getReactionMessageTooSoon() {
         return "Trop tôt";
     }
+
+    @Override
     public String getReactionContinueText() {
         return "Appuyez sur pour continuer";
     }
@@ -155,22 +168,32 @@ public class French implements Language {
         return "Jeu du Pendu";
     }
 
+    @Override
     public String mainMenu() {
         return "Menu principal";
     }
 
+    @Override
     public String back(){
         return "Retour";
     }
+
+    @Override
     public String statistics(){
         return "Statistiques";
     }
+
+    @Override
     public String statPoints(){
         return "Points totaux: ";
     }
+
+    @Override
     public String statPlaytime(){
         return "Temps de lecture total: ";
     }
+
+    @Override
     public String statRank(){
         return "Classement: ";
     }
@@ -190,6 +213,7 @@ public class French implements Language {
         return "temp de lecture";
     }
 
+    @Override
     public String score(){
         return "Le point: ";
     }
@@ -239,6 +263,7 @@ public class French implements Language {
         return "Instructions";
     }
 
+    @Override
     public String save(){
         return "Conserver";
     }

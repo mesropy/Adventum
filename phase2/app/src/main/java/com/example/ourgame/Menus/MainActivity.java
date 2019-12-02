@@ -22,6 +22,7 @@ import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.ScreenLoader;
+import com.example.ourgame.login.Login;
 
 /**
  * An activity class for the main homepage the user is brought to once they register or sign in
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private Button statisticsButton;
     private Button leaderBoardButton;
     private Button settingsButton;
-    private ImageView characterImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         statisticsButton = findViewById(R.id.statisticsButton);
         leaderBoardButton = findViewById(R.id.leaderBoardButton);
         settingsButton = findViewById(R.id.settingsButton);
-        characterImage = findViewById(R.id.characterImage);
+        ImageView characterImage = findViewById(R.id.characterImage);
 
         data = new DataWriter(this);
         user = data.getCurrentUser();
@@ -98,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSettings(View view) {
         screenLoader.loadSettings();
+    }
+
+
+    // clear all previous users and go back to login page
+    public void clearData(View view){
+        data.clearUserData();
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
     }
 
     /**

@@ -8,7 +8,7 @@ import android.graphics.Rect;
 class Sprite {
 
     private Bitmap image;
-    private Rect hitbox;
+    private Rect hitBox;
     private int groundHeight;
 
     private Paint paint;
@@ -20,25 +20,13 @@ class Sprite {
     private int width;
     private int height;
 
-    void setWidth(int width) {
-        this.width = width;
-    }
-
     int getX() {
         return x;
     }
 
-    void setHeight(int height) {
-        this.height = height;
-    }
-
-    int getWidth() {
-        return width;
-    }
-
     Sprite(Bitmap image, int x, int y, int width, int height, int groundHeight){
         this.image = image;
-        this.hitbox = new Rect(x, y, x+width, y+height);
+        this.hitBox = new Rect(x, y, x+width, y+height);
         this.groundHeight = groundHeight;
 
         this.width = width;
@@ -59,9 +47,9 @@ class Sprite {
 
     void draw(Canvas canvas){
         if (image != null){
-            canvas.drawBitmap(image, null, hitbox, null);
+            canvas.drawBitmap(image, null, hitBox, null);
         }else{
-            canvas.drawRect(hitbox, paint);
+            canvas.drawRect(hitBox, paint);
         }
     }
 
@@ -71,16 +59,12 @@ class Sprite {
 
     private void setX(int x) {
         this.x = x;
-        hitbox.set(x, y, x + width, y + height);
-    }
-
-    int getY() {
-        return y;
+        hitBox.set(x, y, x + width, y + height);
     }
 
     void setY(int y) {
         this.y = y;
-        hitbox.set(x, y, x + width, y + height);
+        hitBox.set(x, y, x + width, y + height);
     }
 
     void setDx(int dx) {
@@ -91,16 +75,12 @@ class Sprite {
         this.dy = dy;
     }
 
-    public int getDx() {
-        return dx;
-    }
-
     int getDy() {
         return dy;
     }
 
-    Rect getHitbox() {
-        return hitbox;
+    Rect getHitBox() {
+        return hitBox;
     }
 
     void update(){

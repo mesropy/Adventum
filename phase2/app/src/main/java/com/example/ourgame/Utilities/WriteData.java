@@ -29,7 +29,7 @@ public interface WriteData {
 
     void increaseRanking();
 
-    void addLastGame(String lastgame);
+    void addLastGame(String lastGame);
 
     String getLastGame();
 
