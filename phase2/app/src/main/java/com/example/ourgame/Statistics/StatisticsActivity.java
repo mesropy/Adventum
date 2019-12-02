@@ -26,7 +26,6 @@ public class StatisticsActivity extends AppCompatActivity {
 
     WriteData dataWriter;
     ScreenLoader screenLoader;
-    private Language language;
 
     TextView pointsText;
     TextView playtimeText;
@@ -70,7 +69,7 @@ public class StatisticsActivity extends AppCompatActivity {
         ImageView characterImage = findViewById(R.id.characterImage);
 
         LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
-        language = text.getTextSetter();
+        Language language = text.getTextSetter();
 
         continueButton.setText(language.getContinue());
         title.setText(language.statistics());

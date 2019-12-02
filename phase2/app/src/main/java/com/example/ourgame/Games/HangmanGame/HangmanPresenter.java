@@ -33,7 +33,7 @@ class HangmanPresenter {
             if (game.correctGuess(letter)) {
                 onCorrectGuess(letter);
             } else {
-                onIncorrectGuess(letter);
+                onIncorrectGuess();
             }
 
             gameView.guessLetter(letterButton);
@@ -52,8 +52,8 @@ class HangmanPresenter {
         }
     }
 
-    private void onIncorrectGuess(String letter){
-        game.updateGuessIncorrect(letter);
+    private void onIncorrectGuess(){
+        game.updateGuessIncorrect();
         gameView.updateImage(game.getImageId());
         if (game.isGameLost()){
             onGameLost();

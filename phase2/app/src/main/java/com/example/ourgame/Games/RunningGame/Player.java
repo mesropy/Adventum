@@ -13,11 +13,11 @@ public class Player extends Sprite {
 
     public void update() {
         // See if the player has hit the ground
-        if (jump && this.getHitbox().bottom == getGroundHeight()){
+        if (jump && this.getHitBox().bottom == getGroundHeight()){
             setDy(JUMP);
             jump = false;
         }
-        else if (this.getHitbox().bottom >= getGroundHeight()){
+        else if (this.getHitBox().bottom >= getGroundHeight()){
             setY(getGroundHeight() - getHeight());
             setDy(0);
         }else{

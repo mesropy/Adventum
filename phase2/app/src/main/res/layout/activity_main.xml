@@ -8,6 +8,19 @@
     tools:context=".Menus.MainActivity">
 
     <Button
+        android:id="@+id/clearData"
+        android:layout_width="@dimen/menu_button_width"
+        android:layout_height="@dimen/menu_button_height"
+        android:layout_marginEnd="44dp"
+        android:fontFamily="@font/renner"
+        android:onClick="clearData"
+        android:text="@string/clear_data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
         android:id="@+id/pictureGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

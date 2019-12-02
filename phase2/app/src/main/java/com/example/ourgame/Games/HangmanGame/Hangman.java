@@ -111,7 +111,7 @@ class Hangman extends Game {
 
     // guess - letter guessed
     // update hangman based on the incorrect guess
-    void updateGuessIncorrect(String guess) {
+    void updateGuessIncorrect() {
         incorrectGuesses++;
         updateGameLost();
     }

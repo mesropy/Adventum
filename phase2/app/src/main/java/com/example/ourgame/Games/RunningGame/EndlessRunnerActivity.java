@@ -1,10 +1,7 @@
 package com.example.ourgame.Games.RunningGame;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.FrameLayout;
-
 import com.example.ourgame.R;
 
 public class EndlessRunnerActivity extends AppCompatActivity {

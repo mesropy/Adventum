@@ -4,20 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
 import com.example.ourgame.R;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
 import com.example.ourgame.Utilities.DataWriter;
-import com.example.ourgame.Utilities.ScreenLoader;
 import com.example.ourgame.Languages.Language;
-
-import java.util.Random;
 
 /**
  * An activity class for the Reaction Time Game

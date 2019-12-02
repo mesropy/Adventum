@@ -1,11 +1,9 @@
 package com.example.ourgame.Games.RunningGame;
 
-import android.content.Context;
 import android.graphics.Rect;
 
 import com.example.ourgame.Games.Game;
 import com.example.ourgame.Games.GameName;
-import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.WriteData;
 
 import java.util.ArrayList;
@@ -32,7 +30,6 @@ class EndlessRunnerGame extends Game {
 
     EndlessRunnerGame(EndlessRunnerView view, WriteData dataWriter) {
         super(GameName.RUNNING, dataWriter);
-//        super("Endless Runner", new DataWriter(((EndlessRunner)view).getContext()));
 
         this.view = view;
         groundHeight = view.getScreen().height() - view.getScreen().width() / 10;
@@ -42,10 +39,21 @@ class EndlessRunnerGame extends Game {
     }
 
     private void start() {
-        player = new Player(null, view.getScreen().width()/4, groundHeight - 50, 50, 50, groundHeight);
+        player = new Player(null,
+                view.getScreen().width()/4,
+                groundHeight - 50,
+                50,
+                50,
+                groundHeight);
         obstacles = new ArrayList<>();
-        obstacles.add(new Bull(null, view.getScreen().right, groundHeight - 50, groundHeight));
-        obstacles.add(new Bull(null, view.getScreen().right+obstacleDistMax, groundHeight - 50, groundHeight));
+        obstacles.add(new Bull(null,
+                view.getScreen().right,
+                groundHeight - 50,
+                groundHeight));
+        obstacles.add(new Bull(null,
+                view.getScreen().right+obstacleDistMax,
+                groundHeight - 50,
+                groundHeight));
         score = 0;
         gameStartTime = System.currentTimeMillis();
     }
@@ -56,7 +64,7 @@ class EndlessRunnerGame extends Game {
             score = (int)((System.currentTimeMillis() - gameStartTime)/1000);
             for (Sprite obstacle : obstacles) {
                 obstacle.update();
-                if (Rect.intersects(obstacle.getHitbox(), player.getHitbox())) {
+                if (Rect.intersects(obstacle.getHitBox(), player.getHitBox())) {
                     loseGame();
                 }
             }
@@ -73,14 +81,17 @@ class EndlessRunnerGame extends Game {
     }
 
     private void generateObstacles() {
-        int distance = randomGenerator.nextInt(obstacleDistMax);;
+        int distance = randomGenerator.nextInt(obstacleDistMax);
         if (obstacles.size() > 0){
-            int distanceToObstacle = view.getScreen().right - obstacles.get(0).getHitbox().right;
+            int distanceToObstacle = view.getScreen().right - obstacles.get(0).getHitBox().right;
             if (distanceToObstacle < obstacleDistMin) {
                 distance += obstacleDistMin - distanceToObstacle;
             }
         }
-        obstacles.add(new Bull(null, view.getScreen().right+distance, groundHeight - 50, groundHeight));
+        obstacles.add(new Bull(null,
+                view.getScreen().right+distance,
+                groundHeight - 50,
+                groundHeight));
     }
 
     void onTapEvent(){

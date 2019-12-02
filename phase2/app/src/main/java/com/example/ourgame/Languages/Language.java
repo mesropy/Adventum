@@ -7,9 +7,6 @@ public interface Language {
     String getMainSettings();
     String getWelcomeMessage(String user);
 
-    // String getTitle(GameName gameName);
-    // String getInstructions(GameName gameName);
-
     // instructions
     String getInstructionsSubtitle();
 
