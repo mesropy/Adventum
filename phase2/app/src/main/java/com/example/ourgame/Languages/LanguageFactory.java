@@ -6,10 +6,10 @@ import com.example.ourgame.R;
 
 import java.io.IOException;
 
-public class LanguageTextSetter {
+public class LanguageFactory {
     private Language textSetter;
 
-    public LanguageTextSetter(String string, Context context){
+    public LanguageFactory(String string, Context context){
         if(string.equals(context.getString(R.string.language_english))){
             textSetter = new English(context);
         }

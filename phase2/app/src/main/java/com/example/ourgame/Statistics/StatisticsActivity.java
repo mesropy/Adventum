@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.ScreenLoader;
@@ -68,7 +68,7 @@ public class StatisticsActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
         ImageView characterImage = findViewById(R.id.characterImage);
 
-        LanguageTextSetter text = new LanguageTextSetter(dataWriter.getLanguage(), this);
+        LanguageFactory text = new LanguageFactory(dataWriter.getLanguage(), this);
         Language language = text.getTextSetter();
 
         continueButton.setText(language.getContinue());

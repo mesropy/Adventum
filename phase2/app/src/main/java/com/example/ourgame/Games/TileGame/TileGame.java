@@ -14,92 +14,32 @@ import java.util.Collections;
 
 class TileGame extends Game {
 
-    private long startTime = 0;
+    private LifeCalculator lifeCalculator = new LifeCalculator();
+    private ShowTimeManager showTimeManager = new ShowTimeManager();
+    private TileManager tileManager = new TileManager();
+    private PointCalculator pointCalculator = new PointCalculator();
 
-    private int lives = 3;
-    private int currentLives;
-    private int currentNumRoundLives;
-    private int livesPerRound = 2;
-
-    private int correctPressed;
-    private int numRightTiles;
-    // whether or not the tile is green / "right", goes in order
-    // from left to right, then top to bottom
-    private ArrayList<Boolean> rightTile = new ArrayList<>();
-
-    // tile images
-    private int rightTileImageId;
-    private int wrongTileImageId;
-    private int unflippedTileImageId;
-
-    // time in milliseconds that will show pattern before flipping tiles
-    private int patternShowTime;
-    // time in milliseconds that will show pattern before moving on to then next level / game
-    private int patternEndShowTime;
-
-    private int tilePoints; // different from the points earned by the player
-
-    //the list of tile buttons for this TileGame
-    private ArrayList<Tile> tiles = new ArrayList<>();
 
     TileGame(Context context) {
         super(GameName.TILE, new DataWriter(context));
-
-        currentLives = lives;
-        currentNumRoundLives = livesPerRound;
-        correctPressed = 0;
-        numRightTiles = 4;
-        patternShowTime = 3000;
-        patternEndShowTime = 2000;
-        rightTileImageId = R.drawable.flipped_right;
-        wrongTileImageId = R.drawable.flipped_wrong;
-        unflippedTileImageId = R.drawable.unflipped;
-    }
-
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
-    }
-
-    public long getStartTime() {
-        return startTime;
     }
 
     void updatePoints() {
-        addPointsEarned(2 * tilePoints / 10);
+        addPointsEarned(2 * getTilePoints() / 10);
     }
 
     void addTilePoint() {
-        tilePoints++;
+        pointCalculator.addTilePoint();
     }
 
     int getTilePoints() {
-        return tilePoints;
+        return pointCalculator.getTilePoints();
     }
 
     @Override
     public boolean canUpdateRanking() {
-        return getPlayTime() <= (50 * 3 * patternShowTime * patternEndShowTime) &&
-                currentLives == lives; // didn't lose any lives / won all rounds
-    }
-
-    /**
-     * Sets up the tiles in this game by setting them to either be correct green tiles or incorrect
-     * red tiles the player can tap.
-     *
-     * @param numberOfTiles the number of tiles used in this TileGame
-     */
-    void setTileTypes(int numberOfTiles) {
-
-        rightTile.clear();
-        numRightTiles = numberOfTiles / 2;
-        for (int i = 0; i < numberOfTiles; i++) {
-
-            if (i < numRightTiles) {
-                rightTile.add(true);
-            } else {
-                rightTile.add(false);
-            }
-        }
+        return getPlayTime() <= (50 * 3 * showTimeManager.getPatternShowTime() * showTimeManager.getPatternEndShowTime()) &&
+                lifeCalculator.getCurrentLives() == lifeCalculator.getLives(); // didn't lose any lives / won all rounds
     }
 
     /**
@@ -108,9 +48,7 @@ class TileGame extends Game {
      * @param tiles an ArrayList containing the new set of tiles
      */
     void addTiles(ArrayList<Tile> tiles) {
-        this.tiles.clear();
-        this.tiles.addAll(tiles);
-
+        tileManager.addTiles(tiles);
     }
 
     /**
@@ -121,13 +59,7 @@ class TileGame extends Game {
      * @return the tile that contains the button object that was passed in
      */
     Tile getTileByButton(Button button) {
-
-        for (Tile tile : tiles) {
-            if (tile.getButton() == button) {
-                return tile;
-            }
-        }
-        return null;
+        return tileManager.getTileByButton(button);
     }
 
     /**
@@ -136,9 +68,7 @@ class TileGame extends Game {
      * @param activity the TileGameActivity that the buttons are present in
      */
     void setOnClickListeners(TileGameActivity activity) {
-        for (Tile tile : tiles) {
-            tile.setOnClickListener(activity);
-        }
+        tileManager.setOnClickListeners(activity);
     }
 
     /**
@@ -147,43 +77,7 @@ class TileGame extends Game {
      * @return an ArrayList containing tile objects
      */
     ArrayList<Tile> getTiles() {
-        return tiles;
-    }
-
-    boolean noMoreLives() {
-        return currentLives <= 0;
-    }
-
-    void loseLife() {
-        currentLives--;
-    }
-
-    void resetRoundLives() {
-        this.currentNumRoundLives = livesPerRound;
-    }
-
-    void loseRoundLife() {
-        currentNumRoundLives--;
-    }
-
-    boolean noMoreRoundLives() {
-        return currentNumRoundLives <= 0;
-    }
-
-    void resetCorrectPressed() {
-        this.correctPressed = 0;
-    }
-
-    void incrementCorrectPressed() {
-        correctPressed++;
-    }
-
-    boolean allRightTilesPressed() {
-        return correctPressed == numRightTiles;
-    }
-
-    ArrayList<Boolean> getRightTile() {
-        return rightTile;
+        return tileManager.getTiles();
     }
 
     /**
@@ -191,47 +85,85 @@ class TileGame extends Game {
      * wins a round.
      */
     void shuffleTiles() {
-        Collections.shuffle(rightTile);
+        Collections.shuffle(lifeCalculator.getRightTile());
 
-        for (int i = 0; i < rightTile.size(); i++) {
+        for (int i = 0; i < lifeCalculator.getRightTile().size(); i++) {
 
-            if (rightTile.get(i)) {
-                tiles.get(i).setRightTile();
+            if (lifeCalculator.getRightTile().get(i)) {
+                tileManager.getTiles().get(i).setRightTile();
             } else {
-                tiles.get(i).setWrongTile();
+                tileManager.getTiles().get(i).setWrongTile();
             }
         }
     }
 
-    int getRightTileImageId() {
-        return rightTileImageId;
+    void setStartTime(long startTime) {
+        showTimeManager.setStartTime(startTime);
     }
 
-    int getWrongTileImageId() {
-        return wrongTileImageId;
+    long getStartTime() {
+        return showTimeManager.getStartTime();
     }
 
-    int getUnflippedTileImageId() {
-        return unflippedTileImageId;
+    /**
+     * Sets up the tiles in this game by setting them to either be correct green tiles or incorrect
+     * red tiles the player can tap.
+     *
+     * @param numberOfTiles the number of tiles used in this TileGame
+     */
+    void setTileTypes(int numberOfTiles) {
+        lifeCalculator.setTileTypes(numberOfTiles);
+    }
+
+    boolean noMoreLives() {
+        return lifeCalculator.noMoreLives();
+    }
+
+    void loseLife() {
+        lifeCalculator.loseLife();
+    }
+
+    void resetRoundLives() {
+        lifeCalculator.resetRoundLives();
+    }
+
+    void loseRoundLife() {
+        lifeCalculator.loseRoundLife();
+    }
+
+    boolean noMoreRoundLives() {
+        return lifeCalculator.noMoreRoundLives();
+    }
+
+    void resetCorrectPressed() {
+        this.lifeCalculator.resetCorrectPressed();
+    }
+
+    void incrementCorrectPressed() {
+        lifeCalculator.incrementCorrectPressed();
+    }
+
+    boolean allRightTilesPressed() {
+        return lifeCalculator.allRightTilesPressed();
+    }
+
+    ArrayList<Boolean> getRightTile() {
+        return lifeCalculator.getRightTile();
     }
 
     int getPatternShowTime() {
-        int time = patternShowTime;
-        if (patternShowTime > 500) {
-            patternShowTime = patternShowTime - 200;
-        }
-        return time;
+        return showTimeManager.getPatternShowTime();
     }
 
     void resetShowTime() {
-        patternShowTime = 3000;
+        showTimeManager.resetShowTime();
     }
 
     int getPatternEndShowTime() {
-        return patternEndShowTime;
+        return showTimeManager.getPatternEndShowTime();
     }
 
     int getCurrentLives() {
-        return currentLives;
+        return lifeCalculator.getCurrentLives();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ourgame.Games;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourgame.Languages.Language;
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.R;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
@@ -31,10 +32,11 @@ public class InstructionsActivity extends AppCompatActivity {
 
         screenLoader = new ScreenLoader(this);
         data = new DataWriter(this);
-        LanguageTextSetter text = new LanguageTextSetter(data.getLanguage(), this);
+        LanguageFactory text = new LanguageFactory(data.getLanguage(), this);
         language = text.getTextSetter();
 
-        gameName = getIntent().getStringExtra("game");
+        Intent intent = getIntent();
+        gameName = intent.getStringExtra("game");
 
         setTexts();
         setTheme();
@@ -85,7 +87,7 @@ public class InstructionsActivity extends AppCompatActivity {
     private void setInstructions() {
         String instructions;
 
-        // TODO: remove this switch block, basec on how language is implemented
+        // TODO: remove this switch block, based on how language is implemented
         // same as for setTitle()
 
         switch (gameName) {
@@ -104,8 +106,8 @@ public class InstructionsActivity extends AppCompatActivity {
                 break;
             //language.getRunnerInstruction();
             default:  // Tile
-                // TODO: combine other 2 instructions and the images
-                instructions = language.getTileIntroduction1();
+                instructions = language.getTileIntroduction1() + "\n" + language.getTileIntroduction2() + "\n" +
+                language.getTileIntroduction3();
                 break;
         }
 

@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.R;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
@@ -50,7 +50,7 @@ class TileGamePresenter {
         this.gameView = view;
         this.tileGame = game;
 
-        LanguageTextSetter text = new LanguageTextSetter(
+        LanguageFactory text = new LanguageFactory(
                 (new DataWriter((Context)gameView)).getLanguage(), (Context) gameView);
         gameView.setLanguage(text.getTextSetter());
 
@@ -272,8 +272,6 @@ class TileGamePresenter {
         }
         tileGame.setOnClickListeners((TileGameActivity)gameView);
     }
-
-
 
     private void initiateGame(){
         gameView.setInitial();

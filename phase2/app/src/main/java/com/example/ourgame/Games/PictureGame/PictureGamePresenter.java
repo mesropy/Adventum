@@ -2,7 +2,7 @@ package com.example.ourgame.Games.PictureGame;
 
 import android.content.Context;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 
@@ -21,7 +21,7 @@ class PictureGamePresenter {
 
         screenLoader = new ScreenLoader((Context) gameView);
 
-        LanguageTextSetter text = new LanguageTextSetter(
+        LanguageFactory text = new LanguageFactory(
                 (new DataWriter((Context)gameView)).getLanguage(), (Context) gameView);
         gameView.setLanguage(text.getTextSetter());
 

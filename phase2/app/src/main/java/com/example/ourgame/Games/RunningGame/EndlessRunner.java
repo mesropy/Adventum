@@ -10,7 +10,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import com.example.ourgame.Languages.LanguageTextSetter;
+
+
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Languages.Language;
 import com.example.ourgame.Themes.Theme;
 import com.example.ourgame.Themes.ThemeBuilder;
@@ -53,7 +55,7 @@ public class EndlessRunner extends SurfaceView implements SurfaceHolder.Callback
 
         game = new EndlessRunnerGame(this, new DataWriter(context));
 
-        LanguageTextSetter text = new LanguageTextSetter(game.getLanguage(), context);
+        LanguageFactory text = new LanguageFactory(game.getLanguage(), context);
         language = text.getTextSetter();
 
         ThemeBuilder themeBuilder = new ThemeBuilder(game.getTheme());

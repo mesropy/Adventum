@@ -3,7 +3,7 @@ package com.example.ourgame.Games.ReactionGame;
 import android.content.Context;
 import android.os.Handler;
 
-import com.example.ourgame.Languages.LanguageTextSetter;
+import com.example.ourgame.Languages.LanguageFactory;
 import com.example.ourgame.Utilities.DataWriter;
 import com.example.ourgame.Utilities.ScreenLoader;
 
@@ -28,7 +28,7 @@ class ReactionGamePresenter {
         this.gameView = gameView;
         this.game = game;
 
-        LanguageTextSetter text = new LanguageTextSetter(
+        LanguageFactory text = new LanguageFactory(
                 (new DataWriter((Context)gameView)).getLanguage(), (Context) gameView);
         gameView.setLanguage(text.getTextSetter());
         gameView.setInitial();
