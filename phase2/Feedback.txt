@@ -1,0 +1,32 @@
+Dear group_0626
+
+This semester, we talked about MVP, the Model-View-Presenter architecture. It has many advantages, particularly when working with Android. As you can see from your project, your activity classes have methods that are specific to Android. If you encapsulate the rest of your code sufficiently, it is possible to port it to another platform simply by creating a new UI (for example, a website).
+
+Encapsulation can take on many forms. You can package your View classes together. You can ensure that your dependencies go one-way, towards the inner more abstract layers. You can incorporate SOLID principles as much as possible and design patterns where they make sense.
+Here is feedback that is specific to your project:
+
+You made good use of…
++ Inheritance with a Game super class that unified the structure of all the games. 
++ MVP design pattern is used in all the games and each part of the game is separated well that can easily be extended. 
++ The overall structure of the code is neat and clean with good packing and directory structure.
++ Good use of Strategy design pattern for sorting stats since you have numerical stats as well as categorical (“string”) stats.
++ Other design patterns such as Factory and Façade are also used effectively.
++ You have done a good job implementing SOLID principles where possible. 
++ Great use of Interface for adding new languages. 
+
+The user sees…
++ A clean and intuitive interface to access 5 easy to learn games. 
++ First game is a running game where you need to avoid oncoming objects by jumping over them. Second is Hangman game that asks the user to guess the letters of the word before the stickman is built and hung. Third is a reaction game where the user needs to press the screen as quickly as possible when the screen turns green. The fourth game is matching tiles/cards game with various levels of difficulty. The last game asks the user to guess what’s on the picture. Instructions are shown before each game. 
++ When play is pressed a random game is chosen, at the end of each game you get total points, total playtime, and ranking. There is some customization to the games and the ability to change the language between French and English.
+
+A good next step would be to…
++ Many of the classes have little to no Javadoc or comments (ex. ScreenLoader), which made the code much harder to decipher. Javadoc and comments could use some improvement for better readability of the code.
++ Hardcoded game data should be extracted to assets files. You can then read in the values and store them to a class variable where it is much easier to change the values, if you want to.
++ (Optional) Consider adding more levels and complexity to each of the games, or add a game that has multiple interactions with complex graphic. 
++ Rename your packages to follow the Java conventions — you should use pothole case rather than camel case.
+
+We hope that you enjoyed working on this project and found it a useful learning experience.
+
+Cheers,
+The CSC207 Instructional Team
+
